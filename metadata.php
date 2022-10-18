@@ -23,8 +23,14 @@ $aModule = [
     'author'       => 'Anton Fedurtsya',
     'email'        => 'anton@fedurtsya.com',
     'url'         => '',
+    'controllers' => [
+        'fa_invoice' => \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController::class
+    ],
     'extend'      => [
     ],
     'settings' => [
     ],
+    'templates' => [
+        '@fa_invoice/admin/invoice.tpl' => 'views/smarty/admin/invoice.tpl',
+    ]
 ];

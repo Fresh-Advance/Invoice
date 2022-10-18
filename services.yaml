@@ -3,3 +3,7 @@ services:
   _defaults:
     public: false
     autowire: true
+
+  FreshAdvance\Invoice\Service\:
+    resource: 'src/Service/*'
+    public: true
