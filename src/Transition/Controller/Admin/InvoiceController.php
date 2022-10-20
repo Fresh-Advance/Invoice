@@ -1,11 +1,15 @@
 <?php
 
+/**
+ * Copyright © MB Arbatos Klubas. All rights reserved.
+ * See LICENSE file for license details.
+ */
+
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\Service\Order as OrderService;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
-
 
 class InvoiceController extends AdminController
 {
