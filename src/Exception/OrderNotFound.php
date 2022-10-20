@@ -5,6 +5,8 @@
  * See LICENSE file for license details.
  */
 
+declare(strict_types=1);
+
 namespace FreshAdvance\Invoice\Exception;
 
 use OxidEsales\Eshop\Core\Exception\StandardException;

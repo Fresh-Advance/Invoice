@@ -5,6 +5,8 @@
  * See LICENSE file for license details.
  */
 
+declare(strict_types=1);
+
 namespace FreshAdvance\Invoice\Traits;
 
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;

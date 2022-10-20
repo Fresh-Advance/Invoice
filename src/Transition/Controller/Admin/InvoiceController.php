@@ -5,6 +5,8 @@
  * See LICENSE file for license details.
  */
 
+declare(strict_types=1);
+
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\Service\Order as OrderService;
