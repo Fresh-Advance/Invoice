@@ -7,11 +7,8 @@
 </form>
 
 [{if $order}]
-
-    Order found and loaded <br>
-
-    [{ $order->getId() }]
-
+    <a href="[{$oViewConf->getShopUrl()}]?cl=fa_invoice_generate&orderId=[{$order->getId()}]&fnc=generate"
+       target="_BLANK">Get invoice</a>
 [{/if}]
 
 [{include file="bottomnaviitem.tpl"}]

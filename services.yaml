@@ -4,6 +4,12 @@ services:
     public: false
     autowire: true
 
+  OxidEsales\Eshop\Core\Registry:
+    class: OxidEsales\Eshop\Core\Registry
+
+  OxidEsales\Eshop\Core\Request:
+    factory: [ '@OxidEsales\Eshop\Core\Registry', 'getRequest' ]
+
   FreshAdvance\Invoice\Service\:
     resource: 'src/Service/*'
     public: true

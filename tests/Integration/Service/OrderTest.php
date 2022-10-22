@@ -30,7 +30,7 @@ class OrderTest extends IntegrationTestCase
 
     public function testGetOrder(): void
     {
-        $sut = new Order();
+        $sut = $this->createPartialMock(Order::class, []);
         $result = $sut->getOrder(self::TEST_ORDER_ID);
 
         $this->assertSame(self::TEST_ORDER_ID, $result->getId());
@@ -38,9 +38,9 @@ class OrderTest extends IntegrationTestCase
 
     public function testGetWrongOrder(): void
     {
-        $sut = new Order();
+        $sut = $this->createPartialMock(Order::class, []);
 
         $this->expectException(OrderNotFound::class);
-        $result = $sut->getOrder(self::TEST_ORDER_ID_WRONG);
+        $sut->getOrder(self::TEST_ORDER_ID_WRONG);
     }
 }

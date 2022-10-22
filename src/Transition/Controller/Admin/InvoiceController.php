@@ -18,7 +18,6 @@ class InvoiceController extends AdminController
     use ServiceContainer;
 
     protected $_sThisTemplate = '@fa_invoice/admin/invoice';
-    protected OrderService $orderService;
 
     public function render()
     {

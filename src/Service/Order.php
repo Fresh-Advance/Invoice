@@ -10,10 +10,20 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Service;
 
 use FreshAdvance\Invoice\Exception\OrderNotFound;
+use FreshAdvance\Invoice\Exception\RequestParameterMissing;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
+use OxidEsales\Eshop\Core\Request;
 
 class Order
 {
+    public function __construct(
+        protected Request $request,
+    ) {
+    }
+
+    /**
+     * @throws OrderNotFound
+     */
     public function getOrder(string $orderId): OrderModel
     {
         $order = oxNew(OrderModel::class);
@@ -21,5 +31,19 @@ class Order
             throw new OrderNotFound(sprintf('Order "%s" not found', $orderId));
         }
         return $order;
+    }
+
+    /**
+     * @throws RequestParameterMissing
+     * @throws OrderNotFound
+     */
+    public function getRequestOrder(): OrderModel
+    {
+        $orderId = $this->request->getRequestParameter('orderId');
+        if (!$orderId) {
+            throw new RequestParameterMissing('orderId');
+        }
+
+        return $this->getOrder($orderId);
     }
 }
