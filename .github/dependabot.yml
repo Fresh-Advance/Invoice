@@ -17,3 +17,5 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "oxid-esales/oxideshop-ce"
