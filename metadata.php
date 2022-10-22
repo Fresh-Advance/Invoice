@@ -33,5 +33,6 @@ $aModule = [
     ],
     'templates' => [
         '@fa_invoice/admin/invoice.tpl' => 'views/smarty/admin/invoice.tpl',
+        '@fa_invoice/invoice/body.tpl' => 'views/smarty/invoice/body.tpl',
     ]
 ];

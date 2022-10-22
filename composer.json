@@ -12,7 +12,8 @@
   "minimum-stability": "dev",
   "require": {
     "php": "^8.0",
-    "oxid-esales/oxideshop-ce": "^7.0.0-rc.2 | 7.0.x-dev"
+    "oxid-esales/oxideshop-ce": "^7.0.0-rc.2 | 7.0.x-dev",
+    "mpdf/mpdf": "^8.1"
   },
   "require-dev": {
     "phpstan/phpstan": "^0.12.26",

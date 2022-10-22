@@ -10,6 +10,9 @@ services:
   OxidEsales\Eshop\Core\Request:
     factory: [ '@OxidEsales\Eshop\Core\Registry', 'getRequest' ]
 
+  Mpdf\Mpdf:
+    public: true
+
   FreshAdvance\Invoice\Service\:
     resource: 'src/Service/*'
     public: true
