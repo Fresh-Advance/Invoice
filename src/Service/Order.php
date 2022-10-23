@@ -40,7 +40,7 @@ class Order
     public function getRequestOrder(): OrderModel
     {
         $orderId = $this->request->getRequestParameter('orderId');
-        if (!$orderId) {
+        if (!$orderId || !is_string($orderId)) {
             throw new RequestParameterMissing('orderId');
         }
 
