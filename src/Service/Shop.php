@@ -24,7 +24,7 @@ class Shop
     {
         $shopId = $this->context->getCurrentShopId();
         $shop = oxNew(ShopModel::class);
-        if (!$shop->load($shopId)) {
+        if (!$shop->load((string)$shopId)) {
             throw new ShopNotFound();
         }
 
