@@ -201,7 +201,7 @@ jobs:
 
       - name: Download phpunit artifacts
         continue-on-error: true
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: TestsLog-8.0
           path: ./tests/
