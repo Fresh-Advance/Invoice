@@ -198,6 +198,8 @@ jobs:
     steps:
       - name: Checkout current module
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Download phpunit artifacts
         continue-on-error: true
