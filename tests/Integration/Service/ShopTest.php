@@ -17,8 +17,8 @@ use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 class ShopTest extends IntegrationTestCase
 {
-    protected const TEST_SHOP_ID = 5;
-    protected const TEST_SHOP_ID_WRONG = 100;
+    protected const TEST_SHOP_ID = '5';
+    protected const TEST_SHOP_ID_WRONG = '100';
 
     public function setUp(): void
     {
@@ -29,27 +29,19 @@ class ShopTest extends IntegrationTestCase
         $testShop->save();
     }
 
-    public function testGetActiveShop(): void
+    public function testGetShop(): void
     {
-        $context = $this->createConfiguredMock(ContextInterface::class, [
-            'getCurrentShopId' => self::TEST_SHOP_ID
-        ]);
+        $sut = $this->createPartialMock(Shop::class, []);
+        $result = $sut->getShop(self::TEST_SHOP_ID);
 
-        $sut = new Shop($context);
-        $result = $sut->getActiveShop();
-
-        $this->assertSame((string)self::TEST_SHOP_ID, $result->getId());
+        $this->assertSame(self::TEST_SHOP_ID, $result->getId());
     }
 
     public function testGetNotExistingShop(): void
     {
-        $context = $this->createConfiguredMock(ContextInterface::class, [
-            'getCurrentShopId' => self::TEST_SHOP_ID_WRONG
-        ]);
-
-        $sut = new Shop($context);
+        $sut = $this->createPartialMock(Shop::class, []);
 
         $this->expectException(ShopNotFound::class);
-        $sut->getActiveShop();
+        $sut->getShop(self::TEST_SHOP_ID_WRONG);
     }
 }

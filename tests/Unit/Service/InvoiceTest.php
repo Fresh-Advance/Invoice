@@ -20,15 +20,15 @@ class InvoiceTest extends TestCase
 {
     public function testGetInvoiceData(): void
     {
-        $orderStub = $this->createStub(OrderModel::class);
+        $orderStub = $this->createPartialMock(OrderModel::class, ['getShopId']);
+        $orderStub->method('getShopId')->willReturn(3);
         $orderServiceStub = $this->createConfiguredMock(Order::class, [
             'getRequestOrder' => $orderStub
         ]);
 
         $shopStub = $this->createStub(ShopModel::class);
-        $shopServiceStub = $this->createConfiguredMock(Shop::class, [
-            'getActiveShop' => $shopStub
-        ]);
+        $shopServiceStub = $this->createPartialMock(Shop::class, ['getShop']);
+        $shopServiceStub->method('getShop')->with('3')->willReturn($shopStub);
 
         $sut = new Invoice(
             orderService: $orderServiceStub,

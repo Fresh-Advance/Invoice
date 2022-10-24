@@ -22,9 +22,11 @@ class Invoice
 
     public function getInvoiceData(): InvoiceDataInterface
     {
+        $order = $this->orderService->getRequestOrder();
+        
         return new InvoiceData(
             order: $this->orderService->getRequestOrder(),
-            shop: $this->shopService->getActiveShop()
+            shop: $this->shopService->getShop((string)$order->getShopId())
         );
     }
 }

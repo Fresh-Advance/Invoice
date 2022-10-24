@@ -11,21 +11,17 @@ namespace FreshAdvance\Invoice\Service;
 
 use FreshAdvance\Invoice\Exception\ShopNotFound;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
-use OxidEsales\EshopCommunity\Internal\Transition\Utility\ContextInterface;
 
 class Shop
 {
-    public function __construct(
-        protected ContextInterface $context,
-    ) {
-    }
-
-    public function getActiveShop(): ShopModel
+    /**
+     * @throws ShopNotFound
+     */
+    public function getShop(string $shopId): ShopModel
     {
-        $shopId = $this->context->getCurrentShopId();
         $shop = oxNew(ShopModel::class);
-        if (!$shop->load((string)$shopId)) {
-            throw new ShopNotFound();
+        if (!$shop->load($shopId)) {
+            throw new ShopNotFound(sprintf('Order "%s" not found', $shopId));
         }
 
         return $shop;
