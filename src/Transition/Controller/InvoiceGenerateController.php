@@ -9,9 +9,10 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transition\Controller;
 
+use FreshAdvance\Invoice\DataType\PdfData;
 use FreshAdvance\Invoice\Service\Invoice;
+use FreshAdvance\Invoice\Service\PdfGenerator;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
-use Mpdf\Mpdf;
 use OxidEsales\Eshop\Application\Controller\FrontendController;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
@@ -24,15 +25,16 @@ class InvoiceGenerateController extends FrontendController
 
     public function generate(): void
     {
+        $invoiceService = $this->getServiceFromContainer(Invoice::class);
+        $invoiceData = $invoiceService->getInvoiceData();
+
         Registry::getLang()->setTplLanguage($_GET['lang']);
 
-        $invoiceService = $this->getServiceFromContainer(Invoice::class);
-
         $templateRenderer = $this->getServiceFromContainer(TemplateRendererInterface::class);
-        $pdfGenerator = $this->getServiceFromContainer(Mpdf::class);
-        $pdfGenerator->WriteHTML($templateRenderer->renderTemplate(self::INVOICE_TEMPLATE, [
-            'invoice' => $invoiceService->getInvoiceData()
-        ]));
-        $pdfGenerator->Output();
+        $html = $templateRenderer->renderTemplate(self::INVOICE_TEMPLATE, ['invoice' => $invoiceData]);
+
+        $pdfGenerator = $this->getServiceFromContainer(PdfGenerator::class);
+        header('Content-Type: application/pdf');
+        echo $pdfGenerator->getBinaryPdfFromData(new PdfData(htmlContent: $html));
     }
 }

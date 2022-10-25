@@ -95,6 +95,78 @@
         </tr>
     [{/foreach}]
 
+    [{foreach from=$order->getOrderArticles() item=item}]
+    [{assign var="product" value=$item->getArticle()}]
+    <tr class="item">
+        <td class="itemTitle">[{$product->getFieldData('oxtitle')}]</td>
+        <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>
+        <td class="itemSize">vnt.</td>
+        <td class="itemCount">[{$item->getFieldData('oxamount')}]</td>
+        <td class="itemPrice">[{$item->getNetPriceFormated()}]</td>
+        <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}]</td>
+    </tr>
+    [{/foreach}]
+
+    [{foreach from=$order->getOrderArticles() item=item}]
+    [{assign var="product" value=$item->getArticle()}]
+    <tr class="item">
+        <td class="itemTitle">[{$product->getFieldData('oxtitle')}]</td>
+        <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>
+        <td class="itemSize">vnt.</td>
+        <td class="itemCount">[{$item->getFieldData('oxamount')}]</td>
+        <td class="itemPrice">[{$item->getNetPriceFormated()}]</td>
+        <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}]</td>
+    </tr>
+    [{/foreach}]
+
+    [{foreach from=$order->getOrderArticles() item=item}]
+    [{assign var="product" value=$item->getArticle()}]
+    <tr class="item">
+        <td class="itemTitle">[{$product->getFieldData('oxtitle')}]</td>
+        <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>
+        <td class="itemSize">vnt.</td>
+        <td class="itemCount">[{$item->getFieldData('oxamount')}]</td>
+        <td class="itemPrice">[{$item->getNetPriceFormated()}]</td>
+        <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}]</td>
+    </tr>
+    [{/foreach}]
+
+    [{foreach from=$order->getOrderArticles() item=item}]
+    [{assign var="product" value=$item->getArticle()}]
+    <tr class="item">
+        <td class="itemTitle">[{$product->getFieldData('oxtitle')}]</td>
+        <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>
+        <td class="itemSize">vnt.</td>
+        <td class="itemCount">[{$item->getFieldData('oxamount')}]</td>
+        <td class="itemPrice">[{$item->getNetPriceFormated()}]</td>
+        <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}]</td>
+    </tr>
+    [{/foreach}]
+
+    [{foreach from=$order->getOrderArticles() item=item}]
+    [{assign var="product" value=$item->getArticle()}]
+    <tr class="item">
+        <td class="itemTitle">[{$product->getFieldData('oxtitle')}]</td>
+        <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>
+        <td class="itemSize">vnt.</td>
+        <td class="itemCount">[{$item->getFieldData('oxamount')}]</td>
+        <td class="itemPrice">[{$item->getNetPriceFormated()}]</td>
+        <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}]</td>
+    </tr>
+    [{/foreach}]
+
+    [{foreach from=$order->getOrderArticles() item=item}]
+    [{assign var="product" value=$item->getArticle()}]
+    <tr class="item">
+        <td class="itemTitle">[{$product->getFieldData('oxtitle')}]</td>
+        <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>
+        <td class="itemSize">vnt.</td>
+        <td class="itemCount">[{$item->getFieldData('oxamount')}]</td>
+        <td class="itemPrice">[{$item->getNetPriceFormated()}]</td>
+        <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}]</td>
+    </tr>
+    [{/foreach}]
+
     <tr id="total">
         <td colspan="5">Total:</td>
         <td>[{$order->getFormattedTotalOrderSum()}]</td>
