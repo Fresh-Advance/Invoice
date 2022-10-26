@@ -17,7 +17,7 @@ class Shop
     /**
      * @throws ShopNotFound
      */
-    public function getShop(string $shopId): ShopModel
+    public function getShop(int $shopId): ShopModel
     {
         $shop = oxNew(ShopModel::class);
         if (!$shop->load($shopId)) {

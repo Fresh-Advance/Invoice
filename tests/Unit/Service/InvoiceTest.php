@@ -29,7 +29,7 @@ class InvoiceTest extends TestCase
 
         $shopStub = $this->createStub(ShopModel::class);
         $shopServiceStub = $this->createPartialMock(Shop::class, ['getShop']);
-        $shopServiceStub->method('getShop')->with('3')->willReturn($shopStub);
+        $shopServiceStub->method('getShop')->with(3)->willReturn($shopStub);
 
         $shopConfigStub = $this->createPartialMock(Config::class, ['getShopConfVar']);
         $shopConfigStub->method('getShopConfVar')->with('sDefaultLang', 3)->willReturn(5);

@@ -12,13 +12,12 @@ namespace FreshAdvance\Invoice\Tests\Integration\Service;
 use FreshAdvance\Invoice\Exception\ShopNotFound;
 use FreshAdvance\Invoice\Service\Shop;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
-use OxidEsales\EshopCommunity\Internal\Transition\Utility\ContextInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 class ShopTest extends IntegrationTestCase
 {
-    protected const TEST_SHOP_ID = '5';
-    protected const TEST_SHOP_ID_WRONG = '100';
+    protected const TEST_SHOP_ID = 5;
+    protected const TEST_SHOP_ID_WRONG = 100;
 
     public function setUp(): void
     {
@@ -34,7 +33,7 @@ class ShopTest extends IntegrationTestCase
         $sut = $this->createPartialMock(Shop::class, []);
         $result = $sut->getShop(self::TEST_SHOP_ID);
 
-        $this->assertSame(self::TEST_SHOP_ID, $result->getId());
+        $this->assertSame(self::TEST_SHOP_ID, (int)$result->getId());
     }
 
     public function testGetNotExistingShop(): void

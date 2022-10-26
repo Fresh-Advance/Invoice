@@ -31,7 +31,7 @@ class Invoice
 
         return new InvoiceData(
             order: $order,
-            shop: $this->shopService->getShop((string)$order->getShopId()), //todo: ensure int result
+            shop: $this->shopService->getShop($order->getShopId()),
             languageId: (int)$orderShopLanguage
         );
     }
