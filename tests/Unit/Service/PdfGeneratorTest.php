@@ -14,6 +14,9 @@ use FreshAdvance\Invoice\Service\PdfGenerator;
 use Mpdf\Mpdf;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \FreshAdvance\Invoice\Service\PdfGenerator
+ */
 class PdfGeneratorTest extends TestCase
 {
     public function testGetBinaryPdfFromData(): void

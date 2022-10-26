@@ -14,6 +14,9 @@ use FreshAdvance\Invoice\Service\Order;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
+/**
+ * @covers \FreshAdvance\Invoice\Service\Order
+ */
 class OrderTest extends IntegrationTestCase
 {
     protected const TEST_ORDER_ID = 'someTestOrderId';

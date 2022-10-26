@@ -14,6 +14,9 @@ use FreshAdvance\Invoice\Service\Shop;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
+/**
+ * @covers \FreshAdvance\Invoice\Service\Shop
+ */
 class ShopTest extends IntegrationTestCase
 {
     protected const TEST_SHOP_ID = 5;

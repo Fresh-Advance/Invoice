@@ -11,6 +11,9 @@ namespace FreshAdvance\Invoice\Tests\Unit\Transition\Controller\Admin;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers InvoiceGenerateController
+ */
 class InvoiceGenerateControllerTest extends TestCase
 {
 }

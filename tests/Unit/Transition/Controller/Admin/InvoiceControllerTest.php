@@ -14,6 +14,9 @@ use FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController
+ */
 class InvoiceControllerTest extends TestCase
 {
     public function testRender(): void

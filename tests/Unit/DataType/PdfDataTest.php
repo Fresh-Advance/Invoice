@@ -7,11 +7,14 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\DataType;
 
 use FreshAdvance\Invoice\DataType\PdfData;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \FreshAdvance\Invoice\DataType\PdfData
+ */
 class PdfDataTest extends TestCase
 {
     public function testMinimalContent(): void

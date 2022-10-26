@@ -17,6 +17,9 @@ use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use OxidEsales\Eshop\Core\Config;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \FreshAdvance\Invoice\Service\Invoice
+ */
 class InvoiceTest extends TestCase
 {
     public function testGetInvoiceData(): void

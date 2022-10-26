@@ -15,6 +15,9 @@ use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Core\Request;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \FreshAdvance\Invoice\Service\Order
+ */
 class OrderTest extends TestCase
 {
     public function testGetRequestOrder(): void
