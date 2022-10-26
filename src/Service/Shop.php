@@ -20,7 +20,7 @@ class Shop
     public function getShop(int $shopId): ShopModel
     {
         $shop = oxNew(ShopModel::class);
-        if (!$shop->load($shopId)) {
+        if (!$shop->load((string)$shopId)) {
             throw new ShopNotFound(sprintf('Order "%s" not found', $shopId));
         }
 
