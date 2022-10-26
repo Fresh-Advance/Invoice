@@ -20,7 +20,7 @@ class ServiceContainerTest extends IntegrationTestCase
 {
     public function testGetServiceFromContainer()
     {
-        $sut = new class() {
+        $sut = new class {
             use ServiceContainer;
 
             public function getTestService(string $service)
