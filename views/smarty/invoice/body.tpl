@@ -11,16 +11,16 @@
         margin-bottom: 10px;
     }
 
-    #number, #date {
+    #number, #date, #invoiceSign {
         text-align: right;
         font-weight: bold;
-        margin: 10px 0;
+        margin: 25px 0;
     }
 
     #facture {
         text-align: center;
         font-weight: bold;
-        font-size: 14px;
+        font-size: 16px;
         margin: 25px 0;
     }
 
@@ -66,8 +66,7 @@
         <strong>[{$shop->getFieldData('OXCOMPANY')}]</strong><br/>
         [{$shop->getFieldData('OXSTREET')}]<br/>
         [{$shop->getFieldData('OXZIP')}] [{$shop->getFieldData('OXCITY')}], [{$shop->getFieldData('OXCOUNTRY')}]<br/>
-        [{oxmultilang ident="FAINVOICE_COMPANY_CODE"}]: [{$shop->getFieldData('OXTAXNUMBER')}]<br/>
-        [{$shop->getFieldData('OXTAXNUMBER')}]<br/>
+        Įmonės kodas: [{$shop->getFieldData('OXTAXNUMBER')}]<br/>
         [{$shop->getFieldData('OXINFOEMAIL')}]
     </div>
 </div>
@@ -119,3 +118,5 @@
     </tr>
 
 </table>
+
+<div id="invoiceSign">Sąskaitą išrašė: ???</div>
