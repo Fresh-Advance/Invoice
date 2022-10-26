@@ -10,4 +10,6 @@ interface InvoiceDataInterface
     public function getOrder(): Order;
 
     public function getShop(): Shop;
+
+    public function getLanguageId(): int;
 }

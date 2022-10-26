@@ -28,7 +28,7 @@ class InvoiceGenerateController extends FrontendController
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
         $invoiceData = $invoiceService->getInvoiceData();
 
-        Registry::getLang()->setTplLanguage($_GET['lang']);
+        Registry::getLang()->setTplLanguage($invoiceData->getLanguageId());
 
         $templateRenderer = $this->getServiceFromContainer(TemplateRendererInterface::class);
         $html = $templateRenderer->renderTemplate(self::INVOICE_TEMPLATE, ['invoice' => $invoiceData]);

@@ -14,6 +14,7 @@ use FreshAdvance\Invoice\Service\Order;
 use FreshAdvance\Invoice\Service\Shop;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
+use OxidEsales\Eshop\Core\Config;
 use PHPUnit\Framework\TestCase;
 
 class InvoiceTest extends TestCase
@@ -30,14 +31,19 @@ class InvoiceTest extends TestCase
         $shopServiceStub = $this->createPartialMock(Shop::class, ['getShop']);
         $shopServiceStub->method('getShop')->with('3')->willReturn($shopStub);
 
+        $shopConfigStub = $this->createPartialMock(Config::class, ['getShopConfVar']);
+        $shopConfigStub->method('getShopConfVar')->with('sDefaultLang', 3)->willReturn(5);
+
         $sut = new Invoice(
             orderService: $orderServiceStub,
-            shopService: $shopServiceStub
+            shopService: $shopServiceStub,
+            shopConfig: $shopConfigStub
         );
 
         $result = $sut->getInvoiceData();
 
         $this->assertSame($orderStub, $result->getOrder());
         $this->assertSame($shopStub, $result->getShop());
+        $this->assertSame(5, $result->getLanguageId());
     }
 }

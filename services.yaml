@@ -7,6 +7,9 @@ services:
   OxidEsales\Eshop\Core\Registry:
     class: OxidEsales\Eshop\Core\Registry
 
+  OxidEsales\Eshop\Core\Config:
+    factory: [ '@OxidEsales\Eshop\Core\Registry', 'getConfig' ]
+
   OxidEsales\Eshop\Core\Request:
     factory: [ '@OxidEsales\Eshop\Core\Registry', 'getRequest' ]
 
