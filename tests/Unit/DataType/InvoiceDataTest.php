@@ -31,5 +31,20 @@ class InvoiceDataTest extends TestCase
 
         $this->assertSame($orderStub, $sut->getOrder());
         $this->assertSame($shopStub, $sut->getShop());
+        $this->assertSame(0, $sut->getLanguageId());
+    }
+
+    public function testGetLanguage(): void
+    {
+        $orderStub = $this->createStub(Order::class);
+        $shopStub = $this->createStub(Shop::class);
+
+        $sut = new InvoiceData(
+            order: $orderStub,
+            shop: $shopStub,
+            languageId: 10
+        );
+
+        $this->assertSame(10, $sut->getLanguageId());
     }
 }
