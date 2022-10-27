@@ -1,0 +1,4 @@
+table_storage:
+  table_name: oxmigrations_fa_invoice
+migrations_paths:
+  'FreshAdvance\Invoice\Migrations': data
