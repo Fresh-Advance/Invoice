@@ -35,7 +35,7 @@ class InvoiceController extends AdminController
     public function generate(): void
     {
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
-        $invoiceData = $invoiceService->getInvoiceData();
+        $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
 
         Registry::getLang()->setTplLanguage($invoiceData->getLanguageId());
 

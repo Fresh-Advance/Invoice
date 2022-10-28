@@ -32,18 +32,4 @@ class Order
         }
         return $order;
     }
-
-    /**
-     * @throws RequestParameterMissing
-     * @throws OrderNotFound
-     */
-    public function getRequestOrder(): OrderModel
-    {
-        $orderId = $this->request->getRequestParameter('orderId');
-        if (!$orderId || !is_string($orderId)) {
-            throw new RequestParameterMissing('orderId');
-        }
-
-        return $this->getOrder($orderId);
-    }
 }

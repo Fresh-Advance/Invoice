@@ -22,9 +22,9 @@ class Invoice
     ) {
     }
 
-    public function getInvoiceData(): InvoiceDataInterface
+    public function getInvoiceDataByOrderId(string $orderId): InvoiceDataInterface
     {
-        $order = $this->orderService->getRequestOrder();
+        $order = $this->orderService->getOrder($orderId);
 
         /** @var string $orderShopLanguage */
         $orderShopLanguage = $this->shopConfig->getShopConfVar('sDefaultLang', $order->getShopId());

@@ -26,9 +26,9 @@ class InvoiceTest extends TestCase
     {
         $orderStub = $this->createPartialMock(OrderModel::class, ['getShopId']);
         $orderStub->method('getShopId')->willReturn(3);
-        $orderServiceStub = $this->createConfiguredMock(Order::class, [
-            'getRequestOrder' => $orderStub
-        ]);
+
+        $orderServiceStub = $this->createPartialMock(Order::class, ['getOrder']);
+        $orderServiceStub->method('getOrder')->with('someOrderId')->willReturn($orderStub);
 
         $shopStub = $this->createStub(ShopModel::class);
         $shopServiceStub = $this->createPartialMock(Shop::class, ['getShop']);
@@ -43,7 +43,7 @@ class InvoiceTest extends TestCase
             shopConfig: $shopConfigStub
         );
 
-        $result = $sut->getInvoiceData();
+        $result = $sut->getInvoiceDataByOrderId('someOrderId');
 
         $this->assertSame($orderStub, $result->getOrder());
         $this->assertSame($shopStub, $result->getShop());
