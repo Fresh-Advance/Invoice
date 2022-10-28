@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Unit\Service;
 use FreshAdvance\Invoice\DataType\PdfData;
 use FreshAdvance\Invoice\Service\PdfGenerator;
 use Mpdf\Mpdf;
+use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,14 +24,17 @@ class PdfGeneratorTest extends TestCase
     {
         $pdfProcessorMock = $this->createPartialMock(
             Mpdf::class,
-            ['SetHTMLHeader', 'WriteHTML', 'SetHTMLFooter', 'OutputBinaryData']
+            ['SetHTMLHeader', 'WriteHTML', 'SetHTMLFooter', 'OutputFile']
         );
         $pdfProcessorMock->expects($this->once())->method('SetHTMLHeader')->with('someHeaderHtml');
         $pdfProcessorMock->expects($this->once())->method('SetHTMLFooter')->with('someFooterHtml');
         $pdfProcessorMock->expects($this->once())->method('WriteHTML')->with('someContentHtml');
-        $pdfProcessorMock->method('OutputBinaryData')->willReturn('someGenerationResult');
+        $pdfProcessorMock->expects($this->once())->method('OutputFile')->with('someFilename');
 
-        $sut = new PdfGenerator($pdfProcessorMock);
+        $sut = new PdfGenerator(
+            $pdfProcessorMock,
+            $this->createStub(TemplateRendererInterface::class)
+        );
 
         $data = new PdfData(
             htmlContent: 'someContentHtml',
@@ -38,6 +42,6 @@ class PdfGeneratorTest extends TestCase
             htmlFooter: 'someFooterHtml'
         );
 
-        $this->assertSame('someGenerationResult', $sut->getBinaryPdfFromData($data));
+        $sut->generate($data, 'someFilename');
     }
 }

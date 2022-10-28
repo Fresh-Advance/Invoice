@@ -24,8 +24,7 @@ $aModule = [
     'email'        => 'anton@fedurtsya.com',
     'url'         => '',
     'controllers' => [
-        'fa_invoice' => \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController::class,
-        'fa_invoice_generate' => \FreshAdvance\Invoice\Transition\Controller\InvoiceGenerateController::class
+        'fa_invoice' => \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController::class
     ],
     'extend'      => [
     ],
