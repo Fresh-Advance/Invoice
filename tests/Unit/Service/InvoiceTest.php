@@ -55,6 +55,6 @@ class InvoiceTest extends TestCase
         $this->assertSame($orderStub, $result->getOrder());
         $this->assertSame($shopStub, $result->getShop());
         $this->assertSame(5, $result->getLanguageId());
-        $this->assertSame('someRootPath/so/someOrderId', $result->getInvoicePath());
+        $this->assertSame('someRootPath/so/someOrderId.pdf', $result->getInvoicePath());
     }
 }

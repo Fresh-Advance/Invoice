@@ -45,7 +45,7 @@ class Invoice
         return Path::join(
             $this->moduleContext->getInvoicesPath(),
             substr($order->getId(), 0, 2),
-            $order->getId()
+            $order->getId() . '.pdf'
         );
     }
 }
