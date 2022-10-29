@@ -12,4 +12,6 @@ interface InvoiceDataInterface
     public function getShop(): Shop;
 
     public function getLanguageId(): int;
+
+    public function getInvoicePath(): string;
 }

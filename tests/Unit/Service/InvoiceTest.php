@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
+use FreshAdvance\Invoice\Service\Context;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\Order;
 use FreshAdvance\Invoice\Service\Shop;
@@ -24,8 +25,10 @@ class InvoiceTest extends TestCase
 {
     public function testGetInvoiceData(): void
     {
-        $orderStub = $this->createPartialMock(OrderModel::class, ['getShopId']);
-        $orderStub->method('getShopId')->willReturn(3);
+        $orderStub = $this->createConfiguredMock(OrderModel::class, [
+            'getShopId' => 3,
+            'getId' => 'someOrderId'
+        ]);
 
         $orderServiceStub = $this->createPartialMock(Order::class, ['getOrder']);
         $orderServiceStub->method('getOrder')->with('someOrderId')->willReturn($orderStub);
@@ -40,7 +43,11 @@ class InvoiceTest extends TestCase
         $sut = new Invoice(
             orderService: $orderServiceStub,
             shopService: $shopServiceStub,
-            shopConfig: $shopConfigStub
+            shopConfig: $shopConfigStub,
+            moduleContext: $this->createConfiguredMock(
+                Context::class,
+                ['getInvoicesPath' => 'someRootPath']
+            )
         );
 
         $result = $sut->getInvoiceDataByOrderId('someOrderId');
@@ -48,5 +55,6 @@ class InvoiceTest extends TestCase
         $this->assertSame($orderStub, $result->getOrder());
         $this->assertSame($shopStub, $result->getShop());
         $this->assertSame(5, $result->getLanguageId());
+        $this->assertSame('someRootPath/so/someOrderId', $result->getInvoicePath());
     }
 }

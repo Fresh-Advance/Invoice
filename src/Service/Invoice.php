@@ -11,14 +11,17 @@ namespace FreshAdvance\Invoice\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Core\Config;
+use Webmozart\PathUtil\Path;
 
 class Invoice
 {
     public function __construct(
         protected Order $orderService,
         protected Shop $shopService,
-        protected Config $shopConfig
+        protected Config $shopConfig,
+        protected ContextInterface $moduleContext
     ) {
     }
 
@@ -32,7 +35,17 @@ class Invoice
         return new InvoiceData(
             order: $order,
             shop: $this->shopService->getShop($order->getShopId()),
+            invoicePath: $this->getOrderInvoicePath($order),
             languageId: (int)$orderShopLanguage
+        );
+    }
+
+    public function getOrderInvoicePath(OrderModel $order): string
+    {
+        return Path::join(
+            $this->moduleContext->getInvoicesPath(),
+            substr($order->getId(), 0, 2),
+            $order->getId()
         );
     }
 }

@@ -26,12 +26,14 @@ class InvoiceDataTest extends TestCase
 
         $sut = new InvoiceData(
             order: $orderStub,
-            shop: $shopStub
+            shop: $shopStub,
+            invoicePath: 'somePath'
         );
 
         $this->assertSame($orderStub, $sut->getOrder());
         $this->assertSame($shopStub, $sut->getShop());
         $this->assertSame(0, $sut->getLanguageId());
+        $this->assertSame('somePath', $sut->getInvoicePath());
     }
 
     public function testGetLanguage(): void
@@ -42,6 +44,7 @@ class InvoiceDataTest extends TestCase
         $sut = new InvoiceData(
             order: $orderStub,
             shop: $shopStub,
+            invoicePath: 'somePath',
             languageId: 10
         );
 
