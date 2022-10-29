@@ -6,7 +6,11 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Fresh-Advance_Invoice&metric=coverage)](https://sonarcloud.io/dashboard?id=Fresh-Advance_Invoice)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Fresh-Advance_Invoice&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Fresh-Advance_Invoice)
 
-OXID Invoice Module
+OXID PDF Invoice Module
+
+## Features
+
+* Invoice generated in shop Default language (Check if module translations for that language are available)
 
 ## Dev section
 

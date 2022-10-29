@@ -61,18 +61,18 @@
 
 <div id="seller">
     [{assign var="shop" value=$invoice->getShop() }]
-    <div class="contactHead">PARDAVĖJAS</div>
+    <div class="contactHead">[{oxmultilang ident="FA_INVOICE_SELLER"}]</div>
     <div>
         <strong>[{$shop->getFieldData('OXCOMPANY')}]</strong><br/>
         [{$shop->getFieldData('OXSTREET')}]<br/>
         [{$shop->getFieldData('OXZIP')}] [{$shop->getFieldData('OXCITY')}], [{$shop->getFieldData('OXCOUNTRY')}]<br/>
-        Įmonės kodas: [{$shop->getFieldData('OXTAXNUMBER')}]<br/>
+        [{oxmultilang ident="FA_INVOICE_TAXID"}]: [{$shop->getFieldData('OXTAXNUMBER')}]<br/>
         [{$shop->getFieldData('OXINFOEMAIL')}]
     </div>
 </div>
 
 <div id="buyer">
-    <div class="contactHead">PIRKĖJAS</div>
+    <div class="contactHead">[{oxmultilang ident="FA_INVOICE_BUYER"}]</div>
     <div>
         [{if $order->getFieldData('oxbillcompany') }]
             <strong>[{$order->getFieldData('oxbillcompany')}]<br/>
@@ -85,19 +85,19 @@
 
 <div></div>
 
-<div id="number">Užsakymo Nr.: [{$order->getFieldData('oxordernr')}]</div>
-<div id="date">Sąskaitos išrašymo data: ????</div>
+<div id="number">[{oxmultilang ident="FA_INVOICE_ORDERNR"}]: [{$order->getFieldData('oxordernr')}]</div>
+<div id="date">[{oxmultilang ident="FA_INVOICE_DATE"}]: ????</div>
 
-<div id="facture">Sąskaita faktūra Nr. ?? – ????</div>
+<div id="facture">[{oxmultilang ident="FA_INVOICE_NUMBER"}] ?? – ????</div>
 
 <table id="contentTable">
     <tr class="contentHeader">
-        <td class="itemTitle">PAVADINIMAS</td>
-        <td class="itemCode">KODAS</td>
-        <td class="itemSize">MAT. VNT</td>
-        <td class="itemCount">KIEKIS</td>
-        <td class="itemPrice">KAINA</td>
-        <td class="itemTotalPrice">VISO</td>
+        <td class="itemTitle">[{oxmultilang ident="FA_INVOICE_ITEM_TITLE"}]</td>
+        <td class="itemCode">[{oxmultilang ident="FA_INVOICE_ITEM_CODE"}]</td>
+        <td class="itemSize">[{oxmultilang ident="FA_INVOICE_ITEM_TYPE"}]</td>
+        <td class="itemCount">[{oxmultilang ident="FA_INVOICE_ITEM_COUNT"}]</td>
+        <td class="itemPrice">[{oxmultilang ident="FA_INVOICE_ITEM_PRICE"}]</td>
+        <td class="itemTotalPrice">[{oxmultilang ident="FA_INVOICE_ITEM_PRICE_TOTAL"}]</td>
     </tr>
 
     [{foreach from=$order->getOrderArticles() item=item}]
@@ -109,7 +109,7 @@
         <tr class="item">
             <td class="itemTitle">[{$product->getFieldData('oxtitle')}]</td>
             <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>
-            <td class="itemSize">vnt.</td>
+            <td class="itemSize">[{oxmultilang ident="FA_INVOICE_PCS"}]</td>
             <td class="itemCount">[{$item->getFieldData('oxamount')}]</td>
             <td class="itemPrice">[{$item->getNetPriceFormated()}]</td>
             <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}]</td>
@@ -117,10 +117,10 @@
     [{/foreach}]
 
     <tr id="total">
-        <td colspan="5">Total:</td>
+        <td colspan="5">[{oxmultilang ident="FA_INVOICE_TOTAL"}]:</td>
         <td>[{$order->getFormattedTotalOrderSum()}]</td>
     </tr>
 
 </table>
 
-<div id="invoiceSign">Sąskaitą išrašė: ???</div>
+<div id="invoiceSign">[{oxmultilang ident="FA_INVOICE_SIGNED"}]: ???</div>

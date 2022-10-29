@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 $aLang = [
     'charset' => 'UTF-8',
-    'tbclorder_fa_invoice' => 'Invoice',
+    'tbclorder_fa_invoice' => 'Invoice de',
 
     'FA_INVOICE_SELLER' => 'Pardavėjas',
     'FA_INVOICE_BUYER' => 'Pirkėjas',
