@@ -101,7 +101,11 @@
     </tr>
 
     [{foreach from=$order->getOrderArticles() item=item}]
+
+        [{* Load product to get title in correct language *}]
         [{assign var="product" value=$item->getArticle()}]
+        [{$product->loadInLang($invoice->getLanguageId(), $product->getId())}]
+
         <tr class="item">
             <td class="itemTitle">[{$product->getFieldData('oxtitle')}]</td>
             <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>

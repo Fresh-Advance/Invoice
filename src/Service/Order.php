@@ -16,11 +16,6 @@ use OxidEsales\Eshop\Core\Request;
 
 class Order
 {
-    public function __construct(
-        protected Request $request,
-    ) {
-    }
-
     /**
      * @throws OrderNotFound
      */

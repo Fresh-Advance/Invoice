@@ -37,10 +37,14 @@ class InvoiceController extends AdminController
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
         $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
 
-        Registry::getLang()->setTplLanguage($invoiceData->getLanguageId());
+        $lang = Registry::getLang();
+        $currentLanguage = $lang->getTplLanguage();
+        $lang->setTplLanguage($invoiceData->getLanguageId());
 
         $pdfGenerator = $this->getServiceFromContainer(PdfGenerator::class);
         $pdfData = $pdfGenerator->preparePdfData($invoiceData);
         $pdfGenerator->generate($pdfData, '/var/www/invoices/example.pdf');
+
+        $lang->setTplLanguage($currentLanguage);
     }
 }
