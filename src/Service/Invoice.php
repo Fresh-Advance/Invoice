@@ -9,8 +9,10 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Service;
 
+use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Repository\Invoice as InvoiceRepository;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Core\Config;
 use Webmozart\PathUtil\Path;
@@ -21,7 +23,8 @@ class Invoice
         protected Order $orderService,
         protected Shop $shopService,
         protected Config $shopConfig,
-        protected ContextInterface $moduleContext
+        protected ContextInterface $moduleContext,
+        protected InvoiceRepository $invoiceRepository
     ) {
     }
 
@@ -46,6 +49,18 @@ class Invoice
             $this->moduleContext->getInvoicesPath(),
             substr($order->getId(), 0, 2),
             $order->getId() . '.pdf'
+        );
+    }
+
+    public function saveOrderInvoiceData(array $data): void
+    {
+        $this->invoiceRepository->saveInvoiceConfiguration(
+            new InvoiceConfiguration(
+                orderId: $data['order_id'],
+                signer: $data['signer'],
+                date: $data['number'],
+                number: $data['number']
+            )
         );
     }
 }

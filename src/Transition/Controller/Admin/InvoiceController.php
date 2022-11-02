@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
-use FreshAdvance\Invoice\DataType\PdfData;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\Order as OrderService;
 use FreshAdvance\Invoice\Service\PdfGenerator;
@@ -35,6 +34,8 @@ class InvoiceController extends AdminController
     public function generate(): void
     {
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
+        $invoiceService->saveOrderInvoiceData(Registry::getRequest()->getRequestParameter('invoice'));
+
         $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
 
         $lang = Registry::getLang();
@@ -43,8 +44,18 @@ class InvoiceController extends AdminController
 
         $pdfGenerator = $this->getServiceFromContainer(PdfGenerator::class);
         $pdfData = $pdfGenerator->preparePdfData($invoiceData);
-        $pdfGenerator->generate($pdfData, '/var/www/invoices/example.pdf');
+        $pdfGenerator->generate($pdfData, $invoiceData->getInvoicePath());
 
         $lang->setTplLanguage($currentLanguage);
+    }
+
+    public function downloadOrderInvoice()
+    {
+        $invoiceService = $this->getServiceFromContainer(Invoice::class);
+        $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
+
+        header('Content-Type: application/pdf');
+        echo file_get_contents($invoiceData->getInvoicePath());
+        die();
     }
 }

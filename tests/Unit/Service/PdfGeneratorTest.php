@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Unit\Service;
 use FreshAdvance\Invoice\DataType\PdfData;
 use FreshAdvance\Invoice\Service\PdfGenerator;
 use Mpdf\Mpdf;
+use org\bovigo\vfs\vfsStream;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -22,6 +23,9 @@ class PdfGeneratorTest extends TestCase
 {
     public function testGetBinaryPdfFromData(): void
     {
+        $tempDirectory = vfsStream::setup('root');
+        $virtualFilePath = $tempDirectory->url() . '/somePath/someFilename';
+
         $pdfProcessorMock = $this->createPartialMock(
             Mpdf::class,
             ['SetHTMLHeader', 'WriteHTML', 'SetHTMLFooter', 'OutputFile']
@@ -29,7 +33,7 @@ class PdfGeneratorTest extends TestCase
         $pdfProcessorMock->expects($this->once())->method('SetHTMLHeader')->with('someHeaderHtml');
         $pdfProcessorMock->expects($this->once())->method('SetHTMLFooter')->with('someFooterHtml');
         $pdfProcessorMock->expects($this->once())->method('WriteHTML')->with('someContentHtml');
-        $pdfProcessorMock->expects($this->once())->method('OutputFile')->with('someFilename');
+        $pdfProcessorMock->expects($this->once())->method('OutputFile')->with($virtualFilePath);
 
         $sut = new PdfGenerator(
             $pdfProcessorMock,
@@ -42,6 +46,10 @@ class PdfGeneratorTest extends TestCase
             htmlFooter: 'someFooterHtml'
         );
 
-        $sut->generate($data, 'someFilename');
+        $tempDirectory = vfsStream::setup('root');
+        $this->assertDirectoryDoesNotExist($tempDirectory->url() . '/somePath/');
+
+        $sut->generate($data, $virtualFilePath);
+        $this->assertDirectoryExists($tempDirectory->url() . '/somePath/');
     }
 }

@@ -15,6 +15,7 @@ use FreshAdvance\Invoice\DataType\PdfData;
 use FreshAdvance\Invoice\DataType\PdfDataInterface;
 use Mpdf\Mpdf;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
+use Webmozart\PathUtil\Path;
 
 class PdfGenerator
 {
@@ -28,11 +29,21 @@ class PdfGenerator
 
     public function generate(PdfDataInterface $pdfData, string $filename): void
     {
+        $this->configurePdfProcessor($pdfData);
+
+        $directory = Path::getDirectory($filename);
+        if (!is_dir($directory)) {
+            mkdir(Path::getDirectory($filename), 0777, true);
+        }
+
+        $this->pdfProcessor->OutputFile($filename);
+    }
+
+    private function configurePdfProcessor($pdfData): void
+    {
         $this->pdfProcessor->SetHTMLHeader($pdfData->getHeader());
         $this->pdfProcessor->WriteHTML($pdfData->getContent());
         $this->pdfProcessor->SetHTMLFooter($pdfData->getFooter());
-
-        $this->pdfProcessor->OutputFile($filename);
     }
 
     public function preparePdfData(InvoiceDataInterface $invoiceData): PdfData

@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
+use FreshAdvance\Invoice\Repository\Invoice as InvoiceRepository;
 use FreshAdvance\Invoice\Service\Context;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\Order;
@@ -47,7 +48,8 @@ class InvoiceTest extends TestCase
             moduleContext: $this->createConfiguredMock(
                 Context::class,
                 ['getInvoicesPath' => 'someRootPath']
-            )
+            ),
+            invoiceRepository: $this->createStub(InvoiceRepository::class)
         );
 
         $result = $sut->getInvoiceDataByOrderId('someOrderId');

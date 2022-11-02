@@ -23,12 +23,11 @@ final class Version20221026214950 extends AbstractMigration
     {
         $this->addSql(
             "CREATE TABLE `fa_invoices` (
-                    `invoice_id` char(32) NOT NULL,
+                    `order_id` char(32) NOT NULL,
                     `invoice_signer` varchar(255) DEFAULT '',
                     `invoice_date` varchar(100) DEFAULT '',
                     `invoice_number` varchar(50) DEFAULT '',
-                    `order_id` char(32) NOT NULL,
-                    PRIMARY KEY (`invoice_id`)
+                    PRIMARY KEY (`order_id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8"
         );
     }

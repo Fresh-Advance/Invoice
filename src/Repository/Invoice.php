@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Repository;
 
+use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
+use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
 class Invoice
@@ -18,20 +20,78 @@ class Invoice
     ) {
     }
 
-    public function create(string $orderId): string
+    public function getOrderInvoice(string $orderId): ?InvoiceConfigurationInterface
     {
         $queryBuilder = $this->queryBuilderFactory->create();
-        $queryBuilder->insert('fa_invoices')
-            ->values([
-                'order_id' => ':order_id',
-                'invoice_id' => ':invoice_id'
-            ])
-            ->setParameters([
-                ':order_id' => $orderId,
-                ':invoice_id' => 'someinvoiceid'
-            ]);
-        $queryBuilder->execute();
+        $queryBuilder->select('*')
+            ->from('fa_invoices')
+            ->where('order_id = :order_id')
+            ->setParameter('order_id', $orderId);
+        $result = $queryBuilder->execute();
 
-        return 'someinvoiceid';
+        if ($data = $result->fetchAssociative()) {
+            return new InvoiceConfiguration(
+                orderId: $data['order_id'],
+                signer: $data['invoice_signer'],
+                date: $data['invoice_date'],
+                number: $data['invoice_number'],
+            );
+        }
+
+        return null;
+    }
+
+    public function saveInvoiceConfiguration(InvoiceConfigurationInterface $invoiceConfiguration): void
+    {
+        if ($this->getOrderInvoice($invoiceConfiguration->getOrderId())) {
+            $this->updateOrderInvoice($invoiceConfiguration);
+        } else {
+            $this->createOrderInvoice($invoiceConfiguration);
+        }
+    }
+
+    protected function createOrderInvoice(InvoiceConfigurationInterface $invoiceConfiguration): void
+    {
+        $queryBuilder = $this->queryBuilderFactory->create();
+
+        $queryBuilder->insert('fa_invoices')
+            ->values($this->getValuesForUpdate())
+            ->setParameters($this->mapParameters($invoiceConfiguration));
+
+        $queryBuilder->execute();
+    }
+
+    protected function updateOrderInvoice(InvoiceConfigurationInterface $invoiceConfiguration): void
+    {
+        $queryBuilder = $this->queryBuilderFactory->create();
+
+        $queryBuilder->update('fa_invoices');
+        foreach ($this->getValuesForUpdate() as $key => $value) {
+            $queryBuilder->set($key, $value);
+        }
+        $queryBuilder->setParameters($this->mapParameters($invoiceConfiguration))
+            ->where('order_id = :order_id');
+
+        $queryBuilder->execute();
+    }
+
+    private function getValuesForUpdate(): array
+    {
+        return [
+            'order_id' => ':order_id',
+            'invoice_number' => ':invoice_number',
+            'invoice_signer' => ':invoice_signer',
+            'invoice_date' => ':invoice_date'
+        ];
+    }
+
+    private function mapParameters(InvoiceConfigurationInterface $invoiceConfiguration): array
+    {
+        return [
+            ':order_id' => $invoiceConfiguration->getOrderId(),
+            ':invoice_number' => $invoiceConfiguration->getNumber(),
+            ':invoice_signer' => $invoiceConfiguration->getSigner(),
+            ':invoice_date' => $invoiceConfiguration->getDate(),
+        ];
     }
 }

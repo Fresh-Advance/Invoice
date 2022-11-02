@@ -19,3 +19,6 @@ services:
   FreshAdvance\Invoice\Service\:
     resource: 'src/Service/*'
     public: true
+
+  FreshAdvance\Invoice\Repository\:
+    resource: 'src/Repository/*'
