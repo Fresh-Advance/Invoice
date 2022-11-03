@@ -31,7 +31,8 @@ class Invoice
 
         /** @var Result $result */
         $result = $queryBuilder->execute();
-        if ($data = $result->fetchAssociative()) {
+        $data = $result->fetchAssociative();
+        if (is_array($data)) {
             return new InvoiceConfiguration(
                 orderId: is_string($data['order_id']) ? $data['order_id'] : '',
                 signer: is_string($data['invoice_signer']) ? $data['invoice_signer'] : '',
@@ -45,11 +46,9 @@ class Invoice
 
     public function saveInvoiceConfiguration(InvoiceConfigurationInterface $invoiceConfiguration): void
     {
-        if ($this->getOrderInvoice($invoiceConfiguration->getOrderId())) {
-            $this->updateOrderInvoice($invoiceConfiguration);
-        } else {
-            $this->createOrderInvoice($invoiceConfiguration);
-        }
+        $this->getOrderInvoice($invoiceConfiguration->getOrderId())
+            ? $this->updateOrderInvoice($invoiceConfiguration)
+            : $this->createOrderInvoice($invoiceConfiguration);
     }
 
     protected function createOrderInvoice(InvoiceConfigurationInterface $invoiceConfiguration): void

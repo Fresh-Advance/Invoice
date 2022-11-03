@@ -9,13 +9,11 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\DataType\PdfData;
-use FreshAdvance\Invoice\DataType\PdfDataInterface;
 use Mpdf\Mpdf;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
-use Webmozart\PathUtil\Path;
+use Symfony\Component\Filesystem\Path;
 
 class PdfGenerator
 {
