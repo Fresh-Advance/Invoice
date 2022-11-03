@@ -187,7 +187,7 @@ jobs:
         run: |
           docker-compose exec -T \
           --workdir=/var/www/test-module \
-          php composer phpstan-report || composer phpstan
+          php bash -c 'composer phpstan-report || composer phpstan'
 
       - name: Stop containers
         if: always()
