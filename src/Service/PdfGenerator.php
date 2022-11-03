@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Service;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\DataType\PdfData;
 use Mpdf\Mpdf;
+use OxidEsales\Eshop\Core\Language;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use Symfony\Component\Filesystem\Path;
 
@@ -21,7 +22,8 @@ class PdfGenerator
 
     public function __construct(
         protected Mpdf $pdfProcessor,
-        protected TemplateRendererInterface $templateRenderer
+        protected TemplateRendererInterface $templateRenderer,
+        protected Language $shopLanguage
     ) {
     }
 
@@ -49,7 +51,13 @@ class PdfGenerator
 
     protected function preparePdfData(InvoiceDataInterface $invoiceData): PdfData
     {
+        $currentLanguage = $this->shopLanguage->getTplLanguage();
+        $this->shopLanguage->setTplLanguage((int)$invoiceData->getLanguageId());
+
         $html = $this->templateRenderer->renderTemplate(self::INVOICE_TEMPLATE, ['invoice' => $invoiceData]);
+
+        $this->shopLanguage->setTplLanguage((int)$currentLanguage);
+
         return new PdfData(htmlContent: $html);
     }
 }

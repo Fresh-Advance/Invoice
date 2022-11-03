@@ -13,6 +13,7 @@ use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\Service\PdfGenerator;
 use Mpdf\Mpdf;
 use org\bovigo\vfs\vfsStream;
+use OxidEsales\Eshop\Core\Language;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -37,9 +38,13 @@ class PdfGeneratorTest extends TestCase
             'renderTemplate' => 'someContentHtml'
         ]);
 
+        $shopLanguage = $this->createPartialMock(Language::class, ['setTplLanguage']);
+        $shopLanguage->expects($this->exactly(2))->method('setTplLanguage');
+
         $sut = new PdfGenerator(
             $pdfProcessorMock,
-            $templateRenderer
+            $templateRenderer,
+            $shopLanguage
         );
 
         $invoiceData = $this->createConfiguredMock(InvoiceData::class, [

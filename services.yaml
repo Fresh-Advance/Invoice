@@ -13,6 +13,9 @@ services:
   OxidEsales\Eshop\Core\Request:
     factory: [ '@OxidEsales\Eshop\Core\Registry', 'getRequest' ]
 
+  OxidEsales\Eshop\Core\Language:
+    factory: [ '@OxidEsales\Eshop\Core\Registry', 'getLang' ]
+
   Mpdf\Mpdf:
     public: true
 
