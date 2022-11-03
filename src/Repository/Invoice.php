@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Repository;
 
+use Doctrine\DBAL\ForwardCompatibility\Result;
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
@@ -27,14 +28,15 @@ class Invoice
             ->from('fa_invoices')
             ->where('order_id = :order_id')
             ->setParameter('order_id', $orderId);
-        $result = $queryBuilder->execute();
 
+        /** @var Result $result */
+        $result = $queryBuilder->execute();
         if ($data = $result->fetchAssociative()) {
             return new InvoiceConfiguration(
-                orderId: $data['order_id'],
-                signer: $data['invoice_signer'],
-                date: $data['invoice_date'],
-                number: $data['invoice_number'],
+                orderId: is_string($data['order_id']) ? $data['order_id'] : '',
+                signer: is_string($data['invoice_signer']) ? $data['invoice_signer'] : '',
+                date: is_string($data['invoice_date']) ? $data['invoice_date'] : '',
+                number: is_string($data['invoice_number']) ? $data['invoice_number'] : '',
             );
         }
 

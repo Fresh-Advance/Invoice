@@ -27,26 +27,29 @@ class PdfGenerator
     ) {
     }
 
-    public function generate(PdfDataInterface $pdfData, string $filename): void
+    public function generate(InvoiceDataInterface $invoiceData): void
     {
-        $this->configurePdfProcessor($pdfData);
+        $this->configurePdfProcessor($invoiceData);
 
-        $directory = Path::getDirectory($filename);
+        $invoiceFilePath = $invoiceData->getInvoicePath();
+        $directory = Path::getDirectory($invoiceFilePath);
         if (!is_dir($directory)) {
-            mkdir(Path::getDirectory($filename), 0777, true);
+            mkdir(Path::getDirectory($invoiceFilePath), 0777, true);
         }
 
-        $this->pdfProcessor->OutputFile($filename);
+        $this->pdfProcessor->OutputFile($invoiceFilePath);
     }
 
-    private function configurePdfProcessor($pdfData): void
+    private function configurePdfProcessor(InvoiceDataInterface $invoiceData): void
     {
+        $pdfData = $this->preparePdfData($invoiceData);
+
         $this->pdfProcessor->SetHTMLHeader($pdfData->getHeader());
         $this->pdfProcessor->WriteHTML($pdfData->getContent());
         $this->pdfProcessor->SetHTMLFooter($pdfData->getFooter());
     }
 
-    public function preparePdfData(InvoiceDataInterface $invoiceData): PdfData
+    protected function preparePdfData(InvoiceDataInterface $invoiceData): PdfData
     {
         $html = $this->templateRenderer->renderTemplate(self::INVOICE_TEMPLATE, ['invoice' => $invoiceData]);
         return new PdfData(htmlContent: $html);
