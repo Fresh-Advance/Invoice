@@ -172,7 +172,7 @@ jobs:
         run: |
           docker-compose exec -T \
             --workdir=/var/www/test-module \
-            php composer install --no-plugins
+            php composer install
 
       - name: Run phpcs
         if: always()
