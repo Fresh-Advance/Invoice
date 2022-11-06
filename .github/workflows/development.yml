@@ -181,13 +181,21 @@ jobs:
           --workdir=/var/www/test-module \
           php composer phpcs
 
-      - name: Run phpstan
+      - name: Run phpstan scan and show results
         id: phpstan
         if: always()
         run: |
           docker-compose exec -T \
           --workdir=/var/www/test-module \
-          php bash -c 'composer phpstan-report || composer phpstan'
+          php composer phpstan
+
+      - name: Run phpstan scan and generate report for further processing
+        id: phpstan
+        if: always()
+        run: |
+          docker-compose exec -T \
+          --workdir=/var/www/test-module \
+          php composer phpstan-report
 
       - name: Stop containers
         if: always()
@@ -233,3 +241,12 @@ jobs:
             -Dsonar.php.coverage.reportPaths=tests/coverage.xml
             -Dsonar.cpd.php.minimumTokens=25
             -Dsonar.cpd.php.minimumLines=5
+            
+
+docker-compose exec -T \
+--workdir=/var/www/source/modules/fa/invoice \
+php composer install --no-plugins
+
+docker-compose exec -T \
+--workdir=/var/www/source/modules/fa/invoice \
+php bash -c 'composer phpstan-report || composer phpstan'
