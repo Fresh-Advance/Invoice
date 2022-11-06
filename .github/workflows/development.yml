@@ -190,7 +190,6 @@ jobs:
           php composer phpstan
 
       - name: Run phpstan scan and generate report for further processing
-        id: phpstan
         if: always()
         run: |
           docker-compose exec -T \
