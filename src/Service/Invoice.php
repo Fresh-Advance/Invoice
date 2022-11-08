@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
+use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Repository\Invoice as InvoiceRepository;
@@ -52,15 +53,8 @@ class Invoice
         );
     }
 
-    public function saveOrderInvoiceData(array $data): void
+    public function saveOrderInvoiceData(InvoiceConfigurationInterface $configuration): void
     {
-        $this->invoiceRepository->saveInvoiceConfiguration(
-            new InvoiceConfiguration(
-                orderId: $data['order_id'],
-                signer: $data['signer'],
-                date: $data['number'],
-                number: $data['number']
-            )
-        );
+        $this->invoiceRepository->saveInvoiceConfiguration($configuration);
     }
 }

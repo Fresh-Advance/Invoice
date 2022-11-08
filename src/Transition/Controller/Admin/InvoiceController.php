@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
+use FreshAdvance\Invoice\Service\Form;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\Order as OrderService;
 use FreshAdvance\Invoice\Service\PdfGenerator;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
-use OxidEsales\Eshop\Core\Registry;
 
 class InvoiceController extends AdminController
 {
@@ -35,10 +35,8 @@ class InvoiceController extends AdminController
     {
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
 
-        $formData = Registry::getRequest()->getRequestParameter('invoice');
-        if (is_array($formData)) {
-            $invoiceService->saveOrderInvoiceData($formData);
-        }
+        $formService = $this->getServiceFromContainer(Form::class);
+        $invoiceService->saveOrderInvoiceData($formService->getConfigurationFromRequest());
 
         $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
 

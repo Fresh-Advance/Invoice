@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
+use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\Repository\Invoice as InvoiceRepository;
 use FreshAdvance\Invoice\Service\Context;
 use FreshAdvance\Invoice\Service\Invoice;
@@ -58,5 +59,25 @@ class InvoiceTest extends TestCase
         $this->assertSame($shopStub, $result->getShop());
         $this->assertSame(5, $result->getLanguageId());
         $this->assertSame('someRootPath/so/someOrderId.pdf', $result->getInvoicePath());
+    }
+
+    public function testSaveOrderInvoiceData(): void
+    {
+        $configurationStub = $this->createStub(InvoiceConfigurationInterface::class);
+
+        $repositoryMock = $this->createPartialMock(InvoiceRepository::class, ['saveInvoiceConfiguration']);
+        $repositoryMock->expects($this->atLeastOnce())
+            ->method('saveInvoiceConfiguration')
+            ->with($configurationStub);
+
+        $sut = new Invoice(
+            orderService: $this->createStub(Order::class),
+            shopService: $this->createStub(Shop::class),
+            shopConfig: $this->createStub(Config::class),
+            moduleContext: $this->createStub(Context::class),
+            invoiceRepository: $repositoryMock
+        );
+
+        $sut->saveOrderInvoiceData($configurationStub);
     }
 }
