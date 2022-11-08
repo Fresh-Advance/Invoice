@@ -18,7 +18,8 @@ class InvoiceData implements InvoiceDataInterface
         protected Order $order,
         protected Shop $shop,
         protected string $invoicePath,
-        protected int $languageId = 0,
+        protected InvoiceConfigurationInterface $invoiceConfiguration,
+        protected int $languageId = 0
     ) {
     }
 
@@ -40,5 +41,10 @@ class InvoiceData implements InvoiceDataInterface
     public function getInvoicePath(): string
     {
         return $this->invoicePath;
+    }
+
+    public function getInvoiceConfiguration(): InvoiceConfigurationInterface
+    {
+        return $this->invoiceConfiguration;
     }
 }

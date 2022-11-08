@@ -14,4 +14,6 @@ interface InvoiceDataInterface
     public function getLanguageId(): int;
 
     public function getInvoicePath(): string;
+
+    public function getInvoiceConfiguration(): InvoiceConfigurationInterface;
 }

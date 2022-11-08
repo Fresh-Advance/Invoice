@@ -32,25 +32,31 @@ class InvoiceTest extends TestCase
             'getId' => 'someOrderId'
         ]);
 
-        $orderServiceStub = $this->createPartialMock(Order::class, ['getOrder']);
-        $orderServiceStub->method('getOrder')->with('someOrderId')->willReturn($orderStub);
+        $orderServiceMock = $this->createPartialMock(Order::class, ['getOrder']);
+        $orderServiceMock->method('getOrder')->with('someOrderId')->willReturn($orderStub);
 
         $shopStub = $this->createStub(ShopModel::class);
-        $shopServiceStub = $this->createPartialMock(Shop::class, ['getShop']);
-        $shopServiceStub->method('getShop')->with(3)->willReturn($shopStub);
+        $shopServiceMock = $this->createPartialMock(Shop::class, ['getShop']);
+        $shopServiceMock->method('getShop')->with(3)->willReturn($shopStub);
 
-        $shopConfigStub = $this->createPartialMock(Config::class, ['getShopConfVar']);
-        $shopConfigStub->method('getShopConfVar')->with('sDefaultLang', 3)->willReturn(5);
+        $shopConfigMock = $this->createPartialMock(Config::class, ['getShopConfVar']);
+        $shopConfigMock->method('getShopConfVar')->with('sDefaultLang', 3)->willReturn(5);
+
+        $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
+        $repositoryMock = $this->createPartialMock(InvoiceRepository::class, ['getOrderInvoice']);
+        $repositoryMock->method('getOrderInvoice')
+            ->with('someOrderId')
+            ->willReturn($invoiceConfigurationStub);
 
         $sut = new Invoice(
-            orderService: $orderServiceStub,
-            shopService: $shopServiceStub,
-            shopConfig: $shopConfigStub,
+            orderService: $orderServiceMock,
+            shopService: $shopServiceMock,
+            shopConfig: $shopConfigMock,
             moduleContext: $this->createConfiguredMock(
                 Context::class,
                 ['getInvoicesPath' => 'someRootPath']
             ),
-            invoiceRepository: $this->createStub(InvoiceRepository::class)
+            invoiceRepository: $repositoryMock
         );
 
         $result = $sut->getInvoiceDataByOrderId('someOrderId');
@@ -59,6 +65,7 @@ class InvoiceTest extends TestCase
         $this->assertSame($shopStub, $result->getShop());
         $this->assertSame(5, $result->getLanguageId());
         $this->assertSame('someRootPath/so/someOrderId.pdf', $result->getInvoicePath());
+        $this->assertSame($invoiceConfigurationStub, $result->getInvoiceConfiguration());
     }
 
     public function testSaveOrderInvoiceData(): void

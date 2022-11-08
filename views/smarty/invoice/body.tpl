@@ -1,4 +1,6 @@
 [{assign var="order" value=$invoice->getOrder() }]
+[{assign var="shop" value=$invoice->getShop() }]
+[{assign var="configuration" value=$invoice->getInvoiceConfiguration() }]
 
 <style>
     #buyer, #seller {
@@ -60,7 +62,6 @@
 </style>
 
 <div id="seller">
-    [{assign var="shop" value=$invoice->getShop() }]
     <div class="contactHead">[{oxmultilang ident="FA_INVOICE_SELLER"}]</div>
     <div>
         <strong>[{$shop->getFieldData('OXCOMPANY')}]</strong><br/>
@@ -86,9 +87,9 @@
 <div></div>
 
 <div id="number">[{oxmultilang ident="FA_INVOICE_ORDERNR"}]: [{$order->getFieldData('oxordernr')}]</div>
-<div id="date">[{oxmultilang ident="FA_INVOICE_DATE"}]: ????</div>
+<div id="date">[{oxmultilang ident="FA_INVOICE_DATE"}]: [{$configuration->getDate()}]</div>
 
-<div id="facture">[{oxmultilang ident="FA_INVOICE_NUMBER"}] ?? – ????</div>
+<div id="facture">[{oxmultilang ident="FA_INVOICE_NUMBER"}] [{$configuration->getNumber()}]</div>
 
 <table id="contentTable">
     <tr class="contentHeader">
@@ -123,4 +124,4 @@
 
 </table>
 
-<div id="invoiceSign">[{oxmultilang ident="FA_INVOICE_SIGNED"}]: ???</div>
+<div id="invoiceSign">[{oxmultilang ident="FA_INVOICE_SIGNED"}]: [{$configuration->getSigner()}]</div>

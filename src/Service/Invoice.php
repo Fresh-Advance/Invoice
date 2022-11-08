@@ -40,6 +40,7 @@ class Invoice
             order: $order,
             shop: $this->shopService->getShop($order->getShopId()),
             invoicePath: $this->getOrderInvoicePath($order),
+            invoiceConfiguration: $this->invoiceRepository->getOrderInvoice($orderId),
             languageId: (int)$orderShopLanguage
         );
     }
