@@ -11,7 +11,6 @@ namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\Service\Form;
 use FreshAdvance\Invoice\Service\Invoice;
-use FreshAdvance\Invoice\Service\Order as OrderService;
 use FreshAdvance\Invoice\Service\PdfGenerator;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
@@ -24,9 +23,8 @@ class InvoiceController extends AdminController
 
     public function render()
     {
-        $orderService = $this->getServiceFromContainer(OrderService::class);
-
-        $this->addTplParam('order', $orderService->getOrder($this->getEditObjectId()));
+        $orderService = $this->getServiceFromContainer(Invoice::class);
+        $this->addTplParam('invoiceData', $orderService->getInvoiceDataByOrderId($this->getEditObjectId()));
 
         return parent::render();
     }

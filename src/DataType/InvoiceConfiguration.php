@@ -13,9 +13,9 @@ class InvoiceConfiguration implements InvoiceConfigurationInterface
 {
     public function __construct(
         protected string $orderId,
-        protected string $signer,
-        protected string $date,
-        protected string $number
+        protected string $signer = '',
+        protected string $date = '',
+        protected string $number = ''
     ) {
     }
 

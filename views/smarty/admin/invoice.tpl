@@ -6,21 +6,21 @@
     <input type="hidden" name="cl" value="fa_invoice">
 </form>
 
-[{if $order}]
-    <form action="[{$oViewConf->getSelfLink()}]" method="POST">
-        [{$oViewConf->getHiddenSid()}]
+[{assign var="configuration" value=$invoiceData->getInvoiceConfiguration() }]
 
-        <input type="hidden" name="oxid" value="[{$oxid}]">
-        <input type="hidden" name="cl" value="fa_invoice">
-        <input type="hidden" name="fnc" value="generate">
+<form action="[{$oViewConf->getSelfLink()}]" method="POST">
+    [{$oViewConf->getHiddenSid()}]
 
-        <input type="hidden" name="invoice[order_id]" value="[{$order->getId()}]">
-        <div>Sąskaitos išrašymo data: <input type="text" name="invoice[date]"></div>
-        <div>Sąskaitos Nr.: <input type="text" name="invoice[number]"></div>
-        <div>Sąskaitą išrašė: <input type="text" name="invoice[signer]"></div>
-        <div><input type="submit" value="Generate"></div>
-    </form>
-[{/if}]
+    <input type="hidden" name="oxid" value="[{$oxid}]">
+    <input type="hidden" name="cl" value="fa_invoice">
+    <input type="hidden" name="fnc" value="generate">
+
+    <input type="hidden" name="invoice[order_id]" value="[{$oxid}]">
+    <div>Sąskaitos išrašymo data: <input type="text" name="invoice[date]" value="[{$configuration->getDate()}]"></div>
+    <div>Sąskaitos Nr.: <input type="text" name="invoice[number]" value="[{$configuration->getNumber()}]"></div>
+    <div>Sąskaitą išrašė: <input type="text" name="invoice[signer]" value="[{$configuration->getSigner()}]"></div>
+    <div><input type="submit" value="Generate"></div>
+</form>
 
 <br/>
 <form action="[{$oViewConf->getSelfLink()}]" method="POST" target="_BLANK">
@@ -30,7 +30,7 @@
     <input type="hidden" name="cl" value="fa_invoice">
     <input type="hidden" name="fnc" value="downloadOrderInvoice">
 
-    <input type="hidden" name="orderId" value="[{$order->getId()}]">
+    <input type="hidden" name="orderId" value="[{$oxid}]">
     <div><input type="submit" value="Show invoice document"></div>
 </form>
 

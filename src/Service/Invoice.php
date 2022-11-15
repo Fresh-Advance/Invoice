@@ -35,16 +35,21 @@ class Invoice
 
         /** @var string $orderShopLanguage */
         $orderShopLanguage = $this->shopConfig->getShopConfVar('sDefaultLang', $order->getShopId());
+        $configuration = $this->invoiceRepository->getOrderInvoice($orderId)
+            ?? new InvoiceConfiguration(orderId: $orderId);
 
         return new InvoiceData(
             order: $order,
             shop: $this->shopService->getShop($order->getShopId()),
             invoicePath: $this->getOrderInvoicePath($order),
-            invoiceConfiguration: $this->invoiceRepository->getOrderInvoice($orderId),
+            invoiceConfiguration: $configuration,
             languageId: (int)$orderShopLanguage
         );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
     public function getOrderInvoicePath(OrderModel $order): string
     {
         return Path::join(

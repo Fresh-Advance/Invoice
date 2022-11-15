@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Transition\Controller\Admin;
 
-use FreshAdvance\Invoice\Service\Order;
+use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController;
-use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -21,15 +21,15 @@ class InvoiceControllerTest extends TestCase
 {
     public function testRender(): void
     {
-        $orderModelStub = $this->createStub(OrderModel::class);
-        $orderServiceMock = $this->createPartialMock(Order::class, ['getOrder']);
-        $orderServiceMock->method('getOrder')->willReturnMap([
-            ['someOxid', $orderModelStub]
+        $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
+        $invoiceServiceMock = $this->createPartialMock(Invoice::class, ['getInvoiceDataByOrderId']);
+        $invoiceServiceMock->method('getInvoiceDataByOrderId')->willReturnMap([
+            ['someOxid', $invoiceDataStub]
         ]);
 
         $sut = $this->createPartialMock(InvoiceController::class, ['getServiceFromContainer']);
         $sut->method('getServiceFromContainer')->willReturnMap([
-            [Order::class, $orderServiceMock]
+            [Invoice::class, $invoiceServiceMock]
         ]);
 
         $_GET['oxid'] = 'someOxid';
@@ -37,6 +37,6 @@ class InvoiceControllerTest extends TestCase
         $this->assertStringStartsWith('@fa_invoice/admin/', $sut->render());
 
         $viewData = $sut->getViewData();
-        $this->assertSame($orderModelStub, $viewData['order']);
+        $this->assertSame($invoiceDataStub, $viewData['invoiceData']);
     }
 }

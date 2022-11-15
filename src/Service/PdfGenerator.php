@@ -27,6 +27,9 @@ class PdfGenerator
     ) {
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
     public function generate(InvoiceDataInterface $invoiceData): void
     {
         $this->configurePdfProcessor($invoiceData);
