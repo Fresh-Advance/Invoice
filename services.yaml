@@ -16,6 +16,10 @@ services:
   OxidEsales\Eshop\Core\Language:
     factory: [ '@OxidEsales\Eshop\Core\Registry', 'getLang' ]
 
+  OxidEsales\Eshop\Core\Utils:
+    factory: [ '@OxidEsales\Eshop\Core\Registry', 'getUtils' ]
+    public: true
+
   Mpdf\Mpdf:
     public: true
 

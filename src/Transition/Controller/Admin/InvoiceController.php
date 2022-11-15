@@ -14,6 +14,7 @@ use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\PdfGenerator;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
+use OxidEsales\Eshop\Core\Utils;
 
 class InvoiceController extends AdminController
 {
@@ -47,8 +48,11 @@ class InvoiceController extends AdminController
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
         $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
 
-        header('Content-Type: application/pdf');
-        echo file_get_contents($invoiceData->getInvoicePath());
-        die();
+        $utils = $this->getServiceFromContainer(Utils::class);
+        $utils->setHeader('Content-Type: application/pdf');
+
+        /** @var string $fileContent */
+        $fileContent = file_get_contents($invoiceData->getInvoicePath()) ?: '';
+        $utils->showMessageAndExit($fileContent);
     }
 }
