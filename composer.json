@@ -1,6 +1,6 @@
 {
   "name": "fresh-advance/invoice",
-  "description": "Invoice module for the OXID eShop.",
+  "description": "OXID 7 Pdf Invoice Module",
   "license": "proprietary",
   "type": "oxideshop-module",
   "keywords": [
