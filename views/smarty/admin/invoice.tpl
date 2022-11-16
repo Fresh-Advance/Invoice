@@ -16,10 +16,10 @@
     <input type="hidden" name="fnc" value="generate">
 
     <input type="hidden" name="invoice[order_id]" value="[{$oxid}]">
-    <div>Sąskaitos išrašymo data: <input type="text" name="invoice[date]" value="[{$configuration->getDate()}]"></div>
-    <div>Sąskaitos Nr.: <input type="text" name="invoice[number]" value="[{$configuration->getNumber()}]"></div>
-    <div>Sąskaitą išrašė: <input type="text" name="invoice[signer]" value="[{$configuration->getSigner()}]"></div>
-    <div><input type="submit" value="Generate"></div>
+    <div>[{oxmultilang ident="FA_INVOICE_FORM_DATE"}]: <input type="text" name="invoice[date]" value="[{$configuration->getDate()}]"></div>
+    <div>[{oxmultilang ident="FA_INVOICE_FORM_NUMBER"}]: <input type="text" name="invoice[number]" value="[{$configuration->getNumber()}]"></div>
+    <div>[{oxmultilang ident="FA_INVOICE_FORM_SIGNER"}]: <input type="text" name="invoice[signer]" value="[{$configuration->getSigner()}]"></div>
+    <div><input type="submit" value="[{oxmultilang ident="FA_INVOICE_FORM_CREATE"}]"></div>
 </form>
 
 <br/>
@@ -31,7 +31,7 @@
     <input type="hidden" name="fnc" value="downloadOrderInvoice">
 
     <input type="hidden" name="orderId" value="[{$oxid}]">
-    <div><input type="submit" value="Show invoice document"></div>
+    <div><input type="submit" value="[{oxmultilang ident="FA_INVOICE_FORM_DOWNLOAD"}]"></div>
 </form>
 
 [{include file="bottomnaviitem.tpl"}]

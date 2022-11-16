@@ -4,23 +4,30 @@ declare(strict_types=1);
 
 $aLang = [
     'charset' => 'UTF-8',
-    'tbclorder_fa_invoice' => 'Invoice de',
+    'tbclorder_fa_invoice' => 'Rechnung',
 
-    'FA_INVOICE_SELLER' => 'Pardavėjas',
-    'FA_INVOICE_BUYER' => 'Pirkėjas',
-    'FA_INVOICE_TAXID' => 'Tax ID',
-    'FA_INVOICE_ORDERNR' => 'Užsakymo Nr.',
-    'FA_INVOICE_DATE' => 'Sąskaitos išrašymo data',
-    'FA_INVOICE_NUMBER' => 'Sąskaita faktūra Nr.',
+    'FA_INVOICE_SELLER' => 'Verkäufer',
+    'FA_INVOICE_BUYER' => 'Käufer',
+    'FA_INVOICE_TAXID' => 'Steuernummer',
+    'FA_INVOICE_ORDERNR' => 'Bestell-Nr.',
+    'FA_INVOICE_DATE' => 'Rechnungsausstellungsdatum',
+    'FA_INVOICE_NUMBER' => 'Rechnungsnr.',
 
-    'FA_INVOICE_ITEM_TITLE' => 'PAVADINIMAS',
-    'FA_INVOICE_ITEM_CODE' => 'KODAS',
-    'FA_INVOICE_ITEM_TYPE' => 'MAT. VNT',
-    'FA_INVOICE_ITEM_COUNT' => 'KIEKIS',
-    'FA_INVOICE_ITEM_PRICE' => 'KAINA',
-    'FA_INVOICE_ITEM_PRICE_TOTAL' => 'VISO',
+    'FA_INVOICE_ITEM_TITLE' => 'Artikel',
+    'FA_INVOICE_ITEM_CODE' => 'Code',
+    'FA_INVOICE_ITEM_TYPE' => 'Einheit',
+    'FA_INVOICE_ITEM_COUNT' => 'Anzahl',
+    'FA_INVOICE_ITEM_PRICE' => 'Preis',
+    'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Gesamt',
 
-    'FA_INVOICE_PCS' => 'vnt.',
-    'FA_INVOICE_TOTAL' => 'Viso',
-    'FA_INVOICE_SIGNED' => 'Sąskaitą išrašė',
+    'FA_INVOICE_PCS' => 'Stk.',
+    'FA_INVOICE_TOTAL' => 'Gesamt',
+    'FA_INVOICE_SIGNED' => 'Rechnungssteller',
+
+    'FA_INVOICE_FORM_SIGNER' => 'In Rechnung gestellt von',
+    'FA_INVOICE_FORM_NUMBER' => 'Rechnungsnummer',
+    'FA_INVOICE_FORM_DATE' => 'Rechnungsdatum',
+    'FA_INVOICE_FORM_CREATE' => 'Rechnung erstellen',
+
+    'FA_INVOICE_FORM_DOWNLOAD' => 'Rechnung herunterladen',
 ];
