@@ -37,7 +37,7 @@ OXID PDF Invoice Module
 Module is available on packagist and installable via composer
 
 ```
-composer install fresh-advance/invoice 
+composer require fresh-advance/invoice 
 ```
 
 ## License
