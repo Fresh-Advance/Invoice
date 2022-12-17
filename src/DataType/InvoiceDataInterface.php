@@ -13,7 +13,15 @@ interface InvoiceDataInterface
 
     public function getLanguageId(): int;
 
+    /**
+     * Path to generated invoice file in the filesystem
+     */
     public function getInvoicePath(): string;
+
+    /**
+     * The filename for downloadable file
+     */
+    public function getInvoiceFilename(): string;
 
     public function getInvoiceConfiguration(): InvoiceConfigurationInterface;
 }

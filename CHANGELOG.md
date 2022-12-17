@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Migrations trigger during module activation
+- Invoice is now downloaded with dynamic filename (invoice number is included)
 
 ## [v1.0.0] - 2022-11-16
 

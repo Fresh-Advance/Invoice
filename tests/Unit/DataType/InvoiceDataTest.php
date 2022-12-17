@@ -52,4 +52,32 @@ class InvoiceDataTest extends TestCase
 
         $this->assertSame(10, $sut->getLanguageId());
     }
+
+    /**
+     * @dataProvider getFilenameDataProvider
+     */
+    public function testGetFilename(string $orderNumber, string $expectedFilename): void
+    {
+        $configuration = $this->createConfiguredMock(InvoiceConfigurationInterface::class, [
+            'getNumber' => $orderNumber
+        ]);
+
+        $sut = new InvoiceData(
+            order: $this->createStub(Order::class),
+            shop: $this->createStub(Shop::class),
+            invoicePath: 'somePath',
+            invoiceConfiguration: $configuration,
+            languageId: 10
+        );
+
+        $this->assertSame($expectedFilename, $sut->getInvoiceFilename());
+    }
+
+    public function getFilenameDataProvider(): array
+    {
+        return [
+            ['orderNumber' => '', 'expected' => 'invoice.pdf'],
+            ['orderNumber' => 'someNumber', 'expected' => 'invoice-someNumber.pdf'],
+        ];
+    }
 }
