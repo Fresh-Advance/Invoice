@@ -50,10 +50,13 @@
 
     .itemSize,
     .itemCode,
-    .itemCount,
+    .itemCount  {
+        width: 10%;
+    }
+
     .itemPrice,
     .itemTotalPrice {
-        width: 10%;
+        width: 15%;
     }
 
     #total td {
@@ -112,14 +115,14 @@
             <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>
             <td class="itemSize">[{oxmultilang ident="FA_INVOICE_PCS"}]</td>
             <td class="itemCount">[{$item->getFieldData('oxamount')}]</td>
-            <td class="itemPrice">[{$item->getNetPriceFormated()}]</td>
-            <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}]</td>
+            <td class="itemPrice">[{$item->getNetPriceFormated()}] [{$order->getFieldData('oxcurrency')}]</td>
+            <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}] [{$order->getFieldData('oxcurrency')}]</td>
         </tr>
     [{/foreach}]
 
     <tr id="total">
         <td colspan="5">[{oxmultilang ident="FA_INVOICE_TOTAL"}]:</td>
-        <td>[{$order->getFormattedTotalOrderSum()}]</td>
+        <td>[{$order->getFormattedTotalOrderSum()}] [{$order->getFieldData('oxcurrency')}]</td>
     </tr>
 
 </table>
