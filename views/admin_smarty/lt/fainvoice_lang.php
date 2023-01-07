@@ -30,4 +30,8 @@ $aLang = [
     'FA_INVOICE_FORM_CREATE' => 'Sugeneruoti Sąskaitą',
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Atsisiusti Sąskaitą',
+
+    # Module settings
+    'SHOP_MODULE_GROUP_fa_invoice_main' => 'Invoice document',
+    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document Footer',
 ];

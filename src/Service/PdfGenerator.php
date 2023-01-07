@@ -23,7 +23,8 @@ class PdfGenerator
     public function __construct(
         protected Mpdf $pdfProcessor,
         protected TemplateRendererInterface $templateRenderer,
-        protected Language $shopLanguage
+        protected Language $shopLanguage,
+        protected ModuleSettings $moduleSettings
     ) {
     }
 
@@ -61,6 +62,9 @@ class PdfGenerator
 
         $this->shopLanguage->setTplLanguage((int)$currentLanguage);
 
-        return new PdfData(htmlContent: $html);
+        return new PdfData(
+            htmlContent: $html,
+            htmlFooter: $this->moduleSettings->getDocumentFooter()
+        );
     }
 }

@@ -29,6 +29,13 @@ $aModule = [
     'extend'      => [
     ],
     'settings' => [
+        /** Main */
+        [
+            'group' => 'fa_invoice_main',
+            'name' => 'fa_invoice_DocumentFooter',
+            'type' => 'str',
+            'value' => ''
+        ],
     ],
     'events' => [
         'onActivate' => '\FreshAdvance\Invoice\Transition\Core\Events::onActivate',

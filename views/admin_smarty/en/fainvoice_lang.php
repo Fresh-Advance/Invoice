@@ -30,4 +30,8 @@ $aLang = [
     'FA_INVOICE_FORM_CREATE' => 'Generate Invoice',
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Download Invoice',
+
+    # Module settings
+    'SHOP_MODULE_GROUP_fa_invoice_main' => 'Invoice document',
+    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document Footer',
 ];

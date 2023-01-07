@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
+use FreshAdvance\Invoice\Service\ModuleSettings;
 use FreshAdvance\Invoice\Service\PdfGenerator;
 use Mpdf\Mpdf;
 use org\bovigo\vfs\vfsStream;
@@ -32,6 +33,7 @@ class PdfGeneratorTest extends TestCase
             ['SetHTMLHeader', 'WriteHTML', 'SetHTMLFooter', 'OutputFile']
         );
         $pdfProcessorMock->expects($this->once())->method('WriteHTML')->with('someContentHtml');
+        $pdfProcessorMock->expects($this->once())->method('SetHtmlFooter')->with('someFooter');
         $pdfProcessorMock->expects($this->once())->method('OutputFile')->with($virtualFilePath);
 
         $templateRenderer = $this->createConfiguredMock(TemplateRendererInterface::class, [
@@ -41,10 +43,15 @@ class PdfGeneratorTest extends TestCase
         $shopLanguage = $this->createPartialMock(Language::class, ['setTplLanguage']);
         $shopLanguage->expects($this->exactly(2))->method('setTplLanguage');
 
+        $moduleSettings = $this->createConfiguredMock(ModuleSettings::class, [
+            'getDocumentFooter' => 'someFooter'
+        ]);
+
         $sut = new PdfGenerator(
-            $pdfProcessorMock,
-            $templateRenderer,
-            $shopLanguage
+            pdfProcessor: $pdfProcessorMock,
+            templateRenderer: $templateRenderer,
+            shopLanguage: $shopLanguage,
+            moduleSettings: $moduleSettings
         );
 
         $invoiceData = $this->createConfiguredMock(InvoiceData::class, [
