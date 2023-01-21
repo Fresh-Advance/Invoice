@@ -32,9 +32,15 @@ $aModule = [
         /** Main */
         [
             'group' => 'fa_invoice_main',
-            'name' => 'fa_invoice_DocumentFooter',
+            'name' => \FreshAdvance\Invoice\Service\ModuleSettings::SETTING_DOCUMENT_FOOTER,
             'type' => 'str',
             'value' => 'Document Footer Example<br>Change in Module Settings'
+        ],
+        [
+            'group' => 'fa_invoice_main',
+            'name' => \FreshAdvance\Invoice\Service\ModuleSettings::SETTING_DOCUMENT_FILENAME_PREFIX,
+            'type' => 'str',
+            'value' => 'invoice-'
         ],
     ],
     'events' => [

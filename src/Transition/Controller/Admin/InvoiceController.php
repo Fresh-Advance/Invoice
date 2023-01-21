@@ -48,9 +48,11 @@ class InvoiceController extends AdminController
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
         $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
 
+        $fileName = $invoiceService->getInvoiceFileName($invoiceData->getInvoiceConfiguration());
+
         $utils = $this->getServiceFromContainer(Utils::class);
         $utils->setHeader('Content-Type: application/pdf');
-        $utils->setHeader('Content-Disposition:attachment;filename=' . $invoiceData->getInvoiceFilename());
+        $utils->setHeader('Content-Disposition:attachment;filename=' . $fileName);
 
         /** @var string $fileContent */
         $fileContent = file_get_contents($invoiceData->getInvoicePath()) ?: '';

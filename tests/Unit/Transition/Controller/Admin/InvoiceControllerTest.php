@@ -51,10 +51,14 @@ class InvoiceControllerTest extends TestCase
         $invoiceDataStub = $this->createConfiguredMock(InvoiceDataInterface::class, [
             'getInvoicePath' => $tempDirectory->url() . '/filename.pdf'
         ]);
-        $invoiceServiceMock = $this->createPartialMock(Invoice::class, ['getInvoiceDataByOrderId']);
+        $invoiceServiceMock = $this->createPartialMock(
+            Invoice::class,
+            ['getInvoiceDataByOrderId', 'getInvoiceFileName']
+        );
         $invoiceServiceMock->method('getInvoiceDataByOrderId')->willReturnMap([
             ['someOxid', $invoiceDataStub]
         ]);
+        $invoiceServiceMock->method('getInvoiceFileName')->willReturn('someFilename.pdf');
 
         $utilsMock = $this->createPartialMock(Utils::class, ['showMessageAndExit', 'setHeader']);
         $utilsMock->expects($this->atLeastOnce())->method('setHeader');

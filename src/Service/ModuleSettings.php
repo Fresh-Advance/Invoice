@@ -15,6 +15,7 @@ use FreshAdvance\Invoice\Module;
 class ModuleSettings
 {
     public const SETTING_DOCUMENT_FOOTER = 'fa_invoice_DocumentFooter';
+    public const SETTING_DOCUMENT_FILENAME_PREFIX = 'fa_invoice_FilenamePrefix';
 
     public function __construct(
         private ModuleSettingServiceInterface $moduleSettingService
@@ -23,8 +24,18 @@ class ModuleSettings
 
     public function getDocumentFooter(): string
     {
+        return $this->getStringSetting(self::SETTING_DOCUMENT_FOOTER);
+    }
+
+    public function getFilePrefix(): string
+    {
+        return $this->getStringSetting(self::SETTING_DOCUMENT_FILENAME_PREFIX);
+    }
+
+    private function getStringSetting(string $key): string
+    {
         return $this->moduleSettingService
-            ->getString(self::SETTING_DOCUMENT_FOOTER, Module::MODULE_ID)
+            ->getString($key, Module::MODULE_ID)
             ->toString();
     }
 }

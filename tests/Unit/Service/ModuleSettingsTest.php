@@ -29,4 +29,17 @@ final class ModuleSettingsTest extends TestCase
         $sut = new ModuleSettings($mssMock);
         $this->assertSame($value, $sut->getDocumentFooter());
     }
+
+    public function testGetFilenamePrefix(): void
+    {
+        $value = 'someValue';
+
+        $mssMock = $this->createPartialMock(ModuleSettingService::class, ['getString']);
+        $mssMock->method('getString')->willReturnMap([
+            [ModuleSettings::SETTING_DOCUMENT_FILENAME_PREFIX, Module::MODULE_ID, new UnicodeString($value)]
+        ]);
+
+        $sut = new ModuleSettings($mssMock);
+        $this->assertSame($value, $sut->getFilePrefix());
+    }
 }

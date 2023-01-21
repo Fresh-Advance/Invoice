@@ -13,6 +13,7 @@ use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\Repository\Invoice as InvoiceRepository;
 use FreshAdvance\Invoice\Service\Context;
 use FreshAdvance\Invoice\Service\Invoice;
+use FreshAdvance\Invoice\Service\ModuleSettings;
 use FreshAdvance\Invoice\Service\Order;
 use FreshAdvance\Invoice\Service\Shop;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
@@ -48,6 +49,10 @@ class InvoiceTest extends TestCase
             ->with('someOrderId')
             ->willReturn($invoiceConfigurationStub);
 
+        $moduleSettingsStub = $this->createConfiguredMock(ModuleSettings::class, [
+            'getFilePrefix' => 'prefix'
+        ]);
+
         $sut = new Invoice(
             orderService: $orderServiceMock,
             shopService: $shopServiceMock,
@@ -56,7 +61,8 @@ class InvoiceTest extends TestCase
                 Context::class,
                 ['getInvoicesPath' => 'someRootPath']
             ),
-            invoiceRepository: $repositoryMock
+            invoiceRepository: $repositoryMock,
+            moduleSettings: $moduleSettingsStub
         );
 
         $result = $sut->getInvoiceDataByOrderId('someOrderId');
@@ -77,12 +83,17 @@ class InvoiceTest extends TestCase
             ->method('saveInvoiceConfiguration')
             ->with($configurationStub);
 
+        $moduleSettingsStub = $this->createConfiguredMock(ModuleSettings::class, [
+            'getFilePrefix' => 'prefix'
+        ]);
+
         $sut = new Invoice(
             orderService: $this->createStub(Order::class),
             shopService: $this->createStub(Shop::class),
             shopConfig: $this->createStub(Config::class),
             moduleContext: $this->createStub(Context::class),
-            invoiceRepository: $repositoryMock
+            invoiceRepository: $repositoryMock,
+            moduleSettings: $moduleSettingsStub
         );
 
         $sut->saveOrderInvoiceData($configurationStub);

@@ -34,4 +34,5 @@ $aLang = [
     # Module settings
     'SHOP_MODULE_GROUP_fa_invoice_main' => 'Invoice document',
     'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document Footer',
+    'SHOP_MODULE_fa_invoice_FilenamePrefix' => 'Filename Prefix',
 ];

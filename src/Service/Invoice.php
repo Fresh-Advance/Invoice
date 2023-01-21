@@ -25,7 +25,8 @@ class Invoice
         protected Shop $shopService,
         protected Config $shopConfig,
         protected ContextInterface $moduleContext,
-        protected InvoiceRepository $invoiceRepository
+        protected InvoiceRepository $invoiceRepository,
+        protected ModuleSettings $moduleSettings
     ) {
     }
 
@@ -57,6 +58,13 @@ class Invoice
             substr($order->getId(), 0, 2),
             $order->getId() . '.pdf'
         );
+    }
+
+    public function getInvoiceFileName(InvoiceConfigurationInterface $configuration): string
+    {
+        return $this->moduleSettings->getFilePrefix()
+            . $configuration->getNumber()
+            . '.pdf';
     }
 
     public function saveOrderInvoiceData(InvoiceConfigurationInterface $configuration): void
