@@ -34,7 +34,7 @@ $aModule = [
             'group' => 'fa_invoice_main',
             'name' => 'fa_invoice_DocumentFooter',
             'type' => 'str',
-            'value' => ''
+            'value' => 'Document Footer Example<br>Change in Module Settings'
         ],
     ],
     'events' => [
