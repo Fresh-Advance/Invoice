@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
+use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\Repository\Invoice as InvoiceRepository;
 use FreshAdvance\Invoice\Service\Context;
@@ -97,5 +98,27 @@ class InvoiceTest extends TestCase
         );
 
         $sut->saveOrderInvoiceData($configurationStub);
+    }
+
+    public function testGetInvoiceFileName(): void
+    {
+        $configurationStub = $this->createConfiguredMock(InvoiceConfiguration::class, [
+            'getNumber' => 'someNumber'
+        ]);
+
+        $moduleSettingsStub = $this->createConfiguredMock(ModuleSettings::class, [
+            'getFilePrefix' => 'prefix-'
+        ]);
+
+        $sut = new Invoice(
+            orderService: $this->createStub(Order::class),
+            shopService: $this->createStub(Shop::class),
+            shopConfig: $this->createStub(Config::class),
+            moduleContext: $this->createStub(Context::class),
+            invoiceRepository: $this->createStub(InvoiceRepository::class),
+            moduleSettings: $moduleSettingsStub
+        );
+
+        $this->assertSame("prefix-someNumber.pdf", $sut->getInvoiceFileName($configurationStub));
     }
 }

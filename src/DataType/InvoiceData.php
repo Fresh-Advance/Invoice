@@ -47,16 +47,4 @@ class InvoiceData implements InvoiceDataInterface
     {
         return $this->invoiceConfiguration;
     }
-
-    public function getInvoiceFilename(): string
-    {
-        $filename = 'invoice';
-
-        $invoiceNumber = $this->invoiceConfiguration->getNumber();
-        if ($invoiceNumber) {
-            $filename .= '-' . $invoiceNumber;
-        }
-
-        return $filename . '.pdf';
-    }
 }
