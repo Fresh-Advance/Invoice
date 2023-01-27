@@ -11,11 +11,14 @@
     "payments"
   ],
   "minimum-stability": "dev",
+  "prefer-stable": true,
+  "prefer-dist": true,
   "require": {
     "php": "^8.0",
     "oxid-esales/oxideshop-ce": "*",
     "mpdf/mpdf": "^8.1",
-    "symfony/filesystem": "*"
+    "symfony/filesystem": "*",
+    "phpunit/phpunit": "^9.5"
   },
   "conflict": {
     "oxid-esales/oxideshop-ce": "<7.0.0-rc.2"
@@ -45,7 +48,9 @@
       "@phpcs",
       "@phpstan",
       "@phpmd"
-    ]
+    ],
+
+    "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit --bootstrap=/var/www/source/bootstrap.php --config=tests/ --coverage-html=Coverage"
   },
   "config": {
     "allow-plugins": {
