@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Donwloaded file name prefix is configurable in settings
 - Currency shown near prices in the invoice
 - Footer for invoice document is modifiable in module settings
+- Delivery cost shown in the invoice
 
 ## [v1.0.0] - 2022-11-16
 

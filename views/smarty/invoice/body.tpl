@@ -59,7 +59,7 @@
         width: 15%;
     }
 
-    #total td {
+    #delivery td, #total td {
         text-align: right;
     }
 </style>
@@ -119,6 +119,11 @@
             <td class="itemTotalPrice">[{$item->getTotalNetPriceFormated()}] [{$order->getFieldData('oxcurrency')}]</td>
         </tr>
     [{/foreach}]
+
+    <tr id="delivery">
+        <td colspan="5">[{oxmultilang ident="FA_INVOICE_DELIVERY"}]:</td>
+        <td>[{$order->getFormattedDeliveryCost()}] [{$order->getFieldData('oxcurrency')}]</td>
+    </tr>
 
     <tr id="total">
         <td colspan="5">[{oxmultilang ident="FA_INVOICE_TOTAL"}]:</td>

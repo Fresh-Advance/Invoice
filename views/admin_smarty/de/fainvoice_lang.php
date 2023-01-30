@@ -21,6 +21,7 @@ $aLang = [
     'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Gesamt',
 
     'FA_INVOICE_PCS' => 'Stk.',
+    'FA_INVOICE_DELIVERY' => 'Versandkosten',
     'FA_INVOICE_TOTAL' => 'Gesamt',
     'FA_INVOICE_SIGNED' => 'Rechnungssteller',
 

@@ -21,6 +21,7 @@ $aLang = [
     'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Viso',
 
     'FA_INVOICE_PCS' => 'vnt.',
+    'FA_INVOICE_DELIVERY' => 'Pristatymas',
     'FA_INVOICE_TOTAL' => 'Viso',
     'FA_INVOICE_SIGNED' => 'Sąskaitą išrašė',
 
