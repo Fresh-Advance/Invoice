@@ -9,10 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Migrations trigger during module activation
 - Invoice is now downloaded with dynamic filename (invoice number is included)
-- Donwloaded file name prefix is configurable in settings
+- Downloaded file name prefix is configurable in settings
 - Currency shown near prices in the invoice
 - Footer for invoice document is modifiable in module settings
 - Delivery cost shown in the invoice
+
+### Fixed
+- In case title is not overwritten for varriant, parent title is now taken
 
 ## [v1.0.0] - 2022-11-16
 
