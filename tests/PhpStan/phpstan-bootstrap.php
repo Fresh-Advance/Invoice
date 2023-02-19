@@ -6,3 +6,8 @@
  */
 
 declare(strict_types=1);
+
+class_alias(
+    \OxidEsales\Eshop\Application\Model\OrderArticle::class,
+    \FreshAdvance\Invoice\Transition\Model\OrderArticle_parent::class
+);

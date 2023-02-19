@@ -30,6 +30,7 @@ class OrderArticle extends OrderArticle_parent
             $title = $parentProduct->getFieldData('oxtitle');
         }
 
-        return $title;
+        /** @var string|null $title */
+        return (string)$title;
     }
 }
