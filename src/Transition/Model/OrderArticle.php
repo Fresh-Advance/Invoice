@@ -26,7 +26,7 @@ class OrderArticle extends OrderArticle_parent
         if (!$title && $this->getParentId()) {
             /** @var Article $parentProduct */
             $parentProduct = oxNew(Article::class);
-            $parentProduct->loadInLang($languageId, $this->getProductId());
+            $parentProduct->loadInLang($languageId, $this->getParentId());
             $title = $parentProduct->getFieldData('oxtitle');
         }
 

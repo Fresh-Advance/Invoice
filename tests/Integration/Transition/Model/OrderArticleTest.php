@@ -80,9 +80,9 @@ class OrderArticleTest extends IntegrationTestCase
         $testParentProduct->init('oxarticles');
         $testParentProduct->assign([
             'oxid' => $testParentProductId,
-            'OXTITLE' => 'someParentTitle0',
-            'OXTITLE_1' => 'someParentTitle1',
-            'oxparentid' => '',
+            'oxactive' => 1,
+            'oxtitle' => 'someParentTitle0',
+            'oxtitle_1' => 'someParentTitle1',
             'oxshopid' => 1
         ]);
         $testParentProduct->save();
@@ -92,9 +92,9 @@ class OrderArticleTest extends IntegrationTestCase
         $testProduct->init('oxarticles');
         $testProduct->assign([
             'oxid' => $testProductId,
-            'OXTITLE' => '',
-            'OXTITLE_1' => '',
-            'oxparentid' => $testParentProductId,
+            'oxactive' => 1,
+            'oxtitle' => '',
+            'oxtitle_1' => '',
             'oxshopid' => 1
         ]);
         $testProduct->save();
