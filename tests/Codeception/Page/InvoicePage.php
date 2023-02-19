@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © OXID eSales AG. All rights reserved.
+ * Copyright © MB Arbatos Klubas. All rights reserved.
  * See LICENSE file for license details.
  */
 
