@@ -105,13 +105,8 @@
     </tr>
 
     [{foreach from=$order->getOrderArticles() item=item}]
-
-        [{* Load product to get title in correct language *}]
-        [{assign var="product" value=$item->getArticle()}]
-        [{$product->loadInLang($invoice->getLanguageId(), $product->getId())}]
-
         <tr class="item">
-            <td class="itemTitle">[{$product->getFieldData('oxtitle')}]</td>
+            <td class="itemTitle">[{$item->faGetTranslatedTitle($invoice->getLanguageId())}]</td>
             <td class="itemCode">[{$item->getFieldData('oxartnum')}]</td>
             <td class="itemSize">[{oxmultilang ident="FA_INVOICE_PCS"}]</td>
             <td class="itemCount">[{$item->getFieldData('oxamount')}]</td>
