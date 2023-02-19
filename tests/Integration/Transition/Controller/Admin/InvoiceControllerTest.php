@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Transition\Controller\Admin;
+namespace FreshAdvance\Invoice\Tests\Integration\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Service\Invoice;

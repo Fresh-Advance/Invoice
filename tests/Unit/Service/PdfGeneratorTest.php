@@ -40,7 +40,7 @@ class PdfGeneratorTest extends TestCase
             'renderTemplate' => 'someContentHtml'
         ]);
 
-        $shopLanguage = $this->createPartialMock(Language::class, ['setTplLanguage']);
+        $shopLanguage = $this->createPartialMock(Language::class, ['setTplLanguage', 'getTplLanguage']);
         $shopLanguage->expects($this->exactly(2))->method('setTplLanguage');
 
         $moduleSettings = $this->createConfiguredMock(ModuleSettings::class, [
