@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [v1.1.0] - Unreleased
 
 ### Added
+- Support twig based shop
 - Migrations trigger during module activation
 - Invoice is now downloaded with dynamic filename (invoice number is included)
 - Downloaded file name prefix is configurable in settings

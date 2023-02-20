@@ -1,0 +1,38 @@
+{% include "headitem.html.twig" with {title: "GENERAL_ADMIN_TITLE"|translate} %}
+
+<form name="transfer" id="transfer" action="{{ oViewConf.getSelfLink() }}" method="post">
+    {{ oViewConf.getHiddenSid()|raw }}
+    <input type="hidden" name="oxid" value="{{ oxid }}">
+    <input type="hidden" name="cl" value="fa_invoice">
+</form>
+
+{% set configuration = invoiceData.getInvoiceConfiguration() %}
+
+<form action="{{ oViewConf.getSelfLink() }}" method="POST">
+    {{ oViewConf.getHiddenSid()|raw }}
+
+    <input type="hidden" name="oxid" value="{{ oxid }}">
+    <input type="hidden" name="cl" value="fa_invoice">
+    <input type="hidden" name="fnc" value="generate">
+
+    <input type="hidden" name="invoice[order_id]" value="{{ oxid }}">
+    <div>{{ translate({ ident: "FA_INVOICE_FORM_DATE" }) }}: <input type="text" name="invoice[date]" value="{{ configuration.getDate() }}"></div>
+    <div>{{ translate({ ident: "FA_INVOICE_FORM_NUMBER" }) }}: <input type="text" name="invoice[number]" value="{{ configuration.getNumber() }}"></div>
+    <div>{{ translate({ ident: "FA_INVOICE_FORM_SIGNER" }) }}: <input type="text" name="invoice[signer]" value="{{ configuration.getSigner() }}"></div>
+    <div><input type="submit" name="generate" value="{{ translate({ ident: "FA_INVOICE_FORM_CREATE" }) }}"></div>
+</form>
+
+<br/>
+<form action="{{ oViewConf.getSelfLink() }}" method="POST" target="_BLANK">
+    {{ oViewConf.getHiddenSid()|raw }}
+
+    <input type="hidden" name="oxid" value="{{ oxid }}">
+    <input type="hidden" name="cl" value="fa_invoice">
+    <input type="hidden" name="fnc" value="downloadOrderInvoice">
+
+    <input type="hidden" name="orderId" value="{{ oxid }}">
+    <div><input type="submit" name="download" value="{{ translate({ ident: "FA_INVOICE_FORM_DOWNLOAD" }) }}"></div>
+</form>
+
+{% include "bottomnaviitem.html.twig" %}
+{% include "bottomitem.html.twig" %}
