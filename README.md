@@ -12,12 +12,13 @@ OXID PDF Invoice Module
 
 ## Features
 
-* PDF Invoice file generated in shop Default language (Check if module translations for that language are available)
+* Twig and Smarty shop installations supported
+* PDF Invoice file generated in shop Default language
+  * Currently we have DE, EN and LT translations available here. Feel free to add yours.
 * Several fields are adjustable before invoice generation:
   * Invoice number
   * Invoice date
   * Invoice signer person
-* Currently smarty version of the shop is supported only
 
 ## Compatibility
 
@@ -26,10 +27,8 @@ OXID PDF Invoice Module
 ## What to expect in next versions
 
 * New blocks in templates for easy extending
-* Twig shop support
 * VAT listed in pdf
 * Discounts listed in pdf
-* Delivery listed in pdf
 * Other improvements
 
 ## Installation
@@ -37,7 +36,7 @@ OXID PDF Invoice Module
 Module is available on packagist and installable via composer
 
 ```
-composer require fresh-advance/invoice 
+composer require fresh-advance/invoice
 ```
 
 ## License

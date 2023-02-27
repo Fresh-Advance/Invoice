@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [v1.1.0] - Unreleased
 
 ### Added
-- Support twig based shop
+- Twig shop installation support
 - Migrations trigger during module activation
 - Invoice is now downloaded with dynamic filename (invoice number is included)
 - Downloaded file name prefix is configurable in settings
@@ -25,5 +25,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
-[v1.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.0.0...b-7.0.x
+[v1.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.0.0...v1.1.0
 [v1.0.0]: https://github.com/Fresh-Advance/Invoice/compare/6e6618ba66...v1.0.0
