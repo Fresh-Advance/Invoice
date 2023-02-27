@@ -318,8 +318,8 @@ jobs:
           perl -pi\
             -e 's#theme_id: .*#theme_id: twig#g;'\
             -e 's#admin_smarty#admin_twig#g;'\
-            -e 's#\/flow\/translations\/#\/twig\/#g;'\
-            source/source/modules/fa/invoice/tests/Codeception/acceptance.suite.yml
+            -e 's#\/flow\/translations#\/twig#g;'\
+            source/vendor/${{ env.PACKAGE_NAME }}/tests/Codeception/acceptance.suite.yml
 
       - name: Run tests
         run: |
