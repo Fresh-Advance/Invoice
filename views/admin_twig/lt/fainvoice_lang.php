@@ -19,6 +19,10 @@ $aLang = [
     'FA_INVOICE_ITEM_COUNT' => 'Kiekis',
     'FA_INVOICE_ITEM_PRICE' => 'Kaina',
     'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Viso',
+    'FA_INVOICE_DISCOUNT' => 'Nuolaida',
+    'FA_INVOICE_VOUCHERS' => 'Kuponas',
+    'FA_INVOICE_PAYMENT' => 'Mokejimo metodo mokestis',
+    'FA_INVOICE_VATS' => 'PVM',
 
     'FA_INVOICE_PCS' => 'vnt.',
     'FA_INVOICE_DELIVERY' => 'Pristatymas',

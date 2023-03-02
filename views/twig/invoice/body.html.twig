@@ -59,7 +59,7 @@
         width: 15%;
     }
 
-    #delivery td, #total td {
+    #delivery td, #total td, #discount td, #vouchers td, #payment td, .totalvats td {
         text-align: right;
     }
 </style>
@@ -115,10 +115,40 @@
         </tr>
     {% endfor %}
 
-    <tr id="delivery">
-        <td colspan="5">{{ translate({ ident: "FA_INVOICE_DELIVERY" }) }}:</td>
-        <td>{{ order.getFormattedDeliveryCost() }} {{ order.getFieldData('oxcurrency') }}</td>
-    </tr>
+    {% if order.getFieldData('oxdiscount')  %}
+        <tr id="discount">
+            <td colspan="5">{{ translate({ ident: "FA_INVOICE_DISCOUNT" }) }}:</td>
+            <td>- {{ order.getFormattedDiscount() }} {{ order.getFieldData('oxcurrency') }}</td>
+        </tr>
+    {% endif %}
+
+    {% if order.getFieldData('oxvoucherdiscount')  %}
+        <tr id="vouchers">
+            <td colspan="5">{{ translate({ ident: "FA_INVOICE_VOUCHERS" }) }}:</td>
+            <td>- {{ order.getFormattedTotalVouchers() }} {{ order.getFieldData('oxcurrency') }}</td>
+        </tr>
+    {% endif %}
+
+    {% if order.getFieldData('oxdelcost')  %}
+        <tr id="delivery">
+            <td colspan="5">{{ translate({ ident: "FA_INVOICE_DELIVERY" }) }}:</td>
+            <td>{{ order.getFormattedDeliveryCost() }} {{ order.getFieldData('oxcurrency') }}</td>
+        </tr>
+    {% endif %}
+
+    {% if order.getFieldData('oxpaycost')  %}
+        <tr id="payment">
+            <td colspan="5">{{ translate({ ident: "FA_INVOICE_PAYMENT" }) }}:</td>
+            <td>{{ order.getFormattedPayCost() }} {{ order.getFieldData('oxcurrency') }}</td>
+        </tr>
+    {% endif %}
+
+    {% for vat, vatPrice in order.getProductVats() %}
+        <tr class="totalvats">
+            <td colspan="5">{{ translate({ ident: "FA_INVOICE_VATS" }) }} ({{ vat }}%):</td>
+            <td>{{ vatPrice }} {{ order.getFieldData('oxcurrency') }}</td>
+        </tr>
+    {% endfor %}
 
     <tr id="total">
         <td colspan="5">{{ translate({ ident: "FA_INVOICE_TOTAL" }) }}:</td>
