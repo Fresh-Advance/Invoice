@@ -19,6 +19,10 @@ $aLang = [
     'FA_INVOICE_ITEM_COUNT' => 'Count',
     'FA_INVOICE_ITEM_PRICE' => 'Price',
     'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Total',
+    'FA_INVOICE_DISCOUNT' => 'Discount',
+    'FA_INVOICE_VOUCHERS' => 'Coupon Discount',
+    'FA_INVOICE_PAYMENT' => 'Payment Method Charge',
+    'FA_INVOICE_VATS' => 'VAT',
 
     'FA_INVOICE_PCS' => 'pcs.',
     'FA_INVOICE_DELIVERY' => 'Delivery',
