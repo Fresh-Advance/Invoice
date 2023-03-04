@@ -27,8 +27,7 @@ OXID PDF Invoice Module
 ## What to expect in next versions
 
 * New blocks in templates for easy extending
-* VAT listed in pdf
-* Discounts listed in pdf
+* Show Vat for every product in list
 * Other improvements
 
 ## Installation
