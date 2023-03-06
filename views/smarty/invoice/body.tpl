@@ -79,8 +79,13 @@
     <div class="contactHead">[{oxmultilang ident="FA_INVOICE_BUYER"}]</div>
     <div>
         [{if $order->getFieldData('oxbillcompany') }]
-            <strong>[{$order->getFieldData('oxbillcompany')}]<br/>
+            <strong>[{$order->getFieldData('oxbillcompany')}]</strong><br/>
         [{/if}]
+
+        [{if $order->getFieldData('oxbillustid') }]
+            [{$order->getFieldData('oxbillustid')}]<br/>
+        [{/if}]
+
         [{$order->getFieldData('OXBILLFNAME')}] [{$order->getFieldData('OXBILLLNAME')}]<br/>
         [{$order->getFieldData('OXBILLZIP')}] [{$order->getFieldData('OXBILLCITY')}], [{$order->getBillCountry()}]<br/>
         [{$order->getFieldData('OXBILLEMAIL')}]

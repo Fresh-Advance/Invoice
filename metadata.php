@@ -21,7 +21,7 @@ $aModule = [
     'description'  => [
         'en' => 'Invoice module for OXID eShop.',
     ],
-    'version'     => '1.2.0',
+    'version'     => '1.3.0',
     'author'       => 'Anton Fedurtsya',
     'email'        => 'anton@fedurtsya.com',
     'url'         => '',

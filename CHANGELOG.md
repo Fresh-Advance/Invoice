@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v1.3.0] - 2023-03-06
+
+### Added
+- Show company VAT Id in the invoice buyer column
+
 ## [v1.2.0] - 2023-03-04
 
 ### Added
@@ -30,6 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[v1.3.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.1.0...v1.2.0
 [v1.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.0.0...v1.1.0
 [v1.0.0]: https://github.com/Fresh-Advance/Invoice/compare/6e6618ba66...v1.0.0
