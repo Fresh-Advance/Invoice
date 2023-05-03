@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Use Symfony filesystem utility in place of Webmozart
+- Do not use shop namespaces for module services
 
 ## [v1.3.0] - 2023-03-06
 

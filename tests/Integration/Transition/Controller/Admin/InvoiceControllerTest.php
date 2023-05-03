@@ -70,7 +70,7 @@ class InvoiceControllerTest extends TestCase
         );
         $sut->method('getServiceFromContainer')->willReturnMap([
             [Invoice::class, $invoiceServiceMock],
-            [Utils::class, $utilsMock],
+            ['FreshAdvance\Invoice\Core\Utils', $utilsMock],
         ]);
         $sut->method('getEditObjectId')->willReturn('someOxid');
 

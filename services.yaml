@@ -3,21 +3,18 @@ services:
   _defaults:
     public: false
     autowire: true
+    bind:
+        OxidEsales\Eshop\Core\Config: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getConfig()'
+        OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getRequest()'
+        OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
 
-  OxidEsales\Eshop\Core\Registry:
+  FreshAdvance\Invoice\Core\Registry:
     class: OxidEsales\Eshop\Core\Registry
+    public: true
 
-  OxidEsales\Eshop\Core\Config:
-    factory: [ '@OxidEsales\Eshop\Core\Registry', 'getConfig' ]
-
-  OxidEsales\Eshop\Core\Request:
-    factory: [ '@OxidEsales\Eshop\Core\Registry', 'getRequest' ]
-
-  OxidEsales\Eshop\Core\Language:
-    factory: [ '@OxidEsales\Eshop\Core\Registry', 'getLang' ]
-
-  OxidEsales\Eshop\Core\Utils:
-    factory: [ '@OxidEsales\Eshop\Core\Registry', 'getUtils' ]
+  FreshAdvance\Invoice\Core\Utils:
+    class: OxidEsales\Eshop\Core\Utils
+    factory: [ 'OxidEsales\Eshop\Core\Registry', 'getUtils' ]
     public: true
 
   Mpdf\Mpdf:
