@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
-use FreshAdvance\Invoice\Service\Form;
+use FreshAdvance\Invoice\Service\RequestDataConverter;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\PdfGenerator;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
@@ -34,8 +34,8 @@ class InvoiceController extends AdminController
     {
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
 
-        $formService = $this->getServiceFromContainer(Form::class);
-        $invoiceService->saveOrderInvoiceData($formService->getConfigurationFromRequest());
+        $requestService = $this->getServiceFromContainer(RequestDataConverter::class);
+        $invoiceService->saveOrderInvoiceData($requestService->getConfigurationFromRequest());
 
         $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
 

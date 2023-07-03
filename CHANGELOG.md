@@ -4,7 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v1.3.1] - Unreleased
+## [v2.0.0] - Unreleased
+
+### Changed
+- `FreshAdvance\Invoice\Service\Form` renamed to `FreshAdvance\Invoice\Service\RequestDataConverter`
 
 ### Fixed
 - Use Symfony filesystem utility in place of Webmozart

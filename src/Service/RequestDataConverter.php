@@ -13,7 +13,7 @@ use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use OxidEsales\Eshop\Core\Request;
 
-class Form
+class RequestDataConverter implements RequestDataConverterInterface
 {
     public const INVOICES_FORM_ARRAY = 'invoice';
 

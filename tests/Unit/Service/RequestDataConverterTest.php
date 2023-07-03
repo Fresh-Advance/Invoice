@@ -9,14 +9,14 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
-use FreshAdvance\Invoice\Service\Form;
+use FreshAdvance\Invoice\Service\RequestDataConverter;
 use OxidEsales\Eshop\Core\Request;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Service\Form
+ * @covers \FreshAdvance\Invoice\Service\RequestDataConverter
  */
-class FormTest extends TestCase
+class RequestDataConverterTest extends TestCase
 {
     public function testGetConfigurationFromRequest(): void
     {
@@ -29,11 +29,11 @@ class FormTest extends TestCase
 
         $requestStub = $this->createConfiguredMock(Request::class, [
             'getRequestParameter' => $this->returnValueMap([
-                ['invoice', null, $formData]
+                [RequestDataConverter::INVOICES_FORM_ARRAY, null, $formData]
             ])
         ]);
 
-        $sut = new Form($requestStub);
+        $sut = new RequestDataConverter($requestStub);
         $configuration = $sut->getConfigurationFromRequest();
 
         $this->assertSame('someOrderId', $configuration->getOrderId());
