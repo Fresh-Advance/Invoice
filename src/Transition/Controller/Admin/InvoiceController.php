@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 use FreshAdvance\Invoice\Service\RequestDataConverter;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\PdfGenerator;
+use FreshAdvance\Invoice\Service\RequestDataConverterInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
 use OxidEsales\Eshop\Core\Utils;
@@ -34,7 +35,7 @@ class InvoiceController extends AdminController
     {
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
 
-        $requestService = $this->getServiceFromContainer(RequestDataConverter::class);
+        $requestService = $this->getServiceFromContainer(RequestDataConverterInterface::class);
         $invoiceService->saveOrderInvoiceData($requestService->getConfigurationFromRequest());
 
         $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());

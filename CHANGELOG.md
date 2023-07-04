@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [v2.0.0] - Unreleased
 
+### Added
+- `FreshAdvance\Invoice\Service\RequestDataConverterInterface`
+
 ### Changed
 - `FreshAdvance\Invoice\Service\Form` renamed to `FreshAdvance\Invoice\Service\RequestDataConverter`
 

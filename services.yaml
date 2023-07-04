@@ -1,28 +1,30 @@
+imports:
+    - { resource: src/Service/services.yaml }
+
 services:
+    _defaults:
+        public: false
+        autowire: true
+        bind:
+            OxidEsales\Eshop\Core\Config: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getConfig()'
+            OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
 
-  _defaults:
-    public: false
-    autowire: true
-    bind:
-        OxidEsales\Eshop\Core\Config: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getConfig()'
-        OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getRequest()'
-        OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
+    FreshAdvance\Invoice\Core\Registry:
+        class: OxidEsales\Eshop\Core\Registry
+        public: true
 
-  FreshAdvance\Invoice\Core\Registry:
-    class: OxidEsales\Eshop\Core\Registry
-    public: true
+    FreshAdvance\Invoice\Core\Utils:
+        class: OxidEsales\Eshop\Core\Utils
+        factory: [ 'OxidEsales\Eshop\Core\Registry', 'getUtils' ]
+        public: true
 
-  FreshAdvance\Invoice\Core\Utils:
-    class: OxidEsales\Eshop\Core\Utils
-    factory: [ 'OxidEsales\Eshop\Core\Registry', 'getUtils' ]
-    public: true
+    Mpdf\Mpdf:
+        public: true
 
-  Mpdf\Mpdf:
-    public: true
+    FreshAdvance\Invoice\Service\:
+        resource: 'src/Service/*'
+        exclude: 'src/Service/{RequestDataConverter}.php'
+        public: true
 
-  FreshAdvance\Invoice\Service\:
-    resource: 'src/Service/*'
-    public: true
-
-  FreshAdvance\Invoice\Repository\:
-    resource: 'src/Repository/*'
+    FreshAdvance\Invoice\Repository\:
+        resource: 'src/Repository/*'
