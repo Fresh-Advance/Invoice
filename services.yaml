@@ -23,7 +23,7 @@ services:
 
     FreshAdvance\Invoice\Service\:
         resource: 'src/Service/*'
-        exclude: 'src/Service/{RequestDataConverter}.php'
+        exclude: 'src/Service/{Context,RequestDataConverter,ModuleSettings}.php'
         public: true
 
     FreshAdvance\Invoice\Repository\:

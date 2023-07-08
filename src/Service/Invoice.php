@@ -26,7 +26,7 @@ class Invoice
         protected Config $shopConfig,
         protected ContextInterface $moduleContext,
         protected InvoiceRepository $invoiceRepository,
-        protected ModuleSettings $moduleSettings
+        protected ModuleSettingsInterface $moduleSettings
     ) {
     }
 

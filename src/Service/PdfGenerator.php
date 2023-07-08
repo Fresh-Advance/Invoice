@@ -24,7 +24,7 @@ class PdfGenerator
         protected Mpdf $pdfProcessor,
         protected TemplateRendererInterface $templateRenderer,
         protected Language $shopLanguage,
-        protected ModuleSettings $moduleSettings
+        protected ModuleSettingsInterface $moduleSettings
     ) {
     }
 

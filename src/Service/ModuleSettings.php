@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\Service;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use FreshAdvance\Invoice\Module;
 
-class ModuleSettings
+class ModuleSettings implements ModuleSettingsInterface
 {
     public const SETTING_DOCUMENT_FOOTER = 'fa_invoice_DocumentFooter';
     public const SETTING_DOCUMENT_FILENAME_PREFIX = 'fa_invoice_FilenamePrefix';
