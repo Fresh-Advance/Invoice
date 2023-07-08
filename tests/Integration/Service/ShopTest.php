@@ -10,12 +10,12 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Integration\Service;
 
 use FreshAdvance\Invoice\Exception\ShopNotFound;
-use FreshAdvance\Invoice\Service\Shop;
+use FreshAdvance\Invoice\Repository\Shop;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Service\Shop
+ * @covers \FreshAdvance\Invoice\Repository\Shop
  */
 class ShopTest extends IntegrationTestCase
 {

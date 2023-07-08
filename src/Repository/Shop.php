@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\Repository;
 
 use FreshAdvance\Invoice\Exception\ShopNotFound;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;

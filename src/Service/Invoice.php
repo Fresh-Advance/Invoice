@@ -14,6 +14,7 @@ use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Repository\Invoice as InvoiceRepository;
+use FreshAdvance\Invoice\Repository\Shop;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Core\Config;
 use Symfony\Component\Filesystem\Path;
