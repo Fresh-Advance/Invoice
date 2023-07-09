@@ -8,7 +8,6 @@ services:
         autowire: true
         bind:
             OxidEsales\Eshop\Core\Config: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getConfig()'
-            OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
 
     FreshAdvance\Invoice\Core\Registry:
         class: OxidEsales\Eshop\Core\Registry
@@ -24,5 +23,5 @@ services:
 
     FreshAdvance\Invoice\Service\:
         resource: 'src/Service/*'
-        exclude: 'src/Service/{Context,RequestDataConverter,ModuleSettings}.php'
+        exclude: 'src/Service/{Context,RequestDataConverter,ModuleSettings,PdfGenerator}.php'
         public: true

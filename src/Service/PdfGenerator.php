@@ -16,7 +16,7 @@ use OxidEsales\Eshop\Core\Language;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use Symfony\Component\Filesystem\Path;
 
-class PdfGenerator
+class PdfGenerator implements InvoiceGeneratorInterface
 {
     protected const INVOICE_TEMPLATE = '@fa_invoice/invoice/body';
 

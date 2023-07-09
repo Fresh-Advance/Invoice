@@ -4,6 +4,7 @@ services:
         autowire: true
         bind:
             OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getRequest()'
+            OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
 
     FreshAdvance\Invoice\Service\RequestDataConverterInterface:
         class: FreshAdvance\Invoice\Service\RequestDataConverter
@@ -15,4 +16,8 @@ services:
 
     FreshAdvance\Invoice\Service\ModuleSettingsInterface:
         class: FreshAdvance\Invoice\Service\ModuleSettings
+        public: true
+
+    FreshAdvance\Invoice\Service\InvoiceGeneratorInterface:
+        class: FreshAdvance\Invoice\Service\PdfGenerator
         public: true

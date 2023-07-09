@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - `FreshAdvance\Invoice\Service\RequestDataConverterInterface`
 - `FreshAdvance\Invoice\Service\ModuleSettingsInterface`
+- `FreshAdvance\Invoice\Service\InvoiceGeneratorInterface`
 
 ### Changed
 - `FreshAdvance\Invoice\Service\Form` renamed to `FreshAdvance\Invoice\Service\RequestDataConverter`
