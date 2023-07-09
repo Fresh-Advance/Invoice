@@ -8,9 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - `FreshAdvance\Invoice\Service\RequestDataConverterInterface`
+- `FreshAdvance\Invoice\Service\ModuleSettingsInterface`
 
 ### Changed
 - `FreshAdvance\Invoice\Service\Form` renamed to `FreshAdvance\Invoice\Service\RequestDataConverter`
+- `FreshAdvance\Invoice\Service\Shop` moved to `FreshAdvance\Invoice\Repository\Shop`
+- `FreshAdvance\Invoice\Service\Order` moved to `FreshAdvance\Invoice\Repository\Order`
 
 ### Fixed
 - Use Symfony filesystem utility in place of Webmozart

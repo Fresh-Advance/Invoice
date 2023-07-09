@@ -10,12 +10,12 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Integration\Service;
 
 use FreshAdvance\Invoice\Exception\OrderNotFound;
-use FreshAdvance\Invoice\Service\Order;
+use FreshAdvance\Invoice\Repository\Order;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Service\Order
+ * @covers \FreshAdvance\Invoice\Repository\Order
  */
 class OrderTest extends IntegrationTestCase
 {

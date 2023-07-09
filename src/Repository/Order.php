@@ -7,12 +7,10 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\Repository;
 
 use FreshAdvance\Invoice\Exception\OrderNotFound;
-use FreshAdvance\Invoice\Exception\RequestParameterMissing;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
-use OxidEsales\Eshop\Core\Request;
 
 class Order
 {

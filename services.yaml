@@ -1,4 +1,5 @@
 imports:
+    - { resource: src/Repository/services.yaml }
     - { resource: src/Service/services.yaml }
 
 services:
@@ -25,6 +26,3 @@ services:
         resource: 'src/Service/*'
         exclude: 'src/Service/{Context,RequestDataConverter,ModuleSettings}.php'
         public: true
-
-    FreshAdvance\Invoice\Repository\:
-        resource: 'src/Repository/*'
