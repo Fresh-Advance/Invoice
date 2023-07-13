@@ -6,8 +6,6 @@ services:
     _defaults:
         public: false
         autowire: true
-        bind:
-            OxidEsales\Eshop\Core\Config: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getConfig()'
 
     FreshAdvance\Invoice\Core\Registry:
         class: OxidEsales\Eshop\Core\Registry
@@ -19,9 +17,4 @@ services:
         public: true
 
     Mpdf\Mpdf:
-        public: true
-
-    FreshAdvance\Invoice\Service\:
-        resource: 'src/Service/*'
-        exclude: 'src/Service/{Context,RequestDataConverter,ModuleSettings,PdfGenerator}.php'
         public: true
