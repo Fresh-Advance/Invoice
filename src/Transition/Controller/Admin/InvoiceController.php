@@ -13,6 +13,7 @@ use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\RequestDataConverterInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
+use FreshAdvance\Invoice\Transition\Core\UtilsInterface;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
 use OxidEsales\Eshop\Core\Utils;
 
@@ -51,7 +52,7 @@ class InvoiceController extends AdminController
         $fileName = $invoiceService->getInvoiceFileName($invoiceData->getInvoiceConfiguration());
 
         /** @var Utils $utils */
-        $utils = $this->getServiceFromContainer('FreshAdvance\Invoice\Core\Utils');
+        $utils = $this->getServiceFromContainer(UtilsInterface::class);
         $utils->setHeader('Content-Type: application/pdf');
         $utils->setHeader('Content-Disposition:attachment;filename=' . $fileName);
 

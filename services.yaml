@@ -7,7 +7,7 @@ services:
         public: false
         autowire: true
 
-    FreshAdvance\Invoice\Core\Utils:
+    FreshAdvance\Invoice\Transition\Core\UtilsInterface:
         class: OxidEsales\Eshop\Core\Utils
         factory: [ 'OxidEsales\Eshop\Core\Registry', 'getUtils' ]
         public: true
