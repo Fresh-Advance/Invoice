@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Integration\Traits;
 
-use FreshAdvance\Invoice\Service\ContextInterface;
+use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
@@ -29,6 +29,6 @@ class ServiceContainerTest extends IntegrationTestCase
             }
         };
 
-        $this->assertInstanceOf(ContextInterface::class, $sut->getTestService(ContextInterface::class));
+        $this->assertInstanceOf(Invoice::class, $sut->getTestService(Invoice::class));
     }
 }
