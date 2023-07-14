@@ -9,11 +9,11 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\DataType;
 
-use FreshAdvance\Invoice\DataType\PdfData;
+use FreshAdvance\Invoice\Document\MpdfDocument\PdfData;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\DataType\PdfData
+ * @covers \FreshAdvance\Invoice\Document\MpdfDocument\PdfData
  */
 class PdfDataTest extends TestCase
 {

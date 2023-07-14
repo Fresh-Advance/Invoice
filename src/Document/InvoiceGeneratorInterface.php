@@ -1,6 +1,6 @@
 <?php
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\Document;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 

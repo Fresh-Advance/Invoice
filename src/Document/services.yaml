@@ -1,0 +1,11 @@
+imports:
+    - { resource: MpdfDocument/services.yaml }
+
+services:
+    _defaults:
+        public: false
+        autowire: true
+
+    FreshAdvance\Invoice\Document\InvoiceGeneratorInterface:
+        class: FreshAdvance\Invoice\Document\MpdfDocument\PdfGenerator
+        public: true

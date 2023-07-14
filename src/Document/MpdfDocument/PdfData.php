@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\DataType;
+namespace FreshAdvance\Invoice\Document\MpdfDocument;
 
-class PdfData implements PdfDataInterface
+class PdfData
 {
     public function __construct(
         protected string $htmlContent,

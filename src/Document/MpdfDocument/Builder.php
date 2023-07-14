@@ -7,16 +7,17 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\DataType\PdfData;
+use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Service\ModuleSettingsInterface;
 use Mpdf\Mpdf;
 use OxidEsales\Eshop\Core\Language;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use Symfony\Component\Filesystem\Path;
 
-class PdfGenerator implements InvoiceGeneratorInterface
+class Builder implements InvoiceGeneratorInterface
 {
     protected const INVOICE_TEMPLATE = '@fa_invoice/invoice/body';
 

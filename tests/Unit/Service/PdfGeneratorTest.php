@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
+use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
 use FreshAdvance\Invoice\Service\ModuleSettings;
-use FreshAdvance\Invoice\Service\PdfGenerator;
 use Mpdf\Mpdf;
 use org\bovigo\vfs\vfsStream;
 use OxidEsales\Eshop\Core\Language;
@@ -19,7 +19,7 @@ use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInte
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Service\PdfGenerator
+ * @covers \FreshAdvance\Invoice\Document\MpdfDocument\Builder
  */
 class PdfGeneratorTest extends TestCase
 {
@@ -47,7 +47,7 @@ class PdfGeneratorTest extends TestCase
             'getDocumentFooter' => 'someFooter'
         ]);
 
-        $sut = new PdfGenerator(
+        $sut = new Builder(
             pdfProcessor: $pdfProcessorMock,
             templateRenderer: $templateRenderer,
             shopLanguage: $shopLanguage,
