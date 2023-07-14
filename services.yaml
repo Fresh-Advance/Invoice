@@ -13,5 +13,5 @@ services:
 
     FreshAdvance\Invoice\Transition\Core\UtilsInterface:
         class: OxidEsales\Eshop\Core\Utils
-        factory: [ 'OxidEsales\Eshop\Core\Registry', 'getUtils' ]
+        factory: [ '@FreshAdvance\Invoice\Core\Registry', 'getUtils' ]
         public: true

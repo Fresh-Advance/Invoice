@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Integration\Transition\Controller\Admin;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController;
+use FreshAdvance\Invoice\Transition\Core\UtilsInterface;
 use org\bovigo\vfs\vfsStream;
 use OxidEsales\Eshop\Core\Utils;
 use PHPUnit\Framework\TestCase;
@@ -70,7 +71,7 @@ class InvoiceControllerTest extends TestCase
         );
         $sut->method('getServiceFromContainer')->willReturnMap([
             [Invoice::class, $invoiceServiceMock],
-            ['FreshAdvance\Invoice\Core\Utils', $utilsMock],
+            [UtilsInterface::class, $utilsMock],
         ]);
         $sut->method('getEditObjectId')->willReturn('someOxid');
 
