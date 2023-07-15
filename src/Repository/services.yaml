@@ -5,3 +5,6 @@ services:
 
     FreshAdvance\Invoice\Repository\:
         resource: './*'
+
+    FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface:
+        class: FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository
