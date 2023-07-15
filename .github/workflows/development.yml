@@ -343,14 +343,6 @@ jobs:
           docker-compose exec -T php composer require oxid-esales/twig-theme:dev-b-7.0.x --no-update
           docker-compose exec -T php composer update --no-interaction
 
-      - name: Configure codeception runner for twig case
-        run: |
-          perl -pi\
-            -e 's#theme_id: .*#theme_id: twig#g;'\
-            -e 's#admin_smarty#admin_twig#g;'\
-            -e 's#\/flow\/translations#\/twig#g;'\
-            source/vendor/${{ env.PACKAGE_NAME }}/tests/Codeception/acceptance.suite.yml
-
       - name: Run tests
         run: |
           docker-compose exec -T \
@@ -399,11 +391,7 @@ jobs:
         run: |
           perl -pi \
           -e 's#admin_twig#admin_smarty#g;' \
-          source/test-module/tests/Codeception/acceptance.suite.yml
-          perl -pi \
           -e 's#views/twig#views/flow/translations#g;' \
-          source/test-module/tests/Codeception/acceptance.suite.yml
-          perl -pi \
           -e 's#theme_id:\s?twig#theme_id: flow#g;' \
           source/test-module/tests/Codeception/acceptance.suite.yml
 
