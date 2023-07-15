@@ -13,7 +13,7 @@ use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Repository\Invoice as InvoiceRepository;
+use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\Repository\Order;
 use FreshAdvance\Invoice\Repository\Shop;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
@@ -27,7 +27,7 @@ class Invoice
         protected Shop $shopService,
         protected Config $shopConfig,
         protected ContextInterface $moduleContext,
-        protected InvoiceRepository $invoiceRepository,
+        protected InvoiceConfigurationRepositoryInterface $invoiceRepository,
         protected ModuleSettingsInterface $moduleSettings
     ) {
     }

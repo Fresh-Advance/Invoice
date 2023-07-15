@@ -11,7 +11,7 @@ namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\Repository\Invoice as InvoiceRepository;
+use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository;
 use FreshAdvance\Invoice\Repository\Order;
 use FreshAdvance\Invoice\Repository\Shop;
 use FreshAdvance\Invoice\Service\Context;
@@ -45,7 +45,7 @@ class InvoiceTest extends TestCase
         $shopConfigMock->method('getShopConfVar')->with('sDefaultLang', 3)->willReturn(5);
 
         $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
-        $repositoryMock = $this->createPartialMock(InvoiceRepository::class, ['getOrderInvoice']);
+        $repositoryMock = $this->createPartialMock(InvoiceConfigurationRepository::class, ['getOrderInvoice']);
         $repositoryMock->method('getOrderInvoice')
             ->with('someOrderId')
             ->willReturn($invoiceConfigurationStub);
@@ -79,7 +79,7 @@ class InvoiceTest extends TestCase
     {
         $configurationStub = $this->createStub(InvoiceConfigurationInterface::class);
 
-        $repositoryMock = $this->createPartialMock(InvoiceRepository::class, ['saveInvoiceConfiguration']);
+        $repositoryMock = $this->createPartialMock(InvoiceConfigurationRepository::class, ['saveInvoiceConfiguration']);
         $repositoryMock->expects($this->atLeastOnce())
             ->method('saveInvoiceConfiguration')
             ->with($configurationStub);
@@ -115,7 +115,7 @@ class InvoiceTest extends TestCase
             shopService: $this->createStub(Shop::class),
             shopConfig: $this->createStub(Config::class),
             moduleContext: $this->createStub(Context::class),
-            invoiceRepository: $this->createStub(InvoiceRepository::class),
+            invoiceRepository: $this->createStub(InvoiceConfigurationRepository::class),
             moduleSettings: $moduleSettingsStub
         );
 

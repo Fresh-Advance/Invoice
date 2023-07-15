@@ -14,7 +14,7 @@ use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
-class Invoice
+class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryInterface
 {
     public function __construct(
         protected QueryBuilderFactoryInterface $queryBuilderFactory
