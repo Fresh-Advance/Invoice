@@ -12,8 +12,8 @@ namespace FreshAdvance\Invoice\Tests\Unit\Service;
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
-use FreshAdvance\Invoice\Repository\Order;
-use FreshAdvance\Invoice\Repository\Shop;
+use FreshAdvance\Invoice\Repository\OrderRepositoryInterface;
+use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Service\Context;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\ModuleSettings;
@@ -34,11 +34,11 @@ class InvoiceTest extends TestCase
             'getId' => 'someOrderId'
         ]);
 
-        $orderServiceMock = $this->createPartialMock(Order::class, ['getOrder']);
+        $orderServiceMock = $this->createPartialMock(OrderRepositoryInterface::class, ['getOrder']);
         $orderServiceMock->method('getOrder')->with('someOrderId')->willReturn($orderStub);
 
         $shopStub = $this->createStub(ShopModel::class);
-        $shopServiceMock = $this->createPartialMock(Shop::class, ['getShop']);
+        $shopServiceMock = $this->createPartialMock(ShopRepositoryInterface::class, ['getShop']);
         $shopServiceMock->method('getShop')->with(3)->willReturn($shopStub);
 
         $shopConfigMock = $this->createPartialMock(Config::class, ['getShopConfVar']);
@@ -89,8 +89,8 @@ class InvoiceTest extends TestCase
         ]);
 
         $sut = new Invoice(
-            orderService: $this->createStub(Order::class),
-            shopService: $this->createStub(Shop::class),
+            orderService: $this->createStub(OrderRepositoryInterface::class),
+            shopService: $this->createStub(ShopRepositoryInterface::class),
             shopConfig: $this->createStub(Config::class),
             moduleContext: $this->createStub(Context::class),
             invoiceRepository: $repositoryMock,
@@ -111,8 +111,8 @@ class InvoiceTest extends TestCase
         ]);
 
         $sut = new Invoice(
-            orderService: $this->createStub(Order::class),
-            shopService: $this->createStub(Shop::class),
+            orderService: $this->createStub(OrderRepositoryInterface::class),
+            shopService: $this->createStub(ShopRepositoryInterface::class),
             shopConfig: $this->createStub(Config::class),
             moduleContext: $this->createStub(Context::class),
             invoiceRepository: $this->createStub(InvoiceConfigurationRepositoryInterface::class),

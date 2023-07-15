@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\Repository;
 use FreshAdvance\Invoice\Exception\ShopNotFound;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 
-class Shop
+class ShopRepository implements ShopRepositoryInterface
 {
     /**
      * @throws ShopNotFound

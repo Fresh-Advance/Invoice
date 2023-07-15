@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Integration\Repository;
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository;
+use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
@@ -88,8 +89,8 @@ class InvoiceTest extends IntegrationTestCase
         ];
     }
 
-    protected function getSut(): InvoiceConfigurationRepository
+    protected function getSut(): InvoiceConfigurationRepositoryInterface
     {
-        return $this->get(InvoiceConfigurationRepository::class);
+        return $this->get(InvoiceConfigurationRepositoryInterface::class);
     }
 }

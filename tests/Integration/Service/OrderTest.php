@@ -10,12 +10,12 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Integration\Service;
 
 use FreshAdvance\Invoice\Exception\OrderNotFound;
-use FreshAdvance\Invoice\Repository\Order;
+use FreshAdvance\Invoice\Repository\OrderRepository;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Repository\Order
+ * @covers \FreshAdvance\Invoice\Repository\OrderRepository
  */
 class OrderTest extends IntegrationTestCase
 {
@@ -33,7 +33,7 @@ class OrderTest extends IntegrationTestCase
 
     public function testGetOrder(): void
     {
-        $sut = $this->createPartialMock(Order::class, []);
+        $sut = $this->createPartialMock(OrderRepository::class, []);
         $result = $sut->getOrder(self::TEST_ORDER_ID);
 
         $this->assertSame(self::TEST_ORDER_ID, $result->getId());
@@ -41,7 +41,7 @@ class OrderTest extends IntegrationTestCase
 
     public function testGetWrongOrder(): void
     {
-        $sut = $this->createPartialMock(Order::class, []);
+        $sut = $this->createPartialMock(OrderRepository::class, []);
 
         $this->expectException(OrderNotFound::class);
         $sut->getOrder(self::TEST_ORDER_ID_WRONG);

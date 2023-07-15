@@ -14,8 +14,8 @@ use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
-use FreshAdvance\Invoice\Repository\Order;
-use FreshAdvance\Invoice\Repository\Shop;
+use FreshAdvance\Invoice\Repository\OrderRepositoryInterface;
+use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Core\Config;
 use Symfony\Component\Filesystem\Path;
@@ -23,8 +23,8 @@ use Symfony\Component\Filesystem\Path;
 class Invoice
 {
     public function __construct(
-        protected Order $orderService,
-        protected Shop $shopService,
+        protected OrderRepositoryInterface $orderService,
+        protected ShopRepositoryInterface $shopService,
         protected Config $shopConfig,
         protected ContextInterface $moduleContext,
         protected InvoiceConfigurationRepositoryInterface $invoiceRepository,

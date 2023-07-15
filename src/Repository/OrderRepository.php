@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\Repository;
 use FreshAdvance\Invoice\Exception\OrderNotFound;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 
-class Order
+class OrderRepository implements OrderRepositoryInterface
 {
     /**
      * @throws OrderNotFound
