@@ -1,4 +1,5 @@
 imports:
+    - { resource: src/Document/services.yaml }
     - { resource: src/Repository/services.yaml }
     - { resource: src/Service/services.yaml }
 
