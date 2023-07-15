@@ -45,7 +45,10 @@ class InvoiceTest extends TestCase
         $shopConfigMock->method('getShopConfVar')->with('sDefaultLang', 3)->willReturn(5);
 
         $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
-        $repositoryMock = $this->createPartialMock(InvoiceConfigurationRepositoryInterface::class, ['getOrderInvoice', 'saveInvoiceConfiguration']);
+        $repositoryMock = $this->createPartialMock(
+            InvoiceConfigurationRepositoryInterface::class,
+            ['getOrderInvoice', 'saveInvoiceConfiguration']
+        );
         $repositoryMock->method('getOrderInvoice')
             ->with('someOrderId')
             ->willReturn($invoiceConfigurationStub);
@@ -79,7 +82,10 @@ class InvoiceTest extends TestCase
     {
         $configurationStub = $this->createStub(InvoiceConfigurationInterface::class);
 
-        $repositoryMock = $this->createPartialMock(InvoiceConfigurationRepositoryInterface::class, ['getOrderInvoice', 'saveInvoiceConfiguration']);
+        $repositoryMock = $this->createPartialMock(
+            InvoiceConfigurationRepositoryInterface::class,
+            ['getOrderInvoice', 'saveInvoiceConfiguration']
+        );
         $repositoryMock->expects($this->atLeastOnce())
             ->method('saveInvoiceConfiguration')
             ->with($configurationStub);
