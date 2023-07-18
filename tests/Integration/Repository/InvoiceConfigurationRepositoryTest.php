@@ -18,7 +18,7 @@ use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 /**
  * @covers \FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository
  */
-class InvoiceTest extends IntegrationTestCase
+class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
 {
     protected const TEST_ORDER_ID = 'someTestOrderId';
     protected const TEST_NOT_EXISTING_ORDER_ID = 'someNotExistingOrderId';

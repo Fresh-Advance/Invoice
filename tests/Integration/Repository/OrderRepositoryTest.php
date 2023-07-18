@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Integration\Service;
+namespace FreshAdvance\Invoice\Tests\Integration\Repository;
 
 use FreshAdvance\Invoice\Exception\OrderNotFound;
 use FreshAdvance\Invoice\Repository\OrderRepository;
@@ -17,7 +17,7 @@ use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 /**
  * @covers \FreshAdvance\Invoice\Repository\OrderRepository
  */
-class OrderTest extends IntegrationTestCase
+class OrderRepositoryTest extends IntegrationTestCase
 {
     protected const TEST_ORDER_ID = 'someTestOrderId';
     protected const TEST_ORDER_ID_WRONG = 'someNotExistingOrderId';

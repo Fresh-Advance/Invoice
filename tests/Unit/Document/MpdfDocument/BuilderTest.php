@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \FreshAdvance\Invoice\Document\MpdfDocument\Builder
  */
-class PdfGeneratorTest extends TestCase
+class BuilderTest extends TestCase
 {
     public function testGetBinaryPdfFromData(): void
     {

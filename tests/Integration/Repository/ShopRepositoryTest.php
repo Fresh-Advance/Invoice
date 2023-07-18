@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Integration\Service;
+namespace FreshAdvance\Invoice\Tests\Integration\Repository;
 
 use FreshAdvance\Invoice\Exception\ShopNotFound;
 use FreshAdvance\Invoice\Repository\ShopRepository;
@@ -17,7 +17,7 @@ use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 /**
  * @covers \FreshAdvance\Invoice\Repository\ShopRepository
  */
-class ShopTest extends IntegrationTestCase
+class ShopRepositoryTest extends IntegrationTestCase
 {
     protected const TEST_SHOP_ID = 5;
     protected const TEST_SHOP_ID_WRONG = 100;

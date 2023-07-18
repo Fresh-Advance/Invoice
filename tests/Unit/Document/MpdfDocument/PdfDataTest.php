@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\DataType;
+namespace FreshAdvance\Invoice\Tests\Unit\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\Document\MpdfDocument\PdfData;
 use PHPUnit\Framework\TestCase;
