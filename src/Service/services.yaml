@@ -1,23 +1,23 @@
 services:
-    _defaults:
-        public: false
-        autowire: true
-        bind:
-            OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getRequest()'
-            OxidEsales\Eshop\Core\Config: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getConfig()'
+  _defaults:
+    public: false
+    autowire: true
+    bind:
+      OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getRequest()'
+      OxidEsales\Eshop\Core\Config: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getConfig()'
 
-    FreshAdvance\Invoice\Service\RequestDataConverterInterface:
-        class: FreshAdvance\Invoice\Service\RequestDataConverter
-        public: true
+  FreshAdvance\Invoice\Service\RequestDataConverterInterface:
+    class: FreshAdvance\Invoice\Service\RequestDataConverter
+    public: true
 
-    FreshAdvance\Invoice\Service\ContextInterface:
-        class: FreshAdvance\Invoice\Service\Context
-        public: true
+  FreshAdvance\Invoice\Service\ContextInterface:
+    class: FreshAdvance\Invoice\Service\Context
+    public: true
 
-    FreshAdvance\Invoice\Service\ModuleSettingsInterface:
-        class: FreshAdvance\Invoice\Service\ModuleSettings
-        public: true
+  FreshAdvance\Invoice\Service\ModuleSettingsInterface:
+    class: FreshAdvance\Invoice\Service\ModuleSettings
+    public: true
 
-    FreshAdvance\Invoice\Service\Invoice:
-        class: FreshAdvance\Invoice\Service\Invoice
-        public: true
+  FreshAdvance\Invoice\Service\Invoice:
+    class: FreshAdvance\Invoice\Service\Invoice
+    public: true

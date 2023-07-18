@@ -13,5 +13,5 @@ indent_size = 4
 trim_trailing_whitespace = true
 
 # Unix-style newlines with a newline ending every file
-[{*.yml, *.yaml}]
+[{*.yml,*.yaml,*.json}]
 indent_size = 2

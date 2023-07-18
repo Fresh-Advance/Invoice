@@ -24,7 +24,7 @@ final class AcceptanceTester extends \Codeception\Actor
      */
     public function openShop(): Home
     {
-        $I        = $this;
+        $I = $this;
         $homePage = new Home($I);
         $I->amOnPage($homePage->URL);
 

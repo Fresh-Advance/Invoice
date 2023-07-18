@@ -1,7 +1,7 @@
 services:
-    _defaults:
-        public: false
-        autowire: true
+  _defaults:
+    public: false
+    autowire: true
 
-    Mpdf\Mpdf:
-        public: true
+  Mpdf\Mpdf:
+    public: true

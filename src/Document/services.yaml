@@ -1,13 +1,13 @@
 imports:
-    - { resource: MpdfDocument/services.yaml }
+  - { resource: MpdfDocument/services.yaml }
 
 services:
-    _defaults:
-        public: false
-        autowire: true
-        bind:
-            OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
+  _defaults:
+    public: false
+    autowire: true
+    bind:
+      OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
 
-    FreshAdvance\Invoice\Document\InvoiceGeneratorInterface:
-        class: FreshAdvance\Invoice\Document\MpdfDocument\Builder
-        public: true
+  FreshAdvance\Invoice\Document\InvoiceGeneratorInterface:
+    class: FreshAdvance\Invoice\Document\MpdfDocument\Builder
+    public: true
