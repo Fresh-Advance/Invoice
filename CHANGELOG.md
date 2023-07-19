@@ -6,15 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [v2.0.0] - Unreleased
 
-### Added
-- `FreshAdvance\Invoice\Service\RequestDataConverterInterface`
-- `FreshAdvance\Invoice\Service\ModuleSettingsInterface`
-- `FreshAdvance\Invoice\Service\InvoiceGeneratorInterface`
-
 ### Changed
-- `FreshAdvance\Invoice\Service\Form` renamed to `FreshAdvance\Invoice\Service\RequestDataConverter`
-- `FreshAdvance\Invoice\Service\Shop` moved to `FreshAdvance\Invoice\Repository\Shop`
-- `FreshAdvance\Invoice\Service\Order` moved to `FreshAdvance\Invoice\Repository\Order`
+- Inverted dependencies on most of the classes to new namespaces
 
 ### Fixed
 - Use Symfony filesystem utility in place of Webmozart
@@ -51,6 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[v2.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.3.0...v2.0.0
 [v1.3.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.1.0...v1.2.0
 [v1.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.0.0...v1.1.0

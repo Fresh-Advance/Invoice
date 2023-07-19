@@ -32,7 +32,7 @@ $aLang = [
     'FA_INVOICE_FORM_SIGNER' => 'In Rechnung gestellt von',
     'FA_INVOICE_FORM_NUMBER' => 'Rechnungsnummer',
     'FA_INVOICE_FORM_DATE' => 'Rechnungsdatum',
-    'FA_INVOICE_FORM_CREATE' => 'Rechnung erstellen',
+    'FA_INVOICE_FORM_SAVE_DATA' => 'Rechnungskonfiguration speichern',
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Rechnung herunterladen',
 

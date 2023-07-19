@@ -31,23 +31,20 @@ class InvoiceController extends AdminController
         return parent::render();
     }
 
-    public function generate(): void
+    public function saveData(): void
     {
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
-
         $requestService = $this->getServiceFromContainer(RequestDataConverterInterface::class);
         $invoiceService->saveOrderInvoiceData($requestService->getConfigurationFromRequest());
-
-        $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
-
-        $invoiceGenerator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
-        $invoiceGenerator->generate($invoiceData);
     }
 
     public function downloadOrderInvoice(): void
     {
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
         $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
+
+        $invoiceGenerator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
+        $invoiceGenerator->generate($invoiceData);
 
         $fileName = $invoiceService->getInvoiceFileName($invoiceData->getInvoiceConfiguration());
 

@@ -3,7 +3,7 @@
     <OXMENU id="NAVIGATION_ESHOPADMIN">
         <MAINMENU id="mxorders">
             <SUBMENU id="mxdisplayorders">
-                <TAB id="tbclorder_fa_invoice" cl="fa_invoice" />
+                <TAB id="tbclorder_fa_invoice" cl="fa_invoice_admin" />
             </SUBMENU>
         </MAINMENU>
     </OXMENU>

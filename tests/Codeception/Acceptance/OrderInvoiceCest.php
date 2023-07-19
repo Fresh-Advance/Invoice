@@ -36,7 +36,7 @@ final class OrderInvoiceCest
         $adminPanel = $I->loginAdmin();
 
         $orders = $adminPanel->openOrders();
-        $orders = $orders->find($orders->orderNumberInput, '2');
+        $orders->find($orders->orderNumberInput, '2');
 
         $I->selectListFrame();
         $I->click(Translator::translate('tbclorder_fa_invoice'));
@@ -52,7 +52,7 @@ final class OrderInvoiceCest
         $I->fillField($invoicePage->invoiceNumberField, $numberExample);
         $I->fillField($invoicePage->invoiceSignerField, $signerExample);
 
-        $I->click($invoicePage->invoiceGenerateButton);
+        $I->click($invoicePage->invoiceDataSaveButton);
         $I->waitForPageLoad();
 
         $I->seeInField($invoicePage->invoiceDateField, $dateExample);

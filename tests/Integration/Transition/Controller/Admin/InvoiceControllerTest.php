@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Integration\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController;
 use FreshAdvance\Invoice\Transition\Core\UtilsInterface;
@@ -65,6 +66,9 @@ class InvoiceControllerTest extends TestCase
         $utilsMock->expects($this->atLeastOnce())->method('setHeader');
         $utilsMock->expects($this->atLeastOnce())->method('showMessageAndExit')->with('someFileContent');
 
+        $invoiceGeneratorMock = $this->createPartialMock(InvoiceGeneratorInterface::class, ['generate']);
+        $invoiceGeneratorMock->expects($this->once())->method('generate');
+
         $sut = $this->createPartialMock(
             InvoiceController::class,
             ['getServiceFromContainer', 'getEditObjectId']
@@ -72,6 +76,7 @@ class InvoiceControllerTest extends TestCase
         $sut->method('getServiceFromContainer')->willReturnMap([
             [Invoice::class, $invoiceServiceMock],
             [UtilsInterface::class, $utilsMock],
+            [InvoiceGeneratorInterface::class, $invoiceGeneratorMock]
         ]);
         $sut->method('getEditObjectId')->willReturn('someOxid');
 
