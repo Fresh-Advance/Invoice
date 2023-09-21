@@ -2,6 +2,7 @@ imports:
     - { resource: src/Document/services.yaml }
     - { resource: src/Repository/services.yaml }
     - { resource: src/Service/services.yaml }
+    - { resource: src/Transition/Core/services.yaml }
 
 services:
     _defaults:
@@ -10,9 +11,4 @@ services:
 
     FreshAdvance\Invoice\Core\Registry:
         class: OxidEsales\Eshop\Core\Registry
-        public: true
-
-    FreshAdvance\Invoice\Transition\Core\UtilsInterface:
-        class: OxidEsales\Eshop\Core\Utils
-        factory: [ '@FreshAdvance\Invoice\Core\Registry', 'getUtils' ]
         public: true

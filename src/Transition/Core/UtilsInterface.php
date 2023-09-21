@@ -11,4 +11,7 @@ namespace FreshAdvance\Invoice\Transition\Core;
 
 interface UtilsInterface
 {
+    public function setHeader(string $header): void;
+
+    public function showMessageAndExit(string $message): void;
 }

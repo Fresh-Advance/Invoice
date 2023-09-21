@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+    bind:
+      OxidEsales\Eshop\Core\Utils: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getUtils()'
+
+  FreshAdvance\Invoice\Transition\Core\UtilsInterface:
+    class: FreshAdvance\Invoice\Transition\Core\UtilsProxy
+    public: true
