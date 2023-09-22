@@ -4,7 +4,12 @@ services:
     autowire: true
     bind:
       OxidEsales\Eshop\Core\Utils: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getUtils()'
+      OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getRequest()'
 
   FreshAdvance\Invoice\Transition\Core\UtilsInterface:
     class: FreshAdvance\Invoice\Transition\Core\UtilsProxy
+    public: true
+
+  FreshAdvance\Invoice\Transition\Core\RequestInterface:
+    class: FreshAdvance\Invoice\Transition\Core\RequestProxy
     public: true
