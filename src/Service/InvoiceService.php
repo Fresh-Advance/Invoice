@@ -11,14 +11,14 @@ namespace FreshAdvance\Invoice\Service;
 
 use FreshAdvance\Invoice\Transition\Core\UtilsInterface;
 
-class InvoiceService
+class InvoiceService implements InvoiceServiceInterface
 {
     public function __construct(
         protected UtilsInterface $utils
     ) {
     }
 
-    public function triggerInvoiceFileDownload($fileName, $filePath): void
+    public function triggerInvoiceFileDownload(string $fileName, string $filePath): void
     {
         $this->utils->setHeader('Content-Type: application/pdf');
         $this->utils->setHeader('Content-Disposition:attachment;filename=' . $fileName);
