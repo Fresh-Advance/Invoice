@@ -406,6 +406,12 @@ jobs:
           docker-compose exec -T php composer require oxid-esales/flow-theme:dev-b-7.0.x --no-update
           docker-compose exec -T php composer update --no-interaction
 
+      - name: Install codeception-page-objects for flow theme
+        run: |
+          docker-compose exec -T php composer require oxid-esales/codeception-page-objects:dev-b-7.0.x-SMARTY --no-update
+          docker-compose exec -T php composer require oxid-esales/codeception-modules:dev-b-7.0.x --no-update
+          docker-compose exec -T php composer update --no-interaction
+
       - name: Run tests
         run: |
           docker-compose exec -T \
