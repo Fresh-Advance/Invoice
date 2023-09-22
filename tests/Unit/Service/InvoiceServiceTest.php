@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\Service\InvoiceService;
-use FreshAdvance\Invoice\Transition\Core\UtilsInterface;
+use FreshAdvance\Invoice\Transition\Core\UtilsProxy;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +23,7 @@ class InvoiceServiceTest extends TestCase
     {
         $headerFileName = 'exampleFile.pdf';
 
-        $utilsMock = $this->createPartialMock(UtilsInterface::class, ['setHeader']);
+        $utilsMock = $this->createPartialMock(UtilsProxy::class, ['setHeader']);
         $utilsMock->expects($this->any())
             ->method('setHeader')
             ->willReturnCallback(function ($value) use ($headerFileName) {
@@ -47,7 +47,7 @@ class InvoiceServiceTest extends TestCase
         $headerFilename = 'exampleFile.pdf';
         $filePath = $tempDirectory->url() . '/filename.pdf';
 
-        $utilsMock = $this->createPartialMock(UtilsInterface::class, ['setHeader', 'showMessageAndExit']);
+        $utilsMock = $this->createPartialMock(UtilsProxy::class, ['setHeader', 'showMessageAndExit']);
         $utilsMock->expects($this->atLeastOnce())->method('showMessageAndExit')->with('someFileContent');
 
         $sut = new InvoiceService($utilsMock);

@@ -15,7 +15,6 @@ use FreshAdvance\Invoice\Service\RequestDataConverterInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use FreshAdvance\Invoice\Transition\Core\UtilsInterface;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
-use OxidEsales\Eshop\Core\Utils;
 
 class InvoiceController extends AdminController
 {
@@ -36,24 +35,5 @@ class InvoiceController extends AdminController
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
         $requestService = $this->getServiceFromContainer(RequestDataConverterInterface::class);
         $invoiceService->saveOrderInvoiceData($requestService->getConfigurationFromRequest());
-    }
-
-    public function downloadOrderInvoice(): void
-    {
-        $invoiceService = $this->getServiceFromContainer(Invoice::class);
-        $invoiceData = $invoiceService->getInvoiceDataByOrderId($this->getEditObjectId());
-
-        $invoiceGenerator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
-        $invoiceGenerator->generate($invoiceData);
-
-        $fileName = $invoiceService->getInvoiceFileName($invoiceData->getInvoiceConfiguration());
-
-        $utils = $this->getServiceFromContainer(UtilsInterface::class);
-        $utils->setHeader('Content-Type: application/pdf');
-        $utils->setHeader('Content-Disposition:attachment;filename=' . $fileName);
-
-        /** @var string $fileContent */
-        $fileContent = file_get_contents($invoiceData->getInvoicePath()) ?: '';
-        $utils->showMessageAndExit($fileContent);
     }
 }
