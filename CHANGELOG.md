@@ -7,11 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [v2.0.0] - Unreleased
 
 ### Changed
-- Inverted dependencies on most of the classes to new namespaces
+- Inverted dependencies on most of the classes to extracted interfaces
 
 ### Fixed
 - Use Symfony filesystem utility in place of Webmozart
 - Do not use shop namespaces for module services
+- Invoice generation if invoice language does not exist on admin side
 
 ## [v1.3.0] - 2023-03-06
 

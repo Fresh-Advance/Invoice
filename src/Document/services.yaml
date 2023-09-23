@@ -6,7 +6,7 @@ services:
     public: false
     autowire: true
     bind:
-      OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
+      FreshAdvance\Invoice\Transition\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
 
   FreshAdvance\Invoice\Document\InvoiceGeneratorInterface:
     class: FreshAdvance\Invoice\Document\MpdfDocument\Builder

@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Document\MpdfDocument;
+namespace FreshAdvance\Invoice\Tests\Integration\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
 use FreshAdvance\Invoice\Service\ModuleSettings;
+use FreshAdvance\Invoice\Transition\Core\Language;
 use Mpdf\Mpdf;
 use org\bovigo\vfs\vfsStream;
-use OxidEsales\Eshop\Core\Language;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -40,8 +40,9 @@ class BuilderTest extends TestCase
             'renderTemplate' => 'someContentHtml'
         ]);
 
-        $shopLanguage = $this->createPartialMock(Language::class, ['setTplLanguage', 'getTplLanguage']);
-        $shopLanguage->expects($this->exactly(2))->method('setTplLanguage');
+        /** @var \OxidEsales\Eshop\Core\Language $shopLanguage */
+        $shopLanguage = $this->createPartialMock(Language::class, ['getTplLanguage', 'faForceSetTplLanguage']);
+        $shopLanguage->expects($this->exactly(2))->method('faForceSetTplLanguage');
 
         $moduleSettings = $this->createConfiguredMock(ModuleSettings::class, [
             'getDocumentFooter' => 'someFooter'

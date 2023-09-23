@@ -29,7 +29,8 @@ $aModule = [
         'fa_invoice_admin' => \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController::class,
     ],
     'extend'      => [
-        \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Transition\Model\OrderArticle::class
+        \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Transition\Model\OrderArticle::class,
+        \OxidEsales\Eshop\Core\Language::class => \FreshAdvance\Invoice\Transition\Core\Language::class
     ],
     'settings' => [
         /** Main */
