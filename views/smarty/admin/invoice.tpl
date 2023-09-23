@@ -27,7 +27,7 @@
     [{$oViewConf->getHiddenSid()}]
 
     <input type="hidden" name="oxid" value="[{$oxid}]">
-    <input type="hidden" name="cl" value="fa_invoice">
+    <input type="hidden" name="cl" value="fa_invoice_admin">
     <input type="hidden" name="fnc" value="downloadOrderInvoice">
 
     <input type="hidden" name="orderId" value="[{$oxid}]">
