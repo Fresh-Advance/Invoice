@@ -27,7 +27,6 @@ $aModule = [
     'url'         => '',
     'controllers' => [
         'fa_invoice_admin' => \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController::class,
-        'fa_invoice' => \FreshAdvance\Invoice\Transition\Controller\InvoiceController::class
     ],
     'extend'      => [
         \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Transition\Model\OrderArticle::class
