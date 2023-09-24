@@ -5,8 +5,6 @@ services:
   _defaults:
     public: false
     autowire: true
-    bind:
-      FreshAdvance\Invoice\Transition\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
 
   FreshAdvance\Invoice\Document\InvoiceGeneratorInterface:
     class: FreshAdvance\Invoice\Document\MpdfDocument\Builder

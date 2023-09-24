@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Transition\Core;
+namespace Transition\Core;
 
 use FreshAdvance\Invoice\Transition\Core\UtilsProxy;
 use OxidEsales\Eshop\Core\Utils;
