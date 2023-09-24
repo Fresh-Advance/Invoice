@@ -33,4 +33,20 @@ class RequestProxyTest extends TestCase
 
         $this->assertSame($testValue, $sut->getRequestEscapedParameter($testKey));
     }
+
+    public function testGetRequestParameter(): void
+    {
+        $testKey = 'exampleKey';
+        $testValue = 'someExampleValue';
+
+        $requestMock = $this->createPartialMock(Request::class, ['getRequestParameter']);
+        $requestMock->expects($this->once())
+            ->method('getRequestParameter')
+            ->with($testKey)
+            ->willReturn($testValue);
+
+        $sut = new RequestProxy($requestMock);
+
+        $this->assertSame($testValue, $sut->getRequestParameter($testKey));
+    }
 }

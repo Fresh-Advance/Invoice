@@ -12,4 +12,6 @@ namespace FreshAdvance\Invoice\Transition\Core;
 interface RequestInterface
 {
     public function getRequestEscapedParameter(string $requestParam): mixed;
+
+    public function getRequestParameter(string $requestParam): mixed;
 }

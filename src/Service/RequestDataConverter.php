@@ -11,14 +11,14 @@ namespace FreshAdvance\Invoice\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use OxidEsales\Eshop\Core\Request;
+use FreshAdvance\Invoice\Transition\Core\RequestInterface;
 
 class RequestDataConverter implements RequestDataConverterInterface
 {
     public const INVOICES_FORM_ARRAY = 'invoice';
 
     public function __construct(
-        protected Request $request
+        protected RequestInterface $request
     ) {
     }
 

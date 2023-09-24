@@ -22,4 +22,9 @@ class RequestProxy implements RequestInterface
     {
         return $this->request->getRequestEscapedParameter($requestParam);
     }
+
+    public function getRequestParameter(string $requestParam): mixed
+    {
+        return $this->request->getRequestParameter($requestParam);
+    }
 }
