@@ -10,5 +10,5 @@ interface ShopRepositoryInterface
     /**
      * @throws ShopNotFound
      */
-    public function getShop(int $shopId): ShopModel;
+    public function getByShopId(int $shopId): ShopModel;
 }

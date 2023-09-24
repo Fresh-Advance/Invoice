@@ -27,23 +27,23 @@ class Invoice
         protected ShopRepositoryInterface $shopService,
         protected Config $shopConfig,
         protected ContextInterface $moduleContext,
-        protected InvoiceConfigurationRepositoryInterface $invoiceRepository,
+        protected InvoiceConfigurationRepositoryInterface $invoiceConfigRepo,
         protected ModuleSettingsInterface $moduleSettings
     ) {
     }
 
     public function getInvoiceDataByOrderId(string $orderId): InvoiceDataInterface
     {
-        $order = $this->orderService->getOrder($orderId);
+        $order = $this->orderService->getByOrderId($orderId);
 
         /** @var string $orderShopLanguage */
         $orderShopLanguage = $this->shopConfig->getShopConfVar('sDefaultLang', $order->getShopId());
-        $configuration = $this->invoiceRepository->getOrderInvoice($orderId)
+        $configuration = $this->invoiceConfigRepo->getByOrderId($orderId)
             ?? new InvoiceConfiguration(orderId: $orderId);
 
         return new InvoiceData(
             order: $order,
-            shop: $this->shopService->getShop($order->getShopId()),
+            shop: $this->shopService->getByShopId($order->getShopId()),
             invoicePath: $this->getOrderInvoicePath($order),
             invoiceConfiguration: $configuration,
             languageId: (int)$orderShopLanguage
@@ -71,6 +71,6 @@ class Invoice
 
     public function saveOrderInvoiceData(InvoiceConfigurationInterface $configuration): void
     {
-        $this->invoiceRepository->saveInvoiceConfiguration($configuration);
+        $this->invoiceConfigRepo->save($configuration);
     }
 }

@@ -34,7 +34,7 @@ class ShopRepositoryTest extends IntegrationTestCase
     public function testGetShop(): void
     {
         $sut = $this->createPartialMock(ShopRepository::class, []);
-        $result = $sut->getShop(self::TEST_SHOP_ID);
+        $result = $sut->getByShopId(self::TEST_SHOP_ID);
 
         $this->assertSame(self::TEST_SHOP_ID, (int)$result->getId());
     }
@@ -44,6 +44,6 @@ class ShopRepositoryTest extends IntegrationTestCase
         $sut = $this->createPartialMock(ShopRepository::class, []);
 
         $this->expectException(ShopNotFound::class);
-        $sut->getShop(self::TEST_SHOP_ID_WRONG);
+        $sut->getByShopId(self::TEST_SHOP_ID_WRONG);
     }
 }

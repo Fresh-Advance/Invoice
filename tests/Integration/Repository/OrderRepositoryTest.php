@@ -34,7 +34,7 @@ class OrderRepositoryTest extends IntegrationTestCase
     public function testGetOrder(): void
     {
         $sut = $this->createPartialMock(OrderRepository::class, []);
-        $result = $sut->getOrder(self::TEST_ORDER_ID);
+        $result = $sut->getByOrderId(self::TEST_ORDER_ID);
 
         $this->assertSame(self::TEST_ORDER_ID, $result->getId());
     }
@@ -44,6 +44,6 @@ class OrderRepositoryTest extends IntegrationTestCase
         $sut = $this->createPartialMock(OrderRepository::class, []);
 
         $this->expectException(OrderNotFound::class);
-        $sut->getOrder(self::TEST_ORDER_ID_WRONG);
+        $sut->getByOrderId(self::TEST_ORDER_ID_WRONG);
     }
 }

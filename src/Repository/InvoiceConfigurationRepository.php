@@ -21,7 +21,7 @@ class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryIn
     ) {
     }
 
-    public function getOrderInvoice(string $orderId): ?InvoiceConfigurationInterface
+    public function getByOrderId(string $orderId): ?InvoiceConfigurationInterface
     {
         $queryBuilder = $this->queryBuilderFactory->create();
         $queryBuilder->select('*')
@@ -44,14 +44,14 @@ class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryIn
         return null;
     }
 
-    public function saveInvoiceConfiguration(InvoiceConfigurationInterface $invoiceConfiguration): void
+    public function save(InvoiceConfigurationInterface $invoiceConfiguration): void
     {
-        $this->getOrderInvoice($invoiceConfiguration->getOrderId())
-            ? $this->updateOrderInvoice($invoiceConfiguration)
-            : $this->createOrderInvoice($invoiceConfiguration);
+        $this->getByOrderId($invoiceConfiguration->getOrderId())
+            ? $this->updateInvoiceConfiguration($invoiceConfiguration)
+            : $this->createInvoiceConfiguration($invoiceConfiguration);
     }
 
-    protected function createOrderInvoice(InvoiceConfigurationInterface $invoiceConfiguration): void
+    protected function createInvoiceConfiguration(InvoiceConfigurationInterface $invoiceConfiguration): void
     {
         $queryBuilder = $this->queryBuilderFactory->create();
 
@@ -62,7 +62,7 @@ class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryIn
         $queryBuilder->execute();
     }
 
-    protected function updateOrderInvoice(InvoiceConfigurationInterface $invoiceConfiguration): void
+    protected function updateInvoiceConfiguration(InvoiceConfigurationInterface $invoiceConfiguration): void
     {
         $queryBuilder = $this->queryBuilderFactory->create();
 

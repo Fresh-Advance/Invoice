@@ -10,5 +10,5 @@ interface OrderRepositoryInterface
     /**
      * @throws OrderNotFound
      */
-    public function getOrder(string $orderId): OrderModel;
+    public function getByOrderId(string $orderId): OrderModel;
 }

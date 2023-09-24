@@ -6,7 +6,7 @@ use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 
 interface InvoiceConfigurationRepositoryInterface
 {
-    public function getOrderInvoice(string $orderId): ?InvoiceConfigurationInterface;
+    public function getByOrderId(string $orderId): ?InvoiceConfigurationInterface;
 
-    public function saveInvoiceConfiguration(InvoiceConfigurationInterface $invoiceConfiguration): void;
+    public function save(InvoiceConfigurationInterface $invoiceConfiguration): void;
 }

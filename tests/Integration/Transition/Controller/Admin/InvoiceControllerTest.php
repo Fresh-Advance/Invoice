@@ -71,10 +71,10 @@ class InvoiceControllerTest extends TestCase
             ->with($invoiceConfigurationStub)
             ->willReturn("headerFilename.pdf");
 
-        $invoiceGeneratorMock = $this->createPartialMock(InvoiceGeneratorInterface::class, ['generate']);
+        $invoiceGeneratorMock = $this->createMock(InvoiceGeneratorInterface::class);
         $invoiceGeneratorMock->expects($this->once())->method('generate')->with($invoiceDataStub);
 
-        $invoiceServiceMock = $this->createPartialMock(InvoiceServiceInterface::class, ['triggerInvoiceFileDownload']);
+        $invoiceServiceMock = $this->createMock(InvoiceServiceInterface::class);
         $invoiceServiceMock->expects($this->once())
             ->method('triggerInvoiceFileDownload')
             ->with("headerFilename.pdf", 'filepath.pdf');

@@ -28,7 +28,7 @@ class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
         parent::setUp();
 
         $sut = $this->getSut();
-        $sut->saveInvoiceConfiguration(
+        $sut->save(
             new InvoiceConfiguration(
                 orderId: self::TEST_ORDER_ID,
                 signer: 'someSigner',
@@ -41,14 +41,14 @@ class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
     public function testGetNotExistingOrderInvoice(): void
     {
         $sut = $this->getSut();
-        $this->assertNull($sut->getOrderInvoice(self::TEST_NOT_EXISTING_ORDER_ID));
+        $this->assertNull($sut->getByOrderId(self::TEST_NOT_EXISTING_ORDER_ID));
     }
 
     public function testExistingOrderInvoice(): void
     {
         $sut = $this->getSut();
 
-        $data = $sut->getOrderInvoice(self::TEST_ORDER_ID);
+        $data = $sut->getByOrderId(self::TEST_ORDER_ID);
         $this->assertInstanceOf(InvoiceConfigurationInterface::class, $data);
 
         $this->assertSame(self::TEST_ORDER_ID, $data->getOrderId());
@@ -63,7 +63,7 @@ class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
     public function testSaveInvoiceConfiguration(string $orderId): void
     {
         $sut = $this->getSut();
-        $sut->saveInvoiceConfiguration(
+        $sut->save(
             new InvoiceConfiguration(
                 orderId: $orderId,
                 signer: 'someOtherSigner',
@@ -72,7 +72,7 @@ class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
             )
         );
 
-        $data = $sut->getOrderInvoice($orderId);
+        $data = $sut->getByOrderId($orderId);
         $this->assertInstanceOf(InvoiceConfigurationInterface::class, $data);
 
         $this->assertSame($orderId, $data->getOrderId());

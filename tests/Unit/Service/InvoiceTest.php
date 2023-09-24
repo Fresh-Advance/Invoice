@@ -34,22 +34,19 @@ class InvoiceTest extends TestCase
             'getId' => 'someOrderId'
         ]);
 
-        $orderServiceMock = $this->createPartialMock(OrderRepositoryInterface::class, ['getOrder']);
-        $orderServiceMock->method('getOrder')->with('someOrderId')->willReturn($orderStub);
+        $orderServiceMock = $this->createMock(OrderRepositoryInterface::class);
+        $orderServiceMock->method('getByOrderId')->with('someOrderId')->willReturn($orderStub);
 
         $shopStub = $this->createStub(ShopModel::class);
-        $shopServiceMock = $this->createPartialMock(ShopRepositoryInterface::class, ['getShop']);
-        $shopServiceMock->method('getShop')->with(3)->willReturn($shopStub);
+        $shopServiceMock = $this->createMock(ShopRepositoryInterface::class);
+        $shopServiceMock->method('getByShopId')->with(3)->willReturn($shopStub);
 
         $shopConfigMock = $this->createPartialMock(Config::class, ['getShopConfVar']);
         $shopConfigMock->method('getShopConfVar')->with('sDefaultLang', 3)->willReturn(5);
 
         $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
-        $repositoryMock = $this->createPartialMock(
-            InvoiceConfigurationRepositoryInterface::class,
-            ['getOrderInvoice', 'saveInvoiceConfiguration']
-        );
-        $repositoryMock->method('getOrderInvoice')
+        $repositoryMock = $this->createMock(InvoiceConfigurationRepositoryInterface::class);
+        $repositoryMock->method('getByOrderId')
             ->with('someOrderId')
             ->willReturn($invoiceConfigurationStub);
 
@@ -65,7 +62,7 @@ class InvoiceTest extends TestCase
                 Context::class,
                 ['getInvoicesPath' => 'someRootPath']
             ),
-            invoiceRepository: $repositoryMock,
+            invoiceConfigRepo: $repositoryMock,
             moduleSettings: $moduleSettingsStub
         );
 
@@ -82,12 +79,9 @@ class InvoiceTest extends TestCase
     {
         $configurationStub = $this->createStub(InvoiceConfigurationInterface::class);
 
-        $repositoryMock = $this->createPartialMock(
-            InvoiceConfigurationRepositoryInterface::class,
-            ['getOrderInvoice', 'saveInvoiceConfiguration']
-        );
+        $repositoryMock = $this->createMock(InvoiceConfigurationRepositoryInterface::class);
         $repositoryMock->expects($this->atLeastOnce())
-            ->method('saveInvoiceConfiguration')
+            ->method('save')
             ->with($configurationStub);
 
         $moduleSettingsStub = $this->createConfiguredMock(ModuleSettings::class, [
@@ -99,7 +93,7 @@ class InvoiceTest extends TestCase
             shopService: $this->createStub(ShopRepositoryInterface::class),
             shopConfig: $this->createStub(Config::class),
             moduleContext: $this->createStub(Context::class),
-            invoiceRepository: $repositoryMock,
+            invoiceConfigRepo: $repositoryMock,
             moduleSettings: $moduleSettingsStub
         );
 
@@ -121,7 +115,7 @@ class InvoiceTest extends TestCase
             shopService: $this->createStub(ShopRepositoryInterface::class),
             shopConfig: $this->createStub(Config::class),
             moduleContext: $this->createStub(Context::class),
-            invoiceRepository: $this->createStub(InvoiceConfigurationRepositoryInterface::class),
+            invoiceConfigRepo: $this->createStub(InvoiceConfigurationRepositoryInterface::class),
             moduleSettings: $moduleSettingsStub
         );
 

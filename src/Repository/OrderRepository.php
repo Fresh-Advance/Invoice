@@ -17,7 +17,7 @@ class OrderRepository implements OrderRepositoryInterface
     /**
      * @throws OrderNotFound
      */
-    public function getOrder(string $orderId): OrderModel
+    public function getByOrderId(string $orderId): OrderModel
     {
         $order = oxNew(OrderModel::class);
         if (!$orderId || !$order->load($orderId)) {

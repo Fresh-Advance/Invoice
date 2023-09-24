@@ -17,7 +17,7 @@ class ShopRepository implements ShopRepositoryInterface
     /**
      * @throws ShopNotFound
      */
-    public function getShop(int $shopId): ShopModel
+    public function getByShopId(int $shopId): ShopModel
     {
         $shop = oxNew(ShopModel::class);
         if (!$shop->load((string)$shopId)) {
