@@ -14,7 +14,7 @@ use OxidEsales\Eshop\Core\Config;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Transition\Core\RequestProxy
+ * @covers \FreshAdvance\Invoice\Transition\Core\ConfigProxy
  */
 class ConfigProxyTest extends TestCase
 {
