@@ -16,6 +16,7 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
+use FreshAdvance\Invoice\Transition\Core\ConfigInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Core\Config;
 use Symfony\Component\Filesystem\Path;
@@ -25,7 +26,7 @@ class Invoice
     public function __construct(
         protected OrderRepositoryInterface $orderService,
         protected ShopRepositoryInterface $shopService,
-        protected Config $shopConfig,
+        protected ConfigInterface $shopConfig,
         protected ContextInterface $moduleContext,
         protected InvoiceConfigurationRepositoryInterface $invoiceConfigRepo,
         protected ModuleSettingsInterface $moduleSettings
@@ -36,8 +37,6 @@ class Invoice
     {
         $order = $this->orderService->getByOrderId($orderId);
 
-        /** @var string $orderShopLanguage */
-        $orderShopLanguage = $this->shopConfig->getShopConfVar('sDefaultLang', $order->getShopId());
         $configuration = $this->invoiceConfigRepo->getByOrderId($orderId)
             ?? new InvoiceConfiguration(orderId: $orderId);
 
@@ -46,7 +45,7 @@ class Invoice
             shop: $this->shopService->getByShopId($order->getShopId()),
             invoicePath: $this->getOrderInvoicePath($order),
             invoiceConfiguration: $configuration,
-            languageId: (int)$orderShopLanguage
+            languageId: $this->shopConfig->getShopDefaultLanguageId($order->getShopId())
         );
     }
 

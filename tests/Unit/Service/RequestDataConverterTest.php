@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\Service\RequestDataConverter;
+use FreshAdvance\Invoice\Transition\Core\RequestInterface;
 use OxidEsales\Eshop\Core\Request;
 use PHPUnit\Framework\TestCase;
 
@@ -27,7 +28,7 @@ class RequestDataConverterTest extends TestCase
             'signer' => 'someSigner',
         ];
 
-        $requestStub = $this->createConfiguredMock(Request::class, [
+        $requestStub = $this->createConfiguredMock(RequestInterface::class, [
             'getRequestParameter' => $this->returnValueMap([
                 [RequestDataConverter::INVOICES_FORM_ARRAY, null, $formData]
             ])

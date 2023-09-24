@@ -13,5 +13,5 @@ interface RequestInterface
 {
     public function getRequestEscapedParameter(string $requestParam): mixed;
 
-    public function getRequestParameter(string $requestParam): mixed;
+    public function getRequestParameter(string $requestParam, string $defaultValue = null): mixed;
 }

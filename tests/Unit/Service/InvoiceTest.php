@@ -17,6 +17,7 @@ use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Service\Context;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\ModuleSettings;
+use FreshAdvance\Invoice\Transition\Core\ConfigInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use OxidEsales\Eshop\Core\Config;
@@ -41,8 +42,8 @@ class InvoiceTest extends TestCase
         $shopServiceMock = $this->createMock(ShopRepositoryInterface::class);
         $shopServiceMock->method('getByShopId')->with(3)->willReturn($shopStub);
 
-        $shopConfigMock = $this->createPartialMock(Config::class, ['getShopConfVar']);
-        $shopConfigMock->method('getShopConfVar')->with('sDefaultLang', 3)->willReturn(5);
+        $shopConfigMock = $this->createMock(ConfigInterface::class);
+        $shopConfigMock->method('getShopDefaultLanguageId')->with(3)->willReturn(5);
 
         $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
         $repositoryMock = $this->createMock(InvoiceConfigurationRepositoryInterface::class);
@@ -91,7 +92,7 @@ class InvoiceTest extends TestCase
         $sut = new Invoice(
             orderService: $this->createStub(OrderRepositoryInterface::class),
             shopService: $this->createStub(ShopRepositoryInterface::class),
-            shopConfig: $this->createStub(Config::class),
+            shopConfig: $this->createStub(ConfigInterface::class),
             moduleContext: $this->createStub(Context::class),
             invoiceConfigRepo: $repositoryMock,
             moduleSettings: $moduleSettingsStub
@@ -113,7 +114,7 @@ class InvoiceTest extends TestCase
         $sut = new Invoice(
             orderService: $this->createStub(OrderRepositoryInterface::class),
             shopService: $this->createStub(ShopRepositoryInterface::class),
-            shopConfig: $this->createStub(Config::class),
+            shopConfig: $this->createStub(ConfigInterface::class),
             moduleContext: $this->createStub(Context::class),
             invoiceConfigRepo: $this->createStub(InvoiceConfigurationRepositoryInterface::class),
             moduleSettings: $moduleSettingsStub

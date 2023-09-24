@@ -2,8 +2,6 @@ services:
   _defaults:
     public: false
     autowire: true
-    bind:
-      OxidEsales\Eshop\Core\Config: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getConfig()'
 
   FreshAdvance\Invoice\Service\RequestDataConverterInterface:
     class: FreshAdvance\Invoice\Service\RequestDataConverter

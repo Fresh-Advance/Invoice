@@ -38,15 +38,16 @@ class RequestProxyTest extends TestCase
     {
         $testKey = 'exampleKey';
         $testValue = 'someExampleValue';
+        $defaultValue = 'someDefault';
 
         $requestMock = $this->createPartialMock(Request::class, ['getRequestParameter']);
         $requestMock->expects($this->once())
             ->method('getRequestParameter')
-            ->with($testKey)
+            ->with($testKey, $defaultValue)
             ->willReturn($testValue);
 
         $sut = new RequestProxy($requestMock);
 
-        $this->assertSame($testValue, $sut->getRequestParameter($testKey));
+        $this->assertSame($testValue, $sut->getRequestParameter($testKey, $defaultValue));
     }
 }
