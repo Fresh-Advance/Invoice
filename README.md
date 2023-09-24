@@ -17,6 +17,8 @@
   * Invoice number
   * Invoice date
   * Invoice signer person
+* Works with php 8.0 and 8.1
+* Mysql 5.7 and 8.0 supported
 
 ## Compatibility
 

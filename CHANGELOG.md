@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [v2.0.0] - Unreleased
 
+### Added
+- Php 8.1 and Mysql 8.0 supported
+
 ### Changed
 - Inverted dependencies on most of the classes to extracted interfaces
 
