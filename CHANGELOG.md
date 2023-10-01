@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Php 8.1 and Mysql 8.0 supported
+- Possibility to generate PDFA format invoice documents
 
 ### Changed
 - Inverted dependencies on most of the classes to extracted interfaces

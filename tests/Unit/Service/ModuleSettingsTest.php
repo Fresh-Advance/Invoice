@@ -42,4 +42,26 @@ final class ModuleSettingsTest extends TestCase
         $sut = new ModuleSettings($mssMock);
         $this->assertSame($value, $sut->getFilePrefix());
     }
+
+    /**
+     * @dataProvider booleanDataProvider
+     */
+    public function testIsForArchive(bool $value): void
+    {
+        $mssMock = $this->createPartialMock(ModuleSettingService::class, ['getBoolean']);
+        $mssMock->method('getBoolean')->willReturnMap([
+            [ModuleSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE, Module::MODULE_ID, $value]
+        ]);
+
+        $sut = new ModuleSettings($mssMock);
+        $this->assertSame($value, $sut->isForArchive());
+    }
+
+    public function booleanDataProvider(): array
+    {
+        return [
+            [true],
+            [false]
+        ];
+    }
 }

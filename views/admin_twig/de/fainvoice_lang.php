@@ -40,4 +40,5 @@ $aLang = [
     'SHOP_MODULE_GROUP_fa_invoice_main' => 'Invoice document',
     'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document Footer',
     'SHOP_MODULE_fa_invoice_FilenamePrefix' => 'Filename Prefix',
+    'SHOP_MODULE_fa_invoice_IsForArchive' => 'Document is for archive (PDFA)',
 ];

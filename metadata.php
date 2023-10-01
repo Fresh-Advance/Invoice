@@ -46,6 +46,12 @@ $aModule = [
             'type' => 'str',
             'value' => 'invoice-'
         ],
+        [
+            'group' => 'fa_invoice_main',
+            'name' => \FreshAdvance\Invoice\Service\ModuleSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE,
+            'type' => 'bool',
+            'value' => false
+        ],
     ],
     'events' => [
         'onActivate' => '\FreshAdvance\Invoice\Transition\Core\Events::onActivate',
