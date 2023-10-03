@@ -36,19 +36,19 @@ $aModule = [
         /** Main */
         [
             'group' => 'fa_invoice_main',
-            'name' => \FreshAdvance\Invoice\Service\ModuleSettings::SETTING_DOCUMENT_FOOTER,
+            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_DOCUMENT_FOOTER,
             'type' => 'str',
             'value' => 'Document Footer Example<br>Change in Module Settings'
         ],
         [
             'group' => 'fa_invoice_main',
-            'name' => \FreshAdvance\Invoice\Service\ModuleSettings::SETTING_DOCUMENT_FILENAME_PREFIX,
+            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_DOCUMENT_FILENAME_PREFIX,
             'type' => 'str',
             'value' => 'invoice-'
         ],
         [
             'group' => 'fa_invoice_main',
-            'name' => \FreshAdvance\Invoice\Service\ModuleSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE,
+            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE,
             'type' => 'bool',
             'value' => false
         ],

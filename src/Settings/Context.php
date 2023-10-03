@@ -7,8 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\Settings;
 
+use FreshAdvance\Invoice\Settings\ContextInterface;
 use OxidEsales\EshopCommunity\Internal\Transition\Utility\BasicContextInterface as ShopContextInterface;
 use Symfony\Component\Filesystem\Path;
 

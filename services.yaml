@@ -2,6 +2,7 @@ imports:
     - { resource: src/Document/services.yaml }
     - { resource: src/Repository/services.yaml }
     - { resource: src/Service/services.yaml }
+    - { resource: src/Settings/services.yaml }
     - { resource: src/Transition/Core/services.yaml }
 
 services:

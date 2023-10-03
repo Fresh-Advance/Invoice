@@ -1,6 +1,6 @@
 <?php
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\Settings;
 
 interface ModuleSettingsInterface
 {

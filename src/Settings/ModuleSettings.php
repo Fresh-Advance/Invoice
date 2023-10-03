@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\Settings;
 
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use FreshAdvance\Invoice\Module;

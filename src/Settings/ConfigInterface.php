@@ -1,6 +1,6 @@
 <?php
 
-namespace FreshAdvance\Invoice\Transition\Core;
+namespace FreshAdvance\Invoice\Settings;
 
 interface ConfigInterface
 {

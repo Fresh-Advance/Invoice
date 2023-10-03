@@ -11,7 +11,7 @@ namespace FreshAdvance\Invoice\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
-use FreshAdvance\Invoice\Service\ModuleSettingsInterface;
+use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Transition\Core\LanguageInterface;
 use Mpdf\Mpdf;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;

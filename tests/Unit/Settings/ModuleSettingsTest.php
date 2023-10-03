@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\Settings;
 
-use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingService;
 use FreshAdvance\Invoice\Module;
-use FreshAdvance\Invoice\Service\ModuleSettings;
+use FreshAdvance\Invoice\Settings\ModuleSettings;
+use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\String\UnicodeString;
 

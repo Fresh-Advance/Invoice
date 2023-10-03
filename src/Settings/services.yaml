@@ -1,0 +1,18 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+    bind:
+      OxidEsales\Eshop\Core\Config: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getConfig()'
+
+  FreshAdvance\Invoice\Settings\ContextInterface:
+    class: FreshAdvance\Invoice\Settings\Context
+    public: true
+
+  FreshAdvance\Invoice\Settings\ModuleSettingsInterface:
+    class: FreshAdvance\Invoice\Settings\ModuleSettings
+    public: true
+
+  FreshAdvance\Invoice\Settings\ConfigInterface:
+    class: FreshAdvance\Invoice\Settings\ConfigProxy
+    public: true

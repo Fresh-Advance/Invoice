@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace Transition\Core;
+namespace FreshAdvance\Invoice\Tests\Integration\Settings;
 
-use FreshAdvance\Invoice\Transition\Core\ConfigProxy;
+use FreshAdvance\Invoice\Settings\ConfigProxy;
 use OxidEsales\Eshop\Core\Config;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Transition\Core\ConfigProxy
+ * @covers \FreshAdvance\Invoice\Settings\ConfigProxy
  */
 class ConfigProxyTest extends TestCase
 {
@@ -30,7 +30,7 @@ class ConfigProxyTest extends TestCase
             ->with($testKey, $shopId)
             ->willReturn($testValue);
 
-        $sut = new ConfigProxy($shopConfigMock);
+        $sut = new \FreshAdvance\Invoice\Settings\ConfigProxy($shopConfigMock);
 
         $this->assertSame(5, $sut->getShopDefaultLanguageId($shopId));
     }

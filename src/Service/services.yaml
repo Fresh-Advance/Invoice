@@ -7,14 +7,6 @@ services:
     class: FreshAdvance\Invoice\Service\RequestDataConverter
     public: true
 
-  FreshAdvance\Invoice\Service\ContextInterface:
-    class: FreshAdvance\Invoice\Service\Context
-    public: true
-
-  FreshAdvance\Invoice\Service\ModuleSettingsInterface:
-    class: FreshAdvance\Invoice\Service\ModuleSettings
-    public: true
-
   FreshAdvance\Invoice\Service\Invoice:
     class: FreshAdvance\Invoice\Service\Invoice
     public: true

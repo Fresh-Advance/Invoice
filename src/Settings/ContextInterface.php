@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\Settings;
 
 interface ContextInterface
 {

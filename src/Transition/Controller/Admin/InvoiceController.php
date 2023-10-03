@@ -11,7 +11,6 @@ namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
-use FreshAdvance\Invoice\Exception\AccessDenied;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Service\RequestDataConverterInterface;
