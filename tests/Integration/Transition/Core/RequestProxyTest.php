@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 namespace Transition\Core;
 
-use FreshAdvance\Invoice\Transition\Core\RequestProxy;
+use FreshAdvance\Invoice\Transput\RequestProxy;
 use OxidEsales\Eshop\Core\Request;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Transition\Core\RequestProxy
+ * @covers \FreshAdvance\Invoice\Transput\RequestProxy
  */
 class RequestProxyTest extends TestCase
 {

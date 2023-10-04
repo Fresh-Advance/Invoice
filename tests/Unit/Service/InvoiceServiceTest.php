@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\Service\InvoiceService;
-use FreshAdvance\Invoice\Transition\Core\UtilsProxy;
+use FreshAdvance\Invoice\Transput\UtilsProxy;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Service;
 
-use FreshAdvance\Invoice\Transition\Core\UtilsInterface;
+use FreshAdvance\Invoice\Transput\UtilsInterface;
 
 class InvoiceService implements InvoiceServiceInterface
 {

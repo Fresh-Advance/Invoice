@@ -3,18 +3,8 @@ services:
     public: false
     autowire: true
     bind:
-      OxidEsales\Eshop\Core\Utils: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getUtils()'
-      OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getRequest()'
       OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
 
   FreshAdvance\Invoice\Transition\Core\LanguageInterface:
     class: FreshAdvance\Invoice\Transition\Core\LanguageProxy
-    public: true
-
-  FreshAdvance\Invoice\Transition\Core\UtilsInterface:
-    class: FreshAdvance\Invoice\Transition\Core\UtilsProxy
-    public: true
-
-  FreshAdvance\Invoice\Transition\Core\RequestInterface:
-    class: FreshAdvance\Invoice\Transition\Core\RequestProxy
     public: true

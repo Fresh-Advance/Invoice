@@ -15,7 +15,7 @@ use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Service\RequestDataConverterInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
-use FreshAdvance\Invoice\Transition\Core\RequestInterface;
+use FreshAdvance\Invoice\Transput\RequestInterface;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
 
 class InvoiceController extends AdminController

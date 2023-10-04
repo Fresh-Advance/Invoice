@@ -4,6 +4,7 @@ imports:
     - { resource: src/Service/services.yaml }
     - { resource: src/Settings/services.yaml }
     - { resource: src/Transition/Core/services.yaml }
+    - { resource: src/Transput/services.yaml }
 
 services:
     _defaults:

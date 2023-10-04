@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Transition\Core;
+namespace FreshAdvance\Invoice\Transput;
 
 use OxidEsales\Eshop\Core\Request;
 

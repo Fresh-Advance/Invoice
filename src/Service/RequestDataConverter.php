@@ -11,7 +11,7 @@ namespace FreshAdvance\Invoice\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\Transition\Core\RequestInterface;
+use FreshAdvance\Invoice\Transput\RequestInterface;
 
 class RequestDataConverter implements RequestDataConverterInterface
 {

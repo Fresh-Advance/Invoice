@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\Service\RequestDataConverter;
-use FreshAdvance\Invoice\Transition\Core\RequestInterface;
+use FreshAdvance\Invoice\Transput\RequestInterface;
 use OxidEsales\Eshop\Core\Request;
 use PHPUnit\Framework\TestCase;
 

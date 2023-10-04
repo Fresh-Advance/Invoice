@@ -15,8 +15,8 @@ use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController;
-use FreshAdvance\Invoice\Transition\Core\RequestInterface;
-use FreshAdvance\Invoice\Transition\Core\RequestProxy;
+use FreshAdvance\Invoice\Transput\RequestInterface;
+use FreshAdvance\Invoice\Transput\RequestProxy;
 use PHPUnit\Framework\TestCase;
 
 /**
