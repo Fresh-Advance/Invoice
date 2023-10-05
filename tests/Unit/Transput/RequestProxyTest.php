@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Transition\Core;
+namespace FreshAdvance\Invoice\Tests\Unit\Transput;
 
 use FreshAdvance\Invoice\Transput\RequestProxy;
 use OxidEsales\Eshop\Core\Request;
@@ -49,5 +49,28 @@ class RequestProxyTest extends TestCase
         $sut = new RequestProxy($requestMock);
 
         $this->assertSame($testValue, $sut->getRequestParameter($testKey, $defaultValue));
+    }
+
+    public function testGetInvoiceConfigurationFromRequest(): void
+    {
+        $formData = [
+            'order_id' => 'someOrderId',
+            'date' => 'someDate',
+            'number' => 'someNumber',
+            'signer' => 'someSigner',
+        ];
+
+        $requestMock = $this->createPartialMock(Request::class, ['getRequestParameter']);
+        $requestMock->method('getRequestParameter')->willReturnMap([
+            [RequestProxy::INVOICES_FORM_ARRAY, null, $formData]
+        ]);
+
+        $sut = new RequestProxy($requestMock);
+        $configuration = $sut->getInvoiceConfigurationFromRequest();
+
+        $this->assertSame('someOrderId', $configuration->getOrderId());
+        $this->assertSame('someDate', $configuration->getDate());
+        $this->assertSame('someNumber', $configuration->getNumber());
+        $this->assertSame('someSigner', $configuration->getSigner());
     }
 }

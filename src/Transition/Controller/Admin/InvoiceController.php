@@ -13,7 +13,6 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
-use FreshAdvance\Invoice\Service\RequestDataConverterInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use FreshAdvance\Invoice\Transput\RequestInterface;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
@@ -37,8 +36,8 @@ class InvoiceController extends AdminController
     public function saveData(): void
     {
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
-        $requestService = $this->getServiceFromContainer(RequestDataConverterInterface::class);
-        $invoiceService->saveOrderInvoiceData($requestService->getConfigurationFromRequest());
+        $requestService = $this->getServiceFromContainer(RequestInterface::class);
+        $invoiceService->saveOrderInvoiceData($requestService->getInvoiceConfigurationFromRequest());
     }
 
     public function downloadOrderInvoice(): void

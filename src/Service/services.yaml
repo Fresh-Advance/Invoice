@@ -3,10 +3,6 @@ services:
     public: false
     autowire: true
 
-  FreshAdvance\Invoice\Service\RequestDataConverterInterface:
-    class: FreshAdvance\Invoice\Service\RequestDataConverter
-    public: true
-
   FreshAdvance\Invoice\Service\Invoice:
     class: FreshAdvance\Invoice\Service\Invoice
     public: true
