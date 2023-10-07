@@ -4,14 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v2.0.0] - Unreleased
+## [v2.0.0] - 2023-10-07
 
 ### Added
 - Php 8.1 and Mysql 8.0 supported
 - Possibility to generate PDFA format invoice documents
 
 ### Changed
-- Inverted dependencies on most of the classes to extracted interfaces
+- BC Break: Inverted dependencies on most of the classes to extracted interfaces
+- BC Break: Heavily refactored most of the classes
 
 ### Fixed
 - Use Symfony filesystem utility in place of Webmozart
