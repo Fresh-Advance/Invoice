@@ -53,9 +53,7 @@ class InvoiceController extends AdminController
     protected function getOrderIdFromRequest(): string
     {
         $request = $this->getServiceFromContainer(RequestInterface::class);
-        /** @var string|null $value */
-        $value = $request->getRequestEscapedParameter(self::ORDER_ID_REQUEST_PARAM);
-        return (string)$value;
+        return $request->getInvoiceIdFromRequest();
     }
 
     protected function proceedToGenerateAndDownload(

@@ -18,37 +18,18 @@ use PHPUnit\Framework\TestCase;
  */
 class RequestProxyTest extends TestCase
 {
-    public function testGetRequestEscapedParameter(): void
+    public function testGetOrderIdFromRequest(): void
     {
-        $testKey = 'exampleKey';
         $testValue = 'someExampleValue';
-
-        $requestMock = $this->createPartialMock(Request::class, ['getRequestEscapedParameter']);
-        $requestMock->expects($this->once())
-            ->method('getRequestEscapedParameter')
-            ->with($testKey)
-            ->willReturn($testValue);
-
-        $sut = new RequestProxy($requestMock);
-
-        $this->assertSame($testValue, $sut->getRequestEscapedParameter($testKey));
-    }
-
-    public function testGetRequestParameter(): void
-    {
-        $testKey = 'exampleKey';
-        $testValue = 'someExampleValue';
-        $defaultValue = 'someDefault';
 
         $requestMock = $this->createPartialMock(Request::class, ['getRequestParameter']);
-        $requestMock->expects($this->once())
-            ->method('getRequestParameter')
-            ->with($testKey, $defaultValue)
-            ->willReturn($testValue);
+        $requestMock->method('getRequestParameter')->willReturnMap([
+            [RequestProxy::REQUEST_PARAM_ORDER_ID, null, $testValue]
+        ]);
 
         $sut = new RequestProxy($requestMock);
 
-        $this->assertSame($testValue, $sut->getRequestParameter($testKey, $defaultValue));
+        $this->assertSame($testValue, $sut->getInvoiceIdFromRequest());
     }
 
     public function testGetInvoiceConfigurationFromRequest(): void
@@ -62,7 +43,7 @@ class RequestProxyTest extends TestCase
 
         $requestMock = $this->createPartialMock(Request::class, ['getRequestParameter']);
         $requestMock->method('getRequestParameter')->willReturnMap([
-            [RequestProxy::INVOICES_FORM_ARRAY, null, $formData]
+            [RequestProxy::REQUEST_PARAM_INVOICE_DATA, null, $formData]
         ]);
 
         $sut = new RequestProxy($requestMock);

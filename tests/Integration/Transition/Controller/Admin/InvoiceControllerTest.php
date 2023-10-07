@@ -49,10 +49,8 @@ class InvoiceControllerTest extends TestCase
     {
         $orderId = 'someOrderId';
 
-        $requestStub = $this->createPartialMock(RequestProxy::class, ['getRequestEscapedParameter']);
-        $requestStub->method('getRequestEscapedParameter')
-            ->with(InvoiceController::ORDER_ID_REQUEST_PARAM)
-            ->willReturn($orderId);
+        $requestStub = $this->createMock(RequestInterface::class);
+        $requestStub->method('getInvoiceIdFromRequest')->willReturn($orderId);
 
         $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
         $invoiceDataStub = $this->createConfiguredMock(InvoiceDataInterface::class, [

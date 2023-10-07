@@ -15,27 +15,24 @@ use OxidEsales\Eshop\Core\Request;
 
 class RequestProxy implements RequestInterface
 {
-    public const INVOICES_FORM_ARRAY = 'invoice';
+    public const REQUEST_PARAM_INVOICE_DATA = 'invoice';
+    public const REQUEST_PARAM_ORDER_ID = 'orderId';
 
     public function __construct(
         private Request $request
     ) {
     }
 
-    public function getRequestEscapedParameter(string $requestParam): mixed
+    public function getInvoiceIdFromRequest(): string
     {
-        return $this->request->getRequestEscapedParameter($requestParam);
-    }
-
-    public function getRequestParameter(string $requestParam, string $defaultValue = null): mixed
-    {
-        return $this->request->getRequestParameter($requestParam, $defaultValue);
+        /** @var string|null $formData */
+        return (string)$this->request->getRequestParameter(self::REQUEST_PARAM_ORDER_ID);
     }
 
     public function getInvoiceConfigurationFromRequest(): InvoiceConfigurationInterface
     {
         /** @var array<string,null|string> $formData */
-        $formData = $this->request->getRequestParameter(self::INVOICES_FORM_ARRAY);
+        $formData = $this->request->getRequestParameter(self::REQUEST_PARAM_INVOICE_DATA);
         return new InvoiceConfiguration(
             orderId: (string)$formData['order_id'],
             signer: (string)$formData['signer'],

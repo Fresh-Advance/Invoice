@@ -13,9 +13,7 @@ use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 
 interface RequestInterface
 {
-    public function getRequestEscapedParameter(string $requestParam): mixed;
-
-    public function getRequestParameter(string $requestParam, string $defaultValue = null): mixed;
+    public function getInvoiceIdFromRequest(): string;
 
     public function getInvoiceConfigurationFromRequest(): InvoiceConfigurationInterface;
 }
