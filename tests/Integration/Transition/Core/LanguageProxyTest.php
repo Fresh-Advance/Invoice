@@ -23,7 +23,7 @@ class LanguageProxyTest extends TestCase
         $languageMock = $this->createPartialMock(Language::class, []);
 
         $sut = new LanguageProxy($languageMock);
-        $sut->faForceSetTplLanguage($languageId);
+        $sut->forceSetTplLanguage($languageId);
 
         $this->assertSame($languageId, $sut->getTplLanguage());
     }

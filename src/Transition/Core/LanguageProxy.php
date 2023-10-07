@@ -20,7 +20,7 @@ class LanguageProxy implements LanguageInterface
         $this->language = $language;
     }
 
-    public function faForceSetTplLanguage(int $language): void
+    public function forceSetTplLanguage(int $language): void
     {
         $this->language->faForceSetTplLanguage($language);
     }

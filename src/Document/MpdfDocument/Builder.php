@@ -58,10 +58,10 @@ class Builder implements InvoiceGeneratorInterface
     {
         $currentLanguage = $this->shopLanguage->getTplLanguage();
         try {
-            $this->shopLanguage->faForceSetTplLanguage((int)$invoiceData->getLanguageId());
+            $this->shopLanguage->forceSetTplLanguage((int)$invoiceData->getLanguageId());
             $html = $this->templateRenderer->renderTemplate(self::INVOICE_TEMPLATE, ['invoice' => $invoiceData]);
         } finally {
-            $this->shopLanguage->faForceSetTplLanguage((int)$currentLanguage);
+            $this->shopLanguage->forceSetTplLanguage((int)$currentLanguage);
         }
 
         return new PdfData(

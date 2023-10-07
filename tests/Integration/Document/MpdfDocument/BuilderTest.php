@@ -41,8 +41,8 @@ class BuilderTest extends TestCase
             'renderTemplate' => 'someContentHtml'
         ]);
 
-        $shopLanguage = $this->createPartialMock(LanguageProxy::class, ['getTplLanguage', 'faForceSetTplLanguage']);
-        $shopLanguage->expects($this->exactly(2))->method('faForceSetTplLanguage');
+        $shopLanguage = $this->createPartialMock(LanguageProxy::class, ['getTplLanguage', 'forceSetTplLanguage']);
+        $shopLanguage->expects($this->exactly(2))->method('forceSetTplLanguage');
 
         $moduleSettings = $this->createConfiguredMock(ModuleSettings::class, [
             'getDocumentFooter' => 'someFooter'
