@@ -25,8 +25,9 @@ class RequestProxy implements RequestInterface
 
     public function getInvoiceIdFromRequest(): string
     {
-        /** @var string|null $formData */
-        return (string)$this->request->getRequestParameter(self::REQUEST_PARAM_ORDER_ID);
+        /** @var string|null $value */
+        $value = $this->request->getRequestParameter(self::REQUEST_PARAM_ORDER_ID);
+        return (string)$value;
     }
 
     public function getInvoiceConfigurationFromRequest(): InvoiceConfigurationInterface
