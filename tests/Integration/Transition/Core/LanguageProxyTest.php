@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 
 class LanguageProxyTest extends TestCase
 {
-    public function testGetRequestEscapedParameter(): void
+    public function testForceLanguageIdSetter(): void
     {
         $languageId = 3;
 
