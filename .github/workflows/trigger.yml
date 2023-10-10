@@ -11,7 +11,7 @@ jobs:
     secrets: inherit
     with:
       php: '8.0'
-      mysql: '5.7.37'
+      mysql: '5.7-debian'
       report_sonarcloud: true
 
   p81m57both:
@@ -20,5 +20,5 @@ jobs:
     secrets: inherit
     with:
       php: '8.1'
-      mysql: '8.0'
+      mysql: '8.0-debian'
       report_sonarcloud: false
