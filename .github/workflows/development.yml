@@ -35,8 +35,8 @@ on:
         default: '5.7.37'
         type: choice
         options:
-          - '5.7-debian'
-          - '8.0-debian'
+          - '5.7.37'
+          - '8.0'
       template_engine:
         description: 'Template engine - smarty with flow theme, twig with twig theme'
         required: true
