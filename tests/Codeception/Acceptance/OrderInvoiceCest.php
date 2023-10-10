@@ -130,6 +130,7 @@ final class OrderInvoiceCest
                 'OXACTIVETO' => (new DateTime())->modify('+1 week')->format('Y-m-d 00:00:00'),
                 'OXDELIVERY' => (new DateTime())->format('Y-m-d 00:00:00'),
                 'OXINSERT' => (new DateTime())->format('Y-m-d 00:00:00'),
+                'OXUPDATEPRICETIME' => (new DateTime())->format('Y-m-d 00:00:00'),
             ]
         );
     }
