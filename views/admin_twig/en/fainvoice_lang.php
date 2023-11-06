@@ -27,6 +27,7 @@ $aLang = [
     'FA_INVOICE_PCS' => 'pcs.',
     'FA_INVOICE_DELIVERY' => 'Delivery',
     'FA_INVOICE_TOTAL' => 'Total',
+    'FA_INVOICE_TOTAL_IN_WORDS' => 'Amount in words',
     'FA_INVOICE_SIGNED' => 'Invoice issuer',
 
     'FA_INVOICE_FORM_SIGNER' => 'Invoiced by',

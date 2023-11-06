@@ -29,4 +29,9 @@ class LanguageProxy implements LanguageInterface
     {
         return (int)$this->language->getTplLanguage();
     }
+
+    public function getLanguageAbbreviation(): string
+    {
+        return (string)$this->language->getLanguageAbbr($this->getTplLanguage());
+    }
 }

@@ -162,4 +162,6 @@
 
 </table>
 
+{{ translate({ ident: "FA_INVOICE_TOTAL_IN_WORDS"}) }}: {{ wording.currencyToWords(order.getFieldData('oxtotalordersum') * 100, order.getFieldData('oxcurrency')) }}
+
 <div id="invoiceSign">{{ translate({ ident: "FA_INVOICE_SIGNED" }) }}: {{ configuration.getSigner() }}</div>

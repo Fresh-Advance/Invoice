@@ -27,6 +27,7 @@ $aLang = [
     'FA_INVOICE_PCS' => 'vnt.',
     'FA_INVOICE_DELIVERY' => 'Pristatymas',
     'FA_INVOICE_TOTAL' => 'Viso',
+    'FA_INVOICE_TOTAL_IN_WORDS' => 'Suma žodžiais',
     'FA_INVOICE_SIGNED' => 'Sąskaitą išrašė',
 
     'FA_INVOICE_FORM_SIGNER' => 'Sąskaitą išrašė',

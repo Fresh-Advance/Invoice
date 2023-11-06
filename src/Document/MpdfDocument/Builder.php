@@ -11,6 +11,7 @@ namespace FreshAdvance\Invoice\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Service\NumberWordingServiceInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Transition\Core\LanguageInterface;
 use Mpdf\Mpdf;
@@ -25,7 +26,8 @@ class Builder implements InvoiceGeneratorInterface
         protected Mpdf $pdfProcessor,
         protected TemplateRendererInterface $templateRenderer,
         protected LanguageInterface $shopLanguage,
-        protected ModuleSettingsInterface $moduleSettings
+        protected ModuleSettingsInterface $moduleSettings,
+        protected NumberWordingServiceInterface $numberWordingService
     ) {
     }
 
@@ -59,7 +61,13 @@ class Builder implements InvoiceGeneratorInterface
         $currentLanguage = $this->shopLanguage->getTplLanguage();
         try {
             $this->shopLanguage->forceSetTplLanguage((int)$invoiceData->getLanguageId());
-            $html = $this->templateRenderer->renderTemplate(self::INVOICE_TEMPLATE, ['invoice' => $invoiceData]);
+            $html = $this->templateRenderer->renderTemplate(
+                self::INVOICE_TEMPLATE,
+                [
+                    'invoice' => $invoiceData,
+                    'wording' => $this->numberWordingService
+                ]
+            );
         } finally {
             $this->shopLanguage->forceSetTplLanguage((int)$currentLanguage);
         }

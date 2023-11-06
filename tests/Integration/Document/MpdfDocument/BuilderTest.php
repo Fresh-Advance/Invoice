@@ -11,6 +11,7 @@ namespace FreshAdvance\Invoice\Tests\Integration\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
+use FreshAdvance\Invoice\Service\NumberWordingServiceInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettings;
 use FreshAdvance\Invoice\Transition\Core\Language;
 use FreshAdvance\Invoice\Transition\Core\LanguageProxy;
@@ -52,7 +53,8 @@ class BuilderTest extends TestCase
             pdfProcessor: $pdfProcessorMock,
             templateRenderer: $templateRenderer,
             shopLanguage: $shopLanguage,
-            moduleSettings: $moduleSettings
+            moduleSettings: $moduleSettings,
+            numberWordingService: $this->createStub(NumberWordingServiceInterface::class)
         );
 
         $invoiceData = $this->createConfiguredMock(InvoiceData::class, [

@@ -17,7 +17,8 @@
     "php": "^8.0",
     "oxid-esales/oxideshop-ce": "*",
     "mpdf/mpdf": "^8.1",
-    "symfony/filesystem": "*"
+    "symfony/filesystem": "*",
+    "kwn/number-to-words": "^2.7"
   },
   "conflict": {
     "oxid-esales/oxideshop-ce": "<7.0.0-rc.2"

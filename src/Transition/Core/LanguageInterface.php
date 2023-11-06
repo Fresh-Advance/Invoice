@@ -14,4 +14,6 @@ interface LanguageInterface
     public function forceSetTplLanguage(int $language): void;
 
     public function getTplLanguage(): int;
+
+    public function getLanguageAbbreviation(): string;
 }

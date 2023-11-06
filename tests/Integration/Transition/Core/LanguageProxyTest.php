@@ -31,4 +31,19 @@ class LanguageProxyTest extends TestCase
 
         $this->assertSame($languageId, $sut->getTplLanguage());
     }
+
+    public function testGetLanguageAbbreviation(): void
+    {
+        $languageId = 3;
+        $abbreviation = 'someAbbr';
+
+        /** @var \OxidEsales\Eshop\Core\Language $languageMock */
+        $languageMock = $this->createPartialMock(Language::class, ['getLanguageAbbr', 'getTplLanguage']);
+        $languageMock->method('getLanguageAbbr')->with($languageId)->willReturn($abbreviation);
+        $languageMock->method('getTplLanguage')->willReturn($languageId);
+
+        $sut = new LanguageProxy($languageMock);
+
+        $this->assertSame($abbreviation, $sut->getLanguageAbbreviation());
+    }
 }

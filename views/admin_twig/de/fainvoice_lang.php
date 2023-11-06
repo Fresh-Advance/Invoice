@@ -19,15 +19,16 @@ $aLang = [
     'FA_INVOICE_ITEM_COUNT' => 'Anzahl',
     'FA_INVOICE_ITEM_PRICE' => 'Preis',
     'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Gesamt',
-
-    'FA_INVOICE_PCS' => 'Stk.',
-    'FA_INVOICE_DELIVERY' => 'Versandkosten',
-    'FA_INVOICE_TOTAL' => 'Gesamt',
-    'FA_INVOICE_SIGNED' => 'Rechnungssteller',
     'FA_INVOICE_DISCOUNT' => 'Rabatt',
     'FA_INVOICE_VOUCHERS' => 'Gutschein Rabatt',
     'FA_INVOICE_PAYMENT' => 'Zahlungsart-Gebühren',
     'FA_INVOICE_VATS' => 'MwSt',
+
+    'FA_INVOICE_PCS' => 'Stk.',
+    'FA_INVOICE_DELIVERY' => 'Versandkosten',
+    'FA_INVOICE_TOTAL' => 'Gesamt',
+    'FA_INVOICE_TOTAL_IN_WORDS' => 'Betrag in Worten',
+    'FA_INVOICE_SIGNED' => 'Rechnungssteller',
 
     'FA_INVOICE_FORM_SIGNER' => 'In Rechnung gestellt von',
     'FA_INVOICE_FORM_NUMBER' => 'Rechnungsnummer',
