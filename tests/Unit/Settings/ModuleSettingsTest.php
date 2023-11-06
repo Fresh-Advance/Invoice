@@ -15,6 +15,9 @@ use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServ
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\String\UnicodeString;
 
+/**
+ * @covers \FreshAdvance\Invoice\Settings\ModuleSettings
+ */
 final class ModuleSettingsTest extends TestCase
 {
     public function testGetDocumentFooter(): void

@@ -14,7 +14,7 @@ use OxidEsales\Eshop\Core\Utils;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers UtilsProxy
+ * @covers \FreshAdvance\Invoice\Transput\UtilsProxy
  */
 class UtilsProxyTest extends TestCase
 {

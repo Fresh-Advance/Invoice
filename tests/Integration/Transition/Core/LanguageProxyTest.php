@@ -13,6 +13,10 @@ use FreshAdvance\Invoice\Transition\Core\Language;
 use FreshAdvance\Invoice\Transition\Core\LanguageProxy;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \FreshAdvance\Invoice\Transition\Core\Language
+ * @covers \FreshAdvance\Invoice\Transition\Core\LanguageProxy
+ */
 class LanguageProxyTest extends TestCase
 {
     public function testForceLanguageIdSetter(): void
