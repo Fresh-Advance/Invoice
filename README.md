@@ -13,6 +13,7 @@
 * Twig and Smarty shop installations supported
 * PDF Invoice file generated in shop Default language
   * Currently we have DE, EN and LT translations available here. Feel free to add yours.
+  * Total sum shown in words in the invoice.
 * Several fields are adjustable before invoice generation:
   * Invoice number
   * Invoice date
