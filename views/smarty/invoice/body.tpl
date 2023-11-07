@@ -162,4 +162,7 @@
 
 </table>
 
+[{math assign="sumWithCents" equation="a*b" a=$order->getFieldData('oxtotalordersum') b=100}]
+[{oxmultilang ident="FA_INVOICE_TOTAL_IN_WORDS"}]: [{$wording->currencyToWords($sumWithCents, $order->getFieldData('oxcurrency'))}]
+
 <div id="invoiceSign">[{oxmultilang ident="FA_INVOICE_SIGNED"}]: [{$configuration->getSigner()}]</div>
