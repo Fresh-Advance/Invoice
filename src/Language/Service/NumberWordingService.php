@@ -2,8 +2,6 @@
 
 namespace FreshAdvance\Invoice\Language\Service;
 
-use FreshAdvance\Invoice\Language\Service\LanguageInterface;
-use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
 use NumberToWords\NumberToWords;
 
 class NumberWordingService implements NumberWordingServiceInterface

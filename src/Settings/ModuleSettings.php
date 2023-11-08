@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Settings;
 
-use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use FreshAdvance\Invoice\Module;
+use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 
 class ModuleSettings implements ModuleSettingsInterface
 {

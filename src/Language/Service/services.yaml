@@ -8,7 +8,6 @@ services:
 
   FreshAdvance\Invoice\Language\Service\LanguageInterface:
     class: FreshAdvance\Invoice\Language\Service\LanguageProxy
-    public: true
 
   FreshAdvance\Invoice\NumberToWords:
     class: NumberToWords\NumberToWords
@@ -16,4 +15,3 @@ services:
 
   FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface:
     class: FreshAdvance\Invoice\Language\Service\NumberWordingService
-    public: true

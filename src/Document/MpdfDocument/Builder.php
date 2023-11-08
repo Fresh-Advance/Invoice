@@ -11,9 +11,9 @@ namespace FreshAdvance\Invoice\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Language\Service\LanguageInterface;
 use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
-use FreshAdvance\Invoice\Language\Service\LanguageInterface;
 use Mpdf\Mpdf;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use Symfony\Component\Filesystem\Path;

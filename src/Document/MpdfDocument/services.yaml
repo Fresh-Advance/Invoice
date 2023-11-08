@@ -7,4 +7,3 @@ services:
 
   Mpdf\Mpdf:
     factory: ['@FreshAdvance\Invoice\Document\MpdfDocument\MpdfFactory', 'create']
-    public: true

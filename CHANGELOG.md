@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Show total amount in words in the invoice
 
+### Changed
+- Language functionality have been moved to separate (Language) namespace
+- Cleanup too much visibility on autowired utility interfaces that should not be exposed
+
 ## [v2.0.0] - 2023-10-07
 
 ### Added

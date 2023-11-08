@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Language\Service;
 
-use FreshAdvance\Invoice\Language\Service\LanguageInterface;
 use FreshAdvance\Invoice\Language\Extension\Language;
 
 class LanguageProxy implements LanguageInterface

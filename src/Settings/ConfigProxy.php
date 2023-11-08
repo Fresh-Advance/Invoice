@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Settings;
 
-use FreshAdvance\Invoice\Settings\ConfigInterface;
 use OxidEsales\Eshop\Core\Config;
 
 class ConfigProxy implements ConfigInterface

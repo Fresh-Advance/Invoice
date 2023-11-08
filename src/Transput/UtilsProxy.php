@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transput;
 
-use FreshAdvance\Invoice\Transput\UtilsInterface;
 use OxidEsales\Eshop\Core\Utils;
 
 class UtilsProxy implements UtilsInterface
