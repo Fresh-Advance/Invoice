@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\Service\NumberWordingService;
-use FreshAdvance\Invoice\Transition\Core\LanguageInterface;
+use FreshAdvance\Invoice\Language\Service\LanguageInterface;
 use NumberToWords\CurrencyTransformer\CurrencyTransformer;
 use NumberToWords\NumberToWords;
 use PHPUnit\Framework\TestCase;

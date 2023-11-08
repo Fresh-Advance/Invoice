@@ -3,7 +3,7 @@ imports:
     - { resource: src/Repository/services.yaml }
     - { resource: src/Service/services.yaml }
     - { resource: src/Settings/services.yaml }
-    - { resource: src/Transition/Core/services.yaml }
+    - { resource: src/Language/Service/services.yaml }
     - { resource: src/Transput/services.yaml }
 
 services:

@@ -14,5 +14,5 @@ class_alias(
 
 class_alias(
     \OxidEsales\Eshop\Core\Language::class,
-    \FreshAdvance\Invoice\Transition\Core\Language_parent::class
+    \FreshAdvance\Invoice\Language\Extension\Language_parent::class
 );

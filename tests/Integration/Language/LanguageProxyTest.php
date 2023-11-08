@@ -7,15 +7,14 @@
 
 declare(strict_types=1);
 
-namespace Transition\Core;
+namespace FreshAdvance\Invoice\Tests\Integration\Language;
 
-use FreshAdvance\Invoice\Transition\Core\Language;
-use FreshAdvance\Invoice\Transition\Core\LanguageProxy;
+use FreshAdvance\Invoice\Language\Extension\Language;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Transition\Core\Language
- * @covers \FreshAdvance\Invoice\Transition\Core\LanguageProxy
+ * @covers \FreshAdvance\Invoice\Language\Extension\Language
+ * @covers \FreshAdvance\Invoice\Language\Service\LanguageProxy
  */
 class LanguageProxyTest extends TestCase
 {
@@ -26,7 +25,7 @@ class LanguageProxyTest extends TestCase
         /** @var \OxidEsales\Eshop\Core\Language $languageMock */
         $languageMock = $this->createPartialMock(Language::class, []);
 
-        $sut = new LanguageProxy($languageMock);
+        $sut = new \FreshAdvance\Invoice\Language\Service\LanguageProxy($languageMock);
         $sut->forceSetTplLanguage($languageId);
 
         $this->assertSame($languageId, $sut->getTplLanguage());
@@ -42,7 +41,7 @@ class LanguageProxyTest extends TestCase
         $languageMock->method('getLanguageAbbr')->with($languageId)->willReturn($abbreviation);
         $languageMock->method('getTplLanguage')->willReturn($languageId);
 
-        $sut = new LanguageProxy($languageMock);
+        $sut = new \FreshAdvance\Invoice\Language\Service\LanguageProxy($languageMock);
 
         $this->assertSame($abbreviation, $sut->getLanguageAbbreviation());
     }

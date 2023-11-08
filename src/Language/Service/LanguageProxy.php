@@ -7,16 +7,19 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Transition\Core;
+namespace FreshAdvance\Invoice\Language\Service;
+
+use FreshAdvance\Invoice\Language\Service\LanguageInterface;
+use FreshAdvance\Invoice\Language\Extension\Language;
 
 class LanguageProxy implements LanguageInterface
 {
-    /** @var Language $language */
+    /** @var \FreshAdvance\Invoice\Language\Extension\Language $language */
     private $language;
 
     public function __construct(\OxidEsales\Eshop\Core\Language $language)
     {
-        /** @var Language $language */
+        /** @var \FreshAdvance\Invoice\Language\Extension\Language $language */
         $this->language = $language;
     }
 

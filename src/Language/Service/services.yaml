@@ -5,6 +5,6 @@ services:
     bind:
       OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
 
-  FreshAdvance\Invoice\Transition\Core\LanguageInterface:
-    class: FreshAdvance\Invoice\Transition\Core\LanguageProxy
+  FreshAdvance\Invoice\Language\Service\LanguageInterface:
+    class: FreshAdvance\Invoice\Language\Service\LanguageProxy
     public: true
