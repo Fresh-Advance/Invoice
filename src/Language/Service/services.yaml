@@ -4,7 +4,16 @@ services:
     autowire: true
     bind:
       OxidEsales\Eshop\Core\Language: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getLang()'
+      NumberToWords\NumberToWords: '@=service("FreshAdvance\\Invoice\\NumberToWords")'
 
   FreshAdvance\Invoice\Language\Service\LanguageInterface:
     class: FreshAdvance\Invoice\Language\Service\LanguageProxy
+    public: true
+
+  FreshAdvance\Invoice\NumberToWords:
+    class: NumberToWords\NumberToWords
+    public: true
+
+  FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface:
+    class: FreshAdvance\Invoice\Language\Service\NumberWordingService
     public: true

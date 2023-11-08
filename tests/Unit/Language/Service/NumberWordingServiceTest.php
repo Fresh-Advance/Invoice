@@ -7,16 +7,16 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\Language\Service;
 
-use FreshAdvance\Invoice\Service\NumberWordingService;
 use FreshAdvance\Invoice\Language\Service\LanguageInterface;
+use FreshAdvance\Invoice\Language\Service\NumberWordingService;
 use NumberToWords\CurrencyTransformer\CurrencyTransformer;
 use NumberToWords\NumberToWords;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Service\NumberWordingService
+ * @covers \FreshAdvance\Invoice\Language\Service\NumberWordingService
  */
 class NumberWordingServiceTest extends TestCase
 {

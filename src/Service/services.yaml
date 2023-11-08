@@ -10,11 +10,3 @@ services:
   FreshAdvance\Invoice\Service\InvoiceServiceInterface:
     class: FreshAdvance\Invoice\Service\InvoiceService
     public: true
-
-  NumberToWords\NumberToWords:
-    class: NumberToWords\NumberToWords
-    public: true
-
-  FreshAdvance\Invoice\Service\NumberWordingServiceInterface:
-    class: FreshAdvance\Invoice\Service\NumberWordingService
-    public: true

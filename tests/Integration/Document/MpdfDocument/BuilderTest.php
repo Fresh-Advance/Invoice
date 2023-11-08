@@ -11,7 +11,7 @@ namespace FreshAdvance\Invoice\Tests\Integration\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
-use FreshAdvance\Invoice\Service\NumberWordingServiceInterface;
+use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettings;
 use FreshAdvance\Invoice\Language\Extension\Language;
 use FreshAdvance\Invoice\Language\Service\LanguageProxy;
