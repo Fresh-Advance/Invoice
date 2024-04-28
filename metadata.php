@@ -16,19 +16,20 @@ $sMetadataVersion = '2.1';
  * Module information
  */
 $aModule = [
-    'id'          => 'fa_invoice',
-    'title'       => 'Invoice',
-    'description'  => [
+    'id' => 'fa_invoice',
+    'title' => 'Invoice',
+    'description' => [
         'en' => 'Invoice module for OXID eShop.',
     ],
-    'version'     => '2.1.0',
-    'author'       => 'Anton Fedurtsya',
-    'email'        => 'anton@fedurtsya.com',
-    'url'         => '',
+    'thumbnail' => 'logo.png',
+    'version' => '2.2.0',
+    'author' => 'Anton Fedurtsya',
+    'email' => 'anton@fedurtsya.com',
+    'url' => 'https://github.com/Fresh-Advance',
     'controllers' => [
         'fa_invoice_admin' => \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController::class,
     ],
-    'extend'      => [
+    'extend' => [
         \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Transition\Model\OrderArticle::class,
         \OxidEsales\Eshop\Core\Language::class => \FreshAdvance\Invoice\Language\Extension\Language::class
     ],

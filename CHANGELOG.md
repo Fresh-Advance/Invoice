@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v2.1.0] - Unreleased
+## [v2.2.0] - Unreleased
+
+### Added
+- Logo updated
+
+## [v2.1.0] - 2023-11-08
 
 ### Added
 - Show total amount in words in the invoice
@@ -59,6 +64,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[v2.2.0]: https://github.com/Fresh-Advance/Invoice/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.3.0...v2.0.0
 [v1.3.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.2.0...v1.3.0
