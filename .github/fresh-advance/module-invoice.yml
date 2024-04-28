@@ -1,0 +1,56 @@
+install_shop_with_modules:
+  cache:
+    prepared_shop: false
+  composer:
+    transform: |
+      {
+          "require": {
+              "oxid-esales/oxideshop-ce": "{{ .Data.global.composer.dev_ref }}",
+              "oxid-esales/twig-admin-theme": "{{ .Data.global.composer.dev_ref }}",
+              "oxid-esales/twig-theme": "{{ .Data.global.composer.dev_ref }}",
+              "oxid-esales/developer-tools": "{{ .Data.global.composer.dev_ref }}",
+              "fresh-advance/invoice": "dev-{{ .Github.RefName }}"
+          },
+          "repositories": {
+            "fresh-advance/invoice": {
+              "type": "git",
+              "url": "https://github.com/Fresh-Advance/Invoice.git"
+            }
+          }
+      }
+  custom_script_container: |
+    vendor/bin/oe-console oe:database:reset --db-host=mysql --db-port=3306 --db-name=example --db-user=root --db-password=root --force
+    vendor/bin/oe-console oe:module:activate fa_invoice
+    vendor/bin/oe-console oe:theme:activate twig
+
+runscript: &runscript
+  matrix:
+    script: |
+      [
+        "fa_invoice:tests-clover",
+      ]
+  fa_invoice:
+    path: 'vendor/fresh-advance/invoice'
+
+runslim:
+  <<: *runscript
+  matrix:
+    script: |
+      [
+        "fa_invoice:phpstan",
+        "fa_invoice:phpmd",
+        "fa_invoice:phpcs",
+      ]
+
+sonarcloud:
+  matrix:
+    testplan: '["-"]'
+  strip_path: '/var/www/vendor/fresh-advance/invoice/'
+  project_name: 'Invoice'
+  project_key: 'Fresh-Advance_Invoice'
+  organization: 'fresh-advance'
+  parameters: |
+    -Dsonar.language=php
+    -Dsonar.scm.provider=git
+    -Dsonar.sources=src
+    -Dsonar.tests=tests

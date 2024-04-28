@@ -6,7 +6,7 @@ bootstrap: _bootstrap.php
 modules:
   enabled:
     - Asserts
-    - FreshAdvance\Invoice\Tests\Codeception\Helper\Acceptance
+    - FreshAdvance\Invoice\Tests\Codeception\Support\Helper\Acceptance
     - \OxidEsales\Codeception\Module\ShopSetup:
         dump: '%DUMP_PATH%'
         fixtures: '%FIXTURES_PATH%'
