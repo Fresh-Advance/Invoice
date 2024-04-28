@@ -27,7 +27,15 @@
     "phpunit/phpunit": "^9.5",
     "phpstan/phpstan": "^1.8.10",
     "squizlabs/php_codesniffer": "3.*",
-    "phpmd/phpmd": "^2.11"
+    "phpmd/phpmd": "^2.11",
+    "mikey179/vfsstream": "~1.6.8",
+    "codeception/codeception": "^5.0",
+    "codeception/module-asserts": "^3.0",
+    "codeception/module-db": "^3.0",
+    "codeception/module-filesystem": "^3.0",
+    "codeception/module-webdriver": "^3.1",
+    "oxid-esales/codeception-modules": "dev-b-7.0.x",
+    "oxid-esales/codeception-page-objects": "dev-b-7.0.x"
   },
   "autoload": {
     "psr-4": {
@@ -39,22 +47,25 @@
     "phpcs": "phpcs --standard=tests/phpcs.xml",
     "phpcbf": "phpcbf --standard=tests/phpcs.xml",
     "phpstan": "phpstan -ctests/PhpStan/phpstan.neon analyse src/",
-    "phpstan-report": "phpstan -ctests/PhpStan/phpstan.neon analyse src/ --error-format=json > phpstan.report.json",
     "phpmd": "phpmd src text cleancode,codesize,design,naming,unusedcode",
-    "phpmd-report": "phpmd src json cleancode,codesize,design,naming,unusedcode --reportfile phpmd.report.json",
     "static": [
       "@phpcs",
       "@phpstan",
       "@phpmd"
     ],
-    "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit --bootstrap=/var/www/source/bootstrap.php --config=tests/",
-    "phpunit-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --bootstrap=/var/www/source/bootstrap.php --config=tests/ --coverage-html=tests/result/coverage",
-    "phpunit-clover": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover=tests/result/coverage.xml --log-junit=tests/result/junit-log.xml --bootstrap=/var/www/source/bootstrap.php --config=tests/",
-    "codeception": "cd /var/www/; MODULE_IDS=fa_invoice /var/www/vendor/bin/codecept run acceptance -c /var/www/vendor/fresh-advance/invoice/tests/codeception.yml -g fa_invoice; cd -"
+
+    "tests-unit": "vendor/bin/phpunit --bootstrap=/var/www/source/bootstrap.php --config=tests/",
+    "tests-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --bootstrap=/var/www/source/bootstrap.php --config=tests/ --coverage-html=tests/result/coverage",
+    "tests-clover": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover=tests/Reports/coverage_fa_invoice.xml --bootstrap=/var/www/source/bootstrap.php --config=tests/",
+
+    "tests-codeception": [
+      "Composer\\Config::disableProcessTimeout",
+      "MODULE_IDS=fa_invoice SHOP_ROOT_PATH=/var/www/ vendor/bin/codecept run Acceptance -c tests/codeception.yml"
+    ]
   },
   "config": {
     "allow-plugins": {
-      "oxid-esales/oxideshop-composer-plugin": true,
+      "oxid-esales/oxideshop-composer-plugin": false,
       "oxid-esales/oxideshop-unified-namespace-generator": true
     }
   }
