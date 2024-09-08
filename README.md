@@ -29,7 +29,10 @@
 
 * New blocks in templates for easy extending
 * Show Vat for every product in list
-* Other improvements
+* The Credit note issuing functionality
+* Possibility to send generated invoice or credit note by email with button click.
+* Possibility to add image for invoice background
+* Other improvements? (feel free to ask in Issues section for possible additional functions)
 
 ## Installation
 
