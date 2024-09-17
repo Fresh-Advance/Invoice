@@ -37,12 +37,6 @@ $aModule = [
         /** Main */
         [
             'group' => 'fa_invoice_main',
-            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_DOCUMENT_FOOTER,
-            'type' => 'str',
-            'value' => 'Document Footer Example<br>Change in Module Settings'
-        ],
-        [
-            'group' => 'fa_invoice_main',
             'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_DOCUMENT_FILENAME_PREFIX,
             'type' => 'str',
             'value' => 'invoice-'
@@ -53,6 +47,44 @@ $aModule = [
             'type' => 'bool',
             'value' => false
         ],
+
+        /** Layout */
+        [
+            'group' => 'fa_invoice_layout',
+            'name' => \FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsService::SETTING_MARGIN_TOP,
+            'type' => 'str',
+            'value' => '',
+        ],
+        [
+            'group' => 'fa_invoice_layout',
+            'name' => \FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsService::SETTING_MARGIN_BOTTOM,
+            'type' => 'str',
+            'value' => '',
+        ],
+        [
+            'group' => 'fa_invoice_layout',
+            'name' => \FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsService::SETTING_MARGIN_LEFT,
+            'type' => 'str',
+            'value' => '',
+        ],
+        [
+            'group' => 'fa_invoice_layout',
+            'name' => \FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsService::SETTING_MARGIN_RIGHT,
+            'type' => 'str',
+            'value' => '',
+        ],
+        [
+            'group' => 'fa_invoice_layout',
+            'name' => \FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsService::SETTING_DOCUMENT_HEADER,
+            'type' => 'str',
+            'value' => 'Document Header Example; HTML with simple inline css can go here<br>Change in Module Settings',
+        ],
+        [
+            'group' => 'fa_invoice_layout',
+            'name' => \FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsService::SETTING_DOCUMENT_FOOTER,
+            'type' => 'str',
+            'value' => 'Document Footer Example; HTML with simple inline css can go here<br>Change in Module Settings',
+        ]
     ],
     'events' => [
         'onActivate' => '\FreshAdvance\Invoice\Transition\Core\Events::onActivate',

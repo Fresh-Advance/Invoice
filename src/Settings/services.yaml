@@ -13,3 +13,6 @@ services:
 
   FreshAdvance\Invoice\Settings\ConfigInterface:
     class: FreshAdvance\Invoice\Settings\ConfigProxy
+
+  FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsServiceInterface:
+    class: FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsService

@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Logo updated
+- Layout settings for invoice document - Document margins are adjustable
+- Possibility to add document Header (and there was a footer already, but to be handled through @page css)
+
+### Changed
+- Invoice document footer setting moved to Layout settings group
 
 ## [v2.1.0] - 2023-11-08
 

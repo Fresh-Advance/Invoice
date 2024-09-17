@@ -3,6 +3,16 @@
 {% set configuration = invoice.getInvoiceConfiguration() %}
 
 <style>
+    @page {
+        size: auto;
+        header: myHeader;
+        footer: myFooter;
+        {% if layoutSettings.getMarginTop() %}margin-top: {{ layoutSettings.getMarginTop() }};{% endif %}
+        {% if layoutSettings.getMarginBottom() %}margin-bottom: {{ layoutSettings.getMarginBottom() }};{% endif %}
+        {% if layoutSettings.getMarginLeft() %}margin-left: {{ layoutSettings.getMarginLeft() }};{% endif %}
+        {% if layoutSettings.getMarginRight() %}margin-right: {{ layoutSettings.getMarginRight() }};{% endif %}
+    }
+
     #buyer, #seller {
         width: 50%;
         float: left;
@@ -63,6 +73,16 @@
         text-align: right;
     }
 </style>
+
+
+
+<htmlpageheader name="myHeader" style="display:none">
+    {% if layoutSettings.getDocumentHeader() %}{{ layoutSettings.getDocumentHeader()|raw }}{% endif %}
+</htmlpageheader>
+
+<htmlpagefooter name="myFooter" style="display:none">
+    {% if layoutSettings.getDocumentFooter() %}{{ layoutSettings.getDocumentFooter()|raw }}{% endif %}
+</htmlpagefooter>
 
 <div id="seller">
     <div class="contactHead">{{ translate({ ident: "FA_INVOICE_SELLER" }) }}</div>

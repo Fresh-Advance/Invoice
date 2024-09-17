@@ -37,9 +37,17 @@ $aLang = [
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Download Invoice',
 
-    # Module settings
+    # Module settings main
     'SHOP_MODULE_GROUP_fa_invoice_main' => 'Invoice document',
-    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document Footer',
     'SHOP_MODULE_fa_invoice_FilenamePrefix' => 'Filename Prefix',
     'SHOP_MODULE_fa_invoice_IsForArchive' => 'Document is for archive (PDFA)',
+
+    # Module settings layout
+    'SHOP_MODULE_GROUP_fa_invoice_layout' => 'Invoice document layout',
+    'SHOP_MODULE_fa_invoice_MarginTop' => 'Margin top',
+    'SHOP_MODULE_fa_invoice_MarginBottom' => 'Margin bottom',
+    'SHOP_MODULE_fa_invoice_MarginLeft' => 'Margin left',
+    'SHOP_MODULE_fa_invoice_MarginRight' => 'Margin right',
+    'SHOP_MODULE_fa_invoice_DocumentHeader' => 'Document header',
+    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document footer',
 ];

@@ -13,20 +13,20 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Language\Service\LanguageInterface;
 use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsServiceInterface;
 use Mpdf\Mpdf;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use Symfony\Component\Filesystem\Path;
 
 class Builder implements InvoiceGeneratorInterface
 {
-    protected const INVOICE_TEMPLATE = '@fa_invoice/invoice/body';
+    public const INVOICE_TEMPLATE = '@fa_invoice/invoice/body';
 
     public function __construct(
         protected Mpdf $pdfProcessor,
         protected TemplateRendererInterface $templateRenderer,
         protected LanguageInterface $shopLanguage,
-        protected ModuleSettingsInterface $moduleSettings,
+        protected DocumentLayoutSettingsServiceInterface $layoutSettingsService,
         protected NumberWordingServiceInterface $numberWordingService
     ) {
     }
@@ -49,14 +49,11 @@ class Builder implements InvoiceGeneratorInterface
 
     private function configurePdfProcessor(InvoiceDataInterface $invoiceData): void
     {
-        $pdfData = $this->preparePdfData($invoiceData);
-
-        $this->pdfProcessor->SetHTMLHeader($pdfData->getHeader());
-        $this->pdfProcessor->WriteHTML($pdfData->getContent());
-        $this->pdfProcessor->SetHTMLFooter($pdfData->getFooter());
+        $htmlContent = $this->preparePdfData($invoiceData);
+        $this->pdfProcessor->WriteHTML($htmlContent);
     }
 
-    protected function preparePdfData(InvoiceDataInterface $invoiceData): PdfData
+    protected function preparePdfData(InvoiceDataInterface $invoiceData): string
     {
         $currentLanguage = $this->shopLanguage->getTplLanguage();
         try {
@@ -65,16 +62,14 @@ class Builder implements InvoiceGeneratorInterface
                 self::INVOICE_TEMPLATE,
                 [
                     'invoice' => $invoiceData,
-                    'wording' => $this->numberWordingService
+                    'wording' => $this->numberWordingService,
+                    'layoutSettings' => $this->layoutSettingsService,
                 ]
             );
         } finally {
             $this->shopLanguage->forceSetTplLanguage((int)$currentLanguage);
         }
 
-        return new PdfData(
-            htmlContent: $html,
-            htmlFooter: $this->moduleSettings->getDocumentFooter()
-        );
+        return $html;
     }
 }

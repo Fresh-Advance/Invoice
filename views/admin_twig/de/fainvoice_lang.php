@@ -38,8 +38,16 @@ $aLang = [
     'FA_INVOICE_FORM_DOWNLOAD' => 'Rechnung herunterladen',
 
     # Module settings
-    'SHOP_MODULE_GROUP_fa_invoice_main' => 'Invoice document',
-    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document Footer',
-    'SHOP_MODULE_fa_invoice_FilenamePrefix' => 'Filename Prefix',
-    'SHOP_MODULE_fa_invoice_IsForArchive' => 'Document is for archive (PDFA)',
+    'SHOP_MODULE_GROUP_fa_invoice_main' => 'Rechnungsdokument',
+    'SHOP_MODULE_fa_invoice_FilenamePrefix' => 'Dateiname Präfix',
+    'SHOP_MODULE_fa_invoice_IsForArchive' => 'Dokument ist für Archiv (PDFA)',
+
+    # Module settings layout
+    'SHOP_MODULE_GROUP_fa_invoice_layout' => 'Rechnungsdokumentlayout',
+    'SHOP_MODULE_fa_invoice_MarginTop' => 'Rand oben (z.B. 10px)',
+    'SHOP_MODULE_fa_invoice_MarginBottom' => 'Rand unten (z.B. 10px)',
+    'SHOP_MODULE_fa_invoice_MarginLeft' => 'Rand links (z.B. 10px)',
+    'SHOP_MODULE_fa_invoice_MarginRight' => 'Rand rechts (z.B. 10px)',
+    'SHOP_MODULE_fa_invoice_DocumentHeader' => 'Dokumentenkopf (HTML mit einfachem Inline-CSS möglich)',
+    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Dokumentenfuß (HTML mit einfachem Inline-CSS möglich)',
 ];

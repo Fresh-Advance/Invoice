@@ -37,9 +37,17 @@ $aLang = [
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Atsisiusti Sąskaitą',
 
-    # Module settings
+    # Module settings main
     'SHOP_MODULE_GROUP_fa_invoice_main' => 'Invoice document',
-    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document Footer',
     'SHOP_MODULE_fa_invoice_FilenamePrefix' => 'Filename Prefix',
     'SHOP_MODULE_fa_invoice_IsForArchive' => 'Document is for archive (PDFA)',
+
+    # Module settings layout
+    'SHOP_MODULE_GROUP_fa_invoice_layout' => 'Invoice document layout',
+    'SHOP_MODULE_fa_invoice_MarginTop' => 'Margin top (e.g. 10px)',
+    'SHOP_MODULE_fa_invoice_MarginBottom' => 'Margin bottom (e.g. 10px)',
+    'SHOP_MODULE_fa_invoice_MarginLeft' => 'Margin left (e.g. 10px)',
+    'SHOP_MODULE_fa_invoice_MarginRight' => 'Margin right (e.g. 10px)',
+    'SHOP_MODULE_fa_invoice_DocumentHeader' => 'Document header (HTML with simple inline CSS possible)',
+    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document footer (HTML with simple inline CSS possible)',
 ];

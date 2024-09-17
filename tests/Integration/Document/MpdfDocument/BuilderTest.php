@@ -11,10 +11,9 @@ namespace FreshAdvance\Invoice\Tests\Integration\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
-use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
-use FreshAdvance\Invoice\Settings\ModuleSettings;
-use FreshAdvance\Invoice\Language\Extension\Language;
 use FreshAdvance\Invoice\Language\Service\LanguageProxy;
+use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
+use FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsServiceInterface;
 use Mpdf\Mpdf;
 use org\bovigo\vfs\vfsStream;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
@@ -27,41 +26,45 @@ class BuilderTest extends TestCase
 {
     public function testGetBinaryPdfFromData(): void
     {
-        $tempDirectory = vfsStream::setup('root');
+        $tempDirectory = vfsStream::setup();
         $virtualFilePath = $tempDirectory->url() . '/somePath/someFilename.pdf';
 
-        $pdfProcessorMock = $this->createPartialMock(
-            Mpdf::class,
-            ['SetHTMLHeader', 'WriteHTML', 'SetHTMLFooter', 'OutputFile']
-        );
+        $pdfProcessorMock = $this->createPartialMock(Mpdf::class, ['WriteHTML', 'OutputFile']);
         $pdfProcessorMock->expects($this->once())->method('WriteHTML')->with('someContentHtml');
-        $pdfProcessorMock->expects($this->once())->method('SetHtmlFooter')->with('someFooter');
         $pdfProcessorMock->expects($this->once())->method('OutputFile')->with($virtualFilePath);
-
-        $templateRenderer = $this->createConfiguredMock(TemplateRendererInterface::class, [
-            'renderTemplate' => 'someContentHtml'
-        ]);
 
         $shopLanguage = $this->createPartialMock(LanguageProxy::class, ['getTplLanguage', 'forceSetTplLanguage']);
         $shopLanguage->expects($this->exactly(2))->method('forceSetTplLanguage');
 
-        $moduleSettings = $this->createConfiguredMock(ModuleSettings::class, [
-            'getDocumentFooter' => 'someFooter'
-        ]);
+        $layoutSettingsServiceStub = $this->createStub(DocumentLayoutSettingsServiceInterface::class);
+        $numberWordingServiceStub = $this->createStub(NumberWordingServiceInterface::class);
+
+        $templateRenderer = $this->createMock(TemplateRendererInterface::class);
 
         $sut = new Builder(
             pdfProcessor: $pdfProcessorMock,
             templateRenderer: $templateRenderer,
             shopLanguage: $shopLanguage,
-            moduleSettings: $moduleSettings,
-            numberWordingService: $this->createStub(NumberWordingServiceInterface::class)
+            layoutSettingsService: $layoutSettingsServiceStub,
+            numberWordingService: $numberWordingServiceStub
         );
 
         $invoiceData = $this->createConfiguredMock(InvoiceData::class, [
             'getInvoicePath' => $virtualFilePath
         ]);
 
-        $tempDirectory = vfsStream::setup('root');
+        $templateRenderer->expects($this->once())->method('renderTemplate')
+            ->with(
+                Builder::INVOICE_TEMPLATE,
+                [
+                    'invoice' => $invoiceData,
+                    'wording' => $numberWordingServiceStub,
+                    'layoutSettings' => $layoutSettingsServiceStub,
+                ]
+            )
+            ->willReturn('someContentHtml');
+
+        $tempDirectory = vfsStream::setup();
         $this->assertDirectoryDoesNotExist($tempDirectory->url() . '/somePath/');
 
         $sut->generate($invoiceData);
