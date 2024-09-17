@@ -50,9 +50,6 @@ class Invoice
         );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.StaticAccess)
-     */
     public function getOrderInvoicePath(OrderModel $order): string
     {
         return Path::join(

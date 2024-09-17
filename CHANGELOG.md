@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Invoice document footer setting moved to Layout settings group
+- Improve quality tools configurations
 
 ## [v2.1.0] - 2023-11-08
 

@@ -31,9 +31,6 @@ class Builder implements InvoiceGeneratorInterface
     ) {
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.StaticAccess)
-     */
     public function generate(InvoiceDataInterface $invoiceData): void
     {
         $this->configurePdfProcessor($invoiceData);

@@ -21,9 +21,6 @@ class Context implements ContextInterface
     ) {
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.StaticAccess)
-     */
     public function getInvoicesPath(): string
     {
         return Path::join(
