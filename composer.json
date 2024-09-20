@@ -61,7 +61,7 @@
     ],
 
     "tests-unit": "vendor/bin/phpunit --bootstrap=/var/www/source/bootstrap.php --config=tests/",
-    "tests-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --bootstrap=/var/www/source/bootstrap.php --config=tests/ --coverage-html=tests/result/coverage",
+    "tests-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --bootstrap=/var/www/source/bootstrap.php --config=tests/ --coverage-html=tests/Reports/CoverageHtml",
     "tests-clover": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover=tests/Reports/coverage_fa_invoice.xml --bootstrap=/var/www/source/bootstrap.php --config=tests/",
 
     "tests-codeception": [
