@@ -22,6 +22,10 @@ install:
     vendor/bin/oe-console oe:module:activate fa_invoice
     vendor/bin/oe-console oe:theme:activate twig
 
+install_shop_with_modules:
+  composer:
+    root_url: ''
+
 runscript: &runscript
   matrix:
     script: |
