@@ -35,12 +35,18 @@
     "codeception/module-filesystem": "^3.0",
     "codeception/module-webdriver": "^3.1",
     "oxid-esales/codeception-modules": "dev-b-7.0.x",
-    "oxid-esales/codeception-page-objects": "dev-b-7.0.x"
+    "oxid-esales/codeception-page-objects": "dev-b-7.0.x",
+    "oxid-esales/developer-tools": "dev-b-7.0.x"
   },
   "autoload": {
     "psr-4": {
-      "FreshAdvance\\Invoice\\": "./src",
-      "FreshAdvance\\Invoice\\Tests\\": "./tests"
+      "FreshAdvance\\Invoice\\": "./src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "FreshAdvance\\Invoice\\Tests\\": "./tests",
+      "OxidEsales\\EshopCommunity\\Tests\\": "./vendor/oxid-esales/oxideshop-ce/tests"
     }
   },
   "scripts": {
@@ -55,17 +61,17 @@
     ],
 
     "tests-unit": "vendor/bin/phpunit --bootstrap=/var/www/source/bootstrap.php --config=tests/",
-    "tests-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --bootstrap=/var/www/source/bootstrap.php --config=tests/ --coverage-html=tests/result/coverage",
+    "tests-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --bootstrap=/var/www/source/bootstrap.php --config=tests/ --coverage-html=tests/Reports/CoverageHtml",
     "tests-clover": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-clover=tests/Reports/coverage_fa_invoice.xml --bootstrap=/var/www/source/bootstrap.php --config=tests/",
 
     "tests-codeception": [
       "Composer\\Config::disableProcessTimeout",
-      "MODULE_IDS=fa_invoice SHOP_ROOT_PATH=/var/www/ vendor/bin/codecept run Acceptance -c tests/codeception.yml"
+      "MODULE_IDS=fa_invoice vendor/bin/codecept run Acceptance -c tests/codeception.yml"
     ]
   },
   "config": {
     "allow-plugins": {
-      "oxid-esales/oxideshop-composer-plugin": false,
+      "oxid-esales/oxideshop-composer-plugin": true,
       "oxid-esales/oxideshop-unified-namespace-generator": true
     }
   }

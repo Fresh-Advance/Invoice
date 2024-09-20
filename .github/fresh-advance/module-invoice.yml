@@ -1,36 +1,40 @@
-install_shop_with_modules:
+install:
   cache:
     prepared_shop: false
+  git:
+    repository: 'Fresh-Advance/Invoice'
+    ref: &ref '{{ .Github.RefName }}'
+    shop_url: 'https://github.com/Fresh-Advance/Invoice.git'
+    shop_ref: *ref
   composer:
+    root_url: ''
     transform: |
       {
           "require": {
               "oxid-esales/oxideshop-ce": "{{ .Data.global.composer.dev_ref }}",
               "oxid-esales/twig-admin-theme": "{{ .Data.global.composer.dev_ref }}",
-              "oxid-esales/twig-theme": "{{ .Data.global.composer.dev_ref }}",
-              "oxid-esales/developer-tools": "{{ .Data.global.composer.dev_ref }}",
-              "fresh-advance/invoice": "dev-{{ .Github.RefName }}"
-          },
-          "repositories": {
-            "fresh-advance/invoice": {
-              "type": "git",
-              "url": "https://github.com/Fresh-Advance/Invoice.git"
-            }
+              "oxid-esales/twig-theme": "{{ .Data.global.composer.dev_ref }}"
           }
       }
   custom_script_container: |
     vendor/bin/oe-console oe:database:reset --db-host=mysql --db-port=3306 --db-name=example --db-user=root --db-password=root --force
+    vendor/bin/oe-console oe:module:install ./
     vendor/bin/oe-console oe:module:activate fa_invoice
     vendor/bin/oe-console oe:theme:activate twig
+
+install_shop_with_modules:
+  composer:
+    root_url: ''
 
 runscript: &runscript
   matrix:
     script: |
       [
         "fa_invoice:tests-clover",
+        "fa_invoice:tests-codeception",
       ]
   fa_invoice:
-    path: 'vendor/fresh-advance/invoice'
+    path: ''
 
 runslim:
   <<: *runscript
@@ -45,7 +49,7 @@ runslim:
 sonarcloud:
   matrix:
     testplan: '["-"]'
-  strip_path: '/var/www/vendor/fresh-advance/invoice/'
+  strip_path: '/var/www/'
   project_name: 'Invoice'
   project_key: 'Fresh-Advance_Invoice'
   organization: 'fresh-advance'
