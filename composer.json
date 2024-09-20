@@ -61,7 +61,7 @@
 
     "tests-codeception": [
       "Composer\\Config::disableProcessTimeout",
-      "MODULE_IDS=fa_invoice SHOP_ROOT_PATH=/var/www/ vendor/bin/codecept run Acceptance -c tests/codeception.yml"
+      "MODULE_IDS=fa_invoice vendor/bin/codecept run Acceptance -c tests/codeception.yml"
     ]
   },
   "config": {
