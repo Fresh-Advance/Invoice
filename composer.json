@@ -35,7 +35,8 @@
     "codeception/module-filesystem": "^3.0",
     "codeception/module-webdriver": "^3.1",
     "oxid-esales/codeception-modules": "dev-b-7.0.x",
-    "oxid-esales/codeception-page-objects": "dev-b-7.0.x"
+    "oxid-esales/codeception-page-objects": "dev-b-7.0.x",
+    "oxid-esales/developer-tools": "dev-b-7.0.x"
   },
   "autoload": {
     "psr-4": {
