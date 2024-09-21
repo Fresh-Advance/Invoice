@@ -18,4 +18,6 @@ interface OrderRepositoryInterface
      * @throws OrderNotFound
      */
     public function getByOrderId(string $orderId): OrderModel;
+
+    public function fillEmptyInvoiceNumber(OrderModel $orderModel): void;
 }

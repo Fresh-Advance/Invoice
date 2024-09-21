@@ -13,11 +13,13 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Language\Service\LanguageInterface;
 use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
+use FreshAdvance\Invoice\Service\OrderServiceInterface;
 use FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsServiceInterface;
 use Mpdf\Mpdf;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use Symfony\Component\Filesystem\Path;
 
+// todo: the builder became too big. Split the builder part and Invoice generator part.
 class Builder implements InvoiceGeneratorInterface
 {
     public const INVOICE_TEMPLATE = '@fa_invoice/invoice/body';
@@ -27,7 +29,8 @@ class Builder implements InvoiceGeneratorInterface
         protected TemplateRendererInterface $templateRenderer,
         protected LanguageInterface $shopLanguage,
         protected DocumentLayoutSettingsServiceInterface $layoutSettingsService,
-        protected NumberWordingServiceInterface $numberWordingService
+        protected NumberWordingServiceInterface $numberWordingService,
+        protected OrderServiceInterface $orderService,
     ) {
     }
 
@@ -41,6 +44,7 @@ class Builder implements InvoiceGeneratorInterface
             mkdir(Path::getDirectory($invoiceFilePath), 0777, true);
         }
 
+        $this->orderService->prepareOrderInvoiceNumber($invoiceData);
         $this->pdfProcessor->OutputFile($invoiceFilePath);
     }
 

@@ -25,4 +25,14 @@ class OrderRepository implements OrderRepositoryInterface
         }
         return $order;
     }
+
+    public function fillEmptyInvoiceNumber(OrderModel $orderModel): void
+    {
+        if (!$orderModel->getFieldData('oxbillnr')) {
+            $orderModel->assign(
+                ['oxbillnr' => $orderModel->getNextBillNum()]
+            );
+            $orderModel->save();
+        }
+    }
 }

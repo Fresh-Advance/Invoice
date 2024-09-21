@@ -28,6 +28,9 @@ class OrderRepositoryTest extends IntegrationTestCase
 
         $testOrder = oxNew(OrderModel::class);
         $testOrder->setId(self::TEST_ORDER_ID);
+        $testOrder->assign(
+            ['oxbillnr' => 321]
+        );
         $testOrder->save();
     }
 
@@ -45,5 +48,28 @@ class OrderRepositoryTest extends IntegrationTestCase
 
         $this->expectException(OrderNotFound::class);
         $sut->getByOrderId(self::TEST_ORDER_ID_WRONG);
+    }
+
+    public function testOrderInvoiceNumberNotIncreasedIfAlreadySet(): void
+    {
+        $sut = $this->createPartialMock(OrderRepository::class, []);
+
+        $order = $sut->getByOrderId(self::TEST_ORDER_ID);
+        $sut->fillEmptyInvoiceNumber($order);
+
+        $updatedOrder = $sut->getByOrderId(self::TEST_ORDER_ID);
+        $this->assertEquals(321, $updatedOrder->getFieldData('oxbillnr'));
+    }
+
+    public function testOrderInvoiceNumberIncreasedIfNotYetSet(): void
+    {
+        $order = oxNew(OrderModel::class);
+        $order->save();
+
+        $sut = $this->createPartialMock(OrderRepository::class, []);
+        $sut->fillEmptyInvoiceNumber($order);
+
+        $updatedOrder = $sut->getByOrderId($order->getId());
+        $this->assertEquals(322, $updatedOrder->getFieldData('oxbillnr'));
     }
 }
