@@ -31,4 +31,17 @@ class InvoiceConfigurationTest extends TestCase
         $this->assertSame('someSigner', $sut->getSigner());
         $this->assertSame('someNumber', $sut->getNumber());
     }
+
+    public function testGetFormattedNumber(): void
+    {
+        $sut = new InvoiceConfiguration(
+            orderId: 'someOrderId',
+            signer: 'someSigner',
+            date: 'someDate',
+            number: 'for%1$smat'
+        );
+
+        $invoiceNumber = uniqid();
+        $this->assertSame('for' . $invoiceNumber . 'mat', $sut->getFormattedNumber($invoiceNumber));
+    }
 }

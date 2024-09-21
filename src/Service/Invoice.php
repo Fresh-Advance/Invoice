@@ -25,7 +25,7 @@ use Symfony\Component\Filesystem\Path;
 class Invoice
 {
     public function __construct(
-        protected OrderRepositoryInterface $orderService,
+        protected OrderRepositoryInterface $orderRepository,
         protected ShopRepositoryInterface $shopService,
         protected ConfigInterface $shopConfig,
         protected ContextInterface $moduleContext,
@@ -36,7 +36,7 @@ class Invoice
 
     public function getInvoiceDataByOrderId(string $orderId): InvoiceDataInterface
     {
-        $order = $this->orderService->getByOrderId($orderId);
+        $order = $this->orderRepository->getByOrderId($orderId);
 
         $configuration = $this->invoiceConfigRepo->getByOrderId($orderId)
             ?? new InvoiceConfiguration(orderId: $orderId);
@@ -61,8 +61,13 @@ class Invoice
 
     public function getInvoiceFileName(InvoiceConfigurationInterface $configuration): string
     {
+        $order = $this->orderRepository->getByOrderId($configuration->getOrderId());
+
+        /** @var string $invoiceNumber */
+        $invoiceNumber = $order->getFieldData('oxbillnr') ?? '';
+
         return $this->moduleSettings->getFilePrefix()
-            . $configuration->getNumber()
+            . $configuration->getFormattedNumber($invoiceNumber)
             . '.pdf';
     }
 

@@ -99,11 +99,13 @@ class BuilderTest extends TestCase
         NumberWordingServiceInterface $numberWordingService = null,
         OrderServiceInterface $orderService = null,
     ): Builder {
+        $layoutSettingsService ??= $this->createStub(DocumentLayoutSettingsServiceInterface::class);
+
         return new Builder(
             pdfProcessor: $pdfProcessor ?? $this->createStub(Mpdf::class),
             templateRenderer: $templateRenderer ?? $this->createStub(TemplateRendererInterface::class),
             shopLanguage: $shopLanguage ?? $this->createStub(LanguageProxy::class),
-            layoutSettingsService: $layoutSettingsService ?? $this->createStub(DocumentLayoutSettingsServiceInterface::class),
+            layoutSettingsService: $layoutSettingsService,
             numberWordingService: $numberWordingService ?? $this->createStub(NumberWordingServiceInterface::class),
             orderService: $orderService ?? $this->createStub(OrderServiceInterface::class),
         );
