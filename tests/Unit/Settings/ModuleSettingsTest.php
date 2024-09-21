@@ -60,6 +60,19 @@ final class ModuleSettingsTest extends TestCase
         $this->assertSame($value, $sut->isForArchive());
     }
 
+    public function testGetInvoiceNumberFormat(): void
+    {
+        $value = uniqid();
+
+        $mssMock = $this->createPartialMock(ModuleSettingService::class, ['getString']);
+        $mssMock->method('getString')->willReturnMap([
+            [ModuleSettings::SETTING_INVOICE_NUMBER_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
+        ]);
+
+        $sut = new ModuleSettings($mssMock);
+        $this->assertSame($value, $sut->getInvoiceNumberFormat());
+    }
+
     public function booleanDataProvider(): array
     {
         return [

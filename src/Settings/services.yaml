@@ -10,6 +10,7 @@ services:
 
   FreshAdvance\Invoice\Settings\ModuleSettingsInterface:
     class: FreshAdvance\Invoice\Settings\ModuleSettings
+    public: true
 
   FreshAdvance\Invoice\Settings\ConfigInterface:
     class: FreshAdvance\Invoice\Settings\ConfigProxy

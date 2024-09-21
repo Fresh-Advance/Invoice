@@ -13,6 +13,7 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
+use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use FreshAdvance\Invoice\Transput\RequestInterface;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
@@ -29,6 +30,9 @@ class InvoiceController extends AdminController
     {
         $orderService = $this->getServiceFromContainer(Invoice::class);
         $this->addTplParam('invoiceData', $orderService->getInvoiceDataByOrderId($this->getEditObjectId()));
+
+        $moduleSettingsService = $this->getServiceFromContainer(ModuleSettingsInterface::class);
+        $this->addTplParam('moduleSettings', $moduleSettingsService);
 
         return parent::render();
     }
