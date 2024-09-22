@@ -13,6 +13,9 @@ jobs:
       runs_on: '"ubuntu-latest"'
       defaults: 'v4'
       plan_folder: '.github/fresh-advance'
+      custom_testplan_yaml: |
+        global:
+          title: 'shop70'
     secrets:
       DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
       DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
@@ -25,6 +28,9 @@ jobs:
       runs_on: '"ubuntu-latest"'
       defaults: 'v4'
       plan_folder: '.github/fresh-advance'
+      custom_testplan_yaml: |
+        global:
+          title: 'shop71'
     secrets:
       DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
       DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
