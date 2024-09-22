@@ -74,30 +74,12 @@ class BuilderTest extends TestCase
         $this->assertDirectoryExists($tempDirectory->url() . '/somePath/');
     }
 
-    public function testGenerateTriggersOrderNumberingUpdate(): void
-    {
-        $invoiceData = $this->createConfiguredMock(InvoiceDataInterface::class, [
-            'getOrder' => $this->createStub(Order::class)
-        ]);
-
-        $sut = $this->getSut(
-            orderService: $orderServiceSpy = $this->createMock(OrderServiceInterface::class),
-        );
-
-        $orderServiceSpy->expects($this->once())
-            ->method('prepareOrderInvoiceNumber')
-            ->with($invoiceData);
-
-        $sut->generate($invoiceData);
-    }
-
     public function getSut(
         Mpdf $pdfProcessor = null,
         TemplateRendererInterface $templateRenderer = null,
         LanguageProxy $shopLanguage = null,
         DocumentLayoutSettingsServiceInterface $layoutSettingsService = null,
         NumberWordingServiceInterface $numberWordingService = null,
-        OrderServiceInterface $orderService = null,
     ): Builder {
         $layoutSettingsService ??= $this->createStub(DocumentLayoutSettingsServiceInterface::class);
 
@@ -107,7 +89,6 @@ class BuilderTest extends TestCase
             shopLanguage: $shopLanguage ?? $this->createStub(LanguageProxy::class),
             layoutSettingsService: $layoutSettingsService,
             numberWordingService: $numberWordingService ?? $this->createStub(NumberWordingServiceInterface::class),
-            orderService: $orderService ?? $this->createStub(OrderServiceInterface::class),
         );
     }
 }

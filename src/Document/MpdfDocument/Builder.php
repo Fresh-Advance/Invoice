@@ -29,8 +29,7 @@ class Builder implements InvoiceGeneratorInterface
         protected TemplateRendererInterface $templateRenderer,
         protected LanguageInterface $shopLanguage,
         protected DocumentLayoutSettingsServiceInterface $layoutSettingsService,
-        protected NumberWordingServiceInterface $numberWordingService,
-        protected OrderServiceInterface $orderService,
+        protected NumberWordingServiceInterface $numberWordingService
     ) {
     }
 
@@ -44,7 +43,6 @@ class Builder implements InvoiceGeneratorInterface
             mkdir(Path::getDirectory($invoiceFilePath), 0777, true);
         }
 
-        $this->orderService->prepareOrderInvoiceNumber($invoiceData);
         $this->pdfProcessor->OutputFile($invoiceFilePath);
     }
 
