@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Unit\Settings;
 use FreshAdvance\Invoice\Module;
 use FreshAdvance\Invoice\Settings\ModuleSettings;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingService;
+use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\String\UnicodeString;
 
@@ -24,7 +25,7 @@ final class ModuleSettingsTest extends TestCase
     {
         $value = 'someValue';
 
-        $mssMock = $this->createPartialMock(ModuleSettingService::class, ['getString']);
+        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
         $mssMock->method('getString')->willReturnMap([
             [ModuleSettings::SETTING_DOCUMENT_FOOTER, Module::MODULE_ID, new UnicodeString($value)]
         ]);
@@ -37,7 +38,7 @@ final class ModuleSettingsTest extends TestCase
     {
         $value = 'someValue';
 
-        $mssMock = $this->createPartialMock(ModuleSettingService::class, ['getString']);
+        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
         $mssMock->method('getString')->willReturnMap([
             [ModuleSettings::SETTING_DOCUMENT_FILENAME_PREFIX, Module::MODULE_ID, new UnicodeString($value)]
         ]);
@@ -51,7 +52,7 @@ final class ModuleSettingsTest extends TestCase
      */
     public function testIsForArchive(bool $value): void
     {
-        $mssMock = $this->createPartialMock(ModuleSettingService::class, ['getBoolean']);
+        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
         $mssMock->method('getBoolean')->willReturnMap([
             [ModuleSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE, Module::MODULE_ID, $value]
         ]);
@@ -64,7 +65,7 @@ final class ModuleSettingsTest extends TestCase
     {
         $value = uniqid();
 
-        $mssMock = $this->createPartialMock(ModuleSettingService::class, ['getString']);
+        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
         $mssMock->method('getString')->willReturnMap([
             [ModuleSettings::SETTING_INVOICE_NUMBER_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
         ]);

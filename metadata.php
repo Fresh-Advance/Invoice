@@ -89,6 +89,12 @@ $aModule = [
         // group invoice numbering
         [
             'group' => 'fa_invoice_numbering',
+            'name' => \FreshAdvance\Invoice\Order\Settings\OrderSettings::SETTING_INVOICE_NUMBER_UPDATE,
+            'type' => 'bool',
+            'value' => true
+        ],
+        [
+            'group' => 'fa_invoice_numbering',
             'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_INVOICE_NUMBER_FORMAT,
             'type' => 'str',
             'value' => 'ABC-%1$s',

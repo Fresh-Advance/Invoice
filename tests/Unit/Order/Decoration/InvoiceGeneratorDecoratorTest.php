@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Unit\Order\Decoration;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Order\Decoration\InvoiceGeneratorDecorator;
+use FreshAdvance\Invoice\Order\Settings\OrderSettingsInterface;
 use FreshAdvance\Invoice\Service\OrderServiceInterface;
 use OxidEsales\Eshop\Application\Model\Order;
 use PHPUnit\Framework\TestCase;
@@ -41,6 +42,9 @@ class InvoiceGeneratorDecoratorTest extends TestCase
 
         $sut = $this->getSut(
             orderService: $orderServiceSpy = $this->createMock(OrderServiceInterface::class),
+            orderSettings: $this->createConfiguredMock(OrderSettingsInterface::class, [
+                'isOrderInvoiceNumberUpdateActive' => true,
+            ]),
         );
 
         $orderServiceSpy->expects($this->once())
@@ -50,13 +54,30 @@ class InvoiceGeneratorDecoratorTest extends TestCase
         $sut->generate($invoiceData);
     }
 
+    public function testNumberingUpdateIsNotTriggeredIfSettingTurnedOff(): void
+    {
+        $sut = $this->getSut(
+            orderService: $orderServiceSpy = $this->createMock(OrderServiceInterface::class),
+            orderSettings: $this->createConfiguredMock(OrderSettingsInterface::class, [
+                'isOrderInvoiceNumberUpdateActive' => false,
+            ]),
+        );
+
+        $orderServiceSpy->expects($this->never())
+            ->method('prepareOrderInvoiceNumber');
+
+        $sut->generate($this->createStub(InvoiceDataInterface::class));
+    }
+
     public function getSut(
         InvoiceGeneratorInterface $originalGenerator = null,
         OrderServiceInterface $orderService = null,
+        OrderSettingsInterface $orderSettings = null,
     ): InvoiceGeneratorInterface {
         return new InvoiceGeneratorDecorator(
             originalGenerator: $originalGenerator ?? $this->createStub(InvoiceGeneratorInterface::class),
             orderService: $orderService ?? $this->createStub(OrderServiceInterface::class),
+            orderSettings: $orderSettings ?? $this->createStub(OrderSettingsInterface::class),
         );
     }
 }

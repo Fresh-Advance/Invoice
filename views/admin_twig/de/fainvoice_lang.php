@@ -53,5 +53,6 @@ $aLang = [
 
     # Module settings invoice numbering
     'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Rechnungsnummerierung',
+    'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Bestellrechnungsnummer bei Rechnungserstellung aktualisieren',
     'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Rechnungsnummerformat',
 ];
