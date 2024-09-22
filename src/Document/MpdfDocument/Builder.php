@@ -11,10 +11,9 @@ namespace FreshAdvance\Invoice\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettingsInterface;
 use FreshAdvance\Invoice\Language\Service\LanguageInterface;
 use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
-use FreshAdvance\Invoice\Service\OrderServiceInterface;
-use FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsServiceInterface;
 use Mpdf\Mpdf;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use Symfony\Component\Filesystem\Path;
@@ -28,7 +27,7 @@ class Builder implements InvoiceGeneratorInterface
         protected Mpdf $pdfProcessor,
         protected TemplateRendererInterface $templateRenderer,
         protected LanguageInterface $shopLanguage,
-        protected DocumentLayoutSettingsServiceInterface $layoutSettingsService,
+        protected DocumentLayoutSettingsInterface $layoutSettingsService,
         protected NumberWordingServiceInterface $numberWordingService
     ) {
     }

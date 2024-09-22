@@ -10,15 +10,12 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Integration\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
+use FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettingsInterface;
 use FreshAdvance\Invoice\Language\Service\LanguageProxy;
 use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
-use FreshAdvance\Invoice\Service\OrderServiceInterface;
-use FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsServiceInterface;
 use Mpdf\Mpdf;
 use org\bovigo\vfs\vfsStream;
-use OxidEsales\Eshop\Application\Model\Order;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -39,7 +36,7 @@ class BuilderTest extends TestCase
         $shopLanguage = $this->createPartialMock(LanguageProxy::class, ['getTplLanguage', 'forceSetTplLanguage']);
         $shopLanguage->expects($this->exactly(2))->method('forceSetTplLanguage');
 
-        $layoutSettingsServiceStub = $this->createStub(DocumentLayoutSettingsServiceInterface::class);
+        $layoutSettingsServiceStub = $this->createStub(DocumentLayoutSettingsInterface::class);
         $numberWordingServiceStub = $this->createStub(NumberWordingServiceInterface::class);
 
         $templateRenderer = $this->createMock(TemplateRendererInterface::class);
@@ -78,10 +75,10 @@ class BuilderTest extends TestCase
         Mpdf $pdfProcessor = null,
         TemplateRendererInterface $templateRenderer = null,
         LanguageProxy $shopLanguage = null,
-        DocumentLayoutSettingsServiceInterface $layoutSettingsService = null,
+        DocumentLayoutSettingsInterface $layoutSettingsService = null,
         NumberWordingServiceInterface $numberWordingService = null,
     ): Builder {
-        $layoutSettingsService ??= $this->createStub(DocumentLayoutSettingsServiceInterface::class);
+        $layoutSettingsService ??= $this->createStub(DocumentLayoutSettingsInterface::class);
 
         return new Builder(
             pdfProcessor: $pdfProcessor ?? $this->createStub(Mpdf::class),

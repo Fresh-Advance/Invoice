@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Settings\Service;
+namespace FreshAdvance\Invoice\Document\Settings;
 
 use FreshAdvance\Invoice\Module;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 
-class DocumentLayoutSettingsService implements DocumentLayoutSettingsServiceInterface
+class DocumentLayoutSettings implements DocumentLayoutSettingsInterface
 {
     public const SETTING_MARGIN_TOP = 'fa_invoice_MarginTop';
     public const SETTING_MARGIN_BOTTOM = 'fa_invoice_MarginBottom';

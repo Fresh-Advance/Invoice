@@ -7,17 +7,16 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Settings\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\Document\Settings;
 
+use FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings;
 use FreshAdvance\Invoice\Module;
-use FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsService;
-use FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsServiceInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\String\UnicodeString;
 
 /**
- * @covers \FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsService
+ * @covers \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings
  */
 class DocumentLayoutSettingsTest extends TestCase
 {
@@ -40,40 +39,40 @@ class DocumentLayoutSettingsTest extends TestCase
     public function settingsDataProvider(): \Generator
     {
         yield 'margin top' => [
-            'settingKey' => DocumentLayoutSettingsService::SETTING_MARGIN_TOP,
+            'settingKey' => DocumentLayoutSettings::SETTING_MARGIN_TOP,
             'method' => 'getMarginTop',
         ];
 
         yield 'margin bottom' => [
-            'settingKey' => DocumentLayoutSettingsService::SETTING_MARGIN_BOTTOM,
+            'settingKey' => DocumentLayoutSettings::SETTING_MARGIN_BOTTOM,
             'method' => 'getMarginBottom',
         ];
 
         yield 'margin left' => [
-            'settingKey' => DocumentLayoutSettingsService::SETTING_MARGIN_LEFT,
+            'settingKey' => DocumentLayoutSettings::SETTING_MARGIN_LEFT,
             'method' => 'getMarginLeft',
         ];
 
         yield 'margin right' => [
-            'settingKey' => DocumentLayoutSettingsService::SETTING_MARGIN_RIGHT,
+            'settingKey' => DocumentLayoutSettings::SETTING_MARGIN_RIGHT,
             'method' => 'getMarginRight',
         ];
 
         yield 'document header' => [
-            'settingKey' => DocumentLayoutSettingsService::SETTING_DOCUMENT_HEADER,
+            'settingKey' => DocumentLayoutSettings::SETTING_DOCUMENT_HEADER,
             'method' => 'getDocumentHeader',
         ];
 
         yield 'document footer' => [
-            'settingKey' => DocumentLayoutSettingsService::SETTING_DOCUMENT_FOOTER,
+            'settingKey' => DocumentLayoutSettings::SETTING_DOCUMENT_FOOTER,
             'method' => 'getDocumentFooter',
         ];
     }
 
     protected function getSut(
         ModuleSettingServiceInterface $moduleSettingService = null,
-    ): DocumentLayoutSettingsServiceInterface {
-        return new DocumentLayoutSettingsService(
+    ): \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettingsInterface {
+        return new DocumentLayoutSettings(
             moduleSettingService: $moduleSettingService ?? $this->createStub(ModuleSettingServiceInterface::class),
         );
     }

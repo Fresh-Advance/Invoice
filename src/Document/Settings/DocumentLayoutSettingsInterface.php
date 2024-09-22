@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Settings\Service;
+namespace FreshAdvance\Invoice\Document\Settings;
 
-interface DocumentLayoutSettingsServiceInterface
+interface DocumentLayoutSettingsInterface
 {
     public function getMarginTop(): string;
     public function getMarginBottom(): string;

@@ -9,3 +9,6 @@ services:
   FreshAdvance\Invoice\Document\InvoiceGeneratorInterface:
     class: FreshAdvance\Invoice\Document\MpdfDocument\Builder
     public: true
+
+  FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettingsInterface:
+    class: FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings
