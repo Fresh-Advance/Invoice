@@ -6,10 +6,22 @@ on:
   push: {}
 
 jobs:
-  php81_mysql80:
+  shop70:
     uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yml@v4
     with:
-      testplan: '~/defaults/7.0.x.yml,~/defaults/php8.1_mysql8.0_only.yml,~/module-invoice.yml,~/_custom.yml'
+      testplan: '~/defaults/7.0.x.yml,~/module-invoice.yml,~/_custom.yml'
+      runs_on: '"ubuntu-latest"'
+      defaults: 'v4'
+      plan_folder: '.github/fresh-advance'
+    secrets:
+      DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+      DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  shop71:
+    uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yml@v4
+    with:
+      testplan: '~/defaults/7.1.x.yml,~/module-invoice.yml,~/_custom.yml'
       runs_on: '"ubuntu-latest"'
       defaults: 'v4'
       plan_folder: '.github/fresh-advance'
