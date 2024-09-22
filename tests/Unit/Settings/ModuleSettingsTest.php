@@ -21,19 +21,6 @@ use Symfony\Component\String\UnicodeString;
  */
 final class ModuleSettingsTest extends TestCase
 {
-    public function testGetDocumentFooter(): void
-    {
-        $value = 'someValue';
-
-        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
-        $mssMock->method('getString')->willReturnMap([
-            [ModuleSettings::SETTING_DOCUMENT_FOOTER, Module::MODULE_ID, new UnicodeString($value)]
-        ]);
-
-        $sut = new ModuleSettings($mssMock);
-        $this->assertSame($value, $sut->getDocumentFooter());
-    }
-
     public function testGetFilenamePrefix(): void
     {
         $value = 'someValue';

@@ -4,12 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v2.2.0] - Unreleased
+## [v3.0.0] - Unreleased
 
 ### Added
 - Logo updated
 - Layout settings for invoice document - Document margins are adjustable
 - Possibility to add document Header (and there was a footer already, but to be handled through @page css)
+- Possibility to automatically increase the Invoice number for the Order on invoice generation
+- Possibility to set a template for Invoice number and use invoice number from the Order
 
 ### Changed
 - Invoice document footer setting moved to Layout settings group
