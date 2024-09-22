@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Possibility to add document Header (and there was a footer already, but to be handled through @page css)
 - Possibility to automatically increase the Invoice number for the Order on invoice generation
 - Possibility to set a template for Invoice number and use invoice number from the Order
+- Blocks in body.html.twig for customizing the template by your needs
 
 ### Changed
 - Invoice document footer setting moved to Layout settings group
