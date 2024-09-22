@@ -20,4 +20,6 @@ interface OrderRepositoryInterface
     public function getByOrderId(string $orderId): OrderModel;
 
     public function fillEmptyInvoiceNumber(OrderModel $orderModel): void;
+
+    public function getInvoiceNumberByOrderId(string $orderId): string;
 }

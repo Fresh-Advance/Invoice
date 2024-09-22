@@ -11,7 +11,9 @@ namespace FreshAdvance\Invoice\Tests\Integration\Repository;
 
 use FreshAdvance\Invoice\Exception\OrderNotFound;
 use FreshAdvance\Invoice\Repository\OrderRepository;
+use FreshAdvance\Invoice\Repository\OrderRepositoryInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
+use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
@@ -36,7 +38,8 @@ class OrderRepositoryTest extends IntegrationTestCase
 
     public function testGetOrder(): void
     {
-        $sut = $this->createPartialMock(OrderRepository::class, []);
+        $sut = $this->getSut();
+
         $result = $sut->getByOrderId(self::TEST_ORDER_ID);
 
         $this->assertSame(self::TEST_ORDER_ID, $result->getId());
@@ -44,7 +47,7 @@ class OrderRepositoryTest extends IntegrationTestCase
 
     public function testGetWrongOrder(): void
     {
-        $sut = $this->createPartialMock(OrderRepository::class, []);
+        $sut = $this->getSut();
 
         $this->expectException(OrderNotFound::class);
         $sut->getByOrderId(self::TEST_ORDER_ID_WRONG);
@@ -52,7 +55,7 @@ class OrderRepositoryTest extends IntegrationTestCase
 
     public function testOrderInvoiceNumberNotIncreasedIfAlreadySet(): void
     {
-        $sut = $this->createPartialMock(OrderRepository::class, []);
+        $sut = $this->getSut();
 
         $order = $sut->getByOrderId(self::TEST_ORDER_ID);
         $sut->fillEmptyInvoiceNumber($order);
@@ -66,10 +69,32 @@ class OrderRepositoryTest extends IntegrationTestCase
         $order = oxNew(OrderModel::class);
         $order->save();
 
-        $sut = $this->createPartialMock(OrderRepository::class, []);
+        $sut = $this->getSut();
         $sut->fillEmptyInvoiceNumber($order);
 
         $updatedOrder = $sut->getByOrderId($order->getId());
         $this->assertEquals(322, $updatedOrder->getFieldData('oxbillnr'));
+    }
+
+    public function testGetInvoiceNumberByOrderId(): void
+    {
+        $sut = $this->getSut();
+
+        $this->assertEquals(321, $sut->getInvoiceNumberByOrderId(self::TEST_ORDER_ID));
+    }
+
+    public function testGetInvoiceNumberThrowsExceptionOnNotExistingOrder(): void
+    {
+        $sut = $this->getSut();
+
+        $this->expectException(OrderNotFound::class);
+        $sut->getInvoiceNumberByOrderId(self::TEST_ORDER_ID_WRONG);
+    }
+
+    public function getSut(): OrderRepositoryInterface
+    {
+        return new OrderRepository(
+            queryBuilderFactory: $this->get(QueryBuilderFactoryInterface::class),
+        );
     }
 }

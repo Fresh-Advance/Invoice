@@ -61,10 +61,7 @@ class Invoice
 
     public function getInvoiceFileName(InvoiceConfigurationInterface $configuration): string
     {
-        $order = $this->orderRepository->getByOrderId($configuration->getOrderId());
-
-        /** @var string $invoiceNumber */
-        $invoiceNumber = $order->getFieldData('oxbillnr') ?? '';
+        $invoiceNumber = $this->orderRepository->getInvoiceNumberByOrderId($configuration->getOrderId());
 
         return $this->moduleSettings->getFilePrefix()
             . $configuration->getFormattedNumber($invoiceNumber)

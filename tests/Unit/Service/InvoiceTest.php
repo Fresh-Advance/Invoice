@@ -119,11 +119,8 @@ class InvoiceTest extends TestCase
             ])
         );
 
-        $orderRepositoryMock->method('getByOrderId')
+        $orderRepositoryMock->method('getInvoiceNumberByOrderId')
             ->with($orderId)
-            ->willReturn($modelMock = $this->createMock(OrderModel::class));
-        $modelMock->method('getFieldData')
-            ->with('oxbillnr')
             ->willReturn($invoiceNumber);
 
         $this->assertSame(
