@@ -1,0 +1,10 @@
+imports:
+  - { resource: Decoration/services.yaml }
+
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Invoice\Order\Settings\OrderSettingsInterface:
+    class: FreshAdvance\Invoice\Order\Settings\OrderSettings

@@ -18,4 +18,6 @@ interface InvoiceConfigurationInterface
     public function getDate(): string;
 
     public function getNumber(): string;
+
+    public function getFormattedNumber(string $invoiceNumber): string;
 }

@@ -50,4 +50,9 @@ $aLang = [
     'SHOP_MODULE_fa_invoice_MarginRight' => 'Margin right (e.g. 10px)',
     'SHOP_MODULE_fa_invoice_DocumentHeader' => 'Document header (HTML with simple inline CSS possible)',
     'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document footer (HTML with simple inline CSS possible)',
+
+    # Module settings invoice numbering
+    'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Invoice numbering',
+    'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Update order invoice number on invoice creation',
+    'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format',
 ];

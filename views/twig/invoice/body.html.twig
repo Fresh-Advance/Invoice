@@ -117,7 +117,7 @@
 <div id="number">{{ translate({ ident: "FA_INVOICE_ORDERNR" }) }}: {{ order.getFieldData('oxordernr') }}</div>
 <div id="date">{{ translate({ ident: "FA_INVOICE_DATE" }) }}: {{ configuration.getDate() }}</div>
 
-<div id="facture">{{ translate({ ident: "FA_INVOICE_NUMBER" }) }} {{ configuration.getNumber() }}</div>
+<div id="facture">{{ translate({ ident: "FA_INVOICE_NUMBER" }) }} {{ configuration.getFormattedNumber(order.getFieldData('oxbillnr')) }}</div>
 
 <table id="contentTable">
     <tr class="contentHeader">

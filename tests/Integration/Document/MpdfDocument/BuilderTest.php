@@ -10,12 +10,15 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Integration\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
+use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
 use FreshAdvance\Invoice\Language\Service\LanguageProxy;
 use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
+use FreshAdvance\Invoice\Service\OrderServiceInterface;
 use FreshAdvance\Invoice\Settings\Service\DocumentLayoutSettingsServiceInterface;
 use Mpdf\Mpdf;
 use org\bovigo\vfs\vfsStream;
+use OxidEsales\Eshop\Application\Model\Order;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -41,12 +44,12 @@ class BuilderTest extends TestCase
 
         $templateRenderer = $this->createMock(TemplateRendererInterface::class);
 
-        $sut = new Builder(
+        $sut = $this->getSut(
             pdfProcessor: $pdfProcessorMock,
             templateRenderer: $templateRenderer,
             shopLanguage: $shopLanguage,
             layoutSettingsService: $layoutSettingsServiceStub,
-            numberWordingService: $numberWordingServiceStub
+            numberWordingService: $numberWordingServiceStub,
         );
 
         $invoiceData = $this->createConfiguredMock(InvoiceData::class, [
@@ -69,5 +72,23 @@ class BuilderTest extends TestCase
 
         $sut->generate($invoiceData);
         $this->assertDirectoryExists($tempDirectory->url() . '/somePath/');
+    }
+
+    public function getSut(
+        Mpdf $pdfProcessor = null,
+        TemplateRendererInterface $templateRenderer = null,
+        LanguageProxy $shopLanguage = null,
+        DocumentLayoutSettingsServiceInterface $layoutSettingsService = null,
+        NumberWordingServiceInterface $numberWordingService = null,
+    ): Builder {
+        $layoutSettingsService ??= $this->createStub(DocumentLayoutSettingsServiceInterface::class);
+
+        return new Builder(
+            pdfProcessor: $pdfProcessor ?? $this->createStub(Mpdf::class),
+            templateRenderer: $templateRenderer ?? $this->createStub(TemplateRendererInterface::class),
+            shopLanguage: $shopLanguage ?? $this->createStub(LanguageProxy::class),
+            layoutSettingsService: $layoutSettingsService,
+            numberWordingService: $numberWordingService ?? $this->createStub(NumberWordingServiceInterface::class),
+        );
     }
 }

@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Invoice\Order\Decoration\InvoiceGeneratorDecorator:
+    decorates: FreshAdvance\Invoice\Document\InvoiceGeneratorInterface
+    arguments:
+      $originalGenerator: '@.inner'

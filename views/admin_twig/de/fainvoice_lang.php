@@ -50,4 +50,9 @@ $aLang = [
     'SHOP_MODULE_fa_invoice_MarginRight' => 'Rand rechts (z.B. 10px)',
     'SHOP_MODULE_fa_invoice_DocumentHeader' => 'Dokumentenkopf (HTML mit einfachem Inline-CSS möglich)',
     'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Dokumentenfuß (HTML mit einfachem Inline-CSS möglich)',
+
+    # Module settings invoice numbering
+    'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Rechnungsnummerierung',
+    'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Bestellrechnungsnummer bei Rechnungserstellung aktualisieren',
+    'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Rechnungsnummerformat',
 ];

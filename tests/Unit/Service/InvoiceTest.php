@@ -9,18 +9,15 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
-use FreshAdvance\Invoice\Settings\Context;
 use FreshAdvance\Invoice\Service\Invoice;
-use FreshAdvance\Invoice\Settings\ModuleSettings;
 use FreshAdvance\Invoice\Settings\ConfigInterface;
+use FreshAdvance\Invoice\Settings\ModuleSettings;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
-use OxidEsales\Eshop\Core\Config;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -56,7 +53,7 @@ class InvoiceTest extends TestCase
         ]);
 
         $sut = new Invoice(
-            orderService: $orderServiceMock,
+            orderRepository: $orderServiceMock,
             shopService: $shopServiceMock,
             shopConfig: $shopConfigMock,
             moduleContext: $this->createConfiguredMock(
@@ -90,7 +87,7 @@ class InvoiceTest extends TestCase
         ]);
 
         $sut = new Invoice(
-            orderService: $this->createStub(OrderRepositoryInterface::class),
+            orderRepository: $this->createStub(OrderRepositoryInterface::class),
             shopService: $this->createStub(ShopRepositoryInterface::class),
             shopConfig: $this->createStub(ConfigInterface::class),
             moduleContext: $this->createStub(\FreshAdvance\Invoice\Settings\Context::class),
@@ -103,23 +100,32 @@ class InvoiceTest extends TestCase
 
     public function testGetInvoiceFileName(): void
     {
-        $configurationStub = $this->createConfiguredMock(InvoiceConfiguration::class, [
-            'getNumber' => 'someNumber'
-        ]);
+        $orderId = uniqid();
+        $invoiceNumber = uniqid();
+        $formattedInvoiceNumber = uniqid();
 
-        $moduleSettingsStub = $this->createConfiguredMock(ModuleSettings::class, [
-            'getFilePrefix' => 'prefix-'
-        ]);
+        $configurationMock = $this->createMock(InvoiceConfigurationInterface::class);
+        $configurationMock->method('getOrderId')->willReturn($orderId);
+        $configurationMock->method('getFormattedNumber')->with($invoiceNumber)->willReturn($formattedInvoiceNumber);
 
         $sut = new Invoice(
-            orderService: $this->createStub(OrderRepositoryInterface::class),
+            orderRepository: $orderRepositoryMock = $this->createMock(OrderRepositoryInterface::class),
             shopService: $this->createStub(ShopRepositoryInterface::class),
             shopConfig: $this->createStub(ConfigInterface::class),
             moduleContext: $this->createStub(\FreshAdvance\Invoice\Settings\Context::class),
             invoiceConfigRepo: $this->createStub(InvoiceConfigurationRepositoryInterface::class),
-            moduleSettings: $moduleSettingsStub
+            moduleSettings: $this->createConfiguredMock(ModuleSettings::class, [
+                'getFilePrefix' => 'prefix-'
+            ])
         );
 
-        $this->assertSame("prefix-someNumber.pdf", $sut->getInvoiceFileName($configurationStub));
+        $orderRepositoryMock->method('getInvoiceNumberByOrderId')
+            ->with($orderId)
+            ->willReturn($invoiceNumber);
+
+        $this->assertSame(
+            "prefix-" . $formattedInvoiceNumber . ".pdf",
+            $sut->getInvoiceFileName($configurationMock)
+        );
     }
 }
