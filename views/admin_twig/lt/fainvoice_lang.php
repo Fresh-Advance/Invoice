@@ -41,6 +41,7 @@ $aLang = [
     'SHOP_MODULE_GROUP_fa_invoice_main' => 'Invoice document',
     'SHOP_MODULE_fa_invoice_FilenamePrefix' => 'Filename Prefix',
     'SHOP_MODULE_fa_invoice_IsForArchive' => 'Document is for archive (PDFA)',
+    'SHOP_MODULE_fa_invoice_InvoiceDateFormat' => 'Default invoice date format',
 
     # Module settings layout
     'SHOP_MODULE_GROUP_fa_invoice_layout' => 'Invoice document layout',

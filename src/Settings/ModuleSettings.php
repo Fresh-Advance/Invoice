@@ -17,6 +17,7 @@ class ModuleSettings implements ModuleSettingsInterface
     public const SETTING_DOCUMENT_FILENAME_PREFIX = 'fa_invoice_FilenamePrefix';
     public const SETTING_DOCUMENT_IS_FOR_ARCHIVE = 'fa_invoice_IsForArchive';
     public const SETTING_INVOICE_NUMBER_FORMAT = 'fa_invoice_InvoiceNumberFormat';
+    public const SETTING_INVOICE_DATE_FORMAT = 'fa_invoice_InvoiceDateFormat';
 
     public function __construct(
         private ModuleSettingServiceInterface $moduleSettingService
@@ -39,6 +40,11 @@ class ModuleSettings implements ModuleSettingsInterface
             self::SETTING_DOCUMENT_IS_FOR_ARCHIVE,
             Module::MODULE_ID
         );
+    }
+
+    public function getInvoiceDateFormat(): string
+    {
+        return $this->getStringSetting(self::SETTING_INVOICE_DATE_FORMAT);
     }
 
     private function getStringSetting(string $key): string

@@ -47,6 +47,12 @@ $aModule = [
             'type' => 'bool',
             'value' => false
         ],
+        [
+            'group' => 'fa_invoice_main',
+            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_INVOICE_DATE_FORMAT,
+            'type' => 'str',
+            'value' => 'Y-m-d'
+        ],
 
         /** Layout */
         [

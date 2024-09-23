@@ -15,7 +15,9 @@ use FreshAdvance\Invoice\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Settings\ConfigInterface;
+use FreshAdvance\Invoice\Settings\ContextInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettings;
+use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use PHPUnit\Framework\TestCase;
@@ -52,7 +54,8 @@ class InvoiceTest extends TestCase
             'getFilePrefix' => 'prefix'
         ]);
 
-        $sut = new Invoice(
+
+        $sut = $this->getSut(
             orderRepository: $orderServiceMock,
             shopService: $shopServiceMock,
             shopConfig: $shopConfigMock,
@@ -73,6 +76,32 @@ class InvoiceTest extends TestCase
         $this->assertSame($invoiceConfigurationStub, $result->getInvoiceConfiguration());
     }
 
+    public function testGetDefaultInvoiceData(): void
+    {
+        $sut = $this->getSut(
+            orderRepository: $this->createConfiguredMock(OrderRepositoryInterface::class, [
+                'getByOrderId' => $this->createConfiguredMock(OrderModel::class, [
+                    'getShopId' => 3,
+                    'getId' => uniqid()
+                ])
+            ]),
+            invoiceConfigRepo: $this->createConfiguredMock(InvoiceConfigurationRepositoryInterface::class, [
+                'getByOrderId' => null
+            ]),
+            moduleSettings: $this->createConfiguredMock(ModuleSettingsInterface::class, [
+                'getInvoiceDateFormat' => $dateFormat = uniqid(),
+                'getInvoiceNumberFormat' => $numberFormat = uniqid(),
+            ])
+        );
+
+        $result = $sut->getInvoiceDataByOrderId(uniqid());
+
+        $configuration = $result->getInvoiceConfiguration();
+
+        $this->assertSame($dateFormat, $configuration->getDate());
+        $this->assertSame($numberFormat, $configuration->getNumber());
+    }
+
     public function testSaveOrderInvoiceData(): void
     {
         $configurationStub = $this->createStub(InvoiceConfigurationInterface::class);
@@ -86,13 +115,9 @@ class InvoiceTest extends TestCase
             'getFilePrefix' => 'prefix'
         ]);
 
-        $sut = new Invoice(
-            orderRepository: $this->createStub(OrderRepositoryInterface::class),
-            shopService: $this->createStub(ShopRepositoryInterface::class),
-            shopConfig: $this->createStub(ConfigInterface::class),
-            moduleContext: $this->createStub(\FreshAdvance\Invoice\Settings\Context::class),
+        $sut = $this->getSut(
             invoiceConfigRepo: $repositoryMock,
-            moduleSettings: $moduleSettingsStub
+            moduleSettings: $moduleSettingsStub,
         );
 
         $sut->saveOrderInvoiceData($configurationStub);
@@ -108,12 +133,8 @@ class InvoiceTest extends TestCase
         $configurationMock->method('getOrderId')->willReturn($orderId);
         $configurationMock->method('getFormattedNumber')->with($invoiceNumber)->willReturn($formattedInvoiceNumber);
 
-        $sut = new Invoice(
+        $sut = $this->getSut(
             orderRepository: $orderRepositoryMock = $this->createMock(OrderRepositoryInterface::class),
-            shopService: $this->createStub(ShopRepositoryInterface::class),
-            shopConfig: $this->createStub(ConfigInterface::class),
-            moduleContext: $this->createStub(\FreshAdvance\Invoice\Settings\Context::class),
-            invoiceConfigRepo: $this->createStub(InvoiceConfigurationRepositoryInterface::class),
             moduleSettings: $this->createConfiguredMock(ModuleSettings::class, [
                 'getFilePrefix' => 'prefix-'
             ])
@@ -126,6 +147,24 @@ class InvoiceTest extends TestCase
         $this->assertSame(
             "prefix-" . $formattedInvoiceNumber . ".pdf",
             $sut->getInvoiceFileName($configurationMock)
+        );
+    }
+
+    protected function getSut(
+        OrderRepositoryInterface $orderRepository = null,
+        ShopRepositoryInterface $shopService = null,
+        ConfigInterface $shopConfig = null,
+        ContextInterface $moduleContext = null,
+        InvoiceConfigurationRepositoryInterface $invoiceConfigRepo = null,
+        ModuleSettingsInterface $moduleSettings = null,
+    ): Invoice {
+        return new Invoice(
+            orderRepository: $orderRepository ?? $this->createStub(OrderRepositoryInterface::class),
+            shopService: $shopService ?? $this->createStub(ShopRepositoryInterface::class),
+            shopConfig: $shopConfig ?? $this->createStub(ConfigInterface::class),
+            moduleContext: $moduleContext ?? $this->createStub(ContextInterface::class),
+            invoiceConfigRepo: $invoiceConfigRepo ?? $this->createStub(InvoiceConfigurationRepositoryInterface::class),
+            moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class)
         );
     }
 }

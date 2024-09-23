@@ -16,4 +16,6 @@ interface ModuleSettingsInterface
     public function isForArchive(): bool;
 
     public function getInvoiceNumberFormat(): string;
+
+    public function getInvoiceDateFormat(): string;
 }

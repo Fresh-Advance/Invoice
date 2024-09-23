@@ -137,7 +137,7 @@
     {% endblock %}
 
     {% block fa_invoice_invoice_body_invoice_date %}
-        <div id="date">{{ translate({ ident: "FA_INVOICE_DATE" }) }}: {{ configuration.getDate() }}</div>
+        <div id="date">{{ translate({ ident: "FA_INVOICE_DATE" }) }}: {{ configuration.getFormattedDate() }}</div>
     {% endblock %}
 
     {% block fa_invoice_invoice_body_invoice_number %}

@@ -17,7 +17,7 @@
 
     <input type="hidden" name="invoice[order_id]" value="{{ oxid }}">
     <div>{{ translate({ ident: "FA_INVOICE_FORM_DATE" }) }}: <input type="text" name="invoice[date]" value="{{ configuration.getDate() }}"></div>
-    <div>{{ translate({ ident: "FA_INVOICE_FORM_NUMBER" }) }}: <input type="text" name="invoice[number]" value="{{ configuration.getNumber() ?: moduleSettings.getInvoiceNumberFormat() }}"></div>
+    <div>{{ translate({ ident: "FA_INVOICE_FORM_NUMBER" }) }}: <input type="text" name="invoice[number]" value="{{ configuration.getNumber() }}"></div>
     <div>{{ translate({ ident: "FA_INVOICE_FORM_SIGNER" }) }}: <input type="text" name="invoice[signer]" value="{{ configuration.getSigner() }}"></div>
     <div><input type="submit" name="saveData" value="{{ translate({ ident: "FA_INVOICE_FORM_SAVE_DATA" }) }}"></div>
 </form>

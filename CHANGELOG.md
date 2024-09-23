@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Possibility to automatically increase the Invoice number for the Order on invoice generation
 - Possibility to set a template for Invoice number and use invoice number from the Order
 - Blocks in body.html.twig for customizing the template by your needs
+- Possibility to automatically calculate the current date by specific format from the settings
 
 ### Changed
 - Invoice document footer setting moved to Layout settings group

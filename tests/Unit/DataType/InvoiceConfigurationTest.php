@@ -44,4 +44,29 @@ class InvoiceConfigurationTest extends TestCase
         $invoiceNumber = uniqid();
         $this->assertSame('for' . $invoiceNumber . 'mat', $sut->getFormattedNumber($invoiceNumber));
     }
+
+    /** @dataProvider formattedDateDataProvider */
+    public function testGetFormattedDate(string $format, string $expectation): void
+    {
+        $sut = new InvoiceConfiguration(
+            orderId: 'someOrderId',
+            signer: 'someSigner',
+            date: $format,
+            number: 'for%1$smat'
+        );
+
+        $this->assertSame($expectation, $sut->getFormattedDate());
+    }
+
+    public function formattedDateDataProvider(): \Generator
+    {
+        $y = date('Y');
+        $m = date('m');
+        $d = date('d');
+
+        yield "formatted" => ['~Y~m~d~', "~{$y}~{$m}~{$d}~"];
+        yield "regular format" => ['Y-m-d', "{$y}-{$m}-{$d}"];
+        yield "empty case" => ['', ''];
+        yield "numbers as format" => ['123-456', '123-456'];
+    }
 }

@@ -61,6 +61,19 @@ final class ModuleSettingsTest extends TestCase
         $this->assertSame($value, $sut->getInvoiceNumberFormat());
     }
 
+    public function testGetInvoiceDateFormat(): void
+    {
+        $value = uniqid();
+
+        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
+        $mssMock->method('getString')->willReturnMap([
+            [ModuleSettings::SETTING_INVOICE_DATE_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
+        ]);
+
+        $sut = new ModuleSettings($mssMock);
+        $this->assertSame($value, $sut->getInvoiceDateFormat());
+    }
+
     public function booleanDataProvider(): array
     {
         return [

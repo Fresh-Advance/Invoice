@@ -15,7 +15,7 @@
 * Invoice numbering automation (uses the order's oxbillnr field)
 * Several fields are adjustable before invoice generation:
   * Invoice number template (or number itself, if number automation is not used)
-  * Invoice date
+  * Invoice date (with configurable format for automatic calculation)
   * Invoice signer person
 * PDF Invoice file generated in shop Default language
   * Currently we have DE, EN and LT translations available here. Feel free to add yours.
