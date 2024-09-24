@@ -17,8 +17,6 @@ jobs:
         global:
           title: 'shop70'
     secrets:
-      DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
-      DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   shop71:
@@ -32,6 +30,4 @@ jobs:
         global:
           title: 'shop71'
     secrets:
-      DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
-      DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
