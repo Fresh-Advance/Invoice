@@ -74,6 +74,18 @@ final class ModuleSettingsTest extends TestCase
         $this->assertSame($value, $sut->getInvoiceDateFormat());
     }
 
+    /** @dataProvider booleanDataProvider */
+    public function testIsSendInvoiceOnUserOrderEmailActive(bool $value): void
+    {
+        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
+        $mssMock->method('getBoolean')->willReturnMap([
+            [ModuleSettings::SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL, Module::MODULE_ID, $value]
+        ]);
+
+        $sut = new ModuleSettings($mssMock);
+        $this->assertSame($value, $sut->isSendInvoiceOnUserOrderEmailActive());
+    }
+
     public function booleanDataProvider(): array
     {
         return [

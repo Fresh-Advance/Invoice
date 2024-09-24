@@ -106,6 +106,14 @@ $aModule = [
             'type' => 'str',
             'value' => 'ABC-%1$s',
         ],
+
+        // group emails
+        [
+            'group' => 'fa_invoice_emails',
+            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL,
+            'type' => 'bool',
+            'value' => false
+        ],
     ],
     'events' => [
         'onActivate' => '\FreshAdvance\Invoice\Transition\Core\Events::onActivate',

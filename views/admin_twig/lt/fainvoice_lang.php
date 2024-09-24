@@ -33,4 +33,8 @@ $aLang = array_merge($aLang, [
     'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Invoice numbering',
     'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Update order invoice number on invoice creation',
     'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format',
+
+    # Module settings invoice mails
+    'SHOP_MODULE_GROUP_fa_invoice_emails' => 'Email options',
+    'SHOP_MODULE_fa_invoice_SendInvoiceOnUserOrderEmail' => 'Generate and attach invoice to Customer order confirmation email',
 ]);

@@ -11,6 +11,7 @@ namespace FreshAdvance\Invoice\Transition\Core;
 
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
+use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 
 /**
@@ -27,13 +28,17 @@ class Email extends Email_parent
 
     public function sendOrderEmailToUser($order, $subject = null)
     {
-        $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
-        $generator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
+        $moduleSettings = $this->getServiceFromContainer(ModuleSettingsInterface::class);
 
-        $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($order->getId());
-        $generator->generate($invoiceData);
+        if ($moduleSettings->isSendInvoiceOnUserOrderEmailActive()) {
+            $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
+            $generator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
 
-        $this->attachInvoice = $invoiceData->getInvoicePath();
+            $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($order->getId());
+            $generator->generate($invoiceData);
+
+            $this->attachInvoice = $invoiceData->getInvoicePath();
+        }
 
         return $this->faCallParentSendOrderEmailToUser($order, $subject);
     }
@@ -51,11 +56,13 @@ class Email extends Email_parent
         return $this->faCallParentSend();
     }
 
+    /** @codeCoverageIgnore not testable because of parent call */
     public function faCallParentSend()
     {
         return parent::send();
     }
 
+    /** @codeCoverageIgnore not testable because of parent call */
     public function faCallParentSendOrderEmailToUser($order, mixed $subject)
     {
         return parent::sendOrderEmailToUser($order, $subject);
