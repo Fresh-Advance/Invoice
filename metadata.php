@@ -31,7 +31,8 @@ $aModule = [
     ],
     'extend' => [
         \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Transition\Model\OrderArticle::class,
-        \OxidEsales\Eshop\Core\Language::class => \FreshAdvance\Invoice\Language\Extension\Language::class
+        \OxidEsales\Eshop\Core\Language::class => \FreshAdvance\Invoice\Language\Extension\Language::class,
+        \OxidEsales\Eshop\Core\Email::class => \FreshAdvance\Invoice\Transition\Core\Email::class,
     ],
     'settings' => [
         /** Main */

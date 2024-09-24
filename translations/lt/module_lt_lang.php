@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+
+$aLang = [
+    'charset' => 'UTF-8',
+    'tbclorder_fa_invoice' => 'Sąskaita',
+
+    'FA_INVOICE_SELLER' => 'Pardavėjas',
+    'FA_INVOICE_BUYER' => 'Pirkėjas',
+    'FA_INVOICE_TAXID' => 'Įmonės kodas',
+    'FA_INVOICE_ORDERNR' => 'Užsakymo Nr.',
+    'FA_INVOICE_DATE' => 'Sąskaitos išrašymo data',
+    'FA_INVOICE_NUMBER' => 'Sąskaita faktūra Nr.',
+
+    'FA_INVOICE_ITEM_TITLE' => 'Pavadinimas',
+    'FA_INVOICE_ITEM_CODE' => 'Kodas',
+    'FA_INVOICE_ITEM_TYPE' => 'Mat. vnt.',
+    'FA_INVOICE_ITEM_COUNT' => 'Kiekis',
+    'FA_INVOICE_ITEM_PRICE' => 'Kaina',
+    'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Viso',
+    'FA_INVOICE_DISCOUNT' => 'Nuolaida',
+    'FA_INVOICE_VOUCHERS' => 'Kuponas',
+    'FA_INVOICE_PAYMENT' => 'Mokejimo metodo mokestis',
+    'FA_INVOICE_VATS' => 'PVM',
+
+    'FA_INVOICE_PCS' => 'vnt.',
+    'FA_INVOICE_DELIVERY' => 'Pristatymas',
+    'FA_INVOICE_TOTAL' => 'Viso',
+    'FA_INVOICE_TOTAL_IN_WORDS' => 'Suma žodžiais',
+    'FA_INVOICE_SIGNED' => 'Sąskaitą išrašė',
+];

@@ -2,34 +2,11 @@
 
 declare(strict_types=1);
 
-$aLang = [
-    'charset' => 'UTF-8',
-    'tbclorder_fa_invoice' => 'Invoice',
+$aLang = [];
 
-    'FA_INVOICE_SELLER' => 'Seller',
-    'FA_INVOICE_BUYER' => 'Buyer',
-    'FA_INVOICE_TAXID' => 'Tax ID',
-    'FA_INVOICE_ORDERNR' => 'Order Nr.',
-    'FA_INVOICE_DATE' => 'Invoice issue date',
-    'FA_INVOICE_NUMBER' => 'Invoice Nr.',
+require __DIR__ . "/../../../translations/en/module_en_lang.php";
 
-    'FA_INVOICE_ITEM_TITLE' => 'Item',
-    'FA_INVOICE_ITEM_CODE' => 'Code',
-    'FA_INVOICE_ITEM_TYPE' => 'Unit',
-    'FA_INVOICE_ITEM_COUNT' => 'Count',
-    'FA_INVOICE_ITEM_PRICE' => 'Price',
-    'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Total',
-    'FA_INVOICE_DISCOUNT' => 'Discount',
-    'FA_INVOICE_VOUCHERS' => 'Coupon Discount',
-    'FA_INVOICE_PAYMENT' => 'Payment Method Charge',
-    'FA_INVOICE_VATS' => 'VAT',
-
-    'FA_INVOICE_PCS' => 'pcs.',
-    'FA_INVOICE_DELIVERY' => 'Delivery',
-    'FA_INVOICE_TOTAL' => 'Total',
-    'FA_INVOICE_TOTAL_IN_WORDS' => 'Amount in words',
-    'FA_INVOICE_SIGNED' => 'Invoice issuer',
-
+$aLang = array_merge($aLang, [
     'FA_INVOICE_FORM_SIGNER' => 'Invoiced by',
     'FA_INVOICE_FORM_NUMBER' => 'Invoice No',
     'FA_INVOICE_FORM_DATE' => 'Invoice Date',
@@ -56,4 +33,4 @@ $aLang = [
     'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Invoice numbering',
     'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Update order invoice number on invoice creation',
     'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format',
-];
+]);
