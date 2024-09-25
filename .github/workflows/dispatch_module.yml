@@ -9,8 +9,16 @@ on:
           - 'no'
           - 'PHP8.0/MySQL5.7'
           - 'PHP8.0/MySQL8.0'
+          - 'PHP8.0/MariaDB11'
           - 'PHP8.1/MySQL5.7'
           - 'PHP8.1/MySQL8.0'
+          - 'PHP8.1/MariaDB11'
+          - 'PHP8.2/MySQL5.7'
+          - 'PHP8.2/MySQL8.0'
+          - 'PHP8.2/MariaDB11'
+          - 'PHP8.3/MySQL5.7'
+          - 'PHP8.3/MySQL8.0'
+          - 'PHP8.3/MariaDB11'
         default: 'PHP8.1/MySQL8.0'
         description: 'Limit to one PHP/MySQL combination'
 
@@ -28,8 +36,16 @@ jobs:
             "no") LIMIT='';;
             "PHP8.0/MySQL5.7") LIMIT='~/defaults/php8.0_mysql5.7_only.yml,' ;;
             "PHP8.0/MySQL8.0") LIMIT='~/defaults/php8.0_mysql8.0_only.yml,' ;;
+            "PHP8.0/MariaDB11") LIMIT='~/defaults/php8.0_mariadb11_only.yml,' ;;
             "PHP8.1/MySQL5.7") LIMIT='~/defaults/php8.1_mysql5.7_only.yml,' ;;
             "PHP8.1/MySQL8.0") LIMIT='~/defaults/php8.1_mysql8.0_only.yml,' ;;
+            "PHP8.1/MariaDB11") LIMIT='~/defaults/php8.1_mariadb11_only.yml,' ;;
+            "PHP8.2/MySQL5.7") LIMIT='~/defaults/php8.2_mysql5.7_only.yml,' ;;
+            "PHP8.2/MySQL8.0") LIMIT='~/defaults/php8.2_mysql8.0_only.yml,' ;;
+            "PHP8.2/MariaDB11") LIMIT='~/defaults/php8.2_mariadb11_only.yml,' ;;
+            "PHP8.3/MySQL5.7") LIMIT='~/defaults/php8.3_mysql5.7_only.yml,' ;;
+            "PHP8.3/MySQL8.0") LIMIT='~/defaults/php8.3_mysql8.0_only.yml,' ;;
+            "PHP8.3/MariaDB11") LIMIT='~/defaults/php8.3_mariadb11_only.yml,' ;;
           esac
 
           # shellcheck disable=SC2088
