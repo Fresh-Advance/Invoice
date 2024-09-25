@@ -19,6 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Invoice document footer setting moved to Layout settings group
 - Improve quality tools configurations
 
+### Fixed
+- Add signer line in the invoice document only if value is not empty
+
 ## [v2.1.0] - 2023-11-08
 
 ### Added
