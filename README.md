@@ -52,11 +52,11 @@ For customizing the template, start from creating the template extension in your
 `views/twig/extensions/modules/fa_invoice/invoice/body.html.twig` with example content:
 
 ```twig
-\{% extends '@fa_invoice/invoice/body.html.twig' %\}
+{% extends '@fa_invoice/invoice/body.html.twig' %}
 
-\{% block fa_invoice_invoice_body_order_number %\}
+{% block fa_invoice_invoice_body_order_number %}
     <div id="number">example overwrite</div>
-\{% endblock %\}
+{% endblock %}
 ```
 
 Next, check the original template, and overwrite the blocks you need.
