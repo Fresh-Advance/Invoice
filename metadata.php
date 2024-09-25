@@ -84,7 +84,7 @@ $aModule = [
             'group' => 'fa_invoice_layout',
             'name' => \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings::SETTING_DOCUMENT_HEADER,
             'type' => 'str',
-            'value' => 'Document Header Example; HTML with simple inline css can go here<br>Change in Module Settings',
+            'value' => '<small>Document Header Example; HTML with simple inline css can go here - Change in Module Settings</small>',
         ],
         [
             'group' => 'fa_invoice_layout',
