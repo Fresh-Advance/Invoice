@@ -8,6 +8,11 @@
 declare(strict_types=1);
 
 class_alias(
+    \OxidEsales\Eshop\Core\Email::class,
+    \FreshAdvance\Invoice\Transition\Core\Email_parent::class
+);
+
+class_alias(
     \OxidEsales\Eshop\Application\Model\OrderArticle::class,
     \FreshAdvance\Invoice\Transition\Model\OrderArticle_parent::class
 );

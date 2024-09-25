@@ -13,6 +13,7 @@ use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
+use OxidEsales\Eshop\Application\Model\Order;
 
 /**
  * @mixin \OxidEsales\Eshop\Core\Email
@@ -24,7 +25,7 @@ class Email extends Email_parent
     protected $MIMEBody = '';
     protected $MIMEHeader = '';
 
-    protected $attachInvoice = null;
+    protected ?string $attachInvoice = null;
 
     public function sendOrderEmailToUser($order, $subject = null)
     {
@@ -56,18 +57,32 @@ class Email extends Email_parent
         return $this->faCallParentSend();
     }
 
-    /** @codeCoverageIgnore not testable because of parent call */
+    /**
+     * @codeCoverageIgnore not testable because of parent call
+     *
+     * @return bool
+     */
     public function faCallParentSend()
     {
         return parent::send();
     }
 
-    /** @codeCoverageIgnore not testable because of parent call */
-    public function faCallParentSendOrderEmailToUser($order, mixed $subject)
+    /**
+     * @codeCoverageIgnore not testable because of parent call
+     *
+     * @param Order $order
+     * @param ?string $subject
+     *
+     * @return bool
+     */
+    public function faCallParentSendOrderEmailToUser($order, $subject = null)
     {
         return parent::sendOrderEmailToUser($order, $subject);
     }
 
+    /**
+     * @return void
+     */
     protected function clearMailer()
     {
         parent::clearMailer();
