@@ -14,9 +14,10 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
+use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController;
 use FreshAdvance\Invoice\Transput\RequestInterface;
-use FreshAdvance\Invoice\Transput\RequestProxy;
+use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -24,7 +25,7 @@ use PHPUnit\Framework\TestCase;
  */
 class InvoiceControllerTest extends TestCase
 {
-    public function testRender(): void
+    public function testRenderGivesMainVariablesToTemplate(): void
     {
         $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
         $invoiceServiceMock = $this->createPartialMock(Invoice::class, ['getInvoiceDataByOrderId']);
@@ -36,56 +37,121 @@ class InvoiceControllerTest extends TestCase
             InvoiceController::class,
             ['getServiceFromContainer', 'getEditObjectId']
         );
-        $sut->method('getServiceFromContainer')->willReturnMap([[Invoice::class, $invoiceServiceMock]]);
+        $sut->method('getServiceFromContainer')->willReturnMap([
+            [Invoice::class, $invoiceServiceMock],
+            [ModuleSettingsInterface::class, $moduleSettingsStub = $this->createStub(ModuleSettingsInterface::class)]
+        ]);
+
         $sut->method('getEditObjectId')->willReturn('someOxid');
 
         $this->assertStringStartsWith('@fa_invoice/admin/', $sut->render());
 
         $viewData = $sut->getViewData();
         $this->assertSame($invoiceDataStub, $viewData['invoiceData']);
+        $this->assertSame($moduleSettingsStub, $viewData['moduleSettings']);
     }
 
-    public function testRequestParameterProcess(): void
+    public function testRenderSetsExistingFileData(): void
     {
-        $orderId = 'someOrderId';
-
-        $requestStub = $this->createMock(RequestInterface::class);
-        $requestStub->method('getInvoiceIdFromRequest')->willReturn($orderId);
-
-        $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
-        $invoiceDataStub = $this->createConfiguredMock(InvoiceDataInterface::class, [
-            'getInvoicePath' => 'filepath.pdf',
-            'getInvoiceConfiguration' => $invoiceConfigurationStub
+        $tempDirectory = vfsStream::setup('root', null, [
+            'filename.pdf' => 'someFileContent'
         ]);
 
-        $invoiceDataServiceStub = $this->createPartialMock(
-            Invoice::class,
-            ['getInvoiceDataByOrderId', 'getInvoiceFileName']
+        $invoiceDataStub = $this->createConfiguredMock(InvoiceDataInterface::class, [
+            'getInvoicePath' => $tempDirectory->url() . '/filename.pdf',
+            'getInvoiceConfiguration' => $configuration = $this->createStub(InvoiceConfigurationInterface::class),
+
+        ]);
+        $invoiceDataServiceMock = $this->createMock(Invoice::class);
+        $invoiceDataServiceMock->method('getInvoiceDataByOrderId')->willReturnMap([
+            ['someOxid', $invoiceDataStub]
+        ]);
+        $invoiceDataServiceMock->method('getInvoiceFileName')
+            ->with($configuration)
+            ->willReturn($fileName = uniqid());
+
+        $sut = $this->createPartialMock(
+            InvoiceController::class,
+            ['getServiceFromContainer', 'getEditObjectId']
         );
-        $invoiceDataServiceStub->method('getInvoiceDataByOrderId')
-            ->with($orderId)
+        $sut->method('getServiceFromContainer')->willReturnMap([
+            [Invoice::class, $invoiceDataServiceMock],
+        ]);
+        $sut->method('getEditObjectId')->willReturn('someOxid');
+
+        $sut->render();
+
+        $viewData = $sut->getViewData();
+        $this->assertTrue($viewData['invoiceExists']);
+        $this->assertSame($fileName, $viewData['invoiceFileName']);
+        $this->assertNotEmpty($viewData['invoiceDate']);
+    }
+
+    public function testSaveDataTriggersDataSave(): void
+    {
+        $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
+        $requestStub = $this->createConfiguredMock(RequestInterface::class, [
+            'getInvoiceIdFromRequest' => $invoiceId = uniqid(),
+            'getInvoiceConfigurationFromRequest' => $invoiceConfigurationStub
+        ]);
+
+        $invoiceServiceSpy = $this->createMock(Invoice::class);
+        $invoiceServiceSpy->expects($this->once())
+            ->method('saveOrderInvoiceData')
+            ->with($invoiceConfigurationStub);
+
+        $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
+        $invoiceServiceSpy->method('getInvoiceDataByOrderId')
+            ->with($invoiceId)
             ->willReturn($invoiceDataStub);
-        $invoiceDataServiceStub->method('getInvoiceFileName')
-            ->with($invoiceConfigurationStub)
-            ->willReturn("headerFilename.pdf");
 
-        $invoiceGeneratorMock = $this->createMock(InvoiceGeneratorInterface::class);
-        $invoiceGeneratorMock->expects($this->once())->method('generate')->with($invoiceDataStub);
-
-        $invoiceServiceMock = $this->createMock(InvoiceServiceInterface::class);
-        $invoiceServiceMock->expects($this->once())
-            ->method('triggerInvoiceFileDownload')
-            ->with("headerFilename.pdf", 'filepath.pdf');
+        $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class);
+        $invoiceGeneratorSpy->expects($this->once())
+            ->method('generate')
+            ->with($invoiceDataStub);
 
         $sut = $this->createPartialMock(
             InvoiceController::class,
             ['getServiceFromContainer']
         );
         $sut->method('getServiceFromContainer')->willReturnMap([
+            [Invoice::class, $invoiceServiceSpy],
             [RequestInterface::class, $requestStub],
-            [Invoice::class, $invoiceDataServiceStub],
-            [InvoiceGeneratorInterface::class, $invoiceGeneratorMock],
-            [InvoiceServiceInterface::class, $invoiceServiceMock],
+            [InvoiceGeneratorInterface::class, $invoiceGeneratorSpy],
+        ]);
+
+        $sut->saveData();
+    }
+
+    public function testDownloadOrderInvoiceTriggersDownloadServiceWithCorrectParameters(): void
+    {
+        $requestStub = $this->createConfiguredMock(RequestInterface::class, [
+            'getInvoiceIdFromRequest' => $invoiceId = uniqid(),
+        ]);
+
+        $invoiceDataStub = $this->createConfiguredMock(InvoiceDataInterface::class, [
+            'getInvoicePath' => $invoicePath = uniqid(),
+            'getInvoiceConfiguration' => $configuration = $this->createStub(InvoiceConfigurationInterface::class)
+        ]);
+
+        $invoiceDataServiceMock = $this->createMock(Invoice::class);
+        $invoiceDataServiceMock->method('getInvoiceDataByOrderId')->with($invoiceId)->willReturn($invoiceDataStub);
+        $invoiceDataServiceMock->method('getInvoiceFileName')
+            ->with($configuration)->willReturn($invoiceFileName = uniqid());
+
+        $invoiceServiceSpy = $this->createMock(InvoiceServiceInterface::class);
+        $invoiceServiceSpy->expects($this->once())
+            ->method('triggerInvoiceFileDownload')
+            ->with($invoiceFileName, $invoicePath);
+
+        $sut = $this->createPartialMock(
+            InvoiceController::class,
+            ['getServiceFromContainer']
+        );
+        $sut->method('getServiceFromContainer')->willReturnMap([
+            [Invoice::class, $invoiceDataServiceMock],
+            [RequestInterface::class, $requestStub],
+            [InvoiceServiceInterface::class, $invoiceServiceSpy],
         ]);
 
         $sut->downloadOrderInvoice();

@@ -10,7 +10,7 @@ $aLang = array_merge($aLang, [
     'FA_INVOICE_FORM_SIGNER' => 'Sąskaitą išrašė',
     'FA_INVOICE_FORM_NUMBER' => 'Sąskaitos Nr.',
     'FA_INVOICE_FORM_DATE' => 'Sąskaitos išrašymo data',
-    'FA_INVOICE_FORM_SAVE_DATA' => 'Išsaugoti sąskaitos konfigūraciją',
+    'FA_INVOICE_FORM_SAVE_DATA' => 'Generuoti naują dokumentą',
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Atsisiusti Sąskaitą',
 

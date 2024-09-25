@@ -14,10 +14,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Possibility to set a template for Invoice number and use invoice number from the Order
 - Blocks in body.html.twig for customizing the template by your needs
 - Possibility to automatically calculate the current date by specific format from the settings
+- Double-check question for Regeneration of the document
+- New block for showing if document already generated with Download button
 
 ### Changed
 - Invoice document footer setting moved to Layout settings group
 - Improve quality tools configurations
+- In admin controller there is no separate Save action anymore, it saves And generates the new document at once
 
 ### Fixed
 - Add signer line in the invoice document only if value is not empty
