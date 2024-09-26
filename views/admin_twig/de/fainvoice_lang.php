@@ -7,10 +7,14 @@ $aLang = [];
 require __DIR__ . "/../../../translations/de/module_de_lang.php";
 
 $aLang = array_merge($aLang, [
+    'FA_INVOICE_FORM_TITLE_NEW_DOCUMENT' => 'Neues Rechnungsdokument',
+    'FA_INVOICE_FORM_TITLE_CURRENT_DOCUMENT' => 'Aktuelles Dokument',
+
     'FA_INVOICE_FORM_SIGNER' => 'In Rechnung gestellt von',
     'FA_INVOICE_FORM_NUMBER' => 'Rechnungsnummer',
     'FA_INVOICE_FORM_DATE' => 'Rechnungsdatum',
     'FA_INVOICE_FORM_SAVE_DATA' => 'Neues Rechnungsdokument generieren',
+    'FA_INVOICE_FORM_CONFIRM_REGENERATE' => 'Möchten Sie das bereits vorhandene Dokument wirklich neu generieren?',
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Rechnung herunterladen',
 

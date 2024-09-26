@@ -19,7 +19,7 @@
 
         <input type="hidden" name="invoice[order_id]" value="{{ oxid }}">
 
-        <h2>New document:</h2>
+        <h2>{{ translate({ ident: "FA_INVOICE_FORM_TITLE_NEW_DOCUMENT" }) }}:</h2>
 
         <div>{{ translate({ ident: "FA_INVOICE_FORM_DATE" }) }}: <input type="text" name="invoice[date]" value="{{ configuration.getDate() }}"></div>
         <div>{{ translate({ ident: "FA_INVOICE_FORM_NUMBER" }) }}: <input type="text" name="invoice[number]" value="{{ configuration.getNumber() }}"></div>
@@ -27,7 +27,7 @@
 
         <div style="margin-top: 20px;">
             <input type="submit" name="generateDocument" value="{{ translate({ ident: "FA_INVOICE_FORM_SAVE_DATA" }) }}"
-            {% if invoiceExists %}onclick="return confirm('Are you sure you want to regenerate already existing document?');"{% endif %}>
+            {% if invoiceExists %}onclick="return confirm('{{ translate({ ident: "FA_INVOICE_FORM_CONFIRM_REGENERATE" }) }}');"{% endif %}>
         </div>
     </form>
 </div>
@@ -41,7 +41,7 @@
             <input type="hidden" name="cl" value="fa_invoice_admin">
             <input type="hidden" name="fnc" value="downloadOrderInvoice">
 
-            <h2>Current document:</h2>
+            <h2>{{ translate({ ident: "FA_INVOICE_FORM_TITLE_CURRENT_DOCUMENT" }) }}:</h2>
             <div>
                 {{ invoiceFileName }} - {{ invoiceDate }}
             </div>

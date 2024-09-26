@@ -7,10 +7,14 @@ $aLang = [];
 require __DIR__ . "/../../../translations/lt/module_lt_lang.php";
 
 $aLang = array_merge($aLang, [
+    'FA_INVOICE_FORM_TITLE_NEW_DOCUMENT' => 'Naujas sąskaitos dokumentas',
+    'FA_INVOICE_FORM_TITLE_CURRENT_DOCUMENT' => 'Esamas dokumentas',
+
     'FA_INVOICE_FORM_SIGNER' => 'Sąskaitą išrašė',
     'FA_INVOICE_FORM_NUMBER' => 'Sąskaitos Nr.',
     'FA_INVOICE_FORM_DATE' => 'Sąskaitos išrašymo data',
     'FA_INVOICE_FORM_SAVE_DATA' => 'Generuoti naują dokumentą',
+    'FA_INVOICE_FORM_CONFIRM_REGENERATE' => 'Ar tikrai norite pergeneruoti jau esantį dokumentą?',
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Atsisiusti Sąskaitą',
 

@@ -7,10 +7,14 @@ $aLang = [];
 require __DIR__ . "/../../../translations/en/module_en_lang.php";
 
 $aLang = array_merge($aLang, [
+    'FA_INVOICE_FORM_TITLE_NEW_DOCUMENT' => 'New invoice document',
+    'FA_INVOICE_FORM_TITLE_CURRENT_DOCUMENT' => 'Current document',
+
     'FA_INVOICE_FORM_SIGNER' => 'Invoiced by',
     'FA_INVOICE_FORM_NUMBER' => 'Invoice No',
     'FA_INVOICE_FORM_DATE' => 'Invoice Date',
     'FA_INVOICE_FORM_SAVE_DATA' => 'Generate new Invoice document',
+    'FA_INVOICE_FORM_CONFIRM_REGENERATE' => 'Are you sure you want to regenerate already existing document?',
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Download Invoice',
 
