@@ -235,6 +235,8 @@
     {% endblock %}
 
     {% block fa_invoice_invoice_body_sign %}
-        <div id="invoiceSign">{{ translate({ ident: "FA_INVOICE_SIGNED" }) }}: {{ configuration.getSigner() }}</div>
+        {% if configuration.getSigner() %}
+            <div id="invoiceSign">{{ translate({ ident: "FA_INVOICE_SIGNED" }) }}: {{ configuration.getSigner() }}</div>
+        {% endif %}
     {% endblock %}
 {% endblock %}
