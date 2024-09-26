@@ -25,6 +25,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Add signer line in the invoice document only if value is not empty
 
+### Removed
+- Smarty support
+
 ## [v2.1.0] - 2023-11-08
 
 ### Added
