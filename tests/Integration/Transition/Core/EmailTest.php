@@ -10,178 +10,105 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Integration\Transition\Core;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Transition\Core\Email;
+use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /** @covers \FreshAdvance\Invoice\Transition\Core\Email */
 class EmailTest extends IntegrationTestCase
 {
-    public function testInvoiceGeneratedDuringSendOrderEmailToUserMethodWithOptionOn(): void
-    {
-        $sut = $this->createPartialMock(
-            Email::class,
-            ['faCallParentSendOrderEmailToUser', 'getServiceFromContainer']
-        );
-        $sut->method('faCallParentSendOrderEmailToUser')->willReturn($parentOrderEmailSendResult = uniqid());
-        $sut->method('getServiceFromContainer')->willReturnMap([
-            [
-                \FreshAdvance\Invoice\Service\Invoice::class,
-                $invoiceDataService = $this->createMock(\FreshAdvance\Invoice\Service\Invoice::class)
-            ],
-            [
-                \FreshAdvance\Invoice\Document\InvoiceGeneratorInterface::class,
-                $generatorSpy = $this->createMock(\FreshAdvance\Invoice\Document\InvoiceGeneratorInterface::class)
-            ],
-            [
-                ModuleSettingsInterface::class,
-                $this->createConfiguredMock(ModuleSettingsInterface::class, [
-                    'isSendInvoiceOnUserOrderEmailActive' => true
-                ])
-            ]
-        ]);
-
-        $orderStub = $this->createConfiguredMock(\OxidEsales\Eshop\Application\Model\Order::class, [
-            'getId' => $orderId = uniqid()
-        ]);
-
-        $invoiceDataService->method('getInvoiceDataByOrderId')
-            ->with($orderId)
-            ->willReturn(
-                $invoiceData = $this->createMock(InvoiceDataInterface::class)
-            );
-
-        $generatorSpy->expects($this->once())->method('generate')->with($invoiceData);
-
-        $orderEmailResult = $sut->sendOrderEmailToUser($orderStub, "some subject");
-
-        $this->assertSame($parentOrderEmailSendResult, $orderEmailResult);
-    }
-
-    public function testInvoiceNotGeneratedDuringSendOrderEmailToUserMethodWithOptionOff(): void
-    {
-        $sut = $this->createPartialMock(
-            Email::class,
-            ['faCallParentSendOrderEmailToUser', 'getServiceFromContainer']
-        );
-        $sut->method('faCallParentSendOrderEmailToUser')->willReturn($parentOrderEmailSendResult = uniqid());
-        $sut->method('getServiceFromContainer')->willReturnMap([
-            [
-                \FreshAdvance\Invoice\Service\Invoice::class,
-                $invoiceDataServiceSpy = $this->createMock(\FreshAdvance\Invoice\Service\Invoice::class)
-            ],
-            [
-                \FreshAdvance\Invoice\Document\InvoiceGeneratorInterface::class,
-                $generatorSpy = $this->createMock(\FreshAdvance\Invoice\Document\InvoiceGeneratorInterface::class)
-            ],
-            [
-                ModuleSettingsInterface::class,
-                $this->createConfiguredMock(ModuleSettingsInterface::class, [
-                    'isSendInvoiceOnUserOrderEmailActive' => false
-                ])
-            ],
-        ]);
-
-        $invoiceDataServiceSpy->expects($this->never())->method('getInvoiceDataByOrderId');
-        $generatorSpy->expects($this->never())->method('generate');
-
-        $orderStub = $this->createStub(\OxidEsales\Eshop\Application\Model\Order::class);
-        $orderEmailResult = $sut->sendOrderEmailToUser($orderStub, "some subject");
-
-        $this->assertSame($parentOrderEmailSendResult, $orderEmailResult);
-    }
-
-    public function testInvoiceAttachedIfGeneratedDuringSendOrderEmailMethodWithOptionOn(): void
+    public function testInvoiceGeneratedAndAttachedWithOptionOn(): void
     {
         $sut = $this->createPartialMock(
             Email::class,
             ['faCallParentSend', 'faCallParentSendOrderEmailToUser', 'getServiceFromContainer', 'addAttachment']
         );
-        $sut->method('faCallParentSend')->willReturn($parentSendResult = uniqid());
-        $sut->method('getServiceFromContainer')->willReturnMap([
-            [
-                \FreshAdvance\Invoice\Service\Invoice::class,
-                $invoiceDataService = $this->createMock(\FreshAdvance\Invoice\Service\Invoice::class)
-            ],
-            [
-                \FreshAdvance\Invoice\Document\InvoiceGeneratorInterface::class,
-                $this->createMock(\FreshAdvance\Invoice\Document\InvoiceGeneratorInterface::class)
-            ],
-            [
-                ModuleSettingsInterface::class,
-                $this->createConfiguredMock(ModuleSettingsInterface::class, [
+
+        $sut->method('getServiceFromContainer')->willReturnMap(
+            $this->getDIConfiguration(
+                invoiceDataService: $invoiceDataService = $this->createMock(Invoice::class),
+                invoiceGenerator: $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class),
+                moduleSettings: $this->createConfiguredMock(ModuleSettingsInterface::class, [
                     'isSendInvoiceOnUserOrderEmailActive' => true
-                ])
-            ]
-        ]);
+                ]),
+            )
+        );
 
-        $order = $this->createConfiguredMock(\OxidEsales\Eshop\Application\Model\Order::class, [
-            'getId' => $orderId = uniqid()
-        ]);
-
+        $order = $this->createConfiguredMock(OrderModel::class, ['getId' => $orderId = uniqid()]);
         $invoiceDataService->method('getInvoiceDataByOrderId')
             ->with($orderId)
             ->willReturn(
-                $this->createConfiguredMock(InvoiceDataInterface::class, [
-                    'getInvoicePath' => $invoicePath = 'example.pdf'
+                $invoiceDataStub = $this->createConfiguredMock(InvoiceDataInterface::class, [
+                    'getInvoicePath' => $invoicePath = uniqid()
                 ])
             );
 
-        $sut->sendOrderEmailToUser($order, "some subject");
+        $invoiceGeneratorSpy->expects($this->once())->method('generate')->with($invoiceDataStub);
+        $sut->method('faCallParentSendOrderEmailToUser')
+            ->with($order, $emailSubject = uniqid())
+            ->willReturn($parentOrderEmailSendResult = uniqid());
+        $this->assertSame($parentOrderEmailSendResult, $sut->sendOrderEmailToUser($order, $emailSubject));
 
-        $sut->expects($this->once())->method('addAttachment')->with(
-            $invoicePath,
-            'example.pdf'
-        );
+        $sut->expects($this->once())->method('addAttachment')
+            ->with($invoicePath, 'invoice.pdf');
+        $sut->method('faCallParentSend')->willReturn($parentSendResult = uniqid());
 
-        $sendResult = $sut->send();
-        $this->assertSame($parentSendResult, $sendResult);
+        $this->assertSame($parentSendResult, $sut->send());
 
         // check second send will not trigger the attachment again
         $sut->send();
     }
 
-    public function testInvoiceNotAttachedIfGeneratedDuringSendOrderEmailMethodWithOptionOff(): void
+    public function testInvoiceNotGeneratedAndNotAttachedWithOptionOff(): void
     {
         $sut = $this->createPartialMock(
             Email::class,
             ['faCallParentSend', 'faCallParentSendOrderEmailToUser', 'getServiceFromContainer', 'addAttachment']
         );
+        $sut->method('getServiceFromContainer')->willReturnMap(
+            $this->getDIConfiguration(
+                invoiceGenerator: $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class),
+                moduleSettings: $this->createConfiguredMock(ModuleSettingsInterface::class, [
+                    'isSendInvoiceOnUserOrderEmailActive' => false
+                ])
+            )
+        );
+
+        $invoiceGeneratorSpy->expects($this->never())->method('generate');
+
+        $order = $this->createConfiguredMock(OrderModel::class, ['getId' => uniqid()]);
+
+        $sut->method('faCallParentSendOrderEmailToUser')
+            ->with($order, $emailSubject = uniqid())
+            ->willReturn($parentOrderEmailSendResult = uniqid());
+        $this->assertSame($parentOrderEmailSendResult, $sut->sendOrderEmailToUser($order, $emailSubject));
+
         $sut->method('faCallParentSend')->willReturn($parentSendResult = uniqid());
-        $sut->method('getServiceFromContainer')->willReturnMap([
+        $sut->expects($this->never())->method('addAttachment');
+        $this->assertSame($parentSendResult, $sut->send());
+    }
+
+    protected function getDIConfiguration(
+        Invoice $invoiceDataService = null,
+        InvoiceGeneratorInterface $invoiceGenerator = null,
+        ModuleSettingsInterface $moduleSettings = null,
+    ): array {
+        return [
             [
-                \FreshAdvance\Invoice\Service\Invoice::class,
-                $invoiceDataService = $this->createMock(\FreshAdvance\Invoice\Service\Invoice::class)
+                Invoice::class,
+                $invoiceDataService ?? $this->createStub(Invoice::class)
             ],
             [
-                \FreshAdvance\Invoice\Document\InvoiceGeneratorInterface::class,
-                $this->createMock(\FreshAdvance\Invoice\Document\InvoiceGeneratorInterface::class)
+                InvoiceGeneratorInterface::class,
+                $invoiceGenerator ?? $this->createStub(InvoiceGeneratorInterface::class)
             ],
             [
                 ModuleSettingsInterface::class,
-                $this->createConfiguredMock(ModuleSettingsInterface::class, [
-                    'isSendInvoiceOnUserOrderEmailActive' => false
-                ])
-            ]
-        ]);
-
-        $order = $this->createConfiguredMock(\OxidEsales\Eshop\Application\Model\Order::class, [
-            'getId' => $orderId = uniqid()
-        ]);
-
-        $invoiceDataService->method('getInvoiceDataByOrderId')
-            ->with($orderId)
-            ->willReturn(
-                $this->createConfiguredMock(InvoiceDataInterface::class, [
-                    'getInvoicePath' => $invoicePath = 'example.pdf'
-                ])
-            );
-
-        $sut->sendOrderEmailToUser($order, "some subject");
-
-        $sut->expects($this->never())->method('addAttachment');
-
-        $sendResult = $sut->send();
-        $this->assertSame($parentSendResult, $sendResult);
+                $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class)
+            ],
+        ];
     }
 }

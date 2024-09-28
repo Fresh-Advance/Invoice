@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v3.0.1] - 2024-09-28
+
+### Fixed
+- Fix the issue with the invoice filename in the email - now its "invoice.pdf" instead of "example.pdf"
+
 ## [v3.0.0] - 2024-09-26
 
 ### Added
@@ -83,6 +88,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[v3.0.1]: https://github.com/Fresh-Advance/Invoice/compare/v3.0.0...v3.0.1
+[v3.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v2.2.0...v3.0.0
 [v2.2.0]: https://github.com/Fresh-Advance/Invoice/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.3.0...v2.0.0

@@ -49,7 +49,7 @@ class Email extends Email_parent
         if ($this->attachInvoice) {
             $this->addAttachment(
                 path: $this->attachInvoice,
-                name: 'example.pdf',
+                name: 'invoice.pdf',
             );
             $this->attachInvoice = null;
         }
