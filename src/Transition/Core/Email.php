@@ -47,9 +47,11 @@ class Email extends Email_parent
     public function send()
     {
         if ($this->attachInvoice) {
+            $moduleSettings = $this->getServiceFromContainer(ModuleSettingsInterface::class);
+
             $this->addAttachment(
                 path: $this->attachInvoice,
-                name: 'invoice.pdf',
+                name: $moduleSettings->getInvoiceInOrderEmailFilename(),
             );
             $this->attachInvoice = null;
         }

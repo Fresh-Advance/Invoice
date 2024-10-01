@@ -41,4 +41,5 @@ $aLang = array_merge($aLang, [
     # Module settings invoice mails
     'SHOP_MODULE_GROUP_fa_invoice_emails' => 'E-Mail-Optionen',
     'SHOP_MODULE_fa_invoice_SendInvoiceOnUserOrderEmail' => 'Rechnung generieren und an Bestellbestätigungs-E-Mail des Kunden anhängen',
+    'SHOP_MODULE_fa_invoice_InvoiceOnOrderEmailFilename' => 'Dateiname für an Bestellbestätigungs-E-Mail angehängte Rechnung',
 ]);

@@ -32,7 +32,8 @@ class EmailTest extends IntegrationTestCase
                 invoiceDataService: $invoiceDataService = $this->createMock(Invoice::class),
                 invoiceGenerator: $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class),
                 moduleSettings: $this->createConfiguredMock(ModuleSettingsInterface::class, [
-                    'isSendInvoiceOnUserOrderEmailActive' => true
+                    'isSendInvoiceOnUserOrderEmailActive' => true,
+                    'getInvoiceInOrderEmailFilename' => $fileName = uniqid()
                 ]),
             )
         );
@@ -53,7 +54,7 @@ class EmailTest extends IntegrationTestCase
         $this->assertSame($parentOrderEmailSendResult, $sut->sendOrderEmailToUser($order, $emailSubject));
 
         $sut->expects($this->once())->method('addAttachment')
-            ->with($invoicePath, 'invoice.pdf');
+            ->with($invoicePath, $fileName);
         $sut->method('faCallParentSend')->willReturn($parentSendResult = uniqid());
 
         $this->assertSame($parentSendResult, $sut->send());

@@ -19,6 +19,7 @@ class ModuleSettings implements ModuleSettingsInterface
     public const SETTING_INVOICE_NUMBER_FORMAT = 'fa_invoice_InvoiceNumberFormat';
     public const SETTING_INVOICE_DATE_FORMAT = 'fa_invoice_InvoiceDateFormat';
     public const SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL = 'fa_invoice_SendInvoiceOnUserOrderEmail';
+    public const SETTING_INVOICE_ON_ORDER_EMAIL_FILENAME = 'fa_invoice_InvoiceOnOrderEmailFilename';
 
     public function __construct(
         private ModuleSettingServiceInterface $moduleSettingService
@@ -46,6 +47,11 @@ class ModuleSettings implements ModuleSettingsInterface
     public function getInvoiceDateFormat(): string
     {
         return $this->getStringSetting(self::SETTING_INVOICE_DATE_FORMAT);
+    }
+
+    public function getInvoiceInOrderEmailFilename(): string
+    {
+        return $this->getStringSetting(self::SETTING_INVOICE_ON_ORDER_EMAIL_FILENAME);
     }
 
     private function getStringSetting(string $key): string

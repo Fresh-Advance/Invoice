@@ -20,4 +20,6 @@ interface ModuleSettingsInterface
     public function getInvoiceDateFormat(): string;
 
     public function isSendInvoiceOnUserOrderEmailActive(): bool;
+
+    public function getInvoiceInOrderEmailFilename(): string;
 }

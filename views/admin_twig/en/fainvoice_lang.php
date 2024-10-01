@@ -41,4 +41,5 @@ $aLang = array_merge($aLang, [
     # Module settings invoice mails
     'SHOP_MODULE_GROUP_fa_invoice_emails' => 'Email options',
     'SHOP_MODULE_fa_invoice_SendInvoiceOnUserOrderEmail' => 'Generate and attach invoice to Customer order confirmation email',
+    'SHOP_MODULE_fa_invoice_InvoiceOnOrderEmailFilename' => 'Filename for invoice attached to order confirmation email',
 ]);
