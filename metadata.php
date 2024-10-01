@@ -22,7 +22,7 @@ $aModule = [
         'en' => 'Invoice module for OXID eShop.',
     ],
     'thumbnail' => 'logo.png',
-    'version' => '3.0.1',
+    'version' => '3.1.0',
     'author' => 'Anton Fedurtsya',
     'email' => 'anton@fedurtsya.com',
     'url' => 'https://github.com/Fresh-Advance',
@@ -113,6 +113,12 @@ $aModule = [
             'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL,
             'type' => 'bool',
             'value' => false
+        ],
+        [
+            'group' => 'fa_invoice_emails',
+            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_INVOICE_ON_ORDER_EMAIL_FILENAME,
+            'type' => 'str',
+            'value' => 'invoice.pdf',
         ],
     ],
     'events' => [
