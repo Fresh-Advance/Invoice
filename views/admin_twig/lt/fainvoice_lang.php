@@ -2,38 +2,19 @@
 
 declare(strict_types=1);
 
-$aLang = [
-    'charset' => 'UTF-8',
-    'tbclorder_fa_invoice' => 'Sąskaita',
+$aLang = [];
 
-    'FA_INVOICE_SELLER' => 'Pardavėjas',
-    'FA_INVOICE_BUYER' => 'Pirkėjas',
-    'FA_INVOICE_TAXID' => 'Įmonės kodas',
-    'FA_INVOICE_ORDERNR' => 'Užsakymo Nr.',
-    'FA_INVOICE_DATE' => 'Sąskaitos išrašymo data',
-    'FA_INVOICE_NUMBER' => 'Sąskaita faktūra Nr.',
+require __DIR__ . "/../../../translations/lt/module_lt_lang.php";
 
-    'FA_INVOICE_ITEM_TITLE' => 'Pavadinimas',
-    'FA_INVOICE_ITEM_CODE' => 'Kodas',
-    'FA_INVOICE_ITEM_TYPE' => 'Mat. vnt.',
-    'FA_INVOICE_ITEM_COUNT' => 'Kiekis',
-    'FA_INVOICE_ITEM_PRICE' => 'Kaina',
-    'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Viso',
-    'FA_INVOICE_DISCOUNT' => 'Nuolaida',
-    'FA_INVOICE_VOUCHERS' => 'Kuponas',
-    'FA_INVOICE_PAYMENT' => 'Mokejimo metodo mokestis',
-    'FA_INVOICE_VATS' => 'PVM',
-
-    'FA_INVOICE_PCS' => 'vnt.',
-    'FA_INVOICE_DELIVERY' => 'Pristatymas',
-    'FA_INVOICE_TOTAL' => 'Viso',
-    'FA_INVOICE_TOTAL_IN_WORDS' => 'Suma žodžiais',
-    'FA_INVOICE_SIGNED' => 'Sąskaitą išrašė',
+$aLang = array_merge($aLang, [
+    'FA_INVOICE_FORM_TITLE_NEW_DOCUMENT' => 'Naujas sąskaitos dokumentas',
+    'FA_INVOICE_FORM_TITLE_CURRENT_DOCUMENT' => 'Esamas dokumentas',
 
     'FA_INVOICE_FORM_SIGNER' => 'Sąskaitą išrašė',
     'FA_INVOICE_FORM_NUMBER' => 'Sąskaitos Nr.',
     'FA_INVOICE_FORM_DATE' => 'Sąskaitos išrašymo data',
-    'FA_INVOICE_FORM_SAVE_DATA' => 'Išsaugoti sąskaitos konfigūraciją',
+    'FA_INVOICE_FORM_SAVE_DATA' => 'Generuoti naują dokumentą',
+    'FA_INVOICE_FORM_CONFIRM_REGENERATE' => 'Ar tikrai norite pergeneruoti jau esantį dokumentą?',
 
     'FA_INVOICE_FORM_DOWNLOAD' => 'Atsisiusti Sąskaitą',
 
@@ -56,4 +37,9 @@ $aLang = [
     'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Invoice numbering',
     'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Update order invoice number on invoice creation',
     'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format',
-];
+
+    # Module settings invoice mails
+    'SHOP_MODULE_GROUP_fa_invoice_emails' => 'Email options',
+    'SHOP_MODULE_fa_invoice_SendInvoiceOnUserOrderEmail' => 'Generate and attach invoice to Customer order confirmation email',
+    'SHOP_MODULE_fa_invoice_InvoiceOnOrderEmailFilename' => 'Filename for invoice attached to order confirmation email',
+]);

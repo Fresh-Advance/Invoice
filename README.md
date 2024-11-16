@@ -11,19 +11,22 @@
 ## Features
 
 * Adjustable invoice pages margins
-* Adjustable invoice pages header and footer
+* Adjustable invoice pages header and footer (images are possible in inlined CSS)
 * Invoice numbering automation (uses the order's oxbillnr field)
 * Several fields are adjustable before invoice generation:
   * Invoice number template (or number itself, if number automation is not used)
   * Invoice date (with configurable format for automatic calculation)
   * Invoice signer person
 * PDF Invoice file generated in shop Default language
-  * Currently we have DE, EN and LT translations available here. Feel free to add yours.
-  * Total sum shown in words in the invoice.
-
+  * Currently we have DE, EN and LT translations available. Feel free to add yours.
+* PDF Invoice can be automatically generated and attached to order confirmation email
+  * Invoice filename configurable through settings
+* Total sum shown in words in the invoice.
 * Only Twig shop installations supported
-* Tested with PHP 8.0 and 8.1
-* Tested with MySQL 5.7 and 8.0
+* Tested with:
+  * Shop 7.0 - PHP 8.0, 8.1, MySQL 5.7 and 8.0
+  * Shop 7.1 - PHP 8.1, 8.2, MySQL 5.7 and 8.0
+  * Shop 7.2 - PHP 8.2, 8.3, MySQL 5.7 and 8.0
 
 ## Compatibility
 
@@ -35,7 +38,6 @@
 * Show Vat for every product in list
 * The Credit note issuing functionality
 * Possibility to send generated invoice or credit note by email with button click.
-* Possibility to add image for invoice background
 * Other improvements? (feel free to ask in Issues section for possible additional functions)
 
 ## Installation
@@ -69,6 +71,16 @@ If so, create the file `var/configuration/shops/1/template_extension_chain.yaml`
 '@fa_invoice/invoice/body.html.twig':
   - oe_moduletemplate(please put your module id instead of the module template example)
 ```
+
+### More information you might need for the template
+
+The order variable in the template is the Order model object, so you can access all its fields and methods.
+
+Some examples you might need for achieving the desired result:
+
+* Customer number: {{ order.getOrderUser().getFieldData('oxcustnr') }}
+* Payment method: {{ order.getPaymentType().oxpayments__oxdesc.value }}
+* Order net sum: {{ order.getOrderNetSum() }}
 
 ## License
 

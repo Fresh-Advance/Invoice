@@ -16,7 +16,7 @@ use OxidEsales\Eshop\Core\Request;
 class RequestProxy implements RequestInterface
 {
     public const REQUEST_PARAM_INVOICE_DATA = 'invoice';
-    public const REQUEST_PARAM_ORDER_ID = 'orderId';
+    public const REQUEST_PARAM_ORDER_ID = 'oxid';
 
     public function __construct(
         private Request $request

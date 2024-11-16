@@ -59,7 +59,7 @@ jobs:
       testplan: ${{ needs.build_testplan.outputs.testplan }}
       runs_on: '"ubuntu-latest"'
       defaults: 'v4'
-      plan_folder: '.github/oxid-esales'
+      plan_folder: '.github/fresh-advance'
     secrets:
       DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
       DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}

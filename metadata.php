@@ -22,7 +22,7 @@ $aModule = [
         'en' => 'Invoice module for OXID eShop.',
     ],
     'thumbnail' => 'logo.png',
-    'version' => '3.0.0',
+    'version' => '3.1.0',
     'author' => 'Anton Fedurtsya',
     'email' => 'anton@fedurtsya.com',
     'url' => 'https://github.com/Fresh-Advance',
@@ -31,7 +31,8 @@ $aModule = [
     ],
     'extend' => [
         \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Transition\Model\OrderArticle::class,
-        \OxidEsales\Eshop\Core\Language::class => \FreshAdvance\Invoice\Language\Extension\Language::class
+        \OxidEsales\Eshop\Core\Language::class => \FreshAdvance\Invoice\Language\Extension\Language::class,
+        \OxidEsales\Eshop\Core\Email::class => \FreshAdvance\Invoice\Transition\Core\Email::class,
     ],
     'settings' => [
         /** Main */
@@ -83,7 +84,7 @@ $aModule = [
             'group' => 'fa_invoice_layout',
             'name' => \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings::SETTING_DOCUMENT_HEADER,
             'type' => 'str',
-            'value' => 'Document Header Example; HTML with simple inline css can go here<br>Change in Module Settings',
+            'value' => '<small>Document Header Example; HTML with simple inline css can go here - Change in Module Settings</small>',
         ],
         [
             'group' => 'fa_invoice_layout',
@@ -104,6 +105,20 @@ $aModule = [
             'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_INVOICE_NUMBER_FORMAT,
             'type' => 'str',
             'value' => 'ABC-%1$s',
+        ],
+
+        // group emails
+        [
+            'group' => 'fa_invoice_emails',
+            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL,
+            'type' => 'bool',
+            'value' => false
+        ],
+        [
+            'group' => 'fa_invoice_emails',
+            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_INVOICE_ON_ORDER_EMAIL_FILENAME,
+            'type' => 'str',
+            'value' => 'invoice.pdf',
         ],
     ],
     'events' => [

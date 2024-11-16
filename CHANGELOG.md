@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v3.0.0] - Unreleased
+## [v3.1.0] - 2024-10-01
+
+### Added
+- New setting for configuring the filename of the invoice document in the order confirmation email
+
+## [v3.0.1] - 2024-09-28
+
+### Fixed
+- Fix the issue with the invoice filename in the email - now its "invoice.pdf" instead of "example.pdf"
+
+## [v3.0.0] - 2024-09-26
 
 ### Added
 - Logo updated
@@ -14,10 +24,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Possibility to set a template for Invoice number and use invoice number from the Order
 - Blocks in body.html.twig for customizing the template by your needs
 - Possibility to automatically calculate the current date by specific format from the settings
+- Double-check question for Regeneration of the document
+- New block for showing if document already generated with Download button
 
 ### Changed
 - Invoice document footer setting moved to Layout settings group
 - Improve quality tools configurations
+- In admin controller there is no separate Save action anymore, it saves And generates the new document at once
+
+### Fixed
+- Add signer line in the invoice document only if value is not empty
+
+### Removed
+- Smarty support
 
 ## [v2.1.0] - 2023-11-08
 
@@ -74,6 +93,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[v3.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v3.0.1...v3.1.0
+[v3.0.1]: https://github.com/Fresh-Advance/Invoice/compare/v3.0.0...v3.0.1
+[v3.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v2.2.0...v3.0.0
 [v2.2.0]: https://github.com/Fresh-Advance/Invoice/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v1.3.0...v2.0.0

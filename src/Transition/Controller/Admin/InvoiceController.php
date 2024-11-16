@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
@@ -22,17 +21,28 @@ class InvoiceController extends AdminController
 {
     use ServiceContainer;
 
-    public const ORDER_ID_REQUEST_PARAM = 'orderId';
-
     protected $_sThisTemplate = '@fa_invoice/admin/invoice';
 
     public function render()
     {
-        $orderService = $this->getServiceFromContainer(Invoice::class);
-        $this->addTplParam('invoiceData', $orderService->getInvoiceDataByOrderId($this->getEditObjectId()));
+        $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
+        $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($this->getEditObjectId());
+        $this->addTplParam('invoiceData', $invoiceData);
 
         $moduleSettingsService = $this->getServiceFromContainer(ModuleSettingsInterface::class);
         $this->addTplParam('moduleSettings', $moduleSettingsService);
+
+        if (is_file($invoiceData->getInvoicePath())) {
+            $this->addTplParam('invoiceExists', true);
+            $this->addTplParam(
+                'invoiceFileName',
+                $invoiceDataService->getInvoiceFileName($invoiceData->getInvoiceConfiguration())
+            );
+
+            /** @var int $fileTimestamp */
+            $fileTimestamp = filemtime($invoiceData->getInvoicePath());
+            $this->addTplParam('invoiceDate', date('Y-m-d H:i:s', $fileTimestamp));
+        }
 
         return parent::render();
     }
@@ -41,33 +51,22 @@ class InvoiceController extends AdminController
     {
         $invoiceService = $this->getServiceFromContainer(Invoice::class);
         $requestService = $this->getServiceFromContainer(RequestInterface::class);
+        $generator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
+
         $invoiceService->saveOrderInvoiceData($requestService->getInvoiceConfigurationFromRequest());
+
+        $invoiceData = $invoiceService->getInvoiceDataByOrderId($requestService->getInvoiceIdFromRequest());
+        $generator->generate($invoiceData);
     }
 
     public function downloadOrderInvoice(): void
     {
-        $orderId = $this->getOrderIdFromRequest();
-
-        $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
-        $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($orderId);
-
-        $this->proceedToGenerateAndDownload($invoiceData, $invoiceDataService);
-    }
-
-    protected function getOrderIdFromRequest(): string
-    {
         $request = $this->getServiceFromContainer(RequestInterface::class);
-        return $request->getInvoiceIdFromRequest();
-    }
-
-    protected function proceedToGenerateAndDownload(
-        InvoiceDataInterface $invoiceData,
-        Invoice $invoiceDataService
-    ): void {
-        $generator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
-        $generator->generate($invoiceData);
-
+        $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
         $invoiceService = $this->getServiceFromContainer(InvoiceServiceInterface::class);
+
+        $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($request->getInvoiceIdFromRequest());
+
         $invoiceService->triggerInvoiceFileDownload(
             $invoiceDataService->getInvoiceFileName($invoiceData->getInvoiceConfiguration()),
             $invoiceData->getInvoicePath()

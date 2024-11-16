@@ -19,6 +19,5 @@ class InvoicePage extends Page
     public $invoiceDateField = "//input[@name='invoice[date]']";
     public $invoiceNumberField = "//input[@name='invoice[number]']";
     public $invoiceSignerField = "//input[@name='invoice[signer]']";
-    public $invoiceDataSaveButton = "//input[@name='saveData']";
-    public $invoiceDownloadButton = "//input[@name='download']";
+    public $invoiceDataGenerateButton = "//input[@name='generateDocument']";
 }

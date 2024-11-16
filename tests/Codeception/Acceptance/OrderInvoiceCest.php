@@ -42,6 +42,8 @@ final class OrderInvoiceCest
         $I->click(Translator::translate('tbclorder_fa_invoice'));
         $I->selectEditFrame();
 
+        $I->dontSee('Current document');
+
         $invoicePage = new InvoicePage($I);
 
         $dateExample = 'some date';
@@ -52,12 +54,12 @@ final class OrderInvoiceCest
         $I->fillField($invoicePage->invoiceNumberField, $numberExample);
         $I->fillField($invoicePage->invoiceSignerField, $signerExample);
 
-        $I->click($invoicePage->invoiceDataSaveButton);
+        $I->click($invoicePage->invoiceDataGenerateButton);
         $I->waitForPageLoad();
 
-        $I->seeInField($invoicePage->invoiceDateField, $dateExample);
-        $I->seeInField($invoicePage->invoiceNumberField, $numberExample);
-        $I->seeInField($invoicePage->invoiceSignerField, $signerExample);
+//        $I->wait(300);
+
+        $I->see('Current document');
     }
 
     /** @param AcceptanceTester $I */
@@ -90,7 +92,9 @@ final class OrderInvoiceCest
                 'OXFOLDER' => 'ORDERFOLDER_NEW',
                 'OXDELTYPE' => 'oxidstandard',
                 'OXTIMESTAMP' => (new DateTime())->format('Y-m-d 00:00:00'),
-                'OXCARDTEXT' => ''
+                'OXCARDTEXT' => '',
+                'OXTOTALORDERSUM' => 100,
+                'OXCURRENCY' => 'EUR',
             ]
         );
 
