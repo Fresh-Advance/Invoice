@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Transition\Core;
+namespace FreshAdvance\Invoice\Email\Core;
 
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
@@ -18,7 +18,7 @@ use OxidEsales\Eshop\Application\Model\Order;
 /**
  * @mixin \OxidEsales\Eshop\Core\Email
  */
-class Email extends Email_parent
+class EmailExtension extends EmailExtension_parent
 {
     use ServiceContainer;
 

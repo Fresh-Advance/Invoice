@@ -7,23 +7,23 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Integration\Transition\Core;
+namespace FreshAdvance\Invoice\Tests\Integration\Email\Core;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Email\Core\EmailExtension;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
-use FreshAdvance\Invoice\Transition\Core\Email;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
-/** @covers \FreshAdvance\Invoice\Transition\Core\Email */
-class EmailTest extends IntegrationTestCase
+/** @covers \FreshAdvance\Invoice\Email\Core\EmailExtension */
+class EmailExtensionTest extends IntegrationTestCase
 {
     public function testInvoiceGeneratedAndAttachedWithOptionOn(): void
     {
         $sut = $this->createPartialMock(
-            Email::class,
+            EmailExtension::class,
             ['faCallParentSend', 'faCallParentSendOrderEmailToUser', 'getServiceFromContainer', 'addAttachment']
         );
 
@@ -66,7 +66,7 @@ class EmailTest extends IntegrationTestCase
     public function testInvoiceNotGeneratedAndNotAttachedWithOptionOff(): void
     {
         $sut = $this->createPartialMock(
-            Email::class,
+            \FreshAdvance\Invoice\Email\Core\EmailExtension::class,
             ['faCallParentSend', 'faCallParentSendOrderEmailToUser', 'getServiceFromContainer', 'addAttachment']
         );
         $sut->method('getServiceFromContainer')->willReturnMap(

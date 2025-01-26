@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 class_alias(
     \OxidEsales\Eshop\Core\Email::class,
-    \FreshAdvance\Invoice\Transition\Core\Email_parent::class
+    \FreshAdvance\Invoice\Email\Core\EmailExtension_parent::class
 );
 
 class_alias(
     \OxidEsales\Eshop\Application\Model\OrderArticle::class,
-    \FreshAdvance\Invoice\Transition\Model\OrderArticle_parent::class
+    \FreshAdvance\Invoice\Document\Model\OrderArticleExtension_parent::class
 );
 
 class_alias(
