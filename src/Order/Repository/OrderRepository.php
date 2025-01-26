@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Repository;
+namespace FreshAdvance\Invoice\Order\Repository;
 
 use Doctrine\DBAL\ForwardCompatibility\Result;
 use FreshAdvance\Invoice\Exception\OrderNotFound;

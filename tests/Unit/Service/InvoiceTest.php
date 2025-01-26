@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
-use FreshAdvance\Invoice\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Settings\ConfigInterface;

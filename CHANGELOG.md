@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - `FreshAdvance\Invoice\Transition\Model\OrderArticle` to `FreshAdvance\Invoice\Document\Model\OrderArticleExtension`
   - `FreshAdvance\Invoice\Transition\Core\Email` to `FreshAdvance\Invoice\Email\Core\EmailExtension`
   - `FreshAdvance\Invoice\Service\OrderServiceInterface` to `FreshAdvance\Invoice\Order\Service\OrderServiceInterface`
+  - `FreshAdvance\Invoice\Repository\OrderRepositoryInterface` to `FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface`
 
 ## [v3.1.0] - 2024-10-01
 

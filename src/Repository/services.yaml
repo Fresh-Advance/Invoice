@@ -6,8 +6,5 @@ services:
   FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface:
     class: FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository
 
-  FreshAdvance\Invoice\Repository\OrderRepositoryInterface:
-    class: FreshAdvance\Invoice\Repository\OrderRepository
-
   FreshAdvance\Invoice\Repository\ShopRepositoryInterface:
     class: FreshAdvance\Invoice\Repository\ShopRepository

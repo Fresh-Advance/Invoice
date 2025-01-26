@@ -6,6 +6,9 @@ services:
     public: false
     autowire: true
 
+  FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface:
+    class: FreshAdvance\Invoice\Order\Repository\OrderRepository
+
   FreshAdvance\Invoice\Order\Service\OrderServiceInterface:
     class: FreshAdvance\Invoice\Order\Service\OrderService
 

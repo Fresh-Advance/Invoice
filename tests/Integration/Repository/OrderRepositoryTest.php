@@ -10,14 +10,13 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Integration\Repository;
 
 use FreshAdvance\Invoice\Exception\OrderNotFound;
-use FreshAdvance\Invoice\Repository\OrderRepository;
-use FreshAdvance\Invoice\Repository\OrderRepositoryInterface;
+use FreshAdvance\Invoice\Order\Repository\OrderRepository;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Repository\OrderRepository
+ * @covers \FreshAdvance\Invoice\Order\Repository\OrderRepository
  */
 class OrderRepositoryTest extends IntegrationTestCase
 {
@@ -91,7 +90,7 @@ class OrderRepositoryTest extends IntegrationTestCase
         $sut->getInvoiceNumberByOrderId(self::TEST_ORDER_ID_WRONG);
     }
 
-    public function getSut(): OrderRepositoryInterface
+    public function getSut(): \FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface
     {
         return new OrderRepository(
             queryBuilderFactory: $this->get(QueryBuilderFactoryInterface::class),

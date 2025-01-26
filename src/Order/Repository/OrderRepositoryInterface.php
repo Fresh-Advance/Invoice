@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Repository;
+namespace FreshAdvance\Invoice\Order\Repository;
 
 use FreshAdvance\Invoice\Exception\OrderNotFound;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
