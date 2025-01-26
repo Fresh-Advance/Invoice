@@ -9,15 +9,14 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Transition\Model;
 
-use FreshAdvance\Invoice\Transition\Model\OrderArticle;
-use OxidEsales\Eshop\Application\Model\Article;
+use FreshAdvance\Invoice\Document\Model\OrderArticleExtension;
 use OxidEsales\Eshop\Core\Model\BaseModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Transition\Model\OrderArticle
+ * @covers \FreshAdvance\Invoice\Document\Model\OrderArticleExtension
  */
-class OrderArticleTest extends IntegrationTestCase
+class OrderArticleExtensionTest extends IntegrationTestCase
 {
     public function testFaGetTranslatedTitleNoParent(): void
     {
@@ -33,7 +32,7 @@ class OrderArticleTest extends IntegrationTestCase
         ]);
         $testProduct->save();
 
-        $orderArticle = $this->createPartialMock(OrderArticle::class, ['getParentId', 'getProductId']);
+        $orderArticle = $this->createPartialMock(OrderArticleExtension::class, ['getParentId', 'getProductId']);
         $orderArticle->method('getParentId')->willReturn('');
         $orderArticle->method('getProductId')->willReturn($testProductId);
 
@@ -66,7 +65,7 @@ class OrderArticleTest extends IntegrationTestCase
         ]);
         $testProduct->save();
 
-        $orderArticle = $this->createPartialMock(OrderArticle::class, ['getParentId', 'getProductId']);
+        $orderArticle = $this->createPartialMock(\FreshAdvance\Invoice\Document\Model\OrderArticleExtension::class, ['getParentId', 'getProductId']);
         $orderArticle->method('getParentId')->willReturn($testParentProductId);
         $orderArticle->method('getProductId')->willReturn($testProductId);
 
@@ -99,7 +98,7 @@ class OrderArticleTest extends IntegrationTestCase
         ]);
         $testProduct->save();
 
-        $orderArticle = $this->createPartialMock(OrderArticle::class, ['getParentId', 'getProductId']);
+        $orderArticle = $this->createPartialMock(\FreshAdvance\Invoice\Document\Model\OrderArticleExtension::class, ['getParentId', 'getProductId']);
         $orderArticle->method('getParentId')->willReturn($testParentProductId);
         $orderArticle->method('getProductId')->willReturn($testProductId);
 

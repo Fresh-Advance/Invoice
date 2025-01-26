@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v4.0.0 - [Unreleased]
+
+### Changed
+- Moved classes to better fitting domains:
+  - `FreshAdvance\Invoice\Transition\Model\OrderArticle` to `FreshAdvance\Invoice\Document\Model\OrderArticleExtension`
+
 ## [v3.1.0] - 2024-10-01
 
 ### Added
@@ -93,6 +99,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[Unreleased]: https://github.com/Fresh-Advance/Invoice/compare/v3.1.0...dev-b-7.1.x
 [v3.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v3.0.1...v3.1.0
 [v3.0.1]: https://github.com/Fresh-Advance/Invoice/compare/v3.0.0...v3.0.1
 [v3.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v2.2.0...v3.0.0

@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Transition\Model;
+namespace FreshAdvance\Invoice\Document\Model;
 
 use OxidEsales\Eshop\Application\Model\Article;
 
 /**
  * @mixin \OxidEsales\Eshop\Application\Model\OrderArticle
  */
-class OrderArticle extends OrderArticle_parent
+class OrderArticleExtension extends OrderArticleExtension_parent
 {
     public function faGetTranslatedTitle(int $languageId): string
     {
