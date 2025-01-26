@@ -48,6 +48,54 @@ Module is available on packagist and installable via composer
 composer require fresh-advance/invoice
 ```
 
+# Development installation
+
+To be able running the tests and other preconfigured quality tools, please install the module as a [root package](https://getcomposer.org/doc/04-schema.md#root-package).
+
+The next section shows how to install the module as a root package by using the [Fresh Advance Development Base](https://github.com/Fresh-Advance/development).
+
+In case of different environment usage, please adjust by your own needs.
+
+# Development installation on Fresh Advance Development Base
+
+The installation instructions below are shown for the current [Fresh Advance Development Base](https://github.com/Fresh-Advance/development)
+for shop 7.0. Make sure your system meets the requirements of the Development Base.
+
+0. Ensure all docker containers are down to avoid port conflicts
+
+1. Clone the SDK for the new project
+```shell
+echo MyProject && git clone https://github.com/Fresh-Advance/development.git $_ && cd $_
+```
+
+2. Clone the repository to the source directory
+```shell
+git clone --recurse-submodules https://github.com/Fresh-Advance/Invoice.git --branch=b-7.0.x ./source
+```
+
+3. Run the recipe to setup the development environment
+```shell
+./source/recipes/setup-development.sh
+```
+
+You should be able to access the shop with http://localhost.local and the admin panel with http://localhost.local/admin
+(credentials: noreply@oxid-esales.com / admin)
+
+### Running the tests and quality tools
+
+Check the "scripts" section in the `composer.json` file for the available commands. Those commands can be executed
+by connecting to the php container and running the command from there, example:
+
+```shell
+make php
+composer tests-coverage
+```
+
+Commands can be also triggered directly on the container with docker compose, example:
+
+```shell
+docker compose exec -T php composer tests-coverage
+
 ## Overwriting the template
 
 For customizing the template, start from creating the template extension in your module

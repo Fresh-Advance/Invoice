@@ -90,7 +90,7 @@ $aModule = [
             'group' => 'fa_invoice_layout',
             'name' => \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings::SETTING_DOCUMENT_FOOTER,
             'type' => 'str',
-            'value' => 'Document Footer Example; HTML with simple inline css can go here<br>Change in Module Settings',
+            'value' => '<small>Document Footer Example; HTML with simple inline css can go here<br>Change in Module Settings</small>',
         ],
 
         // group invoice numbering
