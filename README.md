@@ -28,9 +28,10 @@
   * Shop 7.1 - PHP 8.1, 8.2, MySQL 5.7 and 8.0
   * Shop 7.2 - PHP 8.2, 8.3, MySQL 5.7 and 8.0
 
-## Compatibility
+## Branch compatibility
 
 * Branch b-7.0.x is compatible with OXID Shop compilation 7.0.0-rc.2 and up
+* Branch b-7.1.x is compatible with OXID Shop compilation 7.1.0 and up
 
 ## What to expect in next versions
 
@@ -70,7 +71,7 @@ echo MyProject && git clone https://github.com/Fresh-Advance/development.git $_ 
 
 2. Clone the repository to the source directory
 ```shell
-git clone --recurse-submodules https://github.com/Fresh-Advance/Invoice.git --branch=b-7.0.x ./source
+git clone --recurse-submodules https://github.com/Fresh-Advance/Invoice.git --branch=b-7.1.x ./source
 ```
 
 3. Run the recipe to setup the development environment
