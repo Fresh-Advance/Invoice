@@ -12,8 +12,8 @@ namespace FreshAdvance\Invoice\Tests\Unit\Order\Decoration;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Order\Decoration\InvoiceGeneratorDecorator;
+use FreshAdvance\Invoice\Order\Service\OrderServiceInterface;
 use FreshAdvance\Invoice\Order\Settings\OrderSettingsInterface;
-use FreshAdvance\Invoice\Service\OrderServiceInterface;
 use OxidEsales\Eshop\Application\Model\Order;
 use PHPUnit\Framework\TestCase;
 

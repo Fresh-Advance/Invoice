@@ -5,7 +5,7 @@
  * See LICENSE file for license details.
  */
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\Order\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 

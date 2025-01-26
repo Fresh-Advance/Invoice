@@ -10,6 +10,3 @@ services:
   FreshAdvance\Invoice\Service\InvoiceServiceInterface:
     class: FreshAdvance\Invoice\Service\InvoiceService
     public: true
-
-  FreshAdvance\Invoice\Service\OrderServiceInterface:
-    class: FreshAdvance\Invoice\Service\OrderService

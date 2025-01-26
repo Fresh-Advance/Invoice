@@ -11,8 +11,8 @@ namespace FreshAdvance\Invoice\Order\Decoration;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Order\Service\OrderServiceInterface;
 use FreshAdvance\Invoice\Order\Settings\OrderSettingsInterface;
-use FreshAdvance\Invoice\Service\OrderServiceInterface;
 
 class InvoiceGeneratorDecorator implements InvoiceGeneratorInterface
 {
