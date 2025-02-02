@@ -12,6 +12,11 @@ services:
     arguments:
       $invoiceFilenameCalculator: '@.inner'
 
+  FreshAdvance\Invoice\Email\Service\InvoiceFilenameCharactersFilter:
+    decorates: FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculatorInterface
+    arguments:
+      $invoiceFilenameCalculator: '@.inner'
+
   FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface:
     class: FreshAdvance\Invoice\Email\Settings\EmailSettings
     public: true
