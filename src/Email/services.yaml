@@ -1,0 +1,12 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculatorInterface:
+    class: FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculator
+    public: true
+
+  FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface:
+    class: FreshAdvance\Invoice\Email\Settings\EmailSettings
+    public: true
