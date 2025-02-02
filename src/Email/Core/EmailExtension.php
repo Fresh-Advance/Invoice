@@ -9,9 +9,11 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Email\Core;
 
+use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculatorInterface;
+use FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface;
 use FreshAdvance\Invoice\Service\Invoice;
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use OxidEsales\Eshop\Application\Model\Order;
 
@@ -25,35 +27,43 @@ class EmailExtension extends EmailExtension_parent
     protected $MIMEBody = '';
     protected $MIMEHeader = '';
 
-    protected ?string $attachInvoice = null;
+    protected ?string $attachInvoicePath = null;
+    protected ?string $attachInvoiceFilename = null;
 
     public function sendOrderEmailToUser($order, $subject = null)
     {
-        $moduleSettings = $this->getServiceFromContainer(ModuleSettingsInterface::class);
-
-        if ($moduleSettings->isSendInvoiceOnUserOrderEmailActive()) {
-            $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
-            $generator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
-
-            $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($order->getId());
-            $generator->generate($invoiceData);
-
-            $this->attachInvoice = $invoiceData->getInvoicePath();
+        $emailSettings = $this->getServiceFromContainer(EmailSettingsInterface::class);
+        if ($emailSettings->isSendInvoiceOnUserOrderEmailActive()) {
+            $this->setAttachmentFilePathAndNameByFormat(
+                $order,
+                $emailSettings->getUserOrderEmailInvoiceFilenameFormat()
+            );
         }
 
         return $this->faCallParentSendOrderEmailToUser($order, $subject);
     }
 
+    public function sendOrderEmailToOwner($order, $subject = null)
+    {
+        $emailSettings = $this->getServiceFromContainer(EmailSettingsInterface::class);
+        if ($emailSettings->isSendInvoiceOnOwnerOrderEmailActive()) {
+            $this->setAttachmentFilePathAndNameByFormat(
+                $order,
+                $emailSettings->getOwnerOrderEmailInvoiceFilenameFormat()
+            );
+        }
+
+        return $this->faCallParentSendOrderEmailToOwner($order, $subject);
+    }
+
     public function send()
     {
-        if ($this->attachInvoice) {
-            $moduleSettings = $this->getServiceFromContainer(ModuleSettingsInterface::class);
-
+        if ($this->attachInvoicePath && $this->attachInvoiceFilename) {
             $this->addAttachment(
-                path: $this->attachInvoice,
-                name: $moduleSettings->getInvoiceInOrderEmailFilename(),
+                path: $this->attachInvoicePath,
+                name: $this->attachInvoiceFilename,
             );
-            $this->attachInvoice = null;
+            $this->attachInvoiceFilename = null;
         }
 
         return $this->faCallParentSend();
@@ -80,6 +90,44 @@ class EmailExtension extends EmailExtension_parent
     public function faCallParentSendOrderEmailToUser($order, $subject = null)
     {
         return parent::sendOrderEmailToUser($order, $subject);
+    }
+
+    /**
+     * @codeCoverageIgnore not testable because of parent call
+     *
+     * @param Order $order
+     * @param ?string $subject
+     *
+     * @return bool
+     */
+    public function faCallParentSendOrderEmailToOwner($order, $subject = null)
+    {
+        return parent::sendOrderEmailToOwner($order, $subject);
+    }
+
+    private function setInvoiceFilePath(InvoiceDataInterface $invoiceData): void
+    {
+        if (!$this->attachInvoicePath) {
+            $generator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
+            $generator->generate($invoiceData);
+
+            $this->attachInvoicePath = $invoiceData->getInvoicePath();
+        }
+    }
+
+    private function getOrderInvoiceData(Order $order): InvoiceDataInterface
+    {
+        $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
+        return $invoiceDataService->getInvoiceDataByOrderId($order->getId());
+    }
+
+    private function setAttachmentFilePathAndNameByFormat(Order $order, string $format): void
+    {
+        $invoiceData = $this->getOrderInvoiceData($order);
+        $this->setInvoiceFilePath($invoiceData);
+
+        $invoiceFileNameCalculator = $this->getServiceFromContainer(InvoiceFilenameCalculatorInterface::class);
+        $this->attachInvoiceFilename = $invoiceFileNameCalculator->calculateByFormat($format, $invoiceData);
     }
 
     /**
