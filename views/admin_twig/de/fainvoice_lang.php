@@ -40,6 +40,10 @@ $aLang = array_merge($aLang, [
 
     # Module settings invoice mails
     'SHOP_MODULE_GROUP_fa_invoice_emails' => 'E-Mail-Optionen',
+    'SHOP_MODULE_fa_invoice_SendInvoiceOnOwnerOrderEmail' => 'Rechnung generieren und an Bestellbestätigungs-E-Mail des Inhabers anhängen',
+    'SHOP_MODULE_fa_invoice_OwnerOrderEmailInvoiceFilenameFormat' => 'Dateiname für an Bestellbestätigungs-E-Mail des Inhabers angehängte Rechnung',
+    'HELP_SHOP_MODULE_fa_invoice_OwnerOrderEmailInvoiceFilenameFormat' => 'Diese Einstellung wird verwendet, um den Dateinamen für die an die Bestellbestätigungs-E-Mail des Inhabers angehängte Rechnung zu definieren. <br><br><strong>Mögliche Platzhalter:</strong><br><br><strong>&lt;order:tableField&gt;</strong> Formatplatzhalter, um Informationen aus der oxorder-Tabelle einzuschließen (z. B. &lt;order:oxbillfname&gt;)<br><strong>&lt;invoiceNumber&gt;</strong> Platzhalter, um die Rechnungsnummer einzuschließen',
     'SHOP_MODULE_fa_invoice_SendInvoiceOnUserOrderEmail' => 'Rechnung generieren und an Bestellbestätigungs-E-Mail des Kunden anhängen',
-    'SHOP_MODULE_fa_invoice_InvoiceOnOrderEmailFilename' => 'Dateiname für an Bestellbestätigungs-E-Mail angehängte Rechnung',
+    'SHOP_MODULE_fa_invoice_UserOrderEmailInvoiceFilenameFormat' => 'Dateiname für an Bestellbestätigungs-E-Mail des Kunden angehängte Rechnung',
+    'HELP_SHOP_MODULE_fa_invoice_UserOrderEmailInvoiceFilenameFormat' => 'Diese Einstellung wird verwendet, um den Dateinamen für die an die Bestellbestätigungs-E-Mail des Kunden angehängte Rechnung zu definieren. <br><br><strong>Mögliche Platzhalter:</strong><br><br><strong>&lt;order:tableField&gt;</strong> Formatplatzhalter, um Informationen aus der oxorder-Tabelle einzuschließen (z. B. &lt;order:oxbillfname&gt;)<br><strong>&lt;invoiceNumber&gt;</strong> Platzhalter, um die Rechnungsnummer einzuschließen',
 ]);

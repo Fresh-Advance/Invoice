@@ -10,6 +10,9 @@ declare(strict_types=1);
 /**
  * Metadata version
  */
+
+use FreshAdvance\Invoice\Email\Settings\EmailSettings;
+
 $sMetadataVersion = '2.1';
 
 /**
@@ -110,13 +113,25 @@ $aModule = [
         // group emails
         [
             'group' => 'fa_invoice_emails',
-            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL,
+            'name' => EmailSettings::SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL,
             'type' => 'bool',
             'value' => false
         ],
         [
             'group' => 'fa_invoice_emails',
-            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_INVOICE_ON_ORDER_EMAIL_FILENAME,
+            'name' => EmailSettings::SETTING_USER_ORDER_EMAIL_INVOICE_FILENAME_FORMAT,
+            'type' => 'str',
+            'value' => 'invoice.pdf',
+        ],
+        [
+            'group' => 'fa_invoice_emails',
+            'name' => EmailSettings::SETTING_SEND_INVOICE_ON_OWNER_ORDER_EMAIL,
+            'type' => 'bool',
+            'value' => false
+        ],
+        [
+            'group' => 'fa_invoice_emails',
+            'name' => EmailSettings::SETTING_OWNER_ORDER_EMAIL_INVOICE_FILENAME_FORMAT,
             'type' => 'str',
             'value' => 'invoice.pdf',
         ],
