@@ -19,12 +19,14 @@
   * Invoice signer person
 * PDF Invoice file generated in shop Default language
   * Currently we have DE, EN and LT translations available. Feel free to add yours.
-* PDF Invoice can be automatically generated and attached to order confirmation email
-  * Invoice filename configurable through settings
+* PDF Invoice can be automatically generated and attached to user and owner order confirmation emails
+  * Invoice filename format configurable through settings
 * Total sum shown in words in the invoice.
+
+## Limitations
+
 * Only Twig shop installations supported
 * Tested with:
-  * Shop 7.0 - PHP 8.0, 8.1, MySQL 5.7 and 8.0
   * Shop 7.1 - PHP 8.1, 8.2, MySQL 5.7 and 8.0
   * Shop 7.2 - PHP 8.2, 8.3, MySQL 5.7 and 8.0
 
@@ -33,13 +35,14 @@
 * Branch b-7.0.x is compatible with OXID Shop compilation 7.0.0-rc.2 and up
 * Branch b-7.1.x is compatible with OXID Shop compilation 7.1.0 and up
 
+Note: Not all latest features are available in the older branches.
+
 ## What to expect in next versions
 
-* Possibility to automatically generate and send the invoice with order confirmation email
 * Show Vat for every product in list
 * The Credit note issuing functionality
 * Possibility to send generated invoice or credit note by email with button click.
-* Other improvements? (feel free to ask in Issues section for possible additional functions)
+* Other improvements? (feel free to ask in the Issues section for possible additional functions)
 
 ## Installation
 

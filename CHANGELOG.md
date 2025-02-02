@@ -6,12 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## v4.0.0 - [Unreleased]
 
+### Added
+- New settings for configuring the invoice filename **format** in the order confirmation email for both owner and customer cases.
+- New settings for turning on the invoice attachment for customer and owner cases.
+
 ### Changed
 - Moved classes to better fitting domains:
   - `FreshAdvance\Invoice\Transition\Model\OrderArticle` to `FreshAdvance\Invoice\Document\Model\OrderArticleExtension`
   - `FreshAdvance\Invoice\Transition\Core\Email` to `FreshAdvance\Invoice\Email\Core\EmailExtension`
   - `FreshAdvance\Invoice\Service\OrderServiceInterface` to `FreshAdvance\Invoice\Order\Service\OrderServiceInterface`
   - `FreshAdvance\Invoice\Repository\OrderRepositoryInterface` to `FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface`
+- Email configuration settings moved to the `FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface`
 
 ## [v3.1.0] - 2024-10-01
 
