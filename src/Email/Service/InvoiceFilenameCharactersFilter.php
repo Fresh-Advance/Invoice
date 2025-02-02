@@ -22,7 +22,7 @@ class InvoiceFilenameCharactersFilter implements InvoiceFilenameCalculatorInterf
     {
         $result = $this->invoiceFilenameCalculator->calculateByFormat($format, $invoiceData);
 
-        return preg_replace(
+        return (string)preg_replace(
             "/[^\p{L}\(\)\[\]\{\}!\@\#\$\%\^\&\_\-\+\=,\.\d]/ui",
             '-',
             $result
