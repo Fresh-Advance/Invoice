@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - `FreshAdvance\Invoice\Repository\OrderRepositoryInterface` to `FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface`
 - Email configuration settings moved to the `FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface`
 
+### Removed
+- PHP 8.0 support
+
 ## [v3.1.0] - 2024-10-01
 
 ### Added
