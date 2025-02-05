@@ -11,6 +11,7 @@ namespace FreshAdvance\Invoice\Tests\Integration\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
+use FreshAdvance\Invoice\Document\Service\DocumentRendererInterface;
 use FreshAdvance\Invoice\Document\Service\TemplateParametersServiceInterface;
 use FreshAdvance\Invoice\Language\Service\LanguageProxy;
 use Mpdf\Mpdf;
@@ -32,30 +33,19 @@ class BuilderTest extends TestCase
         $pdfProcessorMock->expects($this->once())->method('WriteHTML')->with('someContentHtml');
         $pdfProcessorMock->expects($this->once())->method('OutputFile')->with($virtualFilePath);
 
-        $shopLanguage = $this->createPartialMock(LanguageProxy::class, ['getTplLanguage', 'forceSetTplLanguage']);
-        $shopLanguage->expects($this->exactly(2))->method('forceSetTplLanguage');
-
         $invoiceData = $this->createConfiguredMock(InvoiceData::class, [
             'getInvoicePath' => $virtualFilePath
         ]);
 
-        $templateParametersService = $this->createMock(TemplateParametersServiceInterface::class);
-        $templateParametersService->method('calculateTemplateParameters')
+        $documentRenderer = $this->createMock(DocumentRendererInterface::class);
+        $documentRenderer->method('render')
             ->with($invoiceData)
-            ->willReturn($preparedParams = [uniqid() => uniqid()]);
-
-        $templateRenderer = $this->createMock(TemplateRendererInterface::class);
+            ->willReturn('someContentHtml');
 
         $sut = $this->getSut(
             pdfProcessor: $pdfProcessorMock,
-            templateRenderer: $templateRenderer,
-            shopLanguage: $shopLanguage,
-            templateParametersService: $templateParametersService,
+            documentRenderer: $documentRenderer,
         );
-
-        $templateRenderer->expects($this->once())->method('renderTemplate')
-            ->with(Builder::INVOICE_TEMPLATE, $preparedParams)
-            ->willReturn('someContentHtml');
 
         $tempDirectory = vfsStream::setup();
         $this->assertDirectoryDoesNotExist($tempDirectory->url() . '/somePath/');
@@ -66,17 +56,11 @@ class BuilderTest extends TestCase
 
     public function getSut(
         Mpdf $pdfProcessor = null,
-        TemplateRendererInterface $templateRenderer = null,
-        LanguageProxy $shopLanguage = null,
-        TemplateParametersServiceInterface $templateParametersService = null,
+        DocumentRendererInterface $documentRenderer = null
     ): Builder {
-        $templateParametersService ??= $this->createStub(TemplateParametersServiceInterface::class);
-
         return new Builder(
             pdfProcessor: $pdfProcessor ?? $this->createStub(Mpdf::class),
-            templateRenderer: $templateRenderer ?? $this->createStub(TemplateRendererInterface::class),
-            shopLanguage: $shopLanguage ?? $this->createStub(LanguageProxy::class),
-            templateParametersService: $templateParametersService,
+            documentRenderer: $documentRenderer ?? $this->createStub(DocumentRendererInterface::class),
         );
     }
 }

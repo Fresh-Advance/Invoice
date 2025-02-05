@@ -10,6 +10,9 @@ services:
     class: FreshAdvance\Invoice\Document\MpdfDocument\Builder
     public: true
 
+  FreshAdvance\Invoice\Document\Service\DocumentRendererInterface:
+    class: FreshAdvance\Invoice\Document\Service\DocumentRenderer
+
   FreshAdvance\Invoice\Document\Service\TemplateParametersServiceInterface:
     class: FreshAdvance\Invoice\Document\Service\TemplateParametersService
 

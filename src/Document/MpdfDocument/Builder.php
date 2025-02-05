@@ -11,22 +11,15 @@ namespace FreshAdvance\Invoice\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
-use FreshAdvance\Invoice\Document\Service\TemplateParametersServiceInterface;
-use FreshAdvance\Invoice\Language\Service\LanguageInterface;
+use FreshAdvance\Invoice\Document\Service\DocumentRendererInterface;
 use Mpdf\Mpdf;
-use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use Symfony\Component\Filesystem\Path;
 
-// todo: the builder became too big. Split the builder part and Invoice generator part.
 class Builder implements InvoiceGeneratorInterface
 {
-    public const INVOICE_TEMPLATE = '@fa_invoice/invoice/body';
-
     public function __construct(
         protected Mpdf $pdfProcessor,
-        protected TemplateRendererInterface $templateRenderer,
-        protected LanguageInterface $shopLanguage,
-        protected TemplateParametersServiceInterface $templateParametersService,
+        protected DocumentRendererInterface $documentRenderer,
     ) {
     }
 
@@ -45,23 +38,7 @@ class Builder implements InvoiceGeneratorInterface
 
     private function configurePdfProcessor(InvoiceDataInterface $invoiceData): void
     {
-        $htmlContent = $this->preparePdfData($invoiceData);
+        $htmlContent = $this->documentRenderer->render($invoiceData);
         $this->pdfProcessor->WriteHTML($htmlContent);
-    }
-
-    protected function preparePdfData(InvoiceDataInterface $invoiceData): string
-    {
-        $currentLanguage = $this->shopLanguage->getTplLanguage();
-        try {
-            $this->shopLanguage->forceSetTplLanguage((int)$invoiceData->getLanguageId());
-            $html = $this->templateRenderer->renderTemplate(
-                self::INVOICE_TEMPLATE,
-                $this->templateParametersService->calculateTemplateParameters($invoiceData)
-            );
-        } finally {
-            $this->shopLanguage->forceSetTplLanguage((int)$currentLanguage);
-        }
-
-        return $html;
     }
 }
