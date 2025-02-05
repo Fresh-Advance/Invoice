@@ -11,9 +11,8 @@ namespace FreshAdvance\Invoice\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
-use FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettingsInterface;
+use FreshAdvance\Invoice\Document\Service\TemplateParametersServiceInterface;
 use FreshAdvance\Invoice\Language\Service\LanguageInterface;
-use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
 use Mpdf\Mpdf;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use Symfony\Component\Filesystem\Path;
@@ -27,8 +26,7 @@ class Builder implements InvoiceGeneratorInterface
         protected Mpdf $pdfProcessor,
         protected TemplateRendererInterface $templateRenderer,
         protected LanguageInterface $shopLanguage,
-        protected DocumentLayoutSettingsInterface $layoutSettingsService,
-        protected NumberWordingServiceInterface $numberWordingService
+        protected TemplateParametersServiceInterface $templateParametersService,
     ) {
     }
 
@@ -58,11 +56,7 @@ class Builder implements InvoiceGeneratorInterface
             $this->shopLanguage->forceSetTplLanguage((int)$invoiceData->getLanguageId());
             $html = $this->templateRenderer->renderTemplate(
                 self::INVOICE_TEMPLATE,
-                [
-                    'invoice' => $invoiceData,
-                    'wording' => $this->numberWordingService,
-                    'layoutSettings' => $this->layoutSettingsService,
-                ]
+                $this->templateParametersService->calculateTemplateParameters($invoiceData)
             );
         } finally {
             $this->shopLanguage->forceSetTplLanguage((int)$currentLanguage);

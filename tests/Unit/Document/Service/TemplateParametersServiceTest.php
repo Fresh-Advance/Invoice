@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * Copyright © MB Arbatos Klubas. All rights reserved.
+ * See LICENSE file for license details.
+ */
+
+declare(strict_types=1);
+
+namespace FreshAdvance\Invoice\Tests\Unit\Document\Service;
+
+use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Document\Service\TemplateParametersService;
+use FreshAdvance\Invoice\Document\Service\TemplateParametersServiceInterface;
+use FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettingsInterface;
+use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
+use PHPUnit\Framework\TestCase;
+
+class TemplateParametersServiceTest extends TestCase
+{
+    public function testParametersListCreated(): void
+    {
+        $sut = $this->getSut(
+            numberWordingService: $wordingServiceStub = $this->createStub(NumberWordingServiceInterface::class),
+            layoutSettings: $layoutSettingsStub = $this->createStub(DocumentLayoutSettingsInterface::class),
+        );
+
+        $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
+        $result = $sut->calculateTemplateParameters($invoiceDataStub);
+
+        $this->assertSame([
+            'invoice' => $invoiceDataStub,
+            'wording' => $wordingServiceStub,
+            'layoutSettings' => $layoutSettingsStub,
+        ], $result);
+    }
+
+    private function getSut(
+        ?NumberWordingServiceInterface $numberWordingService = null,
+        ?DocumentLayoutSettingsInterface $layoutSettings = null,
+    ): TemplateParametersServiceInterface {
+        return new TemplateParametersService(
+            numberWordingService: $numberWordingService ?? $this->createStub(NumberWordingServiceInterface::class),
+            documentLayoutSettings: $layoutSettings ?? $this->createStub(DocumentLayoutSettingsInterface::class),
+        );
+    }
+}

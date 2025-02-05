@@ -11,9 +11,8 @@ namespace FreshAdvance\Invoice\Tests\Integration\Document\MpdfDocument;
 
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;
-use FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettingsInterface;
+use FreshAdvance\Invoice\Document\Service\TemplateParametersServiceInterface;
 use FreshAdvance\Invoice\Language\Service\LanguageProxy;
-use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
 use Mpdf\Mpdf;
 use org\bovigo\vfs\vfsStream;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
@@ -36,8 +35,14 @@ class BuilderTest extends TestCase
         $shopLanguage = $this->createPartialMock(LanguageProxy::class, ['getTplLanguage', 'forceSetTplLanguage']);
         $shopLanguage->expects($this->exactly(2))->method('forceSetTplLanguage');
 
-        $layoutSettingsServiceStub = $this->createStub(DocumentLayoutSettingsInterface::class);
-        $numberWordingServiceStub = $this->createStub(NumberWordingServiceInterface::class);
+        $invoiceData = $this->createConfiguredMock(InvoiceData::class, [
+            'getInvoicePath' => $virtualFilePath
+        ]);
+
+        $templateParametersService = $this->createMock(TemplateParametersServiceInterface::class);
+        $templateParametersService->method('calculateTemplateParameters')
+            ->with($invoiceData)
+            ->willReturn($preparedParams = [uniqid() => uniqid()]);
 
         $templateRenderer = $this->createMock(TemplateRendererInterface::class);
 
@@ -45,23 +50,11 @@ class BuilderTest extends TestCase
             pdfProcessor: $pdfProcessorMock,
             templateRenderer: $templateRenderer,
             shopLanguage: $shopLanguage,
-            layoutSettingsService: $layoutSettingsServiceStub,
-            numberWordingService: $numberWordingServiceStub,
+            templateParametersService: $templateParametersService,
         );
 
-        $invoiceData = $this->createConfiguredMock(InvoiceData::class, [
-            'getInvoicePath' => $virtualFilePath
-        ]);
-
         $templateRenderer->expects($this->once())->method('renderTemplate')
-            ->with(
-                Builder::INVOICE_TEMPLATE,
-                [
-                    'invoice' => $invoiceData,
-                    'wording' => $numberWordingServiceStub,
-                    'layoutSettings' => $layoutSettingsServiceStub,
-                ]
-            )
+            ->with(Builder::INVOICE_TEMPLATE, $preparedParams)
             ->willReturn('someContentHtml');
 
         $tempDirectory = vfsStream::setup();
@@ -75,17 +68,15 @@ class BuilderTest extends TestCase
         Mpdf $pdfProcessor = null,
         TemplateRendererInterface $templateRenderer = null,
         LanguageProxy $shopLanguage = null,
-        DocumentLayoutSettingsInterface $layoutSettingsService = null,
-        NumberWordingServiceInterface $numberWordingService = null,
+        TemplateParametersServiceInterface $templateParametersService = null,
     ): Builder {
-        $layoutSettingsService ??= $this->createStub(DocumentLayoutSettingsInterface::class);
+        $templateParametersService ??= $this->createStub(TemplateParametersServiceInterface::class);
 
         return new Builder(
             pdfProcessor: $pdfProcessor ?? $this->createStub(Mpdf::class),
             templateRenderer: $templateRenderer ?? $this->createStub(TemplateRendererInterface::class),
             shopLanguage: $shopLanguage ?? $this->createStub(LanguageProxy::class),
-            layoutSettingsService: $layoutSettingsService,
-            numberWordingService: $numberWordingService ?? $this->createStub(NumberWordingServiceInterface::class),
+            templateParametersService: $templateParametersService,
         );
     }
 }
