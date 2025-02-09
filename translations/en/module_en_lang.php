@@ -21,11 +21,19 @@ $aLang = [
     'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Total',
     'FA_INVOICE_DISCOUNT' => 'Discount',
     'FA_INVOICE_VOUCHERS' => 'Coupon Discount',
-    'FA_INVOICE_PAYMENT' => 'Payment Method Charge',
     'FA_INVOICE_VATS' => 'VAT',
 
+    'FA_INVOICE_VAT_PLUS_PERCENT_AMOUNT' => 'plus %s%% tax, amount',
+
+    'FA_INVOICE_DELIVERY' => 'Shipping Method Charge',
+    'FA_INVOICE_DELIVERY_NET' => 'Shipping Method Charge (excl. tax)',
+    'FA_INVOICE_DELIVERY_PROPORTIONAL_VAT' => 'plus tax (calculated proportionally)',
+
+    'FA_INVOICE_PAYMENT' => 'Payment Method Charge',
+    'FA_INVOICE_PAYMENT_NET' => 'Payment Method Charge (excl. tax)',
+    'FA_INVOICE_PAYMENT_PROPORTIONAL_VAT' => 'plus tax (calculated proportionally)',
+
     'FA_INVOICE_PCS' => 'pcs.',
-    'FA_INVOICE_DELIVERY' => 'Delivery',
     'FA_INVOICE_TOTAL' => 'Total',
     'FA_INVOICE_TOTAL_IN_WORDS' => 'Amount in words',
     'FA_INVOICE_SIGNED' => 'Invoice issuer',

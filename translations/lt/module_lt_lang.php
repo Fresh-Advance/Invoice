@@ -21,11 +21,19 @@ $aLang = [
     'FA_INVOICE_ITEM_PRICE_TOTAL' => 'Viso',
     'FA_INVOICE_DISCOUNT' => 'Nuolaida',
     'FA_INVOICE_VOUCHERS' => 'Kuponas',
-    'FA_INVOICE_PAYMENT' => 'Mokejimo metodo mokestis',
     'FA_INVOICE_VATS' => 'PVM',
 
+    'FA_INVOICE_VAT_PLUS_PERCENT_AMOUNT' => 'plius %s%% PVM, suma',
+
+    'FA_INVOICE_DELIVERY' => 'Pristatymo metodo mokestis',
+    'FA_INVOICE_DELIVERY_NET' => 'Pristatymo metodo mokestis (be PVM)',
+    'FA_INVOICE_DELIVERY_PROPORTIONAL_VAT' => 'plius PVM (skaičiuojama proporcingai)',
+
+    'FA_INVOICE_PAYMENT' => 'Mokejimo metodo mokestis',
+    'FA_INVOICE_PAYMENT_NET' => 'Mokejimo metodo mokestis (be PVM)',
+    'FA_INVOICE_PAYMENT_PROPORTIONAL_VAT' => 'plius PVM (skaičiuojama proporcingai)',
+
     'FA_INVOICE_PCS' => 'vnt.',
-    'FA_INVOICE_DELIVERY' => 'Pristatymas',
     'FA_INVOICE_TOTAL' => 'Viso',
     'FA_INVOICE_TOTAL_IN_WORDS' => 'Suma žodžiais',
     'FA_INVOICE_SIGNED' => 'Sąskaitą išrašė',

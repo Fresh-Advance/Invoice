@@ -2,6 +2,7 @@
 {% set shop = invoice.getShop() %}
 {% set configuration = invoice.getInvoiceConfiguration() %}
 {% set totals_colspan = 5 %}
+{% set currency = order.getOrderCurrency() %}
 
 {% block fa_invoice_invoice_body %}
     <style>
@@ -76,7 +77,7 @@
                     width: 15%;
                 }
 
-                #delivery td, #total td, #discount td, #vouchers td, #payment td, .totalvats td {
+                #delivery td, #deliveryVat td, #total td, #discount td, #vouchers td, #payment td, #paymentVat td, .totalvats td {
                     text-align: right;
                 }
             {% endblock %}
@@ -165,8 +166,8 @@
                         <td class="itemCode">{{ item.getFieldData('oxartnum') }}</td>
                         <td class="itemSize">{{ translate({ ident: "FA_INVOICE_PCS" }) }}</td>
                         <td class="itemCount">{{ item.getFieldData('oxamount') }}</td>
-                        <td class="itemPrice">{{ item.getNetPriceFormated() }} {{ order.getFieldData('oxcurrency') }}</td>
-                        <td class="itemTotalPrice">{{ item.getTotalNetPriceFormated() }} {{ order.getFieldData('oxcurrency') }}</td>
+                        <td class="itemPrice">{{ item.getNetPriceFormated() }} {{ currency.sign }}</td>
+                        <td class="itemTotalPrice">{{ item.getTotalNetPriceFormated() }} {{ currency.sign }}</td>
                     </tr>
                 {% endfor %}
             {% endblock %}
@@ -177,7 +178,7 @@
                     {% if order.getFieldData('oxdiscount') %}
                         <tr id="discount">
                             <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_DISCOUNT" }) }}:</td>
-                            <td>- {{ order.getFormattedDiscount() }} {{ order.getFieldData('oxcurrency') }}</td>
+                            <td>- {{ order.getFormattedDiscount() }} {{ currency.sign }}</td>
                         </tr>
                     {% endif %}
                 {% endblock %}
@@ -186,25 +187,7 @@
                     {% if order.getFieldData('oxvoucherdiscount') %}
                         <tr id="vouchers">
                             <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_VOUCHERS" }) }}:</td>
-                            <td>- {{ order.getFormattedTotalVouchers() }} {{ order.getFieldData('oxcurrency') }}</td>
-                        </tr>
-                    {% endif %}
-                {% endblock %}
-
-                {% block fa_invoice_invoice_body_totals_delivery %}
-                    {% if order.getFieldData('oxdelcost') %}
-                        <tr id="delivery">
-                            <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_DELIVERY" }) }}:</td>
-                            <td>{{ order.getFormattedDeliveryCost() }} {{ order.getFieldData('oxcurrency') }}</td>
-                        </tr>
-                    {% endif %}
-                {% endblock %}
-
-                {% block fa_invoice_invoice_body_totals_payment %}
-                    {% if order.getFieldData('oxpaycost') %}
-                        <tr id="payment">
-                            <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_PAYMENT" }) }}:</td>
-                            <td>{{ order.getFormattedPayCost() }} {{ order.getFieldData('oxcurrency') }}</td>
+                            <td>- {{ order.getFormattedTotalVouchers() }} {{ currency.sign }}</td>
                         </tr>
                     {% endif %}
                 {% endblock %}
@@ -213,15 +196,69 @@
                     {% for vat, vatPrice in order.getProductVats() %}
                         <tr class="totalvats">
                             <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_VATS" }) }} ({{ vat }}%):</td>
-                            <td>{{ vatPrice }} {{ order.getFieldData('oxcurrency') }}</td>
+                            <td>{{ vatPrice }} {{ currency.sign }}</td>
                         </tr>
                     {% endfor %}
+                {% endblock %}
+
+                {% block fa_invoice_invoice_body_totals_delivery %}
+                    {% set deliveryPrice = order.getOrderDeliveryPrice() %}
+                    {% if deliveryPrice and deliveryPrice.getPrice() > 0 %}
+                        {% if shopConfig.getConfigParam('blShowVATForDelivery') %}
+                            <tr id="delivery">
+                                <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_DELIVERY_NET"}) }}:</td>
+                                <td>{{ format_price(deliveryPrice.getNettoPrice(), { currency: currency }) }}</td>
+                            </tr>
+                            {% if deliveryPrice.getVatValue() %}
+                                <tr id="deliveryVat">
+                                    {% if shopConfig.getConfigParam('sAdditionalServVATCalcMethod') == 'proportional' %}
+                                        <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_DELIVERY_PROPORTIONAL_VAT" }) }}:</td>
+                                    {% else %}
+                                        <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_VAT_PLUS_PERCENT_AMOUNT", args: deliveryPrice.getVat() }) }}:</td>
+                                    {% endif %}
+                                    <td>{{ format_price(deliveryPrice.getVatValue(), { currency: currency }) }}</td>
+                                </tr>
+                            {% endif %}
+                        {% else %}
+                            <tr id="delivery">
+                                <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_DELIVERY"}) }}:</td>
+                                <td>{{ format_price(deliveryPrice.getBruttoPrice(), { currency: currency }) }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endif %}
+                {% endblock %}
+
+                {% block fa_invoice_invoice_body_totals_payment %}
+                    {% set paymentPrice = order.getOrderPaymentPrice() %}
+                    {% if paymentPrice %}
+                        {% if shopConfig.getConfigParam('blShowVATForPayCharge') %}
+                            <tr id="payment">
+                                <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_PAYMENT_NET" }) }}:</td>
+                                <td>{{ format_price(paymentPrice.getNettoPrice(), { currency: currency }) }}</td>
+                            </tr>
+                            {% if paymentPrice.getVatValue() %}
+                                <tr id="paymentVat">
+                                    {% if shopConfig.getConfigParam('sAdditionalServVATCalcMethod') == 'proportional' %}
+                                        <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_PAYMENT_PROPORTIONAL_VAT" }) }}:</td>
+                                    {% else %}
+                                        <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_VAT_PLUS_PERCENT_AMOUNT", args: paymentPrice.getVat() }) }}:</td>
+                                    {% endif %}
+                                    <td>{{ format_price(paymentPrice.getVatValue(), { currency: currency }) }}</td>
+                                </tr>
+                            {% endif %}
+                        {% else %}
+                            <tr id="payment">
+                                <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_PAYMENT" }) }}:</td>
+                                <td>{{ format_price(paymentPrice.getBruttoPrice(), { currency: currency }) }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endif %}
                 {% endblock %}
 
                 {% block fa_invoice_invoice_body_totals_total %}
                     <tr id="total">
                         <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_TOTAL" }) }}:</td>
-                        <td>{{ order.getFormattedTotalOrderSum() }} {{ order.getFieldData('oxcurrency') }}</td>
+                        <td>{{ order.getFormattedTotalOrderSum() }} {{ currency.sign }}</td>
                     </tr>
                 {% endblock %}
 
@@ -231,7 +268,7 @@
     {% endblock %}
 
     {% block fa_invoice_invoice_body_sum_in_words %}
-        {{ translate({ ident: "FA_INVOICE_TOTAL_IN_WORDS"}) }}: {{ wording.currencyToWords(order.getFieldData('oxtotalordersum') * 100, order.getFieldData('oxcurrency')) }}
+        {{ translate({ ident: "FA_INVOICE_TOTAL_IN_WORDS"}) }}: {{ wording.currencyToWords(order.getFieldData('oxtotalordersum') * 100, currency.name) }}
     {% endblock %}
 
     {% block fa_invoice_invoice_body_sign %}

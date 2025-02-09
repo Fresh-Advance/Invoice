@@ -14,6 +14,7 @@ use FreshAdvance\Invoice\Document\Service\TemplateParametersService;
 use FreshAdvance\Invoice\Document\Service\TemplateParametersServiceInterface;
 use FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettingsInterface;
 use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
+use OxidEsales\Eshop\Core\Config;
 use PHPUnit\Framework\TestCase;
 
 class TemplateParametersServiceTest extends TestCase
@@ -23,6 +24,7 @@ class TemplateParametersServiceTest extends TestCase
         $sut = $this->getSut(
             numberWordingService: $wordingServiceStub = $this->createStub(NumberWordingServiceInterface::class),
             layoutSettings: $layoutSettingsStub = $this->createStub(DocumentLayoutSettingsInterface::class),
+            shopConfig: $shopConfigStub = $this->createStub(Config::class),
         );
 
         $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
@@ -32,16 +34,19 @@ class TemplateParametersServiceTest extends TestCase
             'invoice' => $invoiceDataStub,
             'wording' => $wordingServiceStub,
             'layoutSettings' => $layoutSettingsStub,
+            'shopConfig' => $shopConfigStub,
         ], $result);
     }
 
     private function getSut(
         ?NumberWordingServiceInterface $numberWordingService = null,
         ?DocumentLayoutSettingsInterface $layoutSettings = null,
+        ?Config $shopConfig = null,
     ): TemplateParametersServiceInterface {
         return new TemplateParametersService(
             numberWordingService: $numberWordingService ?? $this->createStub(NumberWordingServiceInterface::class),
             documentLayoutSettings: $layoutSettings ?? $this->createStub(DocumentLayoutSettingsInterface::class),
+            shopConfig: $shopConfig ?? $this->createStub(Config::class),
         );
     }
 }

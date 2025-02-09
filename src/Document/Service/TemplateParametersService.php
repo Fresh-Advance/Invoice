@@ -12,12 +12,14 @@ namespace FreshAdvance\Invoice\Document\Service;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettingsInterface;
 use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
+use OxidEsales\Eshop\Core\Config;
 
 class TemplateParametersService implements TemplateParametersServiceInterface
 {
     public function __construct(
         private readonly NumberWordingServiceInterface $numberWordingService,
         private readonly DocumentLayoutSettingsInterface $documentLayoutSettings,
+        private readonly Config $shopConfig,
     ) {
     }
 
@@ -27,6 +29,7 @@ class TemplateParametersService implements TemplateParametersServiceInterface
             'invoice' => $invoiceData,
             'wording' => $this->numberWordingService,
             'layoutSettings' => $this->documentLayoutSettings,
+            'shopConfig' => $this->shopConfig,
         ];
     }
 }
