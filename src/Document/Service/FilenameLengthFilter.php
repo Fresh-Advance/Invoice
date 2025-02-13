@@ -7,14 +7,18 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Email\Service;
+namespace FreshAdvance\Invoice\Document\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 
-class InvoiceFilenameCharactersFilter implements InvoiceFilenameCalculatorInterface
+use function substr;
+
+class FilenameLengthFilter implements FilenameCalculatorInterface
 {
+    public const MAX_LENGTH = 250;
+
     public function __construct(
-        private InvoiceFilenameCalculatorInterface $invoiceFilenameCalculator,
+        private FilenameCalculatorInterface $invoiceFilenameCalculator,
     ) {
     }
 
@@ -22,10 +26,6 @@ class InvoiceFilenameCharactersFilter implements InvoiceFilenameCalculatorInterf
     {
         $result = $this->invoiceFilenameCalculator->calculateByFormat($format, $invoiceData);
 
-        return (string)preg_replace(
-            "/[^\p{L}\(\)\[\]\{\}!\@\#\$\%\^\&\_\-\+\=,\.\d]/ui",
-            '-',
-            $result
-        );
+        return substr($result, 0, self::MAX_LENGTH);
     }
 }

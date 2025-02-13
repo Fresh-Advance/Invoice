@@ -7,19 +7,19 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Email\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\Document\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculatorInterface;
-use FreshAdvance\Invoice\Email\Service\InvoiceFilenameLengthFilter;
+use FreshAdvance\Invoice\Document\Service\FilenameCalculatorInterface;
+use FreshAdvance\Invoice\Document\Service\FilenameLengthFilter;
 
-class InvoiceFilenameLengthFilterTest extends \PHPUnit\Framework\TestCase
+class FilenameLengthFilterTest extends \PHPUnit\Framework\TestCase
 {
     public function testLengthFiltered(): void
     {
         $filenameStub = str_repeat("x", 1000);
 
-        $calculatorStub = $this->createMock(InvoiceFilenameCalculatorInterface::class);
+        $calculatorStub = $this->createMock(FilenameCalculatorInterface::class);
         $calculatorStub->method('calculateByFormat')
             ->with(
                 $format = uniqid(),
@@ -27,7 +27,7 @@ class InvoiceFilenameLengthFilterTest extends \PHPUnit\Framework\TestCase
             )
             ->willReturn($filenameStub);
 
-        $sut = new InvoiceFilenameLengthFilter(
+        $sut = new FilenameLengthFilter(
             invoiceFilenameCalculator: $calculatorStub
         );
 

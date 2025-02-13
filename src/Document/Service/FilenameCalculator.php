@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Email\Service;
+namespace FreshAdvance\Invoice\Document\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 
-class InvoiceFilenameCalculator implements InvoiceFilenameCalculatorInterface
+class FilenameCalculator implements FilenameCalculatorInterface
 {
     public function calculateByFormat(string $format, InvoiceDataInterface $invoiceData): string
     {

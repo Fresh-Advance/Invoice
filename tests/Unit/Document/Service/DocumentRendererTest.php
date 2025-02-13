@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Document\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\Document\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\MpdfDocument\Builder;

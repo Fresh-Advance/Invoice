@@ -11,9 +11,9 @@ namespace FreshAdvance\Invoice\Tests\Integration\Email\Core;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Document\Service\FilenameCalculator;
+use FreshAdvance\Invoice\Document\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Email\Core\EmailExtension;
-use FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculator;
-use FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculatorInterface;
 use FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
@@ -34,7 +34,7 @@ class EmailExtensionTest extends IntegrationTestCase
                 invoiceDataService: $invoiceDataService = $this->createMock(Invoice::class),
                 invoiceGenerator: $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class),
                 invoiceFilenameCalculator: $filenameCalculatorMock = $this->createMock(
-                    InvoiceFilenameCalculator::class
+                    FilenameCalculator::class
                 ),
                 emailSettings: $this->createConfiguredMock(EmailSettingsInterface::class, [
                     'isSendInvoiceOnUserOrderEmailActive' => true,
@@ -114,7 +114,7 @@ class EmailExtensionTest extends IntegrationTestCase
                 invoiceDataService: $invoiceDataService = $this->createMock(Invoice::class),
                 invoiceGenerator: $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class),
                 invoiceFilenameCalculator: $filenameCalculatorMock = $this->createMock(
-                    InvoiceFilenameCalculator::class
+                    FilenameCalculator::class
                 ),
                 emailSettings: $this->createConfiguredMock(EmailSettingsInterface::class, [
                     'isSendInvoiceOnOwnerOrderEmailActive' => true,
@@ -200,7 +200,7 @@ class EmailExtensionTest extends IntegrationTestCase
                 invoiceDataService: $invoiceDataService = $this->createMock(Invoice::class),
                 invoiceGenerator: $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class),
                 invoiceFilenameCalculator: $filenameCalculatorMock = $this->createMock(
-                    InvoiceFilenameCalculator::class
+                    FilenameCalculator::class
                 ),
                 emailSettings: $this->createConfiguredMock(EmailSettingsInterface::class, [
                     'isSendInvoiceOnUserOrderEmailActive' => true,
@@ -303,7 +303,7 @@ class EmailExtensionTest extends IntegrationTestCase
     protected function getDIConfiguration(
         Invoice $invoiceDataService = null,
         InvoiceGeneratorInterface $invoiceGenerator = null,
-        InvoiceFilenameCalculatorInterface $invoiceFilenameCalculator = null,
+        FilenameCalculatorInterface $invoiceFilenameCalculator = null,
         EmailSettingsInterface $emailSettings = null,
     ): array {
         return [
@@ -316,8 +316,8 @@ class EmailExtensionTest extends IntegrationTestCase
                 $invoiceGenerator ?? $this->createStub(InvoiceGeneratorInterface::class)
             ],
             [
-                InvoiceFilenameCalculatorInterface::class,
-                $invoiceFilenameCalculator ?? $this->createStub(InvoiceFilenameCalculatorInterface::class)
+                FilenameCalculatorInterface::class,
+                $invoiceFilenameCalculator ?? $this->createStub(FilenameCalculatorInterface::class)
             ],
             [
                 EmailSettingsInterface::class,

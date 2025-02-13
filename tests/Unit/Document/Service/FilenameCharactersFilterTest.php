@@ -7,18 +7,17 @@
 
 declare(strict_types=1);
 
-namespace Email\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\Document\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculatorInterface;
-use FreshAdvance\Invoice\Email\Service\InvoiceFilenameCharactersFilter;
+use FreshAdvance\Invoice\Document\Service\FilenameCalculatorInterface;
 
-class InvoiceFilenameCharactersFilterTest extends \PHPUnit\Framework\TestCase
+class FilenameCharactersFilterTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider filenamesProvider */
     public function testBadCharactersFilteredOut(string $expectedFilename, string $initialFilename): void
     {
-        $calculatorStub = $this->createMock(InvoiceFilenameCalculatorInterface::class);
+        $calculatorStub = $this->createMock(FilenameCalculatorInterface::class);
         $calculatorStub->method('calculateByFormat')
             ->with(
                 $format = uniqid(),
@@ -26,7 +25,7 @@ class InvoiceFilenameCharactersFilterTest extends \PHPUnit\Framework\TestCase
             )
             ->willReturn($initialFilename);
 
-        $sut = new InvoiceFilenameCharactersFilter(
+        $sut = new \FreshAdvance\Invoice\Document\Service\FilenameCharactersFilter(
             invoiceFilenameCalculator: $calculatorStub
         );
 

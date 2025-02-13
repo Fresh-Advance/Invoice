@@ -11,7 +11,7 @@ namespace FreshAdvance\Invoice\Email\Core;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
-use FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculatorInterface;
+use FreshAdvance\Invoice\Document\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
@@ -126,7 +126,7 @@ class EmailExtension extends EmailExtension_parent
         $invoiceData = $this->getOrderInvoiceData($order);
         $this->setInvoiceFilePath($invoiceData);
 
-        $invoiceFileNameCalculator = $this->getServiceFromContainer(InvoiceFilenameCalculatorInterface::class);
+        $invoiceFileNameCalculator = $this->getServiceFromContainer(FilenameCalculatorInterface::class);
         $this->attachInvoiceFilename = $invoiceFileNameCalculator->calculateByFormat($format, $invoiceData);
     }
 

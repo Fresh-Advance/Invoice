@@ -7,18 +7,18 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Email\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\Document\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Email\Service\InvoiceFilenameCalculator;
+use FreshAdvance\Invoice\Document\Service\FilenameCalculator;
 use OxidEsales\Eshop\Application\Model\Order;
 
-class InvoiceFilenameCalculatorTest extends \PHPUnit\Framework\TestCase
+class FilenameCalculatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testOrderFieldsAvailableInFormat(): void
     {
-        $sut = new InvoiceFilenameCalculator();
+        $sut = new FilenameCalculator();
 
         $invoiceData = $this->createConfiguredMock(InvoiceDataInterface::class, [
             'getOrder' => $orderMock = $this->createMock(Order::class),
@@ -36,7 +36,7 @@ class InvoiceFilenameCalculatorTest extends \PHPUnit\Framework\TestCase
 
     public function testInvoiceNumberAvailableInFormat(): void
     {
-        $sut = new InvoiceFilenameCalculator();
+        $sut = new \FreshAdvance\Invoice\Document\Service\FilenameCalculator();
 
         $invoiceConfiguration = $this->createMock(InvoiceConfigurationInterface::class);
         $orderMock = $this->createMock(Order::class);
