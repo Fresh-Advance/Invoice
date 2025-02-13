@@ -25,7 +25,7 @@ $aModule = [
         'en' => 'Invoice module for OXID eShop.',
     ],
     'thumbnail' => 'logo.png',
-    'version' => '4.0.0-rc.1',
+    'version' => '4.0.0-rc.2',
     'author' => 'Anton Fedurtsya',
     'email' => 'anton@fedurtsya.com',
     'url' => 'https://github.com/Fresh-Advance',
@@ -41,9 +41,9 @@ $aModule = [
         /** Main */
         [
             'group' => 'fa_invoice_main',
-            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_DOCUMENT_FILENAME_PREFIX,
+            'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_DOCUMENT_FILENAME_FORMAT,
             'type' => 'str',
-            'value' => 'invoice-'
+            'value' => '<invoiceNumber>.pdf'
         ],
         [
             'group' => 'fa_invoice_main',

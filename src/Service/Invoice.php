@@ -13,6 +13,7 @@ use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Document\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
@@ -22,6 +23,10 @@ use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use Symfony\Component\Filesystem\Path;
 
+/**
+ * @todo: split this class into smaller classes
+ * @SuppressWarnings(PHPMD)
+ */
 class Invoice
 {
     public function __construct(
@@ -30,7 +35,8 @@ class Invoice
         protected ConfigInterface $shopConfig,
         protected ContextInterface $moduleContext,
         protected InvoiceConfigurationRepositoryInterface $invoiceConfigRepo,
-        protected ModuleSettingsInterface $moduleSettings
+        protected ModuleSettingsInterface $moduleSettings,
+        protected FilenameCalculatorInterface $filenameCalculator,
     ) {
     }
 
@@ -65,13 +71,12 @@ class Invoice
         );
     }
 
-    public function getInvoiceFileName(InvoiceConfigurationInterface $configuration): string
+    public function getInvoiceFileName(InvoiceDataInterface $invoiceData): string
     {
-        $invoiceNumber = $this->orderRepository->getInvoiceNumberByOrderId($configuration->getOrderId());
-
-        return $this->moduleSettings->getFilePrefix()
-            . $configuration->getFormattedNumber($invoiceNumber)
-            . '.pdf';
+        return $this->filenameCalculator->calculateByFormat(
+            $this->moduleSettings->getFileNameFormat(),
+            $invoiceData
+        );
     }
 
     public function saveOrderInvoiceData(InvoiceConfigurationInterface $configuration): void

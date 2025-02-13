@@ -11,15 +11,11 @@ namespace FreshAdvance\Invoice\Settings;
 
 interface ModuleSettingsInterface
 {
-    public function getFilePrefix(): string;
+    public function getFileNameFormat(): string;
 
     public function isForArchive(): bool;
 
     public function getInvoiceNumberFormat(): string;
 
     public function getInvoiceDateFormat(): string;
-
-    public function isSendInvoiceOnUserOrderEmailActive(): bool;
-
-    public function getInvoiceInOrderEmailFilename(): string;
 }

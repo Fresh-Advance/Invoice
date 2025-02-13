@@ -20,7 +20,8 @@ $aLang = array_merge($aLang, [
 
     # Module settings main
     'SHOP_MODULE_GROUP_fa_invoice_main' => 'Invoice document',
-    'SHOP_MODULE_fa_invoice_FilenamePrefix' => 'Filename Prefix',
+    'SHOP_MODULE_fa_invoice_FilenameFormat' => 'Filename for invoice downloadable in admin panel',
+    'HELP_SHOP_MODULE_fa_invoice_FilenameFormat' => 'This setting is used to define the filename for the invoice downloadable in admin panel. <br><br><strong>Possible placeholders:</strong><br><br><strong>&lt;order:tableField&gt;</strong> format placeholder to include information from the oxorder table(eg. &lt;order:oxbillfname&gt;)<br><strong>&lt;invoiceNumber&gt;</strong> placeholder to include the invoice number',
     'SHOP_MODULE_fa_invoice_IsForArchive' => 'Document is for archive (PDFA)',
     'SHOP_MODULE_fa_invoice_InvoiceDateFormat' => 'Default invoice date format',
 

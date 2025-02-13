@@ -59,7 +59,7 @@ class InvoiceControllerTest extends TestCase
 
         $invoiceDataStub = $this->createConfiguredMock(InvoiceDataInterface::class, [
             'getInvoicePath' => $tempDirectory->url() . '/filename.pdf',
-            'getInvoiceConfiguration' => $configuration = $this->createStub(InvoiceConfigurationInterface::class),
+            'getInvoiceConfiguration' => $this->createStub(InvoiceConfigurationInterface::class),
 
         ]);
         $invoiceDataServiceMock = $this->createMock(Invoice::class);
@@ -67,7 +67,7 @@ class InvoiceControllerTest extends TestCase
             ['someOxid', $invoiceDataStub]
         ]);
         $invoiceDataServiceMock->method('getInvoiceFileName')
-            ->with($configuration)
+            ->with($invoiceDataStub)
             ->willReturn($fileName = uniqid());
 
         $sut = $this->createPartialMock(
@@ -131,13 +131,13 @@ class InvoiceControllerTest extends TestCase
 
         $invoiceDataStub = $this->createConfiguredMock(InvoiceDataInterface::class, [
             'getInvoicePath' => $invoicePath = uniqid(),
-            'getInvoiceConfiguration' => $configuration = $this->createStub(InvoiceConfigurationInterface::class)
+            'getInvoiceConfiguration' => $this->createStub(InvoiceConfigurationInterface::class)
         ]);
 
         $invoiceDataServiceMock = $this->createMock(Invoice::class);
         $invoiceDataServiceMock->method('getInvoiceDataByOrderId')->with($invoiceId)->willReturn($invoiceDataStub);
         $invoiceDataServiceMock->method('getInvoiceFileName')
-            ->with($configuration)->willReturn($invoiceFileName = uniqid());
+            ->with($invoiceDataStub)->willReturn($invoiceFileName = uniqid());
 
         $invoiceServiceSpy = $this->createMock(InvoiceServiceInterface::class);
         $invoiceServiceSpy->expects($this->once())

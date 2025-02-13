@@ -10,6 +10,8 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Document\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
@@ -50,11 +52,6 @@ class InvoiceTest extends TestCase
             ->with('someOrderId')
             ->willReturn($invoiceConfigurationStub);
 
-        $moduleSettingsStub = $this->createConfiguredMock(ModuleSettings::class, [
-            'getFilePrefix' => 'prefix'
-        ]);
-
-
         $sut = $this->getSut(
             orderRepository: $orderServiceMock,
             shopService: $shopServiceMock,
@@ -64,7 +61,6 @@ class InvoiceTest extends TestCase
                 ['getInvoicesPath' => 'someRootPath']
             ),
             invoiceConfigRepo: $repositoryMock,
-            moduleSettings: $moduleSettingsStub
         );
 
         $result = $sut->getInvoiceDataByOrderId('someOrderId');
@@ -111,13 +107,8 @@ class InvoiceTest extends TestCase
             ->method('save')
             ->with($configurationStub);
 
-        $moduleSettingsStub = $this->createConfiguredMock(ModuleSettings::class, [
-            'getFilePrefix' => 'prefix'
-        ]);
-
         $sut = $this->getSut(
             invoiceConfigRepo: $repositoryMock,
-            moduleSettings: $moduleSettingsStub,
         );
 
         $sut->saveOrderInvoiceData($configurationStub);
@@ -125,29 +116,19 @@ class InvoiceTest extends TestCase
 
     public function testGetInvoiceFileName(): void
     {
-        $orderId = uniqid();
-        $invoiceNumber = uniqid();
-        $formattedInvoiceNumber = uniqid();
-
-        $configurationMock = $this->createMock(InvoiceConfigurationInterface::class);
-        $configurationMock->method('getOrderId')->willReturn($orderId);
-        $configurationMock->method('getFormattedNumber')->with($invoiceNumber)->willReturn($formattedInvoiceNumber);
-
         $sut = $this->getSut(
-            orderRepository: $orderRepositoryMock = $this->createMock(OrderRepositoryInterface::class),
             moduleSettings: $this->createConfiguredMock(ModuleSettings::class, [
-                'getFilePrefix' => 'prefix-'
-            ])
+                'getFileNameFormat' => $fileNameFormat = uniqid(),
+            ]),
+            filenameCalculator: $filenameCalculatorMock = $this->createMock(FilenameCalculatorInterface::class),
         );
 
-        $orderRepositoryMock->method('getInvoiceNumberByOrderId')
-            ->with($orderId)
-            ->willReturn($invoiceNumber);
+        $invoiceDataStub = $this->createMock(InvoiceDataInterface::class);
+        $filenameCalculatorMock->method('calculateByFormat')
+            ->with($fileNameFormat, $invoiceDataStub)
+            ->willReturn($formattedFileName = uniqid());
 
-        $this->assertSame(
-            "prefix-" . $formattedInvoiceNumber . ".pdf",
-            $sut->getInvoiceFileName($configurationMock)
-        );
+        $this->assertSame($formattedFileName, $sut->getInvoiceFileName($invoiceDataStub));
     }
 
     protected function getSut(
@@ -157,6 +138,7 @@ class InvoiceTest extends TestCase
         ContextInterface $moduleContext = null,
         InvoiceConfigurationRepositoryInterface $invoiceConfigRepo = null,
         ModuleSettingsInterface $moduleSettings = null,
+        FilenameCalculatorInterface $filenameCalculator = null,
     ): Invoice {
         return new Invoice(
             orderRepository: $orderRepository ?? $this->createStub(OrderRepositoryInterface::class),
@@ -164,7 +146,8 @@ class InvoiceTest extends TestCase
             shopConfig: $shopConfig ?? $this->createStub(ConfigInterface::class),
             moduleContext: $moduleContext ?? $this->createStub(ContextInterface::class),
             invoiceConfigRepo: $invoiceConfigRepo ?? $this->createStub(InvoiceConfigurationRepositoryInterface::class),
-            moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class)
+            moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class),
+            filenameCalculator: $filenameCalculator ?? $this->createStub(FilenameCalculatorInterface::class),
         );
     }
 }

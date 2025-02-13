@@ -21,17 +21,17 @@ use Symfony\Component\String\UnicodeString;
  */
 final class ModuleSettingsTest extends TestCase
 {
-    public function testGetFilenamePrefix(): void
+    public function testGetFileNameFormat(): void
     {
         $value = 'someValue';
 
         $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
         $mssMock->method('getString')->willReturnMap([
-            [ModuleSettings::SETTING_DOCUMENT_FILENAME_PREFIX, Module::MODULE_ID, new UnicodeString($value)]
+            [ModuleSettings::SETTING_DOCUMENT_FILENAME_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
         ]);
 
         $sut = new ModuleSettings($mssMock);
-        $this->assertSame($value, $sut->getFilePrefix());
+        $this->assertSame($value, $sut->getFileNameFormat());
     }
 
     /**
@@ -61,19 +61,6 @@ final class ModuleSettingsTest extends TestCase
         $this->assertSame($value, $sut->getInvoiceNumberFormat());
     }
 
-    public function testGetInvoiceInOrderEmailFilename(): void
-    {
-        $value = uniqid();
-
-        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
-        $mssMock->method('getString')->willReturnMap([
-            [ModuleSettings::SETTING_INVOICE_ON_ORDER_EMAIL_FILENAME, Module::MODULE_ID, new UnicodeString($value)]
-        ]);
-
-        $sut = new ModuleSettings($mssMock);
-        $this->assertSame($value, $sut->getInvoiceInOrderEmailFilename());
-    }
-
     public function testGetInvoiceDateFormat(): void
     {
         $value = uniqid();
@@ -85,18 +72,6 @@ final class ModuleSettingsTest extends TestCase
 
         $sut = new ModuleSettings($mssMock);
         $this->assertSame($value, $sut->getInvoiceDateFormat());
-    }
-
-    /** @dataProvider booleanDataProvider */
-    public function testIsSendInvoiceOnUserOrderEmailActive(bool $value): void
-    {
-        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
-        $mssMock->method('getBoolean')->willReturnMap([
-            [ModuleSettings::SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL, Module::MODULE_ID, $value]
-        ]);
-
-        $sut = new ModuleSettings($mssMock);
-        $this->assertSame($value, $sut->isSendInvoiceOnUserOrderEmailActive());
     }
 
     public function booleanDataProvider(): array

@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v4.0.0-rc.2] - Unreleased
+
+### Changed
+- Change filename prefix for admin panel invoice download to be format with some possible placeholders instead
+- Moved new FilenameCalculator class to Document domain, as they are used not only for emails now
+
+### Removed
+- Not used methods leftovers from ModuleSettings
+
 ## [v4.0.0-rc.1] - 2025-02-09
 
 ### Added
@@ -111,6 +120,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[v4.0.0-rc.2]: https://github.com/Fresh-Advance/Invoice/compare/v4.0.0-rc.1...v4.0.0-rc.2
 [v4.0.0-rc.1]: https://github.com/Fresh-Advance/Invoice/compare/v3.1.0...v4.0.0-rc.1
 [v3.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v3.0.1...v3.1.0
 [v3.0.1]: https://github.com/Fresh-Advance/Invoice/compare/v3.0.0...v3.0.1

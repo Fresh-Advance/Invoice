@@ -14,21 +14,19 @@ use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServ
 
 class ModuleSettings implements ModuleSettingsInterface
 {
-    public const SETTING_DOCUMENT_FILENAME_PREFIX = 'fa_invoice_FilenamePrefix';
+    public const SETTING_DOCUMENT_FILENAME_FORMAT = 'fa_invoice_FilenameFormat';
     public const SETTING_DOCUMENT_IS_FOR_ARCHIVE = 'fa_invoice_IsForArchive';
     public const SETTING_INVOICE_NUMBER_FORMAT = 'fa_invoice_InvoiceNumberFormat';
     public const SETTING_INVOICE_DATE_FORMAT = 'fa_invoice_InvoiceDateFormat';
-    public const SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL = 'fa_invoice_SendInvoiceOnUserOrderEmail';
-    public const SETTING_INVOICE_ON_ORDER_EMAIL_FILENAME = 'fa_invoice_InvoiceOnOrderEmailFilename';
 
     public function __construct(
         private ModuleSettingServiceInterface $moduleSettingService
     ) {
     }
 
-    public function getFilePrefix(): string
+    public function getFileNameFormat(): string
     {
-        return $this->getStringSetting(self::SETTING_DOCUMENT_FILENAME_PREFIX);
+        return $this->getStringSetting(self::SETTING_DOCUMENT_FILENAME_FORMAT);
     }
 
     public function getInvoiceNumberFormat(): string
@@ -49,23 +47,10 @@ class ModuleSettings implements ModuleSettingsInterface
         return $this->getStringSetting(self::SETTING_INVOICE_DATE_FORMAT);
     }
 
-    public function getInvoiceInOrderEmailFilename(): string
-    {
-        return $this->getStringSetting(self::SETTING_INVOICE_ON_ORDER_EMAIL_FILENAME);
-    }
-
     private function getStringSetting(string $key): string
     {
         return $this->moduleSettingService
             ->getString($key, Module::MODULE_ID)
             ->toString();
-    }
-
-    public function isSendInvoiceOnUserOrderEmailActive(): bool
-    {
-        return $this->moduleSettingService->getBoolean(
-            self::SETTING_SEND_INVOICE_ON_USER_ORDER_EMAIL,
-            Module::MODULE_ID
-        );
     }
 }

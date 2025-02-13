@@ -34,10 +34,7 @@ class InvoiceController extends AdminController
 
         if (is_file($invoiceData->getInvoicePath())) {
             $this->addTplParam('invoiceExists', true);
-            $this->addTplParam(
-                'invoiceFileName',
-                $invoiceDataService->getInvoiceFileName($invoiceData->getInvoiceConfiguration())
-            );
+            $this->addTplParam('invoiceFileName', $invoiceDataService->getInvoiceFileName($invoiceData));
 
             /** @var int $fileTimestamp */
             $fileTimestamp = filemtime($invoiceData->getInvoicePath());
@@ -68,7 +65,7 @@ class InvoiceController extends AdminController
         $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($request->getInvoiceIdFromRequest());
 
         $invoiceService->triggerInvoiceFileDownload(
-            $invoiceDataService->getInvoiceFileName($invoiceData->getInvoiceConfiguration()),
+            $invoiceDataService->getInvoiceFileName($invoiceData),
             $invoiceData->getInvoicePath()
         );
     }
