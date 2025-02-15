@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Repository;
 use Doctrine\DBAL\ForwardCompatibility\Result;
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\Exception\InvoiceConfigurationNotFound;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
 class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryInterface
@@ -21,7 +22,7 @@ class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryIn
     ) {
     }
 
-    public function getByOrderId(string $orderId): ?InvoiceConfigurationInterface
+    public function getByOrderId(string $orderId): InvoiceConfigurationInterface
     {
         $queryBuilder = $this->queryBuilderFactory->create();
         $queryBuilder->select('*')
@@ -41,14 +42,17 @@ class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryIn
             );
         }
 
-        return null;
+        throw new InvoiceConfigurationNotFound();
     }
 
     public function save(InvoiceConfigurationInterface $invoiceConfiguration): void
     {
-        $this->getByOrderId($invoiceConfiguration->getOrderId())
-            ? $this->updateInvoiceConfiguration($invoiceConfiguration)
-            : $this->createInvoiceConfiguration($invoiceConfiguration);
+        try {
+            $this->getByOrderId($invoiceConfiguration->getOrderId());
+            $this->updateInvoiceConfiguration($invoiceConfiguration);
+        } catch (InvoiceConfigurationNotFound $e) {
+            $this->createInvoiceConfiguration($invoiceConfiguration);
+        }
     }
 
     protected function createInvoiceConfiguration(InvoiceConfigurationInterface $invoiceConfiguration): void

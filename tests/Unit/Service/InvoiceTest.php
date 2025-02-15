@@ -72,32 +72,6 @@ class InvoiceTest extends TestCase
         $this->assertSame($invoiceConfigurationStub, $result->getInvoiceConfiguration());
     }
 
-    public function testGetDefaultInvoiceData(): void
-    {
-        $sut = $this->getSut(
-            orderRepository: $this->createConfiguredMock(OrderRepositoryInterface::class, [
-                'getByOrderId' => $this->createConfiguredMock(OrderModel::class, [
-                    'getShopId' => 3,
-                    'getId' => uniqid()
-                ])
-            ]),
-            invoiceConfigRepo: $this->createConfiguredMock(InvoiceConfigurationRepositoryInterface::class, [
-                'getByOrderId' => null
-            ]),
-            moduleSettings: $this->createConfiguredMock(ModuleSettingsInterface::class, [
-                'getInvoiceDateFormat' => $dateFormat = uniqid(),
-                'getInvoiceNumberFormat' => $numberFormat = uniqid(),
-            ])
-        );
-
-        $result = $sut->getInvoiceDataByOrderId(uniqid());
-
-        $configuration = $result->getInvoiceConfiguration();
-
-        $this->assertSame($dateFormat, $configuration->getDate());
-        $this->assertSame($numberFormat, $configuration->getNumber());
-    }
-
     public function testSaveOrderInvoiceData(): void
     {
         $configurationStub = $this->createStub(InvoiceConfigurationInterface::class);

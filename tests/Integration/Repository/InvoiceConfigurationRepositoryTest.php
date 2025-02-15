@@ -11,6 +11,7 @@ namespace FreshAdvance\Invoice\Tests\Integration\Repository;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\Exception\InvoiceConfigurationNotFound;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
@@ -36,12 +37,6 @@ class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
                 number: 'someNumber'
             )
         );
-    }
-
-    public function testGetNotExistingOrderInvoice(): void
-    {
-        $sut = $this->getSut();
-        $this->assertNull($sut->getByOrderId(self::TEST_NOT_EXISTING_ORDER_ID));
     }
 
     public function testExistingOrderInvoice(): void

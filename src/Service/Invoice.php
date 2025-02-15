@@ -43,15 +43,7 @@ class Invoice
     public function getInvoiceDataByOrderId(string $orderId): InvoiceDataInterface
     {
         $order = $this->orderRepository->getByOrderId($orderId);
-
         $configuration = $this->invoiceConfigRepo->getByOrderId($orderId);
-        if (!$configuration) {
-            $configuration = new InvoiceConfiguration(
-                orderId: $orderId,
-                date: $this->moduleSettings->getInvoiceDateFormat(),
-                number: $this->moduleSettings->getInvoiceNumberFormat(),
-            );
-        }
 
         return new InvoiceData(
             order: $order,

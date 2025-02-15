@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Change filename prefix for admin panel invoice download to be format with some possible placeholders instead
 - Moved new FilenameCalculator class to Document domain, as they are used not only for emails now
+- InvoiceConfigurationRepositoryInterface::getByOrderId doesnt return null anymore
 
 ### Removed
 - Not used methods leftovers from ModuleSettings
