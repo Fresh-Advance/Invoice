@@ -230,7 +230,7 @@
 
                 {% block fa_invoice_invoice_body_totals_payment %}
                     {% set paymentPrice = order.getOrderPaymentPrice() %}
-                    {% if paymentPrice %}
+                    {% if paymentPrice and paymentPrice.getPrice() > 0 %}
                         {% if shopConfig.getConfigParam('blShowVATForPayCharge') %}
                             <tr id="payment">
                                 <td colspan="{{ totals_colspan }}">{{ translate({ ident: "FA_INVOICE_PAYMENT_NET" }) }}:</td>
