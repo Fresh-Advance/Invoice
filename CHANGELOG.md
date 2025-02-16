@@ -4,10 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v4.0.0-rc.2] - Unreleased
+## [v4.0.0-rc.2] - 2025-02-16
 
 ### Changed
 - Change filename prefix for admin panel invoice download to be format with some possible placeholders instead
+- Do not show zero value Payment charge costs in the invoice
 - Moved new FilenameCalculator class to Document domain, as they are used not only for emails now
 - InvoiceConfigurationRepositoryInterface::getByOrderId doesnt return null anymore
 
