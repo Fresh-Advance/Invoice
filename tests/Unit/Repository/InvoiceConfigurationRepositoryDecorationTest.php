@@ -47,7 +47,7 @@ class InvoiceConfigurationRepositoryDecorationTest extends TestCase
         $originalRepositoryMock = $this->createMock(InvoiceConfigurationRepositoryInterface::class);
         $originalRepositoryMock->method('getByOrderId')
             ->with($orderId = uniqid())
-            ->willThrowException(new InvoiceConfigurationNotFound);
+            ->willThrowException(new InvoiceConfigurationNotFound());
 
         $sut = $this->getSut(
             invoiceConfigurationRepository: $originalRepositoryMock,
