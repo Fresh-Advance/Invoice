@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Document\Service\DocumentRendererInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
@@ -68,5 +69,16 @@ class InvoiceController extends AdminController
             $invoiceDataService->getInvoiceFileName($invoiceData),
             $invoiceData->getInvoicePath()
         );
+    }
+
+    public function debug(): void
+    {
+        $request = $this->getServiceFromContainer(RequestInterface::class);
+        $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
+        $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($request->getInvoiceIdFromRequest());
+
+        $documentRendering = $this->getServiceFromContainer(DocumentRendererInterface::class);
+
+        die($documentRendering->render($invoiceData));
     }
 }

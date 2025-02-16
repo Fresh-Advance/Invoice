@@ -48,6 +48,7 @@
 
             <div style="margin-top: 20px;">
                 <input type="submit" name="downloadDocument" value="{{ translate({ ident: "FA_INVOICE_FORM_DOWNLOAD" }) }}">
+                <a style="display:none;" target="_blank" href="{{ oViewConf.getSelfLink()|raw }}&cl=fa_invoice_admin&fnc=debug&oxid={{ oxid }}">Debug</a>
             </div>
         </form>
     </div>
