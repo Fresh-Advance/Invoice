@@ -238,7 +238,7 @@ class EmailExtensionTest extends IntegrationTestCase
                     $calculatedUserFileName,
                     $calculatedOwnerFileName
                 ) {
-                    switch ($matcher->getInvocationCount()) {
+                    switch ($matcher->numberOfInvocations()) {
                         case 1:
                             $this->assertSame($path, $invoicePath);
                             $this->assertSame($name, $calculatedUserFileName);
