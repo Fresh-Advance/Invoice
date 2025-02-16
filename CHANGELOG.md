@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - Not used methods leftovers from ModuleSettings
 
+### Fixed
+- Updated the phpunit and other testing tools to fit 7.1 shop dependencies
+
 ## [v4.0.0-rc.1] - 2025-02-09
 
 ### Added
