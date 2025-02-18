@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v4.0.0] - 2025-02-18
+
+### Added
+- Changes from [v4.0.0-rc.1] and [v4.0.0-rc.2]
+- Help box for Invoice number format setting
+
 ## [v4.0.0-rc.2] - 2025-02-16
 
 ### Changed
