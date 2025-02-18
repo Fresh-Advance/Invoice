@@ -38,6 +38,7 @@ $aLang = array_merge($aLang, [
     'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Invoice numbering',
     'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Update order invoice number on invoice creation',
     'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format',
+    'HELP_SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format is responsible for decorating your Invoice number with some serie, and get the number like: SE-ABC-123 by using the format SE-ABC-%1$s. This setting is also used during filename generation as <invoiceNumber> placeholder.',
 
     # Module settings invoice mails
     'SHOP_MODULE_GROUP_fa_invoice_emails' => 'Email options',

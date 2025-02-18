@@ -38,6 +38,7 @@ $aLang = array_merge($aLang, [
     'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Rechnungsnummerierung',
     'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Bestellrechnungsnummer bei Rechnungserstellung aktualisieren',
     'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Rechnungsnummerformat',
+    'HELP_SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Das Rechnungsnummerformat ist dafür verantwortlich, Ihre Rechnungsnummer mit einer Serie zu dekorieren und die Nummer wie SE-ABC-123 zu erhalten, indem das Format SE-ABC-%1$s verwendet wird. Diese Einstellung wird auch bei der Dateinamengenerierung als <invoiceNumber> Platzhalter verwendet.',
 
     # Module settings invoice mails
     'SHOP_MODULE_GROUP_fa_invoice_emails' => 'E-Mail-Optionen',

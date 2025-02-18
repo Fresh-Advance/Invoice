@@ -24,6 +24,7 @@ $aLang = array_merge($aLang, [
     'HELP_SHOP_MODULE_fa_invoice_FilenameFormat' => 'This setting is used to define the filename for the invoice downloadable in admin panel. <br><br><strong>Possible placeholders:</strong><br><br><strong>&lt;order:tableField&gt;</strong> format placeholder to include information from the oxorder table(eg. &lt;order:oxbillfname&gt;)<br><strong>&lt;invoiceNumber&gt;</strong> placeholder to include the invoice number',
     'SHOP_MODULE_fa_invoice_IsForArchive' => 'Document is for archive (PDFA)',
     'SHOP_MODULE_fa_invoice_InvoiceDateFormat' => 'Default invoice date format',
+    'HELP_SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format is responsible for decorating your Invoice number with some serie, and get the number like: SE-ABC-123 by using the format SE-ABC-%1$s. This setting is also used during filename generation as <invoiceNumber> placeholder.',
 
     # Module settings layout
     'SHOP_MODULE_GROUP_fa_invoice_layout' => 'Invoice document layout',
