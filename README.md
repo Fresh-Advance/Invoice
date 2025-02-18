@@ -99,6 +99,7 @@ Commands can be also triggered directly on the container with docker compose, ex
 
 ```shell
 docker compose exec -T php composer tests-coverage
+```
 
 ## Overwriting the template
 
