@@ -14,7 +14,7 @@ use OxidEsales\Eshop\Core\Utils;
 class UtilsProxy implements UtilsInterface
 {
     public function __construct(
-        private Utils $utils
+        readonly private Utils $utils
     ) {
     }
 

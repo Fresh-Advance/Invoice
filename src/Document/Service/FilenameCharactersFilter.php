@@ -14,7 +14,7 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 class FilenameCharactersFilter implements FilenameCalculatorInterface
 {
     public function __construct(
-        private FilenameCalculatorInterface $invoiceFilenameCalculator,
+        readonly private FilenameCalculatorInterface $invoiceFilenameCalculator,
     ) {
     }
 

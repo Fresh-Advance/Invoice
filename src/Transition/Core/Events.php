@@ -33,8 +33,6 @@ final class Events
 
     /**
      * Execute action on deactivate event
-     *
-     * @throws Exception
      */
     public static function onDeactivate(): void
     {

@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;

@@ -16,9 +16,10 @@ use FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use OxidEsales\Eshop\Application\Model\Order;
+use OxidEsales\Eshop\Core\Email as ShopEmail;
 
 /**
- * @mixin \OxidEsales\Eshop\Core\Email
+ * @mixin ShopEmail
  */
 class EmailExtension extends EmailExtension_parent
 {

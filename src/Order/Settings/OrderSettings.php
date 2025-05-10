@@ -17,7 +17,7 @@ class OrderSettings implements OrderSettingsInterface
     public const SETTING_INVOICE_NUMBER_UPDATE = 'fa_invoice_InvoiceNumberUpdate';
 
     public function __construct(
-        private ModuleSettingServiceInterface $moduleSettingService,
+        readonly private ModuleSettingServiceInterface $moduleSettingService,
     ) {
     }
 

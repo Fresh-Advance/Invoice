@@ -20,7 +20,7 @@ class ModuleSettings implements ModuleSettingsInterface
     public const SETTING_INVOICE_DATE_FORMAT = 'fa_invoice_InvoiceDateFormat';
 
     public function __construct(
-        private ModuleSettingServiceInterface $moduleSettingService
+        readonly private ModuleSettingServiceInterface $moduleSettingService
     ) {
     }
 

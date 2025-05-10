@@ -18,7 +18,7 @@ class FilenameLengthFilter implements FilenameCalculatorInterface
     public const MAX_LENGTH = 250;
 
     public function __construct(
-        private FilenameCalculatorInterface $invoiceFilenameCalculator,
+        readonly private FilenameCalculatorInterface $invoiceFilenameCalculator,
     ) {
     }
 

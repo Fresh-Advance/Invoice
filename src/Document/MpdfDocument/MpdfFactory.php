@@ -15,7 +15,7 @@ use Mpdf\Mpdf;
 class MpdfFactory
 {
     public function __construct(
-        private ModuleSettingsInterface $moduleSettings
+        readonly private ModuleSettingsInterface $moduleSettings
     ) {
     }
 

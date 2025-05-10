@@ -28,13 +28,13 @@ class DocumentRenderer implements DocumentRendererInterface
     {
         $currentLanguage = $this->shopLanguage->getTplLanguage();
         try {
-            $this->shopLanguage->forceSetTplLanguage((int)$invoiceData->getLanguageId());
+            $this->shopLanguage->forceSetTplLanguage($invoiceData->getLanguageId());
             $html = $this->templateRenderer->renderTemplate(
                 self::INVOICE_TEMPLATE,
                 $this->templateParametersService->calculateTemplateParameters($invoiceData)
             );
         } finally {
-            $this->shopLanguage->forceSetTplLanguage((int)$currentLanguage);
+            $this->shopLanguage->forceSetTplLanguage($currentLanguage);
         }
 
         return $html;

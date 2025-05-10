@@ -13,12 +13,12 @@ use FreshAdvance\Invoice\Language\Extension\Language;
 
 class LanguageProxy implements LanguageInterface
 {
-    /** @var \FreshAdvance\Invoice\Language\Extension\Language $language */
+    /** @var Language $language */
     private $language;
 
     public function __construct(\OxidEsales\Eshop\Core\Language $language)
     {
-        /** @var \FreshAdvance\Invoice\Language\Extension\Language $language */
+        /** @var Language $language */
         $this->language = $language;
     }
 
@@ -34,6 +34,6 @@ class LanguageProxy implements LanguageInterface
 
     public function getLanguageAbbreviation(): string
     {
-        return (string)$this->language->getLanguageAbbr($this->getTplLanguage());
+        return $this->language->getLanguageAbbr($this->getTplLanguage());
     }
 }

@@ -20,7 +20,7 @@ class EmailSettings implements EmailSettingsInterface
     public const SETTING_OWNER_ORDER_EMAIL_INVOICE_FILENAME_FORMAT = 'fa_invoice_OwnerOrderEmailInvoiceFilenameFormat';
 
     public function __construct(
-        private ModuleSettingServiceInterface $moduleSettingService
+        readonly private ModuleSettingServiceInterface $moduleSettingService
     ) {
     }
 

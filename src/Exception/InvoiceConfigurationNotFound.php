@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Exception;
 
-class InvoiceConfigurationNotFound extends \Exception
+use Exception;
+
+class InvoiceConfigurationNotFound extends Exception
 {
 }

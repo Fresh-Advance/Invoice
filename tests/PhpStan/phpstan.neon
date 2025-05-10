@@ -1,4 +1,7 @@
 parameters:
+    phpVersion:
+        min: 80100
+        max: 80499
     ignoreErrors:
         -
             identifier: missingType.iterableValue

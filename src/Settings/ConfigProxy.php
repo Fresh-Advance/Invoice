@@ -14,7 +14,7 @@ use OxidEsales\Eshop\Core\Config;
 class ConfigProxy implements ConfigInterface
 {
     public function __construct(
-        private Config $shopConfig
+        readonly private Config $shopConfig
     ) {
     }
 

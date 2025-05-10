@@ -10,9 +10,10 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Document\Model;
 
 use OxidEsales\Eshop\Application\Model\Article;
+use OxidEsales\Eshop\Application\Model\OrderArticle;
 
 /**
- * @mixin \OxidEsales\Eshop\Application\Model\OrderArticle
+ * @mixin OrderArticle
  */
 class OrderArticleExtension extends OrderArticleExtension_parent
 {

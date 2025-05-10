@@ -33,8 +33,6 @@ class FilenameCalculator implements FilenameCalculatorInterface
         $billNr = $order->getFieldData('oxbillnr');
         $invoiceNumber = $invoiceConfiguration->getFormattedNumber((string)$billNr);
 
-        $format = str_replace('<invoiceNumber>', $invoiceNumber, $format);
-
-        return $format;
+        return str_replace('<invoiceNumber>', $invoiceNumber, $format);
     }
 }

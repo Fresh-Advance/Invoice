@@ -17,8 +17,8 @@ use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 class InvoiceConfigurationRepositoryDecoration implements InvoiceConfigurationRepositoryInterface
 {
     public function __construct(
-        private InvoiceConfigurationRepositoryInterface $originalRepository,
-        private ModuleSettingsInterface $moduleSettings,
+        readonly private InvoiceConfigurationRepositoryInterface $originalRepository,
+        readonly private ModuleSettingsInterface $moduleSettings,
     ) {
     }
 

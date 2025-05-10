@@ -19,7 +19,7 @@ class RequestProxy implements RequestInterface
     public const REQUEST_PARAM_ORDER_ID = 'oxid';
 
     public function __construct(
-        private Request $request
+        readonly private Request $request
     ) {
     }
 

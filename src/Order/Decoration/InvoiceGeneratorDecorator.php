@@ -17,9 +17,9 @@ use FreshAdvance\Invoice\Order\Settings\OrderSettingsInterface;
 class InvoiceGeneratorDecorator implements InvoiceGeneratorInterface
 {
     public function __construct(
-        private InvoiceGeneratorInterface $originalGenerator,
-        private OrderServiceInterface $orderService,
-        private OrderSettingsInterface $orderSettings,
+        readonly private InvoiceGeneratorInterface $originalGenerator,
+        readonly private OrderServiceInterface $orderService,
+        readonly private OrderSettingsInterface $orderSettings,
     ) {
     }
 

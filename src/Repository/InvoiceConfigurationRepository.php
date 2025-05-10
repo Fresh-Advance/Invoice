@@ -50,7 +50,7 @@ class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryIn
         try {
             $this->getByOrderId($invoiceConfiguration->getOrderId());
             $this->updateInvoiceConfiguration($invoiceConfiguration);
-        } catch (InvoiceConfigurationNotFound $e) {
+        } catch (InvoiceConfigurationNotFound) {
             $this->createInvoiceConfiguration($invoiceConfiguration);
         }
     }
@@ -80,6 +80,9 @@ class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryIn
         $queryBuilder->execute();
     }
 
+    /**
+     * @return array<string, string>
+     */
     private function getValuesForUpdate(): array
     {
         return [
