@@ -29,6 +29,15 @@ final class OrderInvoiceCest
         $this->insertAnOrderInDatabase($I);
     }
 
+    /** @param AcceptanceTester $I */
+    public function _after(AcceptanceTester $I)
+    {
+        $testInvoiceFilePath = __DIR__ . '/../../../invoices/ju/justSomeOxorderId.pdf';
+        if (is_file($testInvoiceFilePath)) {
+            unlink($testInvoiceFilePath);
+        }
+    }
+
     public function testOrderInvoiceTabAvailable(AcceptanceTester $I): void
     {
         $I->wantToTest('Order Invoice tab is available');
@@ -56,8 +65,6 @@ final class OrderInvoiceCest
 
         $I->click($invoicePage->invoiceDataGenerateButton);
         $I->waitForPageLoad();
-
-//        $I->wait(300);
 
         $I->see('Current document');
     }
