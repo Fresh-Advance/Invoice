@@ -11,13 +11,13 @@ namespace Email\Settings;
 
 use FreshAdvance\Invoice\Email\Settings\EmailSettings;
 use FreshAdvance\Invoice\Module;
-use FreshAdvance\Invoice\Settings\ModuleSettings;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\String\UnicodeString;
 
 class EmailSettingsTest extends \PHPUnit\Framework\TestCase
 {
-    /** @dataProvider booleanDataProvider */
+    #[DataProvider('booleanDataProvider')]
     public function testIsSendInvoiceOnUserOrderEmailActive(bool $value): void
     {
         $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
@@ -29,7 +29,7 @@ class EmailSettingsTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($value, $sut->isSendInvoiceOnUserOrderEmailActive());
     }
 
-    /** @dataProvider booleanDataProvider */
+    #[DataProvider('booleanDataProvider')]
     public function testIsSendInvoiceOnOwnerOrderEmailActive(bool $value): void
     {
         $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
@@ -41,7 +41,7 @@ class EmailSettingsTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($value, $sut->isSendInvoiceOnOwnerOrderEmailActive());
     }
 
-    public function booleanDataProvider(): array
+    public static function booleanDataProvider(): array
     {
         return [
             [true],

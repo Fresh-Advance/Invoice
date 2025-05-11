@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Unit\Document\Settings;
 use FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings;
 use FreshAdvance\Invoice\Module;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\String\UnicodeString;
 
@@ -20,7 +21,7 @@ use Symfony\Component\String\UnicodeString;
  */
 class DocumentLayoutSettingsTest extends TestCase
 {
-    /** @dataProvider settingsDataProvider */
+    #[DataProvider('settingsDataProvider')]
     public function testGetMarginTopReturnsModuleSettingValues(string $settingKey, string $method): void
     {
         $configValue = uniqid();
@@ -36,7 +37,7 @@ class DocumentLayoutSettingsTest extends TestCase
         $this->assertSame($configValue, $sut->$method());
     }
 
-    public function settingsDataProvider(): \Generator
+    public static function settingsDataProvider(): \Generator
     {
         yield 'margin top' => [
             'settingKey' => DocumentLayoutSettings::SETTING_MARGIN_TOP,

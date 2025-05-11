@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Unit\Order\Settings;
 use FreshAdvance\Invoice\Module;
 use FreshAdvance\Invoice\Order\Settings\OrderSettings;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,9 +20,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class OrderSettingsTest extends TestCase
 {
-    /**
-     * @dataProvider booleanDataProvider
-     */
+    #[DataProvider('booleanDataProvider')]
     public function testUpdateOrderInvoiceNumberOnInvoiceGeneration(bool $value): void
     {
         $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
@@ -33,7 +32,7 @@ final class OrderSettingsTest extends TestCase
         $this->assertSame($value, $sut->isOrderInvoiceNumberUpdateActive());
     }
 
-    public function booleanDataProvider(): array
+    public static function booleanDataProvider(): array
     {
         return [
             [true],

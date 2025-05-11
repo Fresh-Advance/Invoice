@@ -13,6 +13,7 @@ use FreshAdvance\Invoice\Module;
 use FreshAdvance\Invoice\Settings\ModuleSettings;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingService;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\String\UnicodeString;
 
@@ -34,9 +35,7 @@ final class ModuleSettingsTest extends TestCase
         $this->assertSame($value, $sut->getFileNameFormat());
     }
 
-    /**
-     * @dataProvider booleanDataProvider
-     */
+    #[DataProvider('booleanDataProvider')]
     public function testIsForArchive(bool $value): void
     {
         $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
@@ -74,7 +73,7 @@ final class ModuleSettingsTest extends TestCase
         $this->assertSame($value, $sut->getInvoiceDateFormat());
     }
 
-    public function booleanDataProvider(): array
+    public static function booleanDataProvider(): array
     {
         return [
             [true],

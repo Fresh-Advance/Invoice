@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Unit\DataType;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -45,7 +46,7 @@ class InvoiceConfigurationTest extends TestCase
         $this->assertSame('for' . $invoiceNumber . 'mat', $sut->getFormattedNumber($invoiceNumber));
     }
 
-    /** @dataProvider formattedDateDataProvider */
+    #[DataProvider('formattedDateDataProvider')]
     public function testGetFormattedDate(string $format, string $expectation): void
     {
         $sut = new InvoiceConfiguration(
@@ -58,7 +59,7 @@ class InvoiceConfigurationTest extends TestCase
         $this->assertSame($expectation, $sut->getFormattedDate());
     }
 
-    public function formattedDateDataProvider(): \Generator
+    public static function formattedDateDataProvider(): \Generator
     {
         $y = date('Y');
         $m = date('m');

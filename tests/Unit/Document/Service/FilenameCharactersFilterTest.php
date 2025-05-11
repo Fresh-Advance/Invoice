@@ -11,10 +11,11 @@ namespace FreshAdvance\Invoice\Tests\Unit\Document\Service;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Document\Service\FilenameCalculatorInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class FilenameCharactersFilterTest extends \PHPUnit\Framework\TestCase
 {
-    /** @dataProvider filenamesProvider */
+    #[DataProvider('filenamesProvider')]
     public function testBadCharactersFilteredOut(string $expectedFilename, string $initialFilename): void
     {
         $calculatorStub = $this->createMock(FilenameCalculatorInterface::class);
@@ -32,7 +33,7 @@ class FilenameCharactersFilterTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expectedFilename, $sut->calculateByFormat($format, $invoiceData));
     }
 
-    public function filenamesProvider(): \Generator
+    public static function filenamesProvider(): \Generator
     {
         yield 'Deutsch characters stay' => [
             'expectedFilename' => 'Straßenbahnkönnen',

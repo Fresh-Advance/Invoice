@@ -12,6 +12,7 @@ namespace Document\MpdfDocument;
 use FreshAdvance\Invoice\Document\MpdfDocument\MpdfFactory;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use Mpdf\Mpdf;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,9 +28,7 @@ class MpdfFactoryTest extends TestCase
         $this->assertInstanceOf(Mpdf::class, $sut->create());
     }
 
-    /**
-     * @dataProvider archiveFlagDataProvider
-     */
+    #[DataProvider('archiveFlagDataProvider')]
     public function testArchiveFlagConfigured($value, $expected): void
     {
         $settingsStub = $this->createMock(ModuleSettingsInterface::class);
@@ -43,7 +42,7 @@ class MpdfFactoryTest extends TestCase
         $this->assertSame($expected, $object->PDFA);
     }
 
-    public function archiveFlagDataProvider(): \Generator
+    public static function archiveFlagDataProvider(): \Generator
     {
         yield 'configured' => [true, true];
         yield 'not configured' => [false, false];

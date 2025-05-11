@@ -15,6 +15,7 @@ use FreshAdvance\Invoice\Exception\InvoiceConfigurationNotFound;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @covers \FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository
@@ -52,9 +53,7 @@ class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
         $this->assertSame('someNumber', $data->getNumber());
     }
 
-    /**
-     * @dataProvider saveInvoiceConfigurationDataProvider
-     */
+    #[DataProvider('saveInvoiceConfigurationDataProvider')]
     public function testSaveInvoiceConfiguration(string $orderId): void
     {
         $sut = $this->getSut();
@@ -76,7 +75,7 @@ class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
         $this->assertSame('someOtherNumber', $data->getNumber());
     }
 
-    public function saveInvoiceConfigurationDataProvider(): array
+    public static function saveInvoiceConfigurationDataProvider(): array
     {
         return [
             ['orderId' => self::TEST_ORDER_ID],
