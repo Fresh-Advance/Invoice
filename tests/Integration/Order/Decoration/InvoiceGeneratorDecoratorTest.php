@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Integration\Order\Decoration;
 
-use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Order\Decoration\InvoiceGeneratorDecorator;
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;

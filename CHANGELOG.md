@@ -4,9 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v4.0.1] - Unreleased
+## [v5.0.0-rc.1] - Unreleased
 
 ### Changed
+- Renamed the `Document` namespace to `Pdf`
 - Updated quality tools - phpunit 10->11, phpstan 1.8->2.1, codeception 5.0->5.1
 
 ### Fixed
@@ -140,7 +141,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
-[v4.0.1]: https://github.com/Fresh-Advance/Invoice/compare/v4.0.0...v4.0.1
+[v5.0.0-rc.1]: https://github.com/Fresh-Advance/Invoice/compare/v4.0.0...v5.0.0-rc.1
 [v4.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v3.1.0...v4.0.0
 [v4.0.0-rc.2]: https://github.com/Fresh-Advance/Invoice/compare/v4.0.0-rc.1...v4.0.0-rc.2
 [v4.0.0-rc.1]: https://github.com/Fresh-Advance/Invoice/compare/v3.1.0...v4.0.0-rc.1
