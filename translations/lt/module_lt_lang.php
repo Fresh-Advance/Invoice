@@ -9,6 +9,7 @@ $aLang = [
     'FA_INVOICE_SELLER' => 'Pardavėjas',
     'FA_INVOICE_BUYER' => 'Pirkėjas',
     'FA_INVOICE_TAXID' => 'Įmonės kodas',
+    'FA_INVOICE_SALES_TAXID' => 'PVM mokėtojo kodas',
     'FA_INVOICE_ORDERNR' => 'Užsakymo Nr.',
     'FA_INVOICE_DATE' => 'Sąskaitos išrašymo data',
     'FA_INVOICE_NUMBER' => 'Sąskaita faktūra Nr.',

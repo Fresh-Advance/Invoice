@@ -9,6 +9,7 @@ $aLang = [
     'FA_INVOICE_SELLER' => 'Verkäufer',
     'FA_INVOICE_BUYER' => 'Käufer',
     'FA_INVOICE_TAXID' => 'Steuernummer',
+    'FA_INVOICE_SALES_TAXID' => 'USt.-ID',
     'FA_INVOICE_ORDERNR' => 'Bestell-Nr.',
     'FA_INVOICE_DATE' => 'Rechnungsausstellungsdatum',
     'FA_INVOICE_NUMBER' => 'Rechnungsnr.',
