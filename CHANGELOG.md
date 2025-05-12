@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Small coding style issues
 - Shop version conflicts in composer.json
+- Cleanup unused smarty template pointers in metadata.php
 
 ## [v4.0.0] - 2025-02-18
 
