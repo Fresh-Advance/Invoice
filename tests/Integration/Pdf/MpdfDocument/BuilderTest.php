@@ -50,7 +50,9 @@ class BuilderTest extends TestCase
         $tempDirectory = vfsStream::setup();
         $this->assertDirectoryDoesNotExist($tempDirectory->url() . '/somePath/');
 
-        $sut->generate($invoiceData);
+        $generatedFilePath = $sut->generate($invoiceData);
+        $this->assertSame($virtualFilePath, $generatedFilePath);
+
         $this->assertDirectoryExists($tempDirectory->url() . '/somePath/');
     }
 

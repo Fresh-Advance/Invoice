@@ -23,12 +23,12 @@ class InvoiceGeneratorDecorator implements InvoiceGeneratorInterface
     ) {
     }
 
-    public function generate(InvoiceDataInterface $invoiceData): void
+    public function generate(InvoiceDataInterface $invoiceData): string
     {
         if ($this->orderSettings->isOrderInvoiceNumberUpdateActive()) {
             $this->orderService->prepareOrderInvoiceNumber($invoiceData);
         }
 
-        $this->originalGenerator->generate($invoiceData);
+        return $this->originalGenerator->generate($invoiceData);
     }
 }

@@ -13,5 +13,5 @@ use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 
 interface InvoiceGeneratorInterface
 {
-    public function generate(InvoiceDataInterface $invoiceData): void;
+    public function generate(InvoiceDataInterface $invoiceData): string;
 }

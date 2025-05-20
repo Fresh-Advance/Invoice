@@ -20,18 +20,20 @@ use PHPUnit\Framework\TestCase;
 /** @covers \FreshAdvance\Invoice\Order\Decoration\InvoiceGeneratorDecorator */
 class InvoiceGeneratorDecoratorTest extends TestCase
 {
-    public function testOriginalGeneratorCalledWithCorrectParameter(): void
+    public function testOriginalGeneratorCalledWithCorrectParameterAndReturnsParentResult(): void
     {
         $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
 
         $generatorSpy = $this->createMock(InvoiceGeneratorInterface::class);
         $generatorSpy->expects($this->once())
             ->method('generate')
-            ->with($invoiceDataStub);
+            ->with($invoiceDataStub)
+            ->willReturn($originalGeneratorResult = uniqid());
 
         $sut = $this->getSut($generatorSpy);
 
-        $sut->generate($invoiceDataStub);
+        $result = $sut->generate($invoiceDataStub);
+        $this->assertSame($originalGeneratorResult, $result);
     }
 
     public function testGenerateTriggersOrderNumberingUpdate(): void

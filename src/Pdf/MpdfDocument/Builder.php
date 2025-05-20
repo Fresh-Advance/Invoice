@@ -23,7 +23,7 @@ class Builder implements InvoiceGeneratorInterface
     ) {
     }
 
-    public function generate(InvoiceDataInterface $invoiceData): void
+    public function generate(InvoiceDataInterface $invoiceData): string
     {
         $this->configurePdfProcessor($invoiceData);
 
@@ -34,6 +34,8 @@ class Builder implements InvoiceGeneratorInterface
         }
 
         $this->pdfProcessor->OutputFile($invoiceFilePath);
+
+        return $invoiceFilePath;
     }
 
     private function configurePdfProcessor(InvoiceDataInterface $invoiceData): void
