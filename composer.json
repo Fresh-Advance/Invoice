@@ -17,7 +17,8 @@
     "oxid-esales/oxideshop-ce": "*",
     "mpdf/mpdf": "^8.1",
     "symfony/filesystem": "*",
-    "kwn/number-to-words": "^2.7"
+    "kwn/number-to-words": "^2.7",
+    "horstoeko/zugferd": "^1.0"
   },
   "conflict": {
     "oxid-esales/oxideshop-ce": "<7.1.0"
