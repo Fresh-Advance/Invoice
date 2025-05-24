@@ -10,10 +10,17 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Geo\Service\GeoServiceInterface;
+use horstoeko\zugferd\codelists\ZugferdElectronicAddressScheme;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 
 class BuilderBuyerConfigurator implements BuilderConfiguratorInterface
 {
+    public function __construct(
+        private readonly GeoServiceInterface $geoService,
+    ) {
+    }
+
     public function configureBuilder(
         ZugferdDocumentBuilder $builder,
         InvoiceDataInterface $invoiceData
@@ -24,11 +31,25 @@ class BuilderBuyerConfigurator implements BuilderConfiguratorInterface
             ?: trim($order->getFieldData('OXBILLFNAME') . ' ' . $order->getFieldData('OXBILLLNAME'));
         $builder->setDocumentBuyer($sellerName);
 
-//        $builder->setDocumentBuyer('Kunden AG Mitte', 'GE2020211');
-//        $builder->setDocumentBuyerAddress('Kundenstraße 15', '', '', '69876', 'Frankfurt', ZugferdCountryCodes::GERMANY);
-//        $builder->setDocumentBuyerContact('H. Meier', 'Einkauf', '+49-333-4444444', '+49-333-5555555', 'hm@kunde.de');
-//        $builder->setDocumentBuyerCommunication(ZugferdElectronicAddressScheme::UNECE3155_EM, 'purchase@kunde.de');
+        $builder->setDocumentBuyerAddress(
+            lineOne: trim($order->getFieldData('OXBILLSTREET') . ' ' . $order->getFieldData('OXBILLSTREETNR')),
+            postCode: $order->getFieldData('OXBILLZIP'),
+            city: $order->getFieldData('OXBILLCITY'),
+            country: $this->geoService->getCountryCodeById($order->getFieldData('OXBILLCOUNTRYID'))
+        );
 
+        $builder->setDocumentBuyerContact(
+            contactPersonName: trim($order->getFieldData('OXBILLFNAME') . ' ' . $order->getFieldData('OXBILLLNAME')),
+            contactDepartmentName: null,
+            contactPhoneNo: $order->getFieldData('OXBILLFON'),
+            contactFaxNo: $order->getFieldData('OXBILLFAX'),
+            contactEmailAddress: $order->getFieldData('OXBILLEMAIL'),
+        );
+
+        $builder->setDocumentBuyerCommunication(
+            ZugferdElectronicAddressScheme::UNECE3155_EM,
+            $order->getFieldData('OXBILLEMAIL'),
+        );
 
         return $builder;
     }

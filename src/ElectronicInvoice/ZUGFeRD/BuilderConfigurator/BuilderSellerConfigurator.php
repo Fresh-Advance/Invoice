@@ -33,6 +33,8 @@ class BuilderSellerConfigurator implements BuilderConfiguratorInterface
             vatRegNo: $shop->getFieldData('OXVATNUMBER'),
         );
 
+        //@todo country should be iso2, not the name
+
         $builder->setDocumentSellerAddress(
             lineOne: $shop->getFieldData('OXSTREET'),
             postCode: $shop->getFieldData('OXZIP'),
@@ -56,6 +58,8 @@ class BuilderSellerConfigurator implements BuilderConfiguratorInterface
             uriScheme: ZugferdElectronicAddressScheme::UNECE3155_EM,
             uri: $shop->getFieldData('OXINFOEMAIL'),
         );
+
+        //@todo: $documentBuilder->setDocumentSellerOrderReferencedDocument('SO-2024-000993337');
 
         return $builder;
     }

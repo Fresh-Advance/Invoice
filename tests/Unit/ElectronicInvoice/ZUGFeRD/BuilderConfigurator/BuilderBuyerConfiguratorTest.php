@@ -11,6 +11,8 @@ namespace FreshAdvance\Invoice\Tests\Unit\ElectronicInvoice\ZUGFeRD\BuilderConfi
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderBuyerConfigurator;
+use FreshAdvance\Invoice\Geo\Service\GeoServiceInterface;
+use horstoeko\zugferd\codelists\ZugferdElectronicAddressScheme;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
 use OxidEsales\Eshop\Application\Model\Shop;
@@ -90,24 +92,44 @@ class BuilderBuyerConfiguratorTest extends TestCase
             'getOrder' => $orderStub,
         ]);
 
-        $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);
+        $geoServiceMock = $this->createMock(GeoServiceInterface::class);
+        $geoServiceMock->method('getCountryCodeById')
+            ->with($ountryId)
+            ->willReturn($countryCode = uniqid());
 
-        //        $builder->setDocumentBuyerAddress(
-        //'Kundenstraße 15', '', '', '69876', 'Frankfurt', ZugferdCountryCodes::GERMANY);
+        $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);
 
         $builderSpy->expects($this->once())
             ->method('setDocumentBuyerAddress')
             ->with(
                 $street . ' ' . $streetNr,
-                '',
-                '',
+                null,
+                null,
                 $zip,
                 $city,
-                $countryId,
+                $countryCode,
             );
 
+        $builderSpy->expects($this->once())
+            ->method('setDocumentBuyerContact')
+            ->with(
+                $firstName . ' ' . $lastName,
+                null,
+                $phone,
+                $fax,
+                $email,
+            );
 
-        $sut = new BuilderBuyerConfigurator();
+        $builderSpy->expects($this->once())
+            ->method('setDocumentBuyerCommunication')
+            ->with(
+                ZugferdElectronicAddressScheme::UNECE3155_EM,
+                $email,
+            );
+
+        $sut = new BuilderBuyerConfigurator(
+            geoService: $geoServiceMock,
+        );
 
         $result = $sut->configureBuilder($builderSpy, $invoiceDataStub);
         $this->assertSame($builderSpy, $result);
