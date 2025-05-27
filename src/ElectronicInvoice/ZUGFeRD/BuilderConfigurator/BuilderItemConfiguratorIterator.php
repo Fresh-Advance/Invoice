@@ -25,11 +25,12 @@ class BuilderItemConfiguratorIterator implements BuilderConfiguratorInterface
     ): ZugferdDocumentBuilder {
         $orderArticles = $invoiceData->getOrder()->getOrderArticles();
 
-        foreach ($orderArticles as $key => $orderArticle) {
+        $position = 0;
+        foreach ($orderArticles as $orderArticle) {
             $builder = $this->builderItemConfigurator->configureOneItem(
                 builder: $builder,
                 invoiceData: $invoiceData,
-                position: $key + 1,
+                position: ++$position,
                 orderArticle: $orderArticle,
             );
         }

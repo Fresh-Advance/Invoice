@@ -12,9 +12,9 @@ namespace FreshAdvance\Invoice\Tests\Unit\ElectronicInvoice\ZUGFeRD\BuilderConfi
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfiguratorInterface;
 use FreshAdvance\Invoice\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderItemConfiguratorIterator;
+use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
-use OxidEsales\Eshop\Application\Model\OrderArticle;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -26,8 +26,8 @@ class BuilderItemConfiguratorIteratorTest extends TestCase
         $invoiceDataStub = $this->createConfiguredStub(InvoiceDataInterface::class, [
             'getOrder' => $this->createConfiguredStub(Order::class, [
                 'getOrderArticles' => [
-                    $item1 = $this->createStub(OrderArticle::class),
-                    $item2 = $this->createStub(OrderArticle::class),
+                    "10" => $item1 = $this->createStub(OrderArticleExtension::class),
+                    "20" => $item2 = $this->createStub(OrderArticleExtension::class),
                 ],
             ]),
         ]);
@@ -41,7 +41,7 @@ class BuilderItemConfiguratorIteratorTest extends TestCase
                 ZugferdDocumentBuilder $builder,
                 InvoiceDataInterface $invoiceData,
                 int $position,
-                OrderArticle $orderArticle
+                OrderArticleExtension $orderArticle
             ) use ($counter, $builderStub, $invoiceDataStub, $item1, $item2): ZugferdDocumentBuilder {
                 $this->assertSame($invoiceDataStub, $invoiceData);
 
