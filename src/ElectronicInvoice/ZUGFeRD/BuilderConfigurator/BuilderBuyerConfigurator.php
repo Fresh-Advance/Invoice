@@ -29,26 +29,26 @@ class BuilderBuyerConfigurator implements BuilderConfiguratorInterface
 
         $sellerName = $order->getFieldData('OXBILLCOMPANY')
             ?: trim($order->getFieldData('OXBILLFNAME') . ' ' . $order->getFieldData('OXBILLLNAME'));
-        $builder->setDocumentBuyer($sellerName);
+        $builder->setDocumentBuyer((string)$sellerName);
 
         $builder->setDocumentBuyerAddress(
             lineOne: trim($order->getFieldData('OXBILLSTREET') . ' ' . $order->getFieldData('OXBILLSTREETNR')),
-            postCode: $order->getFieldData('OXBILLZIP'),
-            city: $order->getFieldData('OXBILLCITY'),
-            country: $this->geoService->getCountryCodeById($order->getFieldData('OXBILLCOUNTRYID'))
+            postCode: (string)$order->getFieldData('OXBILLZIP'),
+            city: (string)$order->getFieldData('OXBILLCITY'),
+            country: $this->geoService->getCountryCodeById((string)$order->getFieldData('OXBILLCOUNTRYID'))
         );
 
         $builder->setDocumentBuyerContact(
             contactPersonName: trim($order->getFieldData('OXBILLFNAME') . ' ' . $order->getFieldData('OXBILLLNAME')),
             contactDepartmentName: null,
-            contactPhoneNo: $order->getFieldData('OXBILLFON'),
-            contactFaxNo: $order->getFieldData('OXBILLFAX'),
-            contactEmailAddress: $order->getFieldData('OXBILLEMAIL'),
+            contactPhoneNo: (string)$order->getFieldData('OXBILLFON'),
+            contactFaxNo: (string)$order->getFieldData('OXBILLFAX'),
+            contactEmailAddress: (string)$order->getFieldData('OXBILLEMAIL'),
         );
 
         $builder->setDocumentBuyerCommunication(
             ZugferdElectronicAddressScheme::UNECE3155_EM,
-            $order->getFieldData('OXBILLEMAIL'),
+            (string)$order->getFieldData('OXBILLEMAIL'),
         );
 
         return $builder;

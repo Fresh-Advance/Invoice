@@ -22,24 +22,24 @@ class BuilderSellerConfigurator implements BuilderConfiguratorInterface
         $shop = $invoiceData->getShop();
 
         $builder->setDocumentSeller(
-            name: $shop->getFieldData('OXCOMPANY'),
+            name: (string)$shop->getFieldData('OXCOMPANY'),
         );
 
         $builder->addDocumentSellerTaxNumber(
-            taxNo: $shop->getFieldData('OXTAXNUMBER'),
+            taxNo: (string)$shop->getFieldData('OXTAXNUMBER'),
         );
 
         $builder->addDocumentSellerVATRegistrationNumber(
-            vatRegNo: $shop->getFieldData('OXVATNUMBER'),
+            vatRegNo: (string)$shop->getFieldData('OXVATNUMBER'),
         );
 
         //@todo country should be iso2, not the name
 
         $builder->setDocumentSellerAddress(
-            lineOne: $shop->getFieldData('OXSTREET'),
-            postCode: $shop->getFieldData('OXZIP'),
-            city: $shop->getFieldData('OXCITY'),
-            country: $shop->getFieldData('OXCOUNTRY'),
+            lineOne: (string)$shop->getFieldData('OXSTREET'),
+            postCode: (string)$shop->getFieldData('OXZIP'),
+            city: (string)$shop->getFieldData('OXCITY'),
+            country: (string)$shop->getFieldData('OXCOUNTRY'),
         );
 
         $builder->setDocumentSellerContact(
@@ -49,14 +49,14 @@ class BuilderSellerConfigurator implements BuilderConfiguratorInterface
                 $shop->getFieldData('OXLNAME'),
             ),
             contactDepartmentName: null,
-            contactPhoneNo: $shop->getFieldData('OXTELEFON'),
-            contactFaxNo: $shop->getFieldData('OXTELEFAX'),
-            contactEmailAddress: $shop->getFieldData('OXINFOEMAIL'),
+            contactPhoneNo: (string)$shop->getFieldData('OXTELEFON'),
+            contactFaxNo: (string)$shop->getFieldData('OXTELEFAX'),
+            contactEmailAddress: (string)$shop->getFieldData('OXINFOEMAIL'),
         );
 
         $builder->setDocumentSellerCommunication(
             uriScheme: ZugferdElectronicAddressScheme::UNECE3155_EM,
-            uri: $shop->getFieldData('OXINFOEMAIL'),
+            uri: (string)$shop->getFieldData('OXINFOEMAIL'),
         );
 
         //@todo: $documentBuilder->setDocumentSellerOrderReferencedDocument('SO-2024-000993337');

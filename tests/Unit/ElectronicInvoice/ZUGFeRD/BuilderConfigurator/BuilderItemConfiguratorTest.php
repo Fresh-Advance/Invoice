@@ -35,13 +35,11 @@ class BuilderItemConfiguratorTest extends TestCase
         $orderArticleMock->method('getFieldData')
             ->willReturnMap([
                 ['OXARTNUM', $artNum = uniqid()],
-                ['OXNPRICE', $oneNet = rand(10, 100)], // one net
-                ['OXNETPRICE', $totalNet = rand(100, 200)], // total net
-                ['OXBPRICE', $oneBrut = rand(10, 100)], // one brut
-                ['OXBRUTPRICE', $totalBrut = rand(100, 200)], // total brut
-                ['OXAMOUNT', $amount = rand(1, 10)],
-                ['OXVATPRICE', $vatPrice = rand(10, 100)], // VAT price
-                ['OXVAT', $vat = rand(10, 100)], // VAT percentage
+                ['OXNPRICE', (string)$oneNet = rand(10, 100)], // one net
+                ['OXNETPRICE', (string)$totalNet = rand(100, 200)], // total net
+                ['OXBPRICE', (string)$oneBrut = rand(10, 100)], // one brut
+                ['OXAMOUNT', (string)$amount = rand(1, 10)],
+                ['OXVAT', (string)$vat = rand(10, 100)], // VAT percentage
             ]);
 
         $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);

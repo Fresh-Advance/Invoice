@@ -29,7 +29,7 @@ class BuilderDocumentInformationConfiguratorTest extends TestCase
 
         $orderStub = $this->createMock(Order::class);
         $orderStub->method('getFieldData')->willReturnMap([
-            ['oxbillnr', $billNr = uniqid()],
+            ['oxbillnr', $billNr = rand(1, 100)],
         ]);
         $orderStub->method('getOrderCurrency')
             ->willReturn($currencyStub);

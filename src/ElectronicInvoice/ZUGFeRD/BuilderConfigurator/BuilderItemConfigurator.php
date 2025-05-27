@@ -25,13 +25,13 @@ class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
 
         $builder->setDocumentPositionProductDetails(
             name: $orderArticle->faGetTranslatedTitle($invoiceData->getLanguageId()),
-            sellerAssignedID: $orderArticle->getFieldData('OXARTNUM')
+            sellerAssignedID: (string)$orderArticle->getFieldData('OXARTNUM')
         );
 
         $builder->setDocumentPositionNetPrice((float)$orderArticle->getFieldData('OXNPRICE'));
         $builder->setDocumentPositionGrossPrice((float)$orderArticle->getFieldData('OXBPRICE'));
-        $builder->setDocumentPositionQuantity($orderArticle->getFieldData('OXAMOUNT'), "H87");
-        $builder->addDocumentPositionTax('S', 'VAT', $orderArticle->getFieldData('OXVAT'));
+        $builder->setDocumentPositionQuantity((float)$orderArticle->getFieldData('OXAMOUNT'), "H87");
+        $builder->addDocumentPositionTax('S', 'VAT', (float)$orderArticle->getFieldData('OXVAT'));
         $builder->setDocumentPositionLineSummation((float)$orderArticle->getFieldData('OXNETPRICE'));
 
         return $builder;

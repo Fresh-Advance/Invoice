@@ -11,11 +11,11 @@ namespace FreshAdvance\Invoice\Tests\Unit\ElectronicInvoice\ZUGFeRD\BuilderConfi
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderBuyerConfigurator;
+use FreshAdvance\Invoice\ElectronicInvoice\ZUGFeRD\BuilderConfigurator\BuilderConfiguratorInterface;
 use FreshAdvance\Invoice\Geo\Service\GeoServiceInterface;
 use horstoeko\zugferd\codelists\ZugferdElectronicAddressScheme;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
-use OxidEsales\Eshop\Application\Model\Shop;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -29,6 +29,7 @@ class BuilderBuyerConfiguratorTest extends TestCase
                 ['OXBILLCOMPANY', $companyName = uniqid()],
                 ['OXBILLFNAME', uniqid()],
                 ['OXBILLLNAME', uniqid()],
+                ['OXBILLCOUNTRYID', uniqid()],
             ],
             'expectedSeller' => $companyName,
         ];
@@ -38,6 +39,7 @@ class BuilderBuyerConfiguratorTest extends TestCase
                 ['OXBILLCOMPANY', ''],
                 ['OXBILLFNAME', $firstName = uniqid()],
                 ['OXBILLLNAME', $lastName = uniqid()],
+                ['OXBILLCOUNTRYID', uniqid()],
             ],
             'expectedSeller' => $firstName . ' ' . $lastName,
         ];
@@ -61,7 +63,13 @@ class BuilderBuyerConfiguratorTest extends TestCase
             ->method('setDocumentBuyer')
             ->with($expectedSeller);
 
-        $sut = new BuilderBuyerConfigurator();
+        $geoServiceMock = $this->createMock(GeoServiceInterface::class);
+        $geoServiceMock->method('getCountryCodeById')
+            ->willReturn(uniqid());
+
+        $sut = $this->getSut(
+            geoServiceMock: $geoServiceMock,
+        );
 
         $result = $sut->configureBuilder($builderSpy, $invoiceDataStub);
         $this->assertSame($builderSpy, $result);
@@ -73,14 +81,11 @@ class BuilderBuyerConfiguratorTest extends TestCase
         $orderStub = $this->createMock(Order::class);
         $orderStub->method('getFieldData')
             ->willReturnMap([
-                ['OXBILLCOMPANY', $companyName = uniqid()],
-                ['OXBILLCOUNTRYID', $ountryId = uniqid()], // todo!
-                ['OXBILLSTATEID', $stateId = uniqid()], // todo!
+                ['OXBILLCOUNTRYID', $countryId = uniqid()],
                 ['OXBILLCITY', $city = uniqid()],
                 ['OXBILLSTREET', $street = uniqid()],
                 ['OXBILLSTREETNR', $streetNr = uniqid()],
                 ['OXBILLZIP', $zip = uniqid()],
-                ['OXBILLUSTID', $companyVatID = uniqid()],
                 ['OXBILLEMAIL', $email = uniqid()],
                 ['OXBILLFNAME', $firstName = uniqid()],
                 ['OXBILLLNAME', $lastName = uniqid()],
@@ -94,7 +99,7 @@ class BuilderBuyerConfiguratorTest extends TestCase
 
         $geoServiceMock = $this->createMock(GeoServiceInterface::class);
         $geoServiceMock->method('getCountryCodeById')
-            ->with($ountryId)
+            ->with($countryId)
             ->willReturn($countryCode = uniqid());
 
         $builderSpy = $this->createMock(ZugferdDocumentBuilder::class);
@@ -127,11 +132,19 @@ class BuilderBuyerConfiguratorTest extends TestCase
                 $email,
             );
 
-        $sut = new BuilderBuyerConfigurator(
-            geoService: $geoServiceMock,
+        $sut = $this->getSut(
+            geoServiceMock: $geoServiceMock
         );
 
         $result = $sut->configureBuilder($builderSpy, $invoiceDataStub);
         $this->assertSame($builderSpy, $result);
+    }
+
+    public function getSut(
+        ?GeoServiceInterface $geoServiceMock = null,
+    ): BuilderConfiguratorInterface {
+        return new BuilderBuyerConfigurator(
+            geoService: $geoServiceMock ?? $this->createStub(GeoServiceInterface::class),
+        );
     }
 }
