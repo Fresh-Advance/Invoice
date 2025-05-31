@@ -42,7 +42,13 @@ class BuilderItemConfiguratorIteratorTest extends TestCase
                 InvoiceDataInterface $invoiceData,
                 int $position,
                 OrderArticleExtension $orderArticle
-            ) use ($counter, $builderStub, $invoiceDataStub, $item1, $item2): ZugferdDocumentBuilder {
+            ) use (
+                $counter,
+                $builderStub,
+                $invoiceDataStub,
+                $item1,
+                $item2
+            ): ZugferdDocumentBuilder {
                 $this->assertSame($invoiceDataStub, $invoiceData);
 
                 switch ($counter->numberOfInvocations()) {

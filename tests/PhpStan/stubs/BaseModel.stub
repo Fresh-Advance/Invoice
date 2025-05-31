@@ -1,0 +1,13 @@
+<?php
+
+declare(strict_types=1);
+
+namespace OxidEsales\EshopCommunity\Core\Model;
+
+class BaseModel
+{
+    /**
+     * @return string|int|null
+     */
+    public function getFieldData($fieldName){}
+}

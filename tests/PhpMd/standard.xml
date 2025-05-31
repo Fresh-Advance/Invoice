@@ -17,7 +17,8 @@
         <properties>
             <property name="exceptions">
                 <value>
-                    \Symfony\Component\Filesystem\Path
+                    \Symfony\Component\Filesystem\Path,
+                    \horstoeko\zugferd\ZugferdDocumentBuilder
                 </value>
             </property>
         </properties>

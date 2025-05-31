@@ -7,7 +7,9 @@
 
 namespace FreshAdvance\Invoice\Geo\Factory;
 
+use OxidEsales\Eshop\Application\Model\Country;
+
 interface CountryModelFactoryInterface
 {
-    public function createModelObject();
+    public function createModelObject(): Country;
 }

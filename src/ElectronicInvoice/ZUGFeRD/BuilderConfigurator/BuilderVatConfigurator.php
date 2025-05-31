@@ -12,6 +12,7 @@ namespace FreshAdvance\Invoice\ElectronicInvoice\ZUGFeRD\BuilderConfigurator;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use horstoeko\zugferd\ZugferdDocumentBuilder;
 use OxidEsales\Eshop\Application\Model\Order;
+use OxidEsales\Eshop\Application\Model\OrderArticle;
 
 class BuilderVatConfigurator implements BuilderConfiguratorInterface
 {
@@ -35,24 +36,27 @@ class BuilderVatConfigurator implements BuilderConfiguratorInterface
     }
 
     /**
-     * @return array<float, array{net: float, vat: float}>
+     * @return array<string, array{net: float, vat: float}>
      */
     private function getOrderVatRates(Order $order): array
     {
         $rates = [];
 
         $items = $order->getOrderArticles();
+        /** @var OrderArticle $oneItem */
         foreach ($items as $oneItem) {
-            if (!isset($rates[$oneItem->getFieldData('OXVAT')])) {
-                $rates[$oneItem->getFieldData('OXVAT')] = [
+            $vatPercent = (string)$oneItem->getFieldData('OXVAT');
+            if (!isset($rates[$vatPercent])) {
+                $rates[$vatPercent] = [
                     'net' => 0.0,
                     'vat' => 0.0,
                 ];
             }
 
-            $rates[$oneItem->getFieldData('OXVAT')]['net'] += $oneItem->getFieldData('OXNETPRICE');
-            $rates[$oneItem->getFieldData('OXVAT')]['vat'] += $oneItem->getFieldData('OXVATPRICE');
+            $rates[$vatPercent]['net'] += (float)$oneItem->getFieldData('OXNETPRICE');
+            $rates[$vatPercent]['vat'] += (float)$oneItem->getFieldData('OXVATPRICE');
         }
+
         return $rates;
     }
 }

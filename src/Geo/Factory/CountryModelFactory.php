@@ -13,7 +13,7 @@ use OxidEsales\Eshop\Application\Model\Country;
 
 class CountryModelFactory implements CountryModelFactoryInterface
 {
-    public function createModelObject()
+    public function createModelObject(): Country
     {
         return oxNew(Country::class);
     }

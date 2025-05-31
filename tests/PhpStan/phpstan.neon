@@ -8,6 +8,8 @@ parameters:
     bootstrapFiles:
         - phpstan-bootstrap.php
     level: max
+    stubFiles:
+        - stubs/BaseModel.stub
     scanFiles:
         - ../../vendor/oxid-esales/oxideshop-ce/source/oxfunctions.php
         - ../../vendor/oxid-esales/oxideshop-ce/source/overridablefunctions.php

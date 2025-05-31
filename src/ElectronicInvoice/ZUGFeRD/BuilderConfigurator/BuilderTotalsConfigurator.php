@@ -52,30 +52,30 @@ class BuilderTotalsConfigurator implements BuilderConfiguratorInterface
 
     private function getOrderDiscounts(Order $order): float
     {
-        $discounts = $order->getFieldData('OXDISCOUNT')
-            + $order->getFieldData('OXVOUCHERDISCOUNT');
+        $discounts = (float)$order->getFieldData('OXDISCOUNT')
+            + (float)$order->getFieldData('OXVOUCHERDISCOUNT');
 
-        return (float)$discounts;
+        return $discounts;
     }
 
     private function getOrderTotalNet(Order $order): float
     {
-        $netTotal = $order->getFieldData('OXTOTALNETSUM')
+        $netTotal = (float)$order->getFieldData('OXTOTALNETSUM')
             + $order->getOrderDeliveryPrice()->getNettoPrice()
             + $order->getOrderPaymentPrice()->getNettoPrice()
             + $order->getOrderWrappingPrice()->getNettoPrice();
 
-        return (float)$netTotal;
+        return $netTotal;
     }
 
     private function getOrderTotalTax(Order $order): float
     {
-        $taxes = $order->getFieldData('OXTOTALBRUTSUM')
-            - $order->getFieldData('OXTOTALNETSUM')
+        $taxes = (float)$order->getFieldData('OXTOTALBRUTSUM')
+            - (float)$order->getFieldData('OXTOTALNETSUM')
             + $order->getOrderDeliveryPrice()->getVatValue()
             + $order->getOrderPaymentPrice()->getVatValue()
             + $order->getOrderWrappingPrice()->getVatValue();
 
-        return (float)$taxes;
+        return $taxes;
     }
 }

@@ -23,11 +23,14 @@ class BuilderDocumentInformationConfigurator implements BuilderConfiguratorInter
         $order = $invoiceData->getOrder();
         $configuration = $invoiceData->getInvoiceConfiguration();
 
+        /** @var object{name: string} $orderCurrency */
+        $orderCurrency = $order->getOrderCurrency();
+
         $builder->setDocumentInformation(
             $configuration->getFormattedNumber((string)$order->getFieldData('oxbillnr')),
             ZugferdInvoiceType::INVOICE,
             new DateTime($configuration->getFormattedDate()),
-            $order->getOrderCurrency()->name,
+            $orderCurrency->name,
         );
 
         return $builder;

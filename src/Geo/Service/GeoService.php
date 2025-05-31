@@ -27,6 +27,6 @@ class GeoService implements GeoServiceInterface
             return null;
         }
 
-        return $country->getFieldData('OXISOALPHA2');
+        return (string)$country->getFieldData('OXISOALPHA2');
     }
 }

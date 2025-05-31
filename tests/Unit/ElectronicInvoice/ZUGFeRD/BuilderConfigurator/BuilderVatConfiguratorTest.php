@@ -81,7 +81,10 @@ class BuilderVatConfiguratorTest extends TestCase
                 float $netAmount,
                 float $taxAmount,
                 float $rate
-            ) use ($expectedVats, $builderSpy) {
+            ) use (
+                $expectedVats,
+                $builderSpy
+            ) {
                 $this->assertSame("S", $type);
                 $this->assertSame("VAT", $name);
 
