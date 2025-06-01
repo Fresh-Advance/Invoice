@@ -16,6 +16,8 @@ use horstoeko\zugferd\ZugferdDocumentBuilder;
 
 class BuilderDocumentInformationConfigurator implements BuilderConfiguratorInterface
 {
+    public const PROCESS_ID = 'urn:zugferd:invoice:2p1:en16931';
+
     public function configureBuilder(
         ZugferdDocumentBuilder $builder,
         InvoiceDataInterface $invoiceData
@@ -32,6 +34,8 @@ class BuilderDocumentInformationConfigurator implements BuilderConfiguratorInter
             new DateTime($configuration->getFormattedDate()),
             $orderCurrency->name,
         );
+
+        $builder->setDocumentBusinessProcess(self::PROCESS_ID);
 
         return $builder;
     }

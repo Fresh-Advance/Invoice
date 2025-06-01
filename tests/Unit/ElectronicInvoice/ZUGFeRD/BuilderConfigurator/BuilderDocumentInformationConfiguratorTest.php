@@ -57,6 +57,11 @@ class BuilderDocumentInformationConfiguratorTest extends TestCase
             )
             ->willReturn($builderSpy);
 
+        $builderSpy->expects($this->once())
+            ->method('setDocumentBusinessProcess')
+            ->with(BuilderDocumentInformationConfigurator::PROCESS_ID)
+            ->willReturn($builderSpy);
+
         $sut = new BuilderDocumentInformationConfigurator();
 
         $result = $sut->configureBuilder($builderSpy, $invoiceDataStub);
