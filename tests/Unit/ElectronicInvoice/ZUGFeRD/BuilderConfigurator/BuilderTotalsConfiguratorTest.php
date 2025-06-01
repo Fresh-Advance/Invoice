@@ -37,7 +37,6 @@ class BuilderTotalsConfiguratorTest extends TestCase
                 $this->createConfiguredStub(Price::class, [
                     'getNettoPrice' => $delNet = rand(10, 20),
                     'getVatValue' => $delVatVal = rand(1, 5),
-                    'getBruttoPrice' => $delBrut = $delNet + $delVatVal,
                 ])
             );
         $orderStub->method('getOrderPaymentPrice')
@@ -45,7 +44,6 @@ class BuilderTotalsConfiguratorTest extends TestCase
                 $this->createConfiguredStub(Price::class, [
                     'getNettoPrice' => $payNet = rand(10, 20),
                     'getVatValue' => $payVatVal = rand(1, 5),
-                    'getBruttoPrice' => $payBrut = $payNet + $payVatVal,
                 ])
             );
         $orderStub->method('getOrderWrappingPrice')
@@ -53,7 +51,6 @@ class BuilderTotalsConfiguratorTest extends TestCase
                 $this->createConfiguredStub(Price::class, [
                     'getNettoPrice' => $wrapNet = rand(10, 20),
                     'getVatValue' => $wrapVatVal = rand(1, 5),
-                    'getBruttoPrice' => $wrapBrut = $wrapNet + $wrapVatVal,
                 ])
             );
 
@@ -68,7 +65,7 @@ class BuilderTotalsConfiguratorTest extends TestCase
                 (float)$totalSum,
                 (float)$totalSum,
                 (float)$itemsNetSum,
-                (float)($delBrut + $payBrut + $wrapBrut),
+                (float)($delNet + $payNet + $wrapNet),
                 (float)($discount + $voucher),
                 (float)($itemsNetSum + $delNet + $payNet + $wrapNet),
                 (float)($itemsBrutSum - $itemsNetSum + $delVatVal + $payVatVal + $wrapVatVal),

@@ -25,7 +25,7 @@ class BuilderTotalsConfigurator implements BuilderConfiguratorInterface
             grandTotalAmount: (float)$order->getFieldData('OXTOTALORDERSUM'),
             duePayableAmount: (float)$order->getFieldData('OXTOTALORDERSUM'),
             lineTotalAmount: $this->getOrderItemsNet($order),
-            chargeTotalAmount: $this->getOrderSurcharges($order), //todo: should be net sum probably?
+            chargeTotalAmount: $this->getOrderSurcharges($order),
             allowanceTotalAmount: $this->getOrderDiscounts($order),
             taxBasisTotalAmount: $this->getOrderTotalNet($order),
             taxTotalAmount: $this->getOrderTotalTax($order),
@@ -43,9 +43,9 @@ class BuilderTotalsConfigurator implements BuilderConfiguratorInterface
 
     private function getOrderSurcharges(Order $order): float
     {
-        $surcharges = $order->getOrderDeliveryPrice()->getBruttoPrice()
-            + $order->getOrderPaymentPrice()->getBruttoPrice()
-            + $order->getOrderWrappingPrice()->getBruttoPrice();
+        $surcharges = $order->getOrderDeliveryPrice()->getNettoPrice()
+            + $order->getOrderPaymentPrice()->getNettoPrice()
+            + $order->getOrderWrappingPrice()->getNettoPrice();
 
         return (float)$surcharges;
     }
