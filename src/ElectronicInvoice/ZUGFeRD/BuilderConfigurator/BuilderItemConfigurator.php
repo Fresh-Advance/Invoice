@@ -29,7 +29,6 @@ class BuilderItemConfigurator implements BuilderItemConfiguratorInterface
         );
 
         $builder->setDocumentPositionNetPrice((float)$orderArticle->getFieldData('OXNPRICE'));
-        $builder->setDocumentPositionGrossPrice((float)$orderArticle->getFieldData('OXBPRICE'));
         $builder->setDocumentPositionQuantity((float)$orderArticle->getFieldData('OXAMOUNT'), "H87");
 
         // todo: category code Standard doesnt fit if there are no applied, we should check at least this case.

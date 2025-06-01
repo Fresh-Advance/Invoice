@@ -56,10 +56,6 @@ class BuilderItemConfiguratorTest extends TestCase
             ->with($oneNet);
 
         $builderSpy->expects($this->once())
-            ->method('setDocumentPositionGrossPrice')
-            ->with($oneBrut);
-
-        $builderSpy->expects($this->once())
             ->method('setDocumentPositionQuantity')
             ->with($amount, 'H87');
 
