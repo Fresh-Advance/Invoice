@@ -55,7 +55,7 @@ final class OrderInvoiceCest
 
         $invoicePage = new InvoicePage($I);
 
-        $dateExample = 'some date';
+        $dateExample = 'Y-m-d';
         $numberExample = '25';
         $signerExample = 'some signer';
 
