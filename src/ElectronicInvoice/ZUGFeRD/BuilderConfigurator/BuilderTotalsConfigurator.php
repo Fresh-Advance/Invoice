@@ -23,12 +23,13 @@ class BuilderTotalsConfigurator implements BuilderConfiguratorInterface
 
         $builder->setDocumentSummation(
             grandTotalAmount: (float)$order->getFieldData('OXTOTALORDERSUM'),
-            duePayableAmount: (float)$order->getFieldData('OXTOTALORDERSUM'),
+            duePayableAmount: 0,
             lineTotalAmount: $this->getOrderItemsNet($order),
             chargeTotalAmount: $this->getOrderSurcharges($order),
             allowanceTotalAmount: $this->getOrderDiscounts($order),
             taxBasisTotalAmount: $this->getOrderTotalNet($order),
             taxTotalAmount: $this->getOrderTotalTax($order),
+            totalPrepaidAmount: (float)$order->getFieldData('OXTOTALORDERSUM'),
         );
 
         return $builder;

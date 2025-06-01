@@ -63,12 +63,14 @@ class BuilderTotalsConfiguratorTest extends TestCase
             ->method('setDocumentSummation')
             ->with(
                 (float)$totalSum,
-                (float)$totalSum,
+                (float)0,
                 (float)$itemsNetSum,
                 (float)($delNet + $payNet + $wrapNet),
                 (float)($discount + $voucher),
                 (float)($itemsNetSum + $delNet + $payNet + $wrapNet),
                 (float)($itemsBrutSum - $itemsNetSum + $delVatVal + $payVatVal + $wrapVatVal),
+                null,
+                (float)$totalSum,
             )
             ->willReturn($builderSpy);
 
