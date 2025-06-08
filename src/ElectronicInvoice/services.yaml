@@ -1,7 +1,0 @@
-imports:
-  - { resource: ZUGFeRD/services.yaml }
-
-services:
-  _defaults:
-    public: false
-    autowire: true
