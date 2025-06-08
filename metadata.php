@@ -33,7 +33,7 @@ $aModule = [
         'fa_invoice_admin' => \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController::class,
     ],
     'extend' => [
-        \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Document\Model\OrderArticleExtension::class,
+        \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension::class,
         \OxidEsales\Eshop\Core\Language::class => \FreshAdvance\Invoice\Language\Extension\Language::class,
         \OxidEsales\Eshop\Core\Email::class => \FreshAdvance\Invoice\Email\Core\EmailExtension::class,
     ],
@@ -61,37 +61,37 @@ $aModule = [
         /** Layout */
         [
             'group' => 'fa_invoice_layout',
-            'name' => \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings::SETTING_MARGIN_TOP,
+            'name' => \FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettings::SETTING_MARGIN_TOP,
             'type' => 'str',
             'value' => '',
         ],
         [
             'group' => 'fa_invoice_layout',
-            'name' => \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings::SETTING_MARGIN_BOTTOM,
+            'name' => \FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettings::SETTING_MARGIN_BOTTOM,
             'type' => 'str',
             'value' => '',
         ],
         [
             'group' => 'fa_invoice_layout',
-            'name' => \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings::SETTING_MARGIN_LEFT,
+            'name' => \FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettings::SETTING_MARGIN_LEFT,
             'type' => 'str',
             'value' => '',
         ],
         [
             'group' => 'fa_invoice_layout',
-            'name' => \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings::SETTING_MARGIN_RIGHT,
+            'name' => \FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettings::SETTING_MARGIN_RIGHT,
             'type' => 'str',
             'value' => '',
         ],
         [
             'group' => 'fa_invoice_layout',
-            'name' => \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings::SETTING_DOCUMENT_HEADER,
+            'name' => \FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettings::SETTING_DOCUMENT_HEADER,
             'type' => 'str',
             'value' => '<small>Document Header Example; HTML with simple inline css can go here - Change in Module Settings</small>',
         ],
         [
             'group' => 'fa_invoice_layout',
-            'name' => \FreshAdvance\Invoice\Document\Settings\DocumentLayoutSettings::SETTING_DOCUMENT_FOOTER,
+            'name' => \FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettings::SETTING_DOCUMENT_FOOTER,
             'type' => 'str',
             'value' => '<small>Document Footer Example; HTML with simple inline css can go here<br>Change in Module Settings</small>',
         ],

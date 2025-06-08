@@ -29,19 +29,16 @@ perl -pi\
   containers/httpd/project.conf
 
 perl -pi\
-  -e 's#PHP_VERSION=.*#PHP_VERSION=8.1#g;'\
+  -e 's#PHP_VERSION=.*#PHP_VERSION=8.2#g;'\
   .env
 
 mkdir source
 docker compose up --build -d php
 
-git clone https://github.com/Fresh-Advance/Invoice.git ./source -b b-7.1.x
-
 $SCRIPT_PATH/parts/shared/require_shop_edition_packages.sh -e"${edition}" -v"dev-b-7.1.x"
-$SCRIPT_PATH/parts/shared/require_twig_components.sh -e"CE" -b"b-7.1.x"
-$SCRIPT_PATH/parts/shared/require.sh -n"oxid-esales/developer-tools" -v"dev-b-7.1.x"
+$SCRIPT_PATH/parts/shared/require_twig_components.sh -e"${edition}" -b"b-7.1.x"
 $SCRIPT_PATH/parts/shared/require.sh -n"oxid-esales/twig-theme" -v"dev-b-7.1.x"
-$SCRIPT_PATH/parts/shared/require_demodata_package.sh -e"CE" -b"b-7.1.x"
+$SCRIPT_PATH/parts/shared/require_demodata_package.sh -e"${edition}" -b"b-7.1.x"
 
 docker compose exec php composer update --no-interaction
 

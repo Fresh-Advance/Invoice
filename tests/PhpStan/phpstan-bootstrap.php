@@ -14,7 +14,7 @@ class_alias(
 
 class_alias(
     \OxidEsales\Eshop\Application\Model\OrderArticle::class,
-    \FreshAdvance\Invoice\Document\Model\OrderArticleExtension_parent::class
+    \FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension_parent::class
 );
 
 class_alias(

@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Invoice\Pdf\MpdfDocument\MpdfFactory: ~
+
+  Mpdf\Mpdf:
+    factory: ['@FreshAdvance\Invoice\Pdf\MpdfDocument\MpdfFactory', 'create']

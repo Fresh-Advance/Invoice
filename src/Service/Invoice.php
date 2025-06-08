@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\Service;
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceData;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Document\Service\FilenameCalculatorInterface;
+use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;

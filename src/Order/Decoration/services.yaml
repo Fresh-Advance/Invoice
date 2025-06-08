@@ -4,6 +4,6 @@ services:
     autowire: true
 
   FreshAdvance\Invoice\Order\Decoration\InvoiceGeneratorDecorator:
-    decorates: FreshAdvance\Invoice\Document\InvoiceGeneratorInterface
+    decorates: FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface
     arguments:
       $originalGenerator: '@.inner'

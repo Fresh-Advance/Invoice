@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Order\Decoration;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Order\Service\OrderServiceInterface;
 use FreshAdvance\Invoice\Order\Settings\OrderSettingsInterface;
 
@@ -23,12 +23,12 @@ class InvoiceGeneratorDecorator implements InvoiceGeneratorInterface
     ) {
     }
 
-    public function generate(InvoiceDataInterface $invoiceData): void
+    public function generate(InvoiceDataInterface $invoiceData): string
     {
         if ($this->orderSettings->isOrderInvoiceNumberUpdateActive()) {
             $this->orderService->prepareOrderInvoiceNumber($invoiceData);
         }
 
-        $this->originalGenerator->generate($invoiceData);
+        return $this->originalGenerator->generate($invoiceData);
     }
 }

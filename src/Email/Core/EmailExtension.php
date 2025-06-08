@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Email\Core;
 
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
-use FreshAdvance\Invoice\Document\Service\FilenameCalculatorInterface;
+use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Traits\ServiceContainer;

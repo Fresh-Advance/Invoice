@@ -1,0 +1,35 @@
+imports:
+  - { resource: MpdfDocument/services.yaml }
+
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface:
+    class: FreshAdvance\Invoice\Pdf\MpdfDocument\Builder
+    public: true
+
+  FreshAdvance\Invoice\Pdf\Service\DocumentRendererInterface:
+    class: FreshAdvance\Invoice\Pdf\Service\DocumentRenderer
+    public: true
+
+  FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface:
+    class: FreshAdvance\Invoice\Pdf\Service\FilenameCalculator
+    public: true
+
+  FreshAdvance\Invoice\Pdf\Service\FilenameLengthFilter:
+    decorates: FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface
+    arguments:
+      $invoiceFilenameCalculator: '@.inner'
+
+  FreshAdvance\Invoice\Pdf\Service\FilenameCharactersFilter:
+    decorates: FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface
+    arguments:
+      $invoiceFilenameCalculator: '@.inner'
+
+  FreshAdvance\Invoice\Pdf\Service\TemplateParametersServiceInterface:
+    class: FreshAdvance\Invoice\Pdf\Service\TemplateParametersService
+
+  FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface:
+    class: FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettings

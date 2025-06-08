@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v5.0.0-rc.1] - Unreleased
+
+### Changed
+- Renamed the `Document` namespace to `Pdf`
+
 ## [v4.1.0] - 2025-05-12
 
 ### Added
@@ -144,6 +149,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[v5.0.0-rc.1]: https://github.com/Fresh-Advance/Invoice/compare/v4.1.0...v5.0.0-rc.1
 [v4.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v4.0.0...v4.1.0
 [v4.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v3.1.0...v4.0.0
 [v4.0.0-rc.2]: https://github.com/Fresh-Advance/Invoice/compare/v4.0.0-rc.1...v4.0.0-rc.2

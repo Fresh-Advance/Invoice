@@ -11,7 +11,7 @@ namespace FreshAdvance\Invoice\Tests\Integration\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Document\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
