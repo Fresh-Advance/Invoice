@@ -14,20 +14,15 @@
   "prefer-stable": true,
   "require": {
     "php": "^8.1",
-    "oxid-esales/oxideshop-ce": "dev-b-7.1.x",
     "mpdf/mpdf": "^8.1",
     "symfony/filesystem": "*",
-    "kwn/number-to-words": "^2.7",
-    "horstoeko/zugferd": "^1.0",
-    "oxid-esales/twig-component": "dev-b-7.1.x",
-    "oxid-esales/twig-admin-theme": "dev-b-7.1.x",
-    "oxid-esales/twig-theme": "dev-b-7.1.x",
-    "oxid-esales/oxideshop-demodata-ce": "dev-b-7.1.x"
+    "kwn/number-to-words": "^2.7"
   },
   "conflict": {
     "oxid-esales/oxideshop-ce": "<7.1.0"
   },
   "require-dev": {
+    "oxid-esales/oxideshop-ce": "dev-b-7.1.x",
     "phpunit/phpunit": "^11",
     "phpstan/phpstan": "^2.1",
     "squizlabs/php_codesniffer": "3.*",
@@ -77,20 +72,6 @@
     "allow-plugins": {
       "oxid-esales/oxideshop-composer-plugin": true,
       "oxid-esales/oxideshop-unified-namespace-generator": true
-    }
-  },
-  "repositories": {
-    "oxid-esales/oxideshop-demodata-ce": {
-      "type": "git",
-      "url": "https://github.com/OXID-eSales/oxideshop_demodata_ce"
-    },
-    "oxid-esales/twig-component": {
-      "type": "git",
-      "url": "https://github.com/OXID-eSales/twig-component"
-    },
-    "oxid-esales/oxideshop-ce": {
-      "type": "git",
-      "url": "https://github.com/OXID-eSales/oxideshop_ce.git"
     }
   }
 }
