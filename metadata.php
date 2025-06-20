@@ -43,7 +43,7 @@ $aModule = [
             'group' => 'fa_invoice_main',
             'name' => \FreshAdvance\Invoice\Settings\ModuleSettings::SETTING_DOCUMENT_FILENAME_FORMAT,
             'type' => 'str',
-            'value' => '<invoiceNumber>.pdf'
+            'value' => 'SERIE-ABC-<order:oxbillnr>.pdf'
         ],
         [
             'group' => 'fa_invoice_main',

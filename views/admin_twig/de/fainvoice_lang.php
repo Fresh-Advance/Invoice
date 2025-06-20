@@ -32,13 +32,15 @@ $aLang = array_merge($aLang, [
     'SHOP_MODULE_fa_invoice_MarginLeft' => 'Rand links (z.B. 10px)',
     'SHOP_MODULE_fa_invoice_MarginRight' => 'Rand rechts (z.B. 10px)',
     'SHOP_MODULE_fa_invoice_DocumentHeader' => 'Dokumentenkopf (HTML mit einfachem Inline-CSS möglich)',
+    'HELP_SHOP_MODULE_fa_invoice_DocumentHeader' => 'HTML mit einfachem Inline-CSS möglich. Es ist auch möglich, Bilder mit Base64-Kodierung einzubetten.',
     'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Dokumentenfuß (HTML mit einfachem Inline-CSS möglich)',
+    'HELP_SHOP_MODULE_fa_invoice_DocumentFooter' => 'HTML mit einfachem Inline-CSS möglich. Es ist auch möglich, Bilder mit Base64-Kodierung einzubetten.',
 
     # Module settings invoice numbering
     'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Rechnungsnummerierung',
     'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Bestellrechnungsnummer bei Rechnungserstellung aktualisieren',
     'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Rechnungsnummerformat',
-    'HELP_SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Das Rechnungsnummerformat ist dafür verantwortlich, Ihre Rechnungsnummer mit einer Serie zu dekorieren und die Nummer wie SE-ABC-123 zu erhalten, indem das Format SE-ABC-%1$s verwendet wird. Diese Einstellung wird auch bei der Dateinamengenerierung als <invoiceNumber> Platzhalter verwendet.',
+    'HELP_SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Das Rechnungsnummerformat ist dafür verantwortlich, Ihre Rechnungsnummer mit einer Serie zu dekorieren und die Nummer wie SE-ABC-123 zu erhalten, indem das Format SE-ABC-&lt;order:oxbillnr&gt;',
 
     # Module settings invoice mails
     'SHOP_MODULE_GROUP_fa_invoice_emails' => 'E-Mail-Optionen',

@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v5.0.0-rc.2] - Unreleased
+
+### Added
+- Improved information about some settings
+
 ## [v5.0.0-rc.1] - 2025-06-08
 
 ### Changed

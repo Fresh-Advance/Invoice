@@ -24,7 +24,6 @@ $aLang = array_merge($aLang, [
     'HELP_SHOP_MODULE_fa_invoice_FilenameFormat' => 'This setting is used to define the filename for the invoice downloadable in admin panel. <br><br><strong>Possible placeholders:</strong><br><br><strong>&lt;order:tableField&gt;</strong> format placeholder to include information from the oxorder table(eg. &lt;order:oxbillfname&gt;)<br><strong>&lt;invoiceNumber&gt;</strong> placeholder to include the invoice number',
     'SHOP_MODULE_fa_invoice_IsForArchive' => 'Document is for archive (PDFA)',
     'SHOP_MODULE_fa_invoice_InvoiceDateFormat' => 'Default invoice date format',
-    'HELP_SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format is responsible for decorating your Invoice number with some serie, and get the number like: SE-ABC-123 by using the format SE-ABC-%1$s. This setting is also used during filename generation as <invoiceNumber> placeholder.',
 
     # Module settings layout
     'SHOP_MODULE_GROUP_fa_invoice_layout' => 'Invoice document layout',
@@ -32,13 +31,16 @@ $aLang = array_merge($aLang, [
     'SHOP_MODULE_fa_invoice_MarginBottom' => 'Margin bottom (e.g. 10px)',
     'SHOP_MODULE_fa_invoice_MarginLeft' => 'Margin left (e.g. 10px)',
     'SHOP_MODULE_fa_invoice_MarginRight' => 'Margin right (e.g. 10px)',
-    'SHOP_MODULE_fa_invoice_DocumentHeader' => 'Document header (HTML with simple inline CSS possible)',
-    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document footer (HTML with simple inline CSS possible)',
+    'SHOP_MODULE_fa_invoice_DocumentHeader' => 'Document header',
+    'HELP_SHOP_MODULE_fa_invoice_DocumentHeader' => 'HTML with simple inline CSS possible. Also its possible to inline images with base64 encoding.',
+    'SHOP_MODULE_fa_invoice_DocumentFooter' => 'Document footer',
+    'HELP_SHOP_MODULE_fa_invoice_DocumentFooter' => 'HTML with simple inline CSS possible. Also its possible to inline images with base64 encoding.',
 
     # Module settings invoice numbering
     'SHOP_MODULE_GROUP_fa_invoice_numbering' => 'Invoice numbering',
     'SHOP_MODULE_fa_invoice_InvoiceNumberUpdate' => 'Update order invoice number on invoice creation',
     'SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format',
+    'HELP_SHOP_MODULE_fa_invoice_InvoiceNumberFormat' => 'Invoice number format is responsible for decorating your Invoice number with some serie, and get the number like: SE-ABC-123 by using the format SE-ABC-&lt;order:oxbillnr&gt;',
 
     # Module settings invoice mails
     'SHOP_MODULE_GROUP_fa_invoice_emails' => 'Email options',
