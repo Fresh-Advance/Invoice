@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Improved information about some settings
 
+### Changed
+- Invoice number format now supports Order fields placeholders, like other formats.
+  - The default setting value is changed, please update your settings if you have the module already installed.
+
+### Removed
+- The `getFormattedNumber` method of the `InvoiceConfigurationInterface`
+
 ## [v5.0.0-rc.1] - 2025-06-08
 
 ### Changed
@@ -154,6 +161,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[v5.0.0-rc.2]: https://github.com/Fresh-Advance/Invoice/compare/v5.0.0-rc.1...v5.0.0-rc.2
 [v5.0.0-rc.1]: https://github.com/Fresh-Advance/Invoice/compare/v4.1.0...v5.0.0-rc.1
 [v4.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v4.0.0...v4.1.0
 [v4.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v3.1.0...v4.0.0

@@ -39,11 +39,6 @@ class InvoiceConfiguration implements InvoiceConfigurationInterface
         return $this->number;
     }
 
-    public function getFormattedNumber(string $invoiceNumber): string
-    {
-        return sprintf($this->number, $invoiceNumber);
-    }
-
     public function getFormattedDate(): string
     {
         return date($this->date);

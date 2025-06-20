@@ -9,53 +9,28 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Pdf\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculator;
-use OxidEsales\Eshop\Application\Model\Order;
+use FreshAdvance\Invoice\Pdf\Service\FormatCalculatorInterface;
 
 class FilenameCalculatorTest extends \PHPUnit\Framework\TestCase
 {
-    public function testOrderFieldsAvailableInFormat(): void
+    public function testBasicCalculatorReturnsFormatCalculationResult(): void
     {
-        $sut = new FilenameCalculator();
+        $formatStub = uniqid();
+        $invoiceConfigurationStub = $this->createStub(InvoiceDataInterface::class);
 
-        $invoiceData = $this->createConfiguredMock(InvoiceDataInterface::class, [
-            'getOrder' => $orderMock = $this->createMock(Order::class),
-        ]);
+        $formatCalculatorMock = $this->createMock(FormatCalculatorInterface::class);
+        $formatCalculatorMock->expects($this->once())
+            ->method('calculateByFormat')
+            ->with($formatStub, $invoiceConfigurationStub)
+            ->willReturn($formattedResult = uniqid());
 
-        $orderMock->method('getFieldData')->willReturnMap([
-            ['oxordernr', '123'],
-            ['oxbillfname', 'Anton'],
-        ]);
+        $sut = new FilenameCalculator(
+            formatCalculator: $formatCalculatorMock,
+        );
 
-        $format = 'invoice_<order:oxordernr>_<order:oxbillfname>.pdf';
-
-        $this->assertEquals('invoice_123_Anton.pdf', $sut->calculateByFormat($format, $invoiceData));
-    }
-
-    public function testInvoiceNumberAvailableInFormat(): void
-    {
-        $sut = new \FreshAdvance\Invoice\Pdf\Service\FilenameCalculator();
-
-        $invoiceConfiguration = $this->createMock(InvoiceConfigurationInterface::class);
-        $orderMock = $this->createMock(Order::class);
-
-        $invoiceData = $this->createConfiguredMock(InvoiceDataInterface::class, [
-            'getOrder' => $orderMock,
-            'getInvoiceConfiguration' => $invoiceConfiguration,
-        ]);
-
-        $orderMock->method('getFieldData')->willReturnMap([
-            ['oxbillnr', $billNr = uniqid()],
-        ]);
-
-        $invoiceConfiguration->method('getFormattedNumber')
-            ->with($billNr)
-            ->willReturn($formattedNumber = uniqid());
-
-        $format = 'invoice_<invoiceNumber>.pdf';
-
-        $this->assertEquals('invoice_' . $formattedNumber . '.pdf', $sut->calculateByFormat($format, $invoiceData));
+        $result = $sut->calculateByFormat($formatStub, $invoiceConfigurationStub);
+        $this->assertSame($formattedResult, $result);
     }
 }

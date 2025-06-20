@@ -147,7 +147,7 @@
     {% endblock %}
 
     {% block fa_invoice_invoice_body_invoice_number %}
-        <div id="facture">{{ translate({ ident: "FA_INVOICE_NUMBER" }) }} {{ configuration.getFormattedNumber(order.getFieldData('oxbillnr')) }}</div>
+        <div id="facture">{{ translate({ ident: "FA_INVOICE_NUMBER" }) }} {{ invoiceNumber }}</div>
     {% endblock %}
 
     {% block fa_invoice_invoice_body_content_table %}

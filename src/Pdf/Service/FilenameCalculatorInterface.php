@@ -9,9 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Pdf\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-
-interface FilenameCalculatorInterface
+interface FilenameCalculatorInterface extends  FormatCalculatorInterface
 {
-    public function calculateByFormat(string $format, InvoiceDataInterface $invoiceData): string;
 }

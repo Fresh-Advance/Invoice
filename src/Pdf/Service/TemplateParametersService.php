@@ -20,16 +20,24 @@ class TemplateParametersService implements TemplateParametersServiceInterface
         private readonly NumberWordingServiceInterface $numberWordingService,
         private readonly DocumentLayoutSettingsInterface $documentLayoutSettings,
         private readonly Config $shopConfig,
+        private readonly FormatCalculatorInterface $formatCalculator,
     ) {
     }
 
     public function calculateTemplateParameters(InvoiceDataInterface $invoiceData): array
     {
+        $configuration = $invoiceData->getInvoiceConfiguration();
+        $formattedInvoiceNumber = $this->formatCalculator->calculateByFormat(
+            $configuration->getNumber(),
+            $invoiceData
+        );
+
         return [
             'invoice' => $invoiceData,
             'wording' => $this->numberWordingService,
             'layoutSettings' => $this->documentLayoutSettings,
             'shopConfig' => $this->shopConfig,
+            'invoiceNumber' => $formattedInvoiceNumber,
         ];
     }
 }

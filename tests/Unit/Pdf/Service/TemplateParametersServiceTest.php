@@ -9,7 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Pdf\Service;
 
+use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Pdf\Service\FormatCalculatorInterface;
 use FreshAdvance\Invoice\Pdf\Service\TemplateParametersService;
 use FreshAdvance\Invoice\Pdf\Service\TemplateParametersServiceInterface;
 use FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface;
@@ -21,20 +23,33 @@ class TemplateParametersServiceTest extends TestCase
 {
     public function testParametersListCreated(): void
     {
+        $invoiceDataStub = $this->createConfiguredStub(InvoiceDataInterface::class, [
+            'getInvoiceConfiguration' => $this->createConfiguredStub(InvoiceConfigurationInterface::class, [
+                'getNumber' => $numberFormat = uniqid(),
+            ]),
+        ]);
+
+        $formatCalculatorMock = $this->createMock(FormatCalculatorInterface::class);
+        $formatCalculatorMock->expects($this->any())
+            ->method('calculateByFormat')
+            ->with($numberFormat, $invoiceDataStub)
+            ->willReturn($formattedInvoiceNumber = uniqid());
+
         $sut = $this->getSut(
             numberWordingService: $wordingServiceStub = $this->createStub(NumberWordingServiceInterface::class),
             layoutSettings: $layoutSettingsStub = $this->createStub(DocumentLayoutSettingsInterface::class),
             shopConfig: $shopConfigStub = $this->createStub(Config::class),
+            formatCalculator: $formatCalculatorMock,
         );
 
-        $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
         $result = $sut->calculateTemplateParameters($invoiceDataStub);
 
-        $this->assertSame([
+        $this->assertEquals([
             'invoice' => $invoiceDataStub,
             'wording' => $wordingServiceStub,
             'layoutSettings' => $layoutSettingsStub,
             'shopConfig' => $shopConfigStub,
+            'invoiceNumber' => $formattedInvoiceNumber,
         ], $result);
     }
 
@@ -42,11 +57,13 @@ class TemplateParametersServiceTest extends TestCase
         ?NumberWordingServiceInterface $numberWordingService = null,
         ?DocumentLayoutSettingsInterface $layoutSettings = null,
         ?Config $shopConfig = null,
+        ?FormatCalculatorInterface $formatCalculator = null,
     ): TemplateParametersServiceInterface {
         return new TemplateParametersService(
             numberWordingService: $numberWordingService ?? $this->createStub(NumberWordingServiceInterface::class),
             documentLayoutSettings: $layoutSettings ?? $this->createStub(DocumentLayoutSettingsInterface::class),
             shopConfig: $shopConfig ?? $this->createStub(Config::class),
+            formatCalculator: $formatCalculator ?? $this->createStub(FormatCalculatorInterface::class),
         );
     }
 }
