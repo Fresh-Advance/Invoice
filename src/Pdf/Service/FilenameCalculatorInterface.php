@@ -9,6 +9,6 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Pdf\Service;
 
-interface FilenameCalculatorInterface extends  FormatCalculatorInterface
+interface FilenameCalculatorInterface extends FormatCalculatorInterface
 {
 }
