@@ -42,27 +42,4 @@ class OrderRepository implements OrderRepositoryInterface
             $orderModel->save();
         }
     }
-
-    public function getInvoiceNumberByOrderId(string $orderId): string
-    {
-        $queryBuilder = $this->queryBuilderFactory->create();
-
-        $queryBuilder->select('oxbillnr')
-            ->from('oxorder')
-            ->where('oxid = :orderId')
-            ->setParameter('orderId', $orderId)
-            ->setMaxResults(1);
-
-        /** @var Result $result */
-        $result = $queryBuilder->execute();
-
-        /** @var false|string|int|null $invoiceNumber */
-        $invoiceNumber = $result->fetchOne();
-
-        if ($invoiceNumber === false) {
-            throw new OrderNotFound(sprintf('Order "%s" not found', $orderId));
-        }
-
-        return (string)$invoiceNumber;
-    }
 }

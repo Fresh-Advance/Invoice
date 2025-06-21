@@ -75,21 +75,6 @@ class OrderRepositoryTest extends IntegrationTestCase
         $this->assertEquals(322, $updatedOrder->getFieldData('oxbillnr'));
     }
 
-    public function testGetInvoiceNumberByOrderId(): void
-    {
-        $sut = $this->getSut();
-
-        $this->assertEquals(321, $sut->getInvoiceNumberByOrderId(self::TEST_ORDER_ID));
-    }
-
-    public function testGetInvoiceNumberThrowsExceptionOnNotExistingOrder(): void
-    {
-        $sut = $this->getSut();
-
-        $this->expectException(OrderNotFound::class);
-        $sut->getInvoiceNumberByOrderId(self::TEST_ORDER_ID_WRONG);
-    }
-
     public function getSut(): \FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface
     {
         return new OrderRepository(

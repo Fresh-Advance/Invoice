@@ -14,7 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - The default setting value is changed, please update your settings if you have the module already installed.
 
 ### Removed
-- The `getFormattedNumber` method of the `InvoiceConfigurationInterface`
+- Methods removed:
+  - `InvoiceConfigurationInterface::getFormattedNumber`
+  - `OrderRepositoryInterface::getInvoiceNumberByOrderId`
 
 ## [v5.0.0-rc.1] - 2025-06-08
 
