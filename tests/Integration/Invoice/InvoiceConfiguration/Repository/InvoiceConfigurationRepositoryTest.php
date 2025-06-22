@@ -7,18 +7,16 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Integration\Repository;
+namespace FreshAdvance\Invoice\Tests\Integration\Invoice\InvoiceConfiguration\Repository;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\Exception\InvoiceConfigurationNotFound;
-use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository;
-use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
- * @covers \FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository
+ * @covers \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepository
  */
 class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
 {
@@ -83,7 +81,7 @@ class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
         ];
     }
 
-    protected function getSut(): InvoiceConfigurationRepositoryInterface
+    protected function getSut(): \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface
     {
         return $this->get(InvoiceConfigurationRepositoryInterface::class);
     }

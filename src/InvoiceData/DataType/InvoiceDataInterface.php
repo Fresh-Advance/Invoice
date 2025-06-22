@@ -7,8 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\DataType;
+namespace FreshAdvance\Invoice\InvoiceData\DataType;
 
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use OxidEsales\Eshop\Application\Model\Order;
 use OxidEsales\Eshop\Application\Model\Shop;
 

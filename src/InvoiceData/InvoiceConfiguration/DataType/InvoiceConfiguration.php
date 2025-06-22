@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\DataType;
+namespace FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType;
 
 class InvoiceConfiguration implements InvoiceConfigurationInterface
 {

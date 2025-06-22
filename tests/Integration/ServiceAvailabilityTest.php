@@ -70,9 +70,9 @@ class ServiceAvailabilityTest extends IntegrationTestCase
         ];
 
         yield [
-            'serviceName' => \FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface::class,
+            'serviceName' => \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class,
             'expectedDecorations' => [
-                \FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryDecoration::class,
+                \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration::class,
             ],
         ];
     }
@@ -104,13 +104,13 @@ class ServiceAvailabilityTest extends IntegrationTestCase
             [\FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface::class],
 
             // todo: move shared repository items to where they belong.
-            [\FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface::class],
-                [\FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryDecoration::class],
+            [\FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class],
+                [\FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration::class],
             [\FreshAdvance\Invoice\Repository\ShopRepositoryInterface::class],
 
             // todo: move shared service items to where they belong.
             [\FreshAdvance\Invoice\Service\Invoice::class],
-            [\FreshAdvance\Invoice\Service\InvoiceServiceInterface::class],
+            [\FreshAdvance\Invoice\InvoiceData\Service\InvoiceServiceInterface::class],
 
             // Settings
             [\FreshAdvance\Invoice\Settings\ContextInterface::class],

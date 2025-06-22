@@ -9,10 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Repository;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\Exception\InvoiceConfigurationNotFound;
-use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryDecoration;
-use FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -22,7 +21,8 @@ class InvoiceConfigurationRepositoryDecorationTest extends TestCase
     {
         $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
 
-        $originalRepository = $this->createMock(InvoiceConfigurationRepositoryInterface::class);
+        $originalRepository = $this->createMock(
+            \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class);
         $originalRepository->method('getByOrderId')
             ->with($orderId = uniqid())
             ->willReturn($invoiceConfigurationStub);
@@ -44,7 +44,8 @@ class InvoiceConfigurationRepositoryDecorationTest extends TestCase
         $moduleSettingsStub->method('getInvoiceDateFormat')->willReturn($dateFormat = uniqid());
         $moduleSettingsStub->method('getInvoiceNumberFormat')->willReturn($numberFormat = uniqid());
 
-        $originalRepositoryMock = $this->createMock(InvoiceConfigurationRepositoryInterface::class);
+        $originalRepositoryMock = $this->createMock(
+            \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class);
         $originalRepositoryMock->method('getByOrderId')
             ->with($orderId = uniqid())
             ->willThrowException(new InvoiceConfigurationNotFound());
@@ -64,10 +65,11 @@ class InvoiceConfigurationRepositoryDecorationTest extends TestCase
     private function getSut(
         InvoiceConfigurationRepositoryInterface $invoiceConfigurationRepository = null,
         ModuleSettingsInterface $moduleSettings = null,
-    ): InvoiceConfigurationRepositoryInterface {
-        $invoiceConfigurationRepository ??= $this->createStub(InvoiceConfigurationRepositoryInterface::class);
+    ): \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface {
+        $invoiceConfigurationRepository ??= $this->createStub(
+            \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class);
 
-        return new InvoiceConfigurationRepositoryDecoration(
+        return new \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration(
             originalRepository: $invoiceConfigurationRepository,
             moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class),
         );

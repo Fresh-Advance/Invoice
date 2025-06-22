@@ -7,7 +7,7 @@
 
 namespace FreshAdvance\Invoice\Order\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 
 interface OrderServiceInterface
 {

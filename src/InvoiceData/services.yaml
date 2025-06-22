@@ -1,0 +1,8 @@
+imports:
+  - { resource: InvoiceConfiguration/services.yaml }
+  - { resource: Service/services.yaml }
+
+services:
+  _defaults:
+    public: false
+    autowire: true

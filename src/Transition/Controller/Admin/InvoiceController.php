@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
-use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Traits\ServiceContainer;
 use FreshAdvance\Invoice\Transput\RequestInterface;

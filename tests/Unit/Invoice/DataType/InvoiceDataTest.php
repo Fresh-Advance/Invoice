@@ -7,16 +7,14 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\DataType;
+namespace FreshAdvance\Invoice\Tests\Unit\Invoice\DataType;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\DataType\InvoiceData;
 use OxidEsales\Eshop\Application\Model\Order;
 use OxidEsales\Eshop\Application\Model\Shop;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\DataType\InvoiceData
+ * @covers \FreshAdvance\Invoice\InvoiceData\DataType\InvoiceData
  */
 class InvoiceDataTest extends TestCase
 {
@@ -24,9 +22,10 @@ class InvoiceDataTest extends TestCase
     {
         $orderStub = $this->createStub(Order::class);
         $shopStub = $this->createStub(Shop::class);
-        $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
+        $invoiceConfigurationStub = $this->createStub(
+            \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface::class);
 
-        $sut = new InvoiceData(
+        $sut = new \FreshAdvance\Invoice\InvoiceData\DataType\InvoiceData(
             order: $orderStub,
             shop: $shopStub,
             invoicePath: 'somePath',
@@ -42,11 +41,12 @@ class InvoiceDataTest extends TestCase
 
     public function testGetLanguage(): void
     {
-        $sut = new InvoiceData(
+        $sut = new \FreshAdvance\Invoice\InvoiceData\DataType\InvoiceData(
             order: $this->createStub(Order::class),
             shop: $this->createStub(Shop::class),
             invoicePath: 'somePath',
-            invoiceConfiguration: $this->createStub(InvoiceConfigurationInterface::class),
+            invoiceConfiguration: $this->createStub(
+                \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface::class),
             languageId: 10
         );
 

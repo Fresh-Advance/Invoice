@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Service;
 
-use FreshAdvance\Invoice\Service\InvoiceService;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceService;
 use FreshAdvance\Invoice\Transput\UtilsProxy;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Service\InvoiceService
+ * @covers \FreshAdvance\Invoice\InvoiceData\Service\InvoiceService
  */
 class InvoiceServiceTest extends TestCase
 {

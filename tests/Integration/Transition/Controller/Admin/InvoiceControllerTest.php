@@ -9,11 +9,11 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Integration\Transition\Controller\Admin;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
-use FreshAdvance\Invoice\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController;
 use FreshAdvance\Invoice\Transput\RequestInterface;

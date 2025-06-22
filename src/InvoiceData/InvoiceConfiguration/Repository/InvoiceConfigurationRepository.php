@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Repository;
+namespace FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository;
 
 use Doctrine\DBAL\ForwardCompatibility\Result;
-use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\Exception\InvoiceConfigurationNotFound;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
 class InvoiceConfigurationRepository implements InvoiceConfigurationRepositoryInterface

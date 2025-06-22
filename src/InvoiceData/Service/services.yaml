@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\Invoice\InvoiceData\Service\InvoiceServiceInterface:
+    class: FreshAdvance\Invoice\InvoiceData\Service\InvoiceService
+    public: true

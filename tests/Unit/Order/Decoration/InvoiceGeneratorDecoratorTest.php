@@ -9,11 +9,11 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Order\Decoration;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Order\Decoration\InvoiceGeneratorDecorator;
 use FreshAdvance\Invoice\Order\Service\OrderServiceInterface;
 use FreshAdvance\Invoice\Order\Settings\OrderSettingsInterface;
+use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use OxidEsales\Eshop\Application\Model\Order;
 use PHPUnit\Framework\TestCase;
 

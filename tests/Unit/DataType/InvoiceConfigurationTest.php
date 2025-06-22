@@ -9,18 +9,17 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\DataType;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\DataType\InvoiceConfiguration
+ * @covers \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration
  */
 class InvoiceConfigurationTest extends TestCase
 {
     public function testGetters(): void
     {
-        $sut = new InvoiceConfiguration(
+        $sut = new \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration(
             orderId: 'someOrderId',
             signer: 'someSigner',
             date: 'someDate',
@@ -36,7 +35,7 @@ class InvoiceConfigurationTest extends TestCase
     #[DataProvider('formattedDateDataProvider')]
     public function testGetFormattedDate(string $format, string $expectation): void
     {
-        $sut = new InvoiceConfiguration(
+        $sut = new \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration(
             orderId: 'someOrderId',
             signer: 'someSigner',
             date: $format,

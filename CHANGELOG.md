@@ -8,10 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Improved information about some settings
+- Testing for service availability and decorations, for better stability
 
 ### Changed
 - Invoice number format now supports Order fields placeholders, like other formats.
   - The default setting value is changed, please update your settings if you have the module already installed.
+- Interfaces with implementations moved to more fitting locations
+  - `DataType/InvoiceDataInterface` to `Invoice/DataType/`
+  - `DataType/InvoiceConfigurationInterface` to `Invoice/InvoiceConfiguration/DataType/`
+  - `Exception/InvoiceConfigurationNotFound` to `Invoice/InvoiceConfiguration/Exception/`
+  - `Service/InvoiceServiceInterface` to `Invoice/Service/`
+  - `Repository/InvoiceConfigurationRepositoryInterface` to `Invoice/InvoiceConfiguration/Repository/`
 
 ### Removed
 - Methods removed:

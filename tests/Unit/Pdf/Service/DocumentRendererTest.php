@@ -9,11 +9,10 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Pdf\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Pdf\MpdfDocument\Builder;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Language\Service\LanguageProxy;
 use FreshAdvance\Invoice\Pdf\Service\DocumentRenderer;
 use FreshAdvance\Invoice\Pdf\Service\TemplateParametersServiceInterface;
-use FreshAdvance\Invoice\Language\Service\LanguageProxy;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 

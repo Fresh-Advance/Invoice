@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Pdf\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
 use FreshAdvance\Invoice\Pdf\Service\FormatCalculatorInterface;
 use FreshAdvance\Invoice\Pdf\Service\TemplateParametersService;
 use FreshAdvance\Invoice\Pdf\Service\TemplateParametersServiceInterface;
 use FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface;
-use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
 use OxidEsales\Eshop\Core\Config;
 use PHPUnit\Framework\TestCase;
 

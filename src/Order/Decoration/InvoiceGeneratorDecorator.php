@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Order\Decoration;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Order\Service\OrderServiceInterface;
 use FreshAdvance\Invoice\Order\Settings\OrderSettingsInterface;
+use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 
 class InvoiceGeneratorDecorator implements InvoiceGeneratorInterface
 {

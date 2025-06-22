@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Exception;
+namespace FreshAdvance\Invoice\Tests\Unit\Invoice\InvoiceConfiguration\Exception;
 
-use FreshAdvance\Invoice\Exception\InvoiceConfigurationNotFound;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
 use PHPUnit\Framework\TestCase;
 
 class InvoiceConfigurationNotFoundTest extends TestCase
@@ -17,6 +17,6 @@ class InvoiceConfigurationNotFoundTest extends TestCase
     public function testException(): void
     {
         $sut = new InvoiceConfigurationNotFound();
-        $this->assertInstanceOf(\Exception::class, $sut);
+        $this->assertInstanceOf(\Throwable::class, $sut);
     }
 }

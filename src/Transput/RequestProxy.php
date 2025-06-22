@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transput;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfiguration;
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use OxidEsales\Eshop\Core\Request;
 
 class RequestProxy implements RequestInterface

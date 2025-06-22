@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Pdf\Service;
 
-use FreshAdvance\Invoice\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface;
+use FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface;
 use OxidEsales\Eshop\Core\Config;
 
 class TemplateParametersService implements TemplateParametersServiceInterface

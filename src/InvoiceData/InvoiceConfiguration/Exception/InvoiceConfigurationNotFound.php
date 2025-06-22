@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Exception;
+namespace FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception;
 
-use OxidEsales\Eshop\Core\Exception\StandardException;
+use Exception;
 
-class OrderNotFound extends StandardException
+class InvoiceConfigurationNotFound extends Exception
 {
 }

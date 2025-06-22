@@ -9,8 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Order\Repository;
 
-use Doctrine\DBAL\ForwardCompatibility\Result;
-use FreshAdvance\Invoice\Exception\OrderNotFound;
+use FreshAdvance\Invoice\Order\Exception\OrderNotFound;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 
@@ -22,7 +21,7 @@ class OrderRepository implements OrderRepositoryInterface
     }
 
     /**
-     * @throws OrderNotFound
+     * @throws \FreshAdvance\Invoice\Order\Exception\OrderNotFound
      */
     public function getByOrderId(string $orderId): OrderModel
     {

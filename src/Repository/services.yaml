@@ -3,13 +3,5 @@ services:
     public: false
     autowire: true
 
-  FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface:
-    class: FreshAdvance\Invoice\Repository\InvoiceConfigurationRepository
-
-  FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryDecoration:
-    decorates: FreshAdvance\Invoice\Repository\InvoiceConfigurationRepositoryInterface
-    arguments:
-      $originalRepository: '@.inner'
-
   FreshAdvance\Invoice\Repository\ShopRepositoryInterface:
     class: FreshAdvance\Invoice\Repository\ShopRepository

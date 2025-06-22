@@ -1,5 +1,6 @@
 imports:
     - { resource: src/Email/services.yaml }
+    - { resource: src/InvoiceData/services.yaml }
     - { resource: src/Pdf/services.yaml }
     - { resource: src/Repository/services.yaml }
     - { resource: src/Service/services.yaml }

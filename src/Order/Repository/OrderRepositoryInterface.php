@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Order\Repository;
 
-use FreshAdvance\Invoice\Exception\OrderNotFound;
+use FreshAdvance\Invoice\Order\Exception\OrderNotFound;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 
 interface OrderRepositoryInterface
 {
     /**
-     * @throws OrderNotFound
+     * @throws \FreshAdvance\Invoice\Order\Exception\OrderNotFound
      */
     public function getByOrderId(string $orderId): OrderModel;
 

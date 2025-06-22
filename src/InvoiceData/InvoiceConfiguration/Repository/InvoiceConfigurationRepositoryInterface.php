@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Repository;
+namespace FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository;
 
-use FreshAdvance\Invoice\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\Exception\InvoiceConfigurationNotFound;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
 
 interface InvoiceConfigurationRepositoryInterface
 {
