@@ -11,6 +11,7 @@ namespace FreshAdvance\Invoice\Tests\Unit\Repository;
 
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +23,8 @@ class InvoiceConfigurationRepositoryDecorationTest extends TestCase
         $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
 
         $originalRepository = $this->createMock(
-            \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class);
+            InvoiceConfigurationRepositoryInterface::class
+        );
         $originalRepository->method('getByOrderId')
             ->with($orderId = uniqid())
             ->willReturn($invoiceConfigurationStub);
@@ -45,7 +47,8 @@ class InvoiceConfigurationRepositoryDecorationTest extends TestCase
         $moduleSettingsStub->method('getInvoiceNumberFormat')->willReturn($numberFormat = uniqid());
 
         $originalRepositoryMock = $this->createMock(
-            \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class);
+            InvoiceConfigurationRepositoryInterface::class
+        );
         $originalRepositoryMock->method('getByOrderId')
             ->with($orderId = uniqid())
             ->willThrowException(new InvoiceConfigurationNotFound());
@@ -65,11 +68,10 @@ class InvoiceConfigurationRepositoryDecorationTest extends TestCase
     private function getSut(
         InvoiceConfigurationRepositoryInterface $invoiceConfigurationRepository = null,
         ModuleSettingsInterface $moduleSettings = null,
-    ): \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface {
-        $invoiceConfigurationRepository ??= $this->createStub(
-            \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class);
+    ): InvoiceConfigurationRepositoryInterface {
+        $invoiceConfigurationRepository ??= $this->createStub(InvoiceConfigurationRepositoryInterface::class);
 
-        return new \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration(
+        return new InvoiceConfigurationRepositoryDecoration(
             originalRepository: $invoiceConfigurationRepository,
             moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class),
         );

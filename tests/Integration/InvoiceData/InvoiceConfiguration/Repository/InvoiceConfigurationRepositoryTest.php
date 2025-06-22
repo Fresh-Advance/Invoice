@@ -81,7 +81,7 @@ class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
         ];
     }
 
-    protected function getSut(): \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface
+    protected function getSut(): InvoiceConfigurationRepositoryInterface
     {
         return $this->get(InvoiceConfigurationRepositoryInterface::class);
     }

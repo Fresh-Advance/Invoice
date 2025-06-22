@@ -44,7 +44,8 @@ class InvoiceData implements InvoiceDataInterface
         return $this->invoicePath;
     }
 
-    public function getInvoiceConfiguration(): \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface
+
+    public function getInvoiceConfiguration(): InvoiceConfigurationInterface
     {
         return $this->invoiceConfiguration;
     }

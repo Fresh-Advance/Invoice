@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Invoice\DataType;
 
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use OxidEsales\Eshop\Application\Model\Order;
 use OxidEsales\Eshop\Application\Model\Shop;
 use PHPUnit\Framework\TestCase;
@@ -22,8 +23,7 @@ class InvoiceDataTest extends TestCase
     {
         $orderStub = $this->createStub(Order::class);
         $shopStub = $this->createStub(Shop::class);
-        $invoiceConfigurationStub = $this->createStub(
-            \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface::class);
+        $invoiceConfigurationStub = $this->createStub(InvoiceConfigurationInterface::class);
 
         $sut = new \FreshAdvance\Invoice\InvoiceData\DataType\InvoiceData(
             order: $orderStub,
@@ -46,7 +46,8 @@ class InvoiceDataTest extends TestCase
             shop: $this->createStub(Shop::class),
             invoicePath: 'somePath',
             invoiceConfiguration: $this->createStub(
-                \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface::class),
+                InvoiceConfigurationInterface::class
+            ),
             languageId: 10
         );
 

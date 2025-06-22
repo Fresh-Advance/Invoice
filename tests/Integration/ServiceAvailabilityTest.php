@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Integration;
 
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use OxidEsales\EshopCommunity\Internal\Container\ContainerBuilderFactory;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -70,9 +72,9 @@ class ServiceAvailabilityTest extends IntegrationTestCase
         ];
 
         yield [
-            'serviceName' => \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class,
+            'serviceName' => InvoiceConfigurationRepositoryInterface::class,
             'expectedDecorations' => [
-                \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration::class,
+                InvoiceConfigurationRepositoryDecoration::class,
             ],
         ];
     }
@@ -104,8 +106,8 @@ class ServiceAvailabilityTest extends IntegrationTestCase
             [\FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface::class],
 
             // todo: move shared repository items to where they belong.
-            [\FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface::class],
-                [\FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration::class],
+            [InvoiceConfigurationRepositoryInterface::class],
+                [InvoiceConfigurationRepositoryDecoration::class],
             [\FreshAdvance\Invoice\Repository\ShopRepositoryInterface::class],
 
             // todo: move shared service items to where they belong.
