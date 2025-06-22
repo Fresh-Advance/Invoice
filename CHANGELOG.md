@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Classes/Interfaces renamed
   - `InvoiceServiceInterface` to `InvoiceFileServiceInterface`
 - `Invoice::getInvoiceFileName` method moved to `InvoiceFileServiceInterface`
+- Use `InvoiceConfigurationRepositoryInterface` directly for saving, instead of Invoice service as a proxy
 
 ### Removed
 - Methods removed:

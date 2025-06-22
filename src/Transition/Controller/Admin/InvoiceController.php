@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
@@ -46,10 +47,11 @@ class InvoiceController extends AdminController
     public function saveData(): void
     {
         $invoiceService = $this->getService(Invoice::class);
+        $invoiceConfigurationRepository = $this->getService(InvoiceConfigurationRepositoryInterface::class);
         $requestService = $this->getService(RequestInterface::class);
         $generator = $this->getService(InvoiceGeneratorInterface::class);
 
-        $invoiceService->saveOrderInvoiceData($requestService->getInvoiceConfigurationFromRequest());
+        $invoiceConfigurationRepository->save($requestService->getInvoiceConfigurationFromRequest());
 
         $invoiceData = $invoiceService->getInvoiceDataByOrderId($requestService->getInvoiceIdFromRequest());
         $generator->generate($invoiceData);

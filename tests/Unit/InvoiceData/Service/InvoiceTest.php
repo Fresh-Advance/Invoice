@@ -72,22 +72,6 @@ class InvoiceTest extends TestCase
         $this->assertSame($invoiceConfigurationStub, $result->getInvoiceConfiguration());
     }
 
-    public function testSaveOrderInvoiceData(): void
-    {
-        $configurationStub = $this->createStub(InvoiceConfigurationInterface::class);
-
-        $repositoryMock = $this->createMock(InvoiceConfigurationRepositoryInterface::class);
-        $repositoryMock->expects($this->atLeastOnce())
-            ->method('save')
-            ->with($configurationStub);
-
-        $sut = $this->getSut(
-            invoiceConfigRepo: $repositoryMock,
-        );
-
-        $sut->saveOrderInvoiceData($configurationStub);
-    }
-
     protected function getSut(
         OrderRepositoryInterface $orderRepository = null,
         ShopRepositoryInterface $shopService = null,

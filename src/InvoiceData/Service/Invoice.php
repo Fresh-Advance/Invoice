@@ -11,7 +11,6 @@ namespace FreshAdvance\Invoice\InvoiceData\Service;
 
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceData;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
@@ -53,17 +52,12 @@ class Invoice
         );
     }
 
-    public function getOrderInvoicePath(OrderModel $order): string
+    private function getOrderInvoicePath(OrderModel $order): string
     {
         return Path::join(
             $this->moduleContext->getInvoicesPath(),
             substr($order->getId(), 0, 2),
             $order->getId() . '.pdf'
         );
-    }
-
-    public function saveOrderInvoiceData(InvoiceConfigurationInterface $configuration): void
-    {
-        $this->invoiceConfigRepo->save($configuration);
     }
 }

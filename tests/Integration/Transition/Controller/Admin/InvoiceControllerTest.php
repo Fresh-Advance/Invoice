@@ -11,6 +11,8 @@ namespace FreshAdvance\Invoice\Tests\Integration\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepository;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
@@ -96,12 +98,13 @@ class InvoiceControllerTest extends TestCase
             'getInvoiceConfigurationFromRequest' => $invoiceConfigurationStub
         ]);
 
-        $invoiceServiceSpy = $this->createMock(Invoice::class);
-        $invoiceServiceSpy->expects($this->once())
-            ->method('saveOrderInvoiceData')
+        $invoiceConfigurationRepositorySpy = $this->createMock(InvoiceConfigurationRepositoryInterface::class);
+        $invoiceConfigurationRepositorySpy->expects($this->once())
+            ->method('save')
             ->with($invoiceConfigurationStub);
 
         $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
+        $invoiceServiceSpy = $this->createMock(Invoice::class);
         $invoiceServiceSpy->method('getInvoiceDataByOrderId')
             ->with($invoiceId)
             ->willReturn($invoiceDataStub);
@@ -117,6 +120,7 @@ class InvoiceControllerTest extends TestCase
         );
         $sut->method('getService')->willReturnMap([
             [Invoice::class, $invoiceServiceSpy],
+            [InvoiceConfigurationRepositoryInterface::class, $invoiceConfigurationRepositorySpy],
             [RequestInterface::class, $requestStub],
             [InvoiceGeneratorInterface::class, $invoiceGeneratorSpy],
         ]);
