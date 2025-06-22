@@ -50,6 +50,7 @@ Module is available on packagist and installable via composer
 
 ```
 composer require fresh-advance/invoice
+./vendor/bin/oe-eshop-doctrine_migration migrations:migrate fa_invoice
 ```
 
 # Development installation

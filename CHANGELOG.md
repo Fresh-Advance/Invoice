@@ -31,6 +31,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - `InvoiceConfigurationInterface::getFormattedNumber`
   - `OrderRepositoryInterface::getInvoiceNumberByOrderId`
 - Not used `RequestParameterMissing` exception
+- `Events` class removed
+  - It was used to run migrations automatically, but its a very bad practice, that leads to problems, so this is removed now.
 
 ## [v5.0.0-rc.1] - 2025-06-08
 

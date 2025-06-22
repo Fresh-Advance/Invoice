@@ -136,8 +136,4 @@ $aModule = [
             'value' => 'invoice.pdf',
         ],
     ],
-    'events' => [
-        'onActivate' => '\FreshAdvance\Invoice\Transition\Core\Events::onActivate',
-        'onDeactivate' => '\FreshAdvance\Invoice\Transition\Core\Events::onDeactivate'
-    ]
 ];
