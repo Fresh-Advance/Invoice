@@ -35,9 +35,9 @@ class InvoiceControllerTest extends TestCase
 
         $sut = $this->createPartialMock(
             InvoiceController::class,
-            ['getServiceFromContainer', 'getEditObjectId']
+            ['getService', 'getEditObjectId']
         );
-        $sut->method('getServiceFromContainer')->willReturnMap([
+        $sut->method('getService')->willReturnMap([
             [Invoice::class, $invoiceServiceMock],
             [ModuleSettingsInterface::class, $moduleSettingsStub = $this->createStub(ModuleSettingsInterface::class)]
         ]);
@@ -72,10 +72,11 @@ class InvoiceControllerTest extends TestCase
 
         $sut = $this->createPartialMock(
             InvoiceController::class,
-            ['getServiceFromContainer', 'getEditObjectId']
+            ['getService', 'getEditObjectId']
         );
-        $sut->method('getServiceFromContainer')->willReturnMap([
+        $sut->method('getService')->willReturnMap([
             [Invoice::class, $invoiceDataServiceMock],
+            [ModuleSettingsInterface::class, $this->createStub(ModuleSettingsInterface::class)],
         ]);
         $sut->method('getEditObjectId')->willReturn('someOxid');
 
@@ -112,9 +113,9 @@ class InvoiceControllerTest extends TestCase
 
         $sut = $this->createPartialMock(
             InvoiceController::class,
-            ['getServiceFromContainer']
+            ['getService']
         );
-        $sut->method('getServiceFromContainer')->willReturnMap([
+        $sut->method('getService')->willReturnMap([
             [Invoice::class, $invoiceServiceSpy],
             [RequestInterface::class, $requestStub],
             [InvoiceGeneratorInterface::class, $invoiceGeneratorSpy],
@@ -146,9 +147,9 @@ class InvoiceControllerTest extends TestCase
 
         $sut = $this->createPartialMock(
             InvoiceController::class,
-            ['getServiceFromContainer']
+            ['getService']
         );
-        $sut->method('getServiceFromContainer')->willReturnMap([
+        $sut->method('getService')->willReturnMap([
             [Invoice::class, $invoiceDataServiceMock],
             [RequestInterface::class, $requestStub],
             [InvoiceServiceInterface::class, $invoiceServiceSpy],

@@ -13,23 +13,20 @@ use FreshAdvance\Invoice\InvoiceData\Service\InvoiceServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
-use FreshAdvance\Invoice\Traits\ServiceContainer;
 use FreshAdvance\Invoice\Transput\RequestInterface;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
 
 class InvoiceController extends AdminController
 {
-    use ServiceContainer;
-
     protected $_sThisTemplate = '@fa_invoice/admin/invoice';
 
     public function render()
     {
-        $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
+        $invoiceDataService = $this->getService(Invoice::class);
         $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($this->getEditObjectId());
         $this->addTplParam('invoiceData', $invoiceData);
 
-        $moduleSettingsService = $this->getServiceFromContainer(ModuleSettingsInterface::class);
+        $moduleSettingsService = $this->getService(ModuleSettingsInterface::class);
         $this->addTplParam('moduleSettings', $moduleSettingsService);
 
         if (is_file($invoiceData->getInvoicePath())) {
@@ -46,9 +43,9 @@ class InvoiceController extends AdminController
 
     public function saveData(): void
     {
-        $invoiceService = $this->getServiceFromContainer(Invoice::class);
-        $requestService = $this->getServiceFromContainer(RequestInterface::class);
-        $generator = $this->getServiceFromContainer(InvoiceGeneratorInterface::class);
+        $invoiceService = $this->getService(Invoice::class);
+        $requestService = $this->getService(RequestInterface::class);
+        $generator = $this->getService(InvoiceGeneratorInterface::class);
 
         $invoiceService->saveOrderInvoiceData($requestService->getInvoiceConfigurationFromRequest());
 
@@ -58,9 +55,9 @@ class InvoiceController extends AdminController
 
     public function downloadOrderInvoice(): void
     {
-        $request = $this->getServiceFromContainer(RequestInterface::class);
-        $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
-        $invoiceService = $this->getServiceFromContainer(InvoiceServiceInterface::class);
+        $request = $this->getService(RequestInterface::class);
+        $invoiceDataService = $this->getService(Invoice::class);
+        $invoiceService = $this->getService(InvoiceServiceInterface::class);
 
         $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($request->getInvoiceIdFromRequest());
 

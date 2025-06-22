@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Traits;
+namespace FreshAdvance\Invoice\Email\Traits;
 
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;

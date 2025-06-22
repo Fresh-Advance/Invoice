@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - `Exception/InvoiceConfigurationNotFound` to `Invoice/InvoiceConfiguration/Exception/`
   - `Service/InvoiceServiceInterface` to `Invoice/Service/`
   - `Repository/InvoiceConfigurationRepositoryInterface` to `Invoice/InvoiceConfiguration/Repository/`
+  - `Traits/ServiceContainer` to `Email/Traits/`
+    - To be used for Email extension only, as it is not extending the Base class with getService method.
 
 ### Removed
 - Methods removed:

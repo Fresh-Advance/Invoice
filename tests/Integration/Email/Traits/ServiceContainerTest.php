@@ -7,21 +7,20 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Integration\Traits;
+namespace Email\Traits;
 
 use FreshAdvance\Invoice\Service\Invoice;
-use FreshAdvance\Invoice\Traits\ServiceContainer;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Traits\ServiceContainer
+ * @covers \FreshAdvance\Invoice\Email\Traits\ServiceContainer
  */
 class ServiceContainerTest extends IntegrationTestCase
 {
     public function testGetServiceFromContainer()
     {
         $sut = new class {
-            use ServiceContainer;
+            use \FreshAdvance\Invoice\Email\Traits\ServiceContainer;
 
             public function getTestService(string $service)
             {
