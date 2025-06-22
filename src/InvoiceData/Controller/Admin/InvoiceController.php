@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Transition\Controller\Admin;
+namespace FreshAdvance\Invoice\InvoiceData\Controller\Admin;
 
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\Invoice;

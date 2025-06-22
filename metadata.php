@@ -30,7 +30,7 @@ $aModule = [
     'email' => 'anton@fedurtsya.com',
     'url' => 'https://github.com/Fresh-Advance',
     'controllers' => [
-        'fa_invoice_admin' => \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController::class,
+        'fa_invoice_admin' => \FreshAdvance\Invoice\InvoiceData\Controller\Admin\InvoiceController::class,
     ],
     'extend' => [
         \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension::class,

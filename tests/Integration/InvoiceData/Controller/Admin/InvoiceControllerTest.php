@@ -7,23 +7,22 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Integration\Transition\Controller\Admin;
+namespace FreshAdvance\Invoice\Tests\Integration\InvoiceData\Controller\Admin;
 
+use FreshAdvance\Invoice\InvoiceData\Controller\Admin\InvoiceController;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepository;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
-use FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController;
 use FreshAdvance\Invoice\Transput\RequestInterface;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController
+ * @covers \FreshAdvance\Invoice\InvoiceData\Controller\Admin\InvoiceController
  */
 class InvoiceControllerTest extends TestCase
 {
