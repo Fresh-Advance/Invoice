@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Methods removed:
   - `InvoiceConfigurationInterface::getFormattedNumber`
   - `OrderRepositoryInterface::getInvoiceNumberByOrderId`
+- Not used `RequestParameterMissing` exception
 
 ## [v5.0.0-rc.1] - 2025-06-08
 
