@@ -9,12 +9,17 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\InvoiceData\Service;
 
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
+use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Transput\UtilsInterface;
 
-class InvoiceService implements InvoiceServiceInterface
+class InvoiceFileService implements InvoiceFileServiceInterface
 {
     public function __construct(
-        protected UtilsInterface $utils
+        protected readonly UtilsInterface $utils,
+        protected readonly ModuleSettingsInterface $moduleSettings,
+        protected readonly FilenameCalculatorInterface $filenameCalculator,
     ) {
     }
 
@@ -26,5 +31,13 @@ class InvoiceService implements InvoiceServiceInterface
         /** @var string $fileContent */
         $fileContent = file_get_contents($filePath) ?: '';
         $this->utils->showMessageAndExit($fileContent);
+    }
+
+    public function getInvoiceFileName(InvoiceDataInterface $invoiceData): string
+    {
+        return $this->filenameCalculator->calculateByFormat(
+            $this->moduleSettings->getFileNameFormat(),
+            $invoiceData
+        );
     }
 }

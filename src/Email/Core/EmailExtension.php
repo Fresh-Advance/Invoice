@@ -12,9 +12,9 @@ namespace FreshAdvance\Invoice\Email\Core;
 use FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface;
 use FreshAdvance\Invoice\Email\Traits\ServiceContainer;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
-use FreshAdvance\Invoice\Service\Invoice;
 use OxidEsales\Eshop\Application\Model\Order;
 use OxidEsales\Eshop\Core\Email as ShopEmail;
 

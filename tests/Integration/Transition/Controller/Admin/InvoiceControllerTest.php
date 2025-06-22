@@ -11,9 +11,9 @@ namespace FreshAdvance\Invoice\Tests\Integration\Transition\Controller\Admin;
 
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
-use FreshAdvance\Invoice\InvoiceData\Service\InvoiceServiceInterface;
+use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
-use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Transition\Controller\Admin\InvoiceController;
 use FreshAdvance\Invoice\Transput\RequestInterface;
@@ -33,10 +33,7 @@ class InvoiceControllerTest extends TestCase
             ['someOxid', $invoiceDataStub]
         ]);
 
-        $sut = $this->createPartialMock(
-            InvoiceController::class,
-            ['getService', 'getEditObjectId']
-        );
+        $sut = $this->createPartialMock(InvoiceController::class, ['getService', 'getEditObjectId']);
         $sut->method('getService')->willReturnMap([
             [Invoice::class, $invoiceServiceMock],
             [ModuleSettingsInterface::class, $moduleSettingsStub = $this->createStub(ModuleSettingsInterface::class)]
@@ -66,7 +63,9 @@ class InvoiceControllerTest extends TestCase
         $invoiceDataServiceMock->method('getInvoiceDataByOrderId')->willReturnMap([
             ['someOxid', $invoiceDataStub]
         ]);
-        $invoiceDataServiceMock->method('getInvoiceFileName')
+
+        $invoiceFileServiceMock = $this->createMock(InvoiceFileServiceInterface::class);
+        $invoiceFileServiceMock->method('getInvoiceFileName')
             ->with($invoiceDataStub)
             ->willReturn($fileName = uniqid());
 
@@ -76,6 +75,7 @@ class InvoiceControllerTest extends TestCase
         );
         $sut->method('getService')->willReturnMap([
             [Invoice::class, $invoiceDataServiceMock],
+            [InvoiceFileServiceInterface::class, $invoiceFileServiceMock],
             [ModuleSettingsInterface::class, $this->createStub(ModuleSettingsInterface::class)],
         ]);
         $sut->method('getEditObjectId')->willReturn('someOxid');
@@ -137,10 +137,11 @@ class InvoiceControllerTest extends TestCase
 
         $invoiceDataServiceMock = $this->createMock(Invoice::class);
         $invoiceDataServiceMock->method('getInvoiceDataByOrderId')->with($invoiceId)->willReturn($invoiceDataStub);
-        $invoiceDataServiceMock->method('getInvoiceFileName')
-            ->with($invoiceDataStub)->willReturn($invoiceFileName = uniqid());
 
-        $invoiceServiceSpy = $this->createMock(InvoiceServiceInterface::class);
+        $invoiceServiceSpy = $this->createMock(InvoiceFileServiceInterface::class);
+        $invoiceServiceSpy->method('getInvoiceFileName')
+            ->with($invoiceDataStub)
+            ->willReturn($invoiceFileName = uniqid());
         $invoiceServiceSpy->expects($this->once())
             ->method('triggerInvoiceFileDownload')
             ->with($invoiceFileName, $invoicePath);
@@ -152,7 +153,7 @@ class InvoiceControllerTest extends TestCase
         $sut->method('getService')->willReturnMap([
             [Invoice::class, $invoiceDataServiceMock],
             [RequestInterface::class, $requestStub],
-            [InvoiceServiceInterface::class, $invoiceServiceSpy],
+            [InvoiceFileServiceInterface::class, $invoiceServiceSpy],
         ]);
 
         $sut->downloadOrderInvoice();

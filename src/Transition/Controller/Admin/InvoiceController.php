@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transition\Controller\Admin;
 
-use FreshAdvance\Invoice\InvoiceData\Service\InvoiceServiceInterface;
+use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
-use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Transput\RequestInterface;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
@@ -30,8 +30,10 @@ class InvoiceController extends AdminController
         $this->addTplParam('moduleSettings', $moduleSettingsService);
 
         if (is_file($invoiceData->getInvoicePath())) {
+            $invoiceFileService = $this->getService(InvoiceFileServiceInterface::class);
+
             $this->addTplParam('invoiceExists', true);
-            $this->addTplParam('invoiceFileName', $invoiceDataService->getInvoiceFileName($invoiceData));
+            $this->addTplParam('invoiceFileName', $invoiceFileService->getInvoiceFileName($invoiceData));
 
             /** @var int $fileTimestamp */
             $fileTimestamp = filemtime($invoiceData->getInvoicePath());
@@ -57,12 +59,12 @@ class InvoiceController extends AdminController
     {
         $request = $this->getService(RequestInterface::class);
         $invoiceDataService = $this->getService(Invoice::class);
-        $invoiceService = $this->getService(InvoiceServiceInterface::class);
+        $invoiceFileService = $this->getService(InvoiceFileServiceInterface::class);
 
         $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($request->getInvoiceIdFromRequest());
 
-        $invoiceService->triggerInvoiceFileDownload(
-            $invoiceDataService->getInvoiceFileName($invoiceData),
+        $invoiceFileService->triggerInvoiceFileDownload(
+            $invoiceFileService->getInvoiceFileName($invoiceData),
             $invoiceData->getInvoicePath()
         );
     }

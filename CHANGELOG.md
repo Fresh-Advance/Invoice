@@ -14,13 +14,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Invoice number format now supports Order fields placeholders, like other formats.
   - The default setting value is changed, please update your settings if you have the module already installed.
 - Interfaces with implementations moved to more fitting locations
-  - `DataType/InvoiceDataInterface` to `Invoice/DataType/`
-  - `DataType/InvoiceConfigurationInterface` to `Invoice/InvoiceConfiguration/DataType/`
-  - `Exception/InvoiceConfigurationNotFound` to `Invoice/InvoiceConfiguration/Exception/`
-  - `Service/InvoiceServiceInterface` to `Invoice/Service/`
-  - `Repository/InvoiceConfigurationRepositoryInterface` to `Invoice/InvoiceConfiguration/Repository/`
+  - `DataType/InvoiceDataInterface` to `InvoiceData/DataType/`
+  - `DataType/InvoiceConfigurationInterface` to `InvoiceData/InvoiceConfiguration/DataType/`
+  - `Exception/InvoiceConfigurationNotFound` to `InvoiceData/InvoiceConfiguration/Exception/`
+  - `Service/InvoiceServiceInterface` to `InvoiceData/Service/`
+  - `Repository/InvoiceConfigurationRepositoryInterface` to `InvoiceData/InvoiceConfiguration/Repository/`
   - `Traits/ServiceContainer` to `Email/Traits/`
     - To be used for Email extension only, as it is not extending the Base class with getService method.
+- Classes/Interfaces renamed
+  - `InvoiceServiceInterface` to `InvoiceFileServiceInterface`
+- `Invoice::getInvoiceFileName` method moved to `InvoiceFileServiceInterface`
 
 ### Removed
 - Methods removed:

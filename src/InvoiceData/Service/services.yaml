@@ -3,6 +3,10 @@ services:
     public: false
     autowire: true
 
-  FreshAdvance\Invoice\InvoiceData\Service\InvoiceServiceInterface:
-    class: FreshAdvance\Invoice\InvoiceData\Service\InvoiceService
+  FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface:
+    class: FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileService
+    public: true
+
+  FreshAdvance\Invoice\InvoiceData\Service\Invoice:
+    class: FreshAdvance\Invoice\InvoiceData\Service\Invoice
     public: true

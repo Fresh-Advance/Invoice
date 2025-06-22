@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Email\Traits;
 
-use FreshAdvance\Invoice\Service\Invoice;
+use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**

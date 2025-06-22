@@ -109,8 +109,8 @@ class ServiceAvailabilityTest extends IntegrationTestCase
             [\FreshAdvance\Invoice\Repository\ShopRepositoryInterface::class],
 
             // todo: move shared service items to where they belong.
-            [\FreshAdvance\Invoice\Service\Invoice::class],
-            [\FreshAdvance\Invoice\InvoiceData\Service\InvoiceServiceInterface::class],
+            [\FreshAdvance\Invoice\InvoiceData\Service\Invoice::class],
+            [\FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface::class],
 
             // Settings
             [\FreshAdvance\Invoice\Settings\ContextInterface::class],

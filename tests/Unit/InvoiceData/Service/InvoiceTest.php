@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\Invoice\Service;
 
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
+use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
-use FreshAdvance\Invoice\Service\Invoice;
 use FreshAdvance\Invoice\Settings\ConfigInterface;
 use FreshAdvance\Invoice\Settings\ContextInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettings;
@@ -25,7 +25,7 @@ use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Service\Invoice
+ * @covers \FreshAdvance\Invoice\InvoiceData\Service\Invoice
  */
 class InvoiceTest extends TestCase
 {
@@ -88,23 +88,6 @@ class InvoiceTest extends TestCase
         $sut->saveOrderInvoiceData($configurationStub);
     }
 
-    public function testGetInvoiceFileName(): void
-    {
-        $sut = $this->getSut(
-            moduleSettings: $this->createConfiguredMock(ModuleSettings::class, [
-                'getFileNameFormat' => $fileNameFormat = uniqid(),
-            ]),
-            filenameCalculator: $filenameCalculatorMock = $this->createMock(FilenameCalculatorInterface::class),
-        );
-
-        $invoiceDataStub = $this->createMock(InvoiceDataInterface::class);
-        $filenameCalculatorMock->method('calculateByFormat')
-            ->with($fileNameFormat, $invoiceDataStub)
-            ->willReturn($formattedFileName = uniqid());
-
-        $this->assertSame($formattedFileName, $sut->getInvoiceFileName($invoiceDataStub));
-    }
-
     protected function getSut(
         OrderRepositoryInterface $orderRepository = null,
         ShopRepositoryInterface $shopService = null,
@@ -114,7 +97,7 @@ class InvoiceTest extends TestCase
         ModuleSettingsInterface $moduleSettings = null,
         FilenameCalculatorInterface $filenameCalculator = null,
     ): Invoice {
-        return new Invoice(
+        return new \FreshAdvance\Invoice\InvoiceData\Service\Invoice(
             orderRepository: $orderRepository ?? $this->createStub(OrderRepositoryInterface::class),
             shopService: $shopService ?? $this->createStub(ShopRepositoryInterface::class),
             shopConfig: $shopConfig ?? $this->createStub(ConfigInterface::class),

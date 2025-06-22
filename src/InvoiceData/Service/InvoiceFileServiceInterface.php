@@ -9,7 +9,11 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\InvoiceData\Service;
 
-interface InvoiceServiceInterface
+use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
+
+interface InvoiceFileServiceInterface
 {
     public function triggerInvoiceFileDownload(string $fileName, string $filePath): void;
+
+    public function getInvoiceFileName(InvoiceDataInterface $invoiceData): string;
 }

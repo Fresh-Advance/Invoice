@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Service;
+namespace FreshAdvance\Invoice\InvoiceData\Service;
 
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceData;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
@@ -59,14 +59,6 @@ class Invoice
             $this->moduleContext->getInvoicesPath(),
             substr($order->getId(), 0, 2),
             $order->getId() . '.pdf'
-        );
-    }
-
-    public function getInvoiceFileName(InvoiceDataInterface $invoiceData): string
-    {
-        return $this->filenameCalculator->calculateByFormat(
-            $this->moduleSettings->getFileNameFormat(),
-            $invoiceData
         );
     }
 

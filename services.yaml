@@ -3,7 +3,6 @@ imports:
     - { resource: src/InvoiceData/services.yaml }
     - { resource: src/Pdf/services.yaml }
     - { resource: src/Repository/services.yaml }
-    - { resource: src/Service/services.yaml }
     - { resource: src/Settings/services.yaml }
     - { resource: src/Language/Service/services.yaml }
     - { resource: src/Order/services.yaml }
