@@ -1,0 +1,7 @@
+imports:
+  - { resource: Repository/services.yaml }
+
+services:
+  _defaults:
+    public: false
+    autowire: true

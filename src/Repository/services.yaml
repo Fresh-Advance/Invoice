@@ -1,7 +1,0 @@
-services:
-  _defaults:
-    public: false
-    autowire: true
-
-  FreshAdvance\Invoice\Repository\ShopRepositoryInterface:
-    class: FreshAdvance\Invoice\Repository\ShopRepository

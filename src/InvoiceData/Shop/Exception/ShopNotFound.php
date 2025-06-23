@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Exception;
+namespace FreshAdvance\Invoice\InvoiceData\Shop\Exception;
 
 use OxidEsales\Eshop\Core\Exception\StandardException;
 

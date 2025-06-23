@@ -1,5 +1,6 @@
 imports:
   - { resource: InvoiceConfiguration/services.yaml }
+  - { resource: Shop/services.yaml }
   - { resource: Service/services.yaml }
 
 services:

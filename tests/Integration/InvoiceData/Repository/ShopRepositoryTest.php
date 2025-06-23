@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Integration\Repository;
+namespace FreshAdvance\Invoice\Tests\Integration\InvoiceData\Repository;
 
-use FreshAdvance\Invoice\Exception\ShopNotFound;
-use FreshAdvance\Invoice\Repository\ShopRepository;
+use FreshAdvance\Invoice\InvoiceData\Shop\Exception\ShopNotFound;
+use FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepository;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Repository\ShopRepository
+ * @covers \FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepository
  */
 class ShopRepositoryTest extends IntegrationTestCase
 {
