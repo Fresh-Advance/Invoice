@@ -22,8 +22,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - `Traits/ServiceContainer` to `Email/Traits/`
     - To be used for Email extension only, as it is not extending the Base class with getService method.
   - `Transition/Controller/Admin/InvoiceController` to `InvoiceData/Controller/Admin/`
+  - `Service/Invoice` to `InvoiceData/Service/`
 - Classes/Interfaces renamed
   - `InvoiceServiceInterface` to `InvoiceFileServiceInterface`
+  - `Invoice` service to `InvoiceDataService` and interface extracted as `InvoiceDataServiceInterface`
 - `Invoice::getInvoiceFileName` method moved to `InvoiceFileServiceInterface`
 - Use `InvoiceConfigurationRepositoryInterface` directly for saving, instead of Invoice service as a proxy
 

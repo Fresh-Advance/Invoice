@@ -7,6 +7,6 @@ services:
     class: FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileService
     public: true
 
-  FreshAdvance\Invoice\InvoiceData\Service\Invoice:
-    class: FreshAdvance\Invoice\InvoiceData\Service\Invoice
+  FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface:
+    class: FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataService
     public: true

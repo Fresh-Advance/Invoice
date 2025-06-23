@@ -21,11 +21,7 @@ use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use Symfony\Component\Filesystem\Path;
 
-/**
- * @todo: split this class into smaller classes
- * @SuppressWarnings(PHPMD)
- */
-class Invoice
+class InvoiceDataService implements InvoiceDataServiceInterface
 {
     public function __construct(
         protected OrderRepositoryInterface $orderRepository,

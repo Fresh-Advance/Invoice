@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Integration\Email\Core;
 use FreshAdvance\Invoice\Email\Core\EmailExtension;
 use FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculator;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
@@ -31,7 +31,7 @@ class EmailExtensionTest extends IntegrationTestCase
 
         $sut->method('getServiceFromContainer')->willReturnMap(
             $this->getDIConfiguration(
-                invoiceDataService: $invoiceDataService = $this->createMock(Invoice::class),
+                invoiceDataService: $invoiceDataService = $this->createMock(InvoiceDataServiceInterface::class),
                 invoiceGenerator: $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class),
                 invoiceFilenameCalculator: $filenameCalculatorMock = $this->createMock(
                     FilenameCalculator::class
@@ -111,7 +111,7 @@ class EmailExtensionTest extends IntegrationTestCase
 
         $sut->method('getServiceFromContainer')->willReturnMap(
             $this->getDIConfiguration(
-                invoiceDataService: $invoiceDataService = $this->createMock(Invoice::class),
+                invoiceDataService: $invoiceDataService = $this->createMock(InvoiceDataServiceInterface::class),
                 invoiceGenerator: $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class),
                 invoiceFilenameCalculator: $filenameCalculatorMock = $this->createMock(
                     FilenameCalculator::class
@@ -197,7 +197,7 @@ class EmailExtensionTest extends IntegrationTestCase
 
         $sut->method('getServiceFromContainer')->willReturnMap(
             $this->getDIConfiguration(
-                invoiceDataService: $invoiceDataService = $this->createMock(Invoice::class),
+                invoiceDataService: $invoiceDataService = $this->createMock(InvoiceDataServiceInterface::class),
                 invoiceGenerator: $invoiceGeneratorSpy = $this->createMock(InvoiceGeneratorInterface::class),
                 invoiceFilenameCalculator: $filenameCalculatorMock = $this->createMock(
                     FilenameCalculator::class
@@ -301,15 +301,15 @@ class EmailExtensionTest extends IntegrationTestCase
     }
 
     protected function getDIConfiguration(
-        Invoice $invoiceDataService = null,
+        InvoiceDataServiceInterface $invoiceDataService = null,
         InvoiceGeneratorInterface $invoiceGenerator = null,
         FilenameCalculatorInterface $invoiceFilenameCalculator = null,
         EmailSettingsInterface $emailSettings = null,
     ): array {
         return [
             [
-                Invoice::class,
-                $invoiceDataService ?? $this->createStub(Invoice::class)
+                InvoiceDataServiceInterface::class,
+                $invoiceDataService ?? $this->createStub(InvoiceDataServiceInterface::class)
             ],
             [
                 InvoiceGeneratorInterface::class,

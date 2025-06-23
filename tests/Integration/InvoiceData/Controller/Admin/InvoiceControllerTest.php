@@ -13,7 +13,7 @@ use FreshAdvance\Invoice\InvoiceData\Controller\Admin\InvoiceController;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
-use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
@@ -29,14 +29,14 @@ class InvoiceControllerTest extends TestCase
     public function testRenderGivesMainVariablesToTemplate(): void
     {
         $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
-        $invoiceServiceMock = $this->createPartialMock(Invoice::class, ['getInvoiceDataByOrderId']);
+        $invoiceServiceMock = $this->createPartialMock(InvoiceDataServiceInterface::class, ['getInvoiceDataByOrderId']);
         $invoiceServiceMock->method('getInvoiceDataByOrderId')->willReturnMap([
             ['someOxid', $invoiceDataStub]
         ]);
 
         $sut = $this->createPartialMock(InvoiceController::class, ['getService', 'getEditObjectId']);
         $sut->method('getService')->willReturnMap([
-            [Invoice::class, $invoiceServiceMock],
+            [InvoiceDataServiceInterface::class, $invoiceServiceMock],
             [ModuleSettingsInterface::class, $moduleSettingsStub = $this->createStub(ModuleSettingsInterface::class)]
         ]);
 
@@ -60,7 +60,7 @@ class InvoiceControllerTest extends TestCase
             'getInvoiceConfiguration' => $this->createStub(InvoiceConfigurationInterface::class),
 
         ]);
-        $invoiceDataServiceMock = $this->createMock(Invoice::class);
+        $invoiceDataServiceMock = $this->createMock(InvoiceDataServiceInterface::class);
         $invoiceDataServiceMock->method('getInvoiceDataByOrderId')->willReturnMap([
             ['someOxid', $invoiceDataStub]
         ]);
@@ -75,7 +75,7 @@ class InvoiceControllerTest extends TestCase
             ['getService', 'getEditObjectId']
         );
         $sut->method('getService')->willReturnMap([
-            [Invoice::class, $invoiceDataServiceMock],
+            [InvoiceDataServiceInterface::class, $invoiceDataServiceMock],
             [InvoiceFileServiceInterface::class, $invoiceFileServiceMock],
             [ModuleSettingsInterface::class, $this->createStub(ModuleSettingsInterface::class)],
         ]);
@@ -103,7 +103,7 @@ class InvoiceControllerTest extends TestCase
             ->with($invoiceConfigurationStub);
 
         $invoiceDataStub = $this->createStub(InvoiceDataInterface::class);
-        $invoiceServiceSpy = $this->createMock(Invoice::class);
+        $invoiceServiceSpy = $this->createMock(InvoiceDataServiceInterface::class);
         $invoiceServiceSpy->method('getInvoiceDataByOrderId')
             ->with($invoiceId)
             ->willReturn($invoiceDataStub);
@@ -118,7 +118,7 @@ class InvoiceControllerTest extends TestCase
             ['getService']
         );
         $sut->method('getService')->willReturnMap([
-            [Invoice::class, $invoiceServiceSpy],
+            [InvoiceDataServiceInterface::class, $invoiceServiceSpy],
             [InvoiceConfigurationRepositoryInterface::class, $invoiceConfigurationRepositorySpy],
             [RequestInterface::class, $requestStub],
             [InvoiceGeneratorInterface::class, $invoiceGeneratorSpy],
@@ -138,7 +138,7 @@ class InvoiceControllerTest extends TestCase
             'getInvoiceConfiguration' => $this->createStub(InvoiceConfigurationInterface::class)
         ]);
 
-        $invoiceDataServiceMock = $this->createMock(Invoice::class);
+        $invoiceDataServiceMock = $this->createMock(InvoiceDataServiceInterface::class);
         $invoiceDataServiceMock->method('getInvoiceDataByOrderId')->with($invoiceId)->willReturn($invoiceDataStub);
 
         $invoiceServiceSpy = $this->createMock(InvoiceFileServiceInterface::class);
@@ -154,7 +154,7 @@ class InvoiceControllerTest extends TestCase
             ['getService']
         );
         $sut->method('getService')->willReturnMap([
-            [Invoice::class, $invoiceDataServiceMock],
+            [InvoiceDataServiceInterface::class, $invoiceDataServiceMock],
             [RequestInterface::class, $requestStub],
             [InvoiceFileServiceInterface::class, $invoiceServiceSpy],
         ]);

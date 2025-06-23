@@ -9,25 +9,24 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Invoice\Service;
 
-use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
-use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataService;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Settings\ConfigInterface;
 use FreshAdvance\Invoice\Settings\ContextInterface;
-use FreshAdvance\Invoice\Settings\ModuleSettings;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\InvoiceData\Service\Invoice
+ * @covers \FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataService
  */
-class InvoiceTest extends TestCase
+class InvoiceDataServiceTest extends TestCase
 {
     public function testGetInvoiceData(): void
     {
@@ -80,8 +79,8 @@ class InvoiceTest extends TestCase
         InvoiceConfigurationRepositoryInterface $invoiceConfigRepo = null,
         ModuleSettingsInterface $moduleSettings = null,
         FilenameCalculatorInterface $filenameCalculator = null,
-    ): Invoice {
-        return new \FreshAdvance\Invoice\InvoiceData\Service\Invoice(
+    ): InvoiceDataServiceInterface {
+        return new InvoiceDataService(
             orderRepository: $orderRepository ?? $this->createStub(OrderRepositoryInterface::class),
             shopService: $shopService ?? $this->createStub(ShopRepositoryInterface::class),
             shopConfig: $shopConfig ?? $this->createStub(ConfigInterface::class),

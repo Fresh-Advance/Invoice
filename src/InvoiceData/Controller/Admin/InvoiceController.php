@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\InvoiceData\Controller\Admin;
 
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
-use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
@@ -23,7 +23,7 @@ class InvoiceController extends AdminController
 
     public function render()
     {
-        $invoiceDataService = $this->getService(Invoice::class);
+        $invoiceDataService = $this->getService(InvoiceDataServiceInterface::class);
         $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($this->getEditObjectId());
         $this->addTplParam('invoiceData', $invoiceData);
 
@@ -46,7 +46,7 @@ class InvoiceController extends AdminController
 
     public function saveData(): void
     {
-        $invoiceService = $this->getService(Invoice::class);
+        $invoiceService = $this->getService(InvoiceDataServiceInterface::class);
         $invoiceConfigurationRepository = $this->getService(InvoiceConfigurationRepositoryInterface::class);
         $requestService = $this->getService(RequestInterface::class);
         $generator = $this->getService(InvoiceGeneratorInterface::class);
@@ -60,7 +60,7 @@ class InvoiceController extends AdminController
     public function downloadOrderInvoice(): void
     {
         $request = $this->getService(RequestInterface::class);
-        $invoiceDataService = $this->getService(Invoice::class);
+        $invoiceDataService = $this->getService(InvoiceDataServiceInterface::class);
         $invoiceFileService = $this->getService(InvoiceFileServiceInterface::class);
 
         $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($request->getInvoiceIdFromRequest());

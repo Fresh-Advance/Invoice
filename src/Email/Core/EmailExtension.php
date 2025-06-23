@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\Email\Core;
 use FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface;
 use FreshAdvance\Invoice\Email\Traits\ServiceContainer;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
+use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
 use OxidEsales\Eshop\Application\Model\Order;
@@ -118,7 +118,7 @@ class EmailExtension extends EmailExtension_parent
 
     private function getOrderInvoiceData(Order $order): InvoiceDataInterface
     {
-        $invoiceDataService = $this->getServiceFromContainer(Invoice::class);
+        $invoiceDataService = $this->getServiceFromContainer(InvoiceDataServiceInterface::class);
         return $invoiceDataService->getInvoiceDataByOrderId($order->getId());
     }
 

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Email\Traits;
 
-use FreshAdvance\Invoice\InvoiceData\Service\Invoice;
+use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 
 /**
@@ -28,6 +28,9 @@ class ServiceContainerTest extends IntegrationTestCase
             }
         };
 
-        $this->assertInstanceOf(Invoice::class, $sut->getTestService(Invoice::class));
+        $this->assertInstanceOf(
+            Registry::class,
+            $sut->getTestService('FreshAdvance\Invoice\Core\Registry')
+        );
     }
 }
