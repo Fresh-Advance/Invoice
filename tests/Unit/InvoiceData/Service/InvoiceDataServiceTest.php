@@ -13,9 +13,9 @@ use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfig
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataService;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
+use FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
-use FreshAdvance\Invoice\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Settings\ConfigInterface;
 use FreshAdvance\Invoice\Settings\ContextInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;

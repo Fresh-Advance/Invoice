@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\DataType;
+namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\InvoiceConfiguration\DataType;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
