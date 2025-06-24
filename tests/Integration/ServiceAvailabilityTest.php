@@ -120,7 +120,7 @@ class ServiceAvailabilityTest extends IntegrationTestCase
             [\FreshAdvance\Invoice\Settings\ConfigInterface::class],
 
             // Transput
-            [\FreshAdvance\Invoice\Transput\RequestInterface::class],
+            [\FreshAdvance\Invoice\InvoiceData\Transput\RequestInterface::class],
             [\FreshAdvance\Invoice\Transput\UtilsInterface::class],
         ];
     }

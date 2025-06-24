@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Transput;
+namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\Transput;
 
-use FreshAdvance\Invoice\Transput\RequestProxy;
+use FreshAdvance\Invoice\InvoiceData\Transput\RequestProxy;
 use OxidEsales\Eshop\Core\Request;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Transput\RequestProxy
+ * @covers \FreshAdvance\Invoice\InvoiceData\Transput\RequestProxy
  */
 class RequestProxyTest extends TestCase
 {

@@ -3,12 +3,7 @@ services:
     public: false
     autowire: true
     bind:
-      OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getRequest()'
       OxidEsales\Eshop\Core\Utils: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getUtils()'
-
-  FreshAdvance\Invoice\Transput\RequestInterface:
-    class: FreshAdvance\Invoice\Transput\RequestProxy
-    public: true
 
   FreshAdvance\Invoice\Transput\UtilsInterface:
     class: FreshAdvance\Invoice\Transput\UtilsProxy
