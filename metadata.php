@@ -47,7 +47,7 @@ $aModule = [
         ],
         [
             'group' => 'fa_invoice_main',
-            'name' => \FreshAdvance\Invoice\InvoiceData\Settings\FormatSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE,
+            'name' => \FreshAdvance\Invoice\Pdf\Settings\PdfSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE,
             'type' => 'bool',
             'value' => false
         ],

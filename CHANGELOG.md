@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - `UtilsInterface` to `ResponseInterface`
 - `Invoice::getInvoiceFileName` method moved to `InvoiceFileServiceInterface`
 - Use `InvoiceConfigurationRepositoryInterface` directly for saving, instead of Invoice service as a proxy
+- Extract `FormatSettingsInterface::isForArchive` to `PdfSettingsInterface::isForArchive`
 
 ### Removed
 - Methods removed:

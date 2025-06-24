@@ -112,6 +112,7 @@ class ServiceAvailabilityTest extends IntegrationTestCase
                 [\FreshAdvance\Invoice\Pdf\Service\FilenameCharactersFilter::class],
             [\FreshAdvance\Invoice\Pdf\Service\TemplateParametersServiceInterface::class],
             [\FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface::class],
+            [\FreshAdvance\Invoice\Pdf\Settings\PdfSettingsInterface::class],
 
             // Settings
             [\FreshAdvance\Invoice\InvoiceData\Settings\ContextInterface::class],

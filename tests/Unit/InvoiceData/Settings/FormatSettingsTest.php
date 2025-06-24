@@ -31,18 +31,6 @@ final class FormatSettingsTest extends TestCase
         $this->assertSame($value, $sut->getFileNameFormat());
     }
 
-    #[DataProvider('booleanDataProvider')]
-    public function testIsForArchive(bool $value): void
-    {
-        $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
-        $mssMock->method('getBoolean')->willReturnMap([
-            [FormatSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE, Module::MODULE_ID, $value]
-        ]);
-
-        $sut = new FormatSettings($mssMock);
-        $this->assertSame($value, $sut->isForArchive());
-    }
-
     public function testGetInvoiceNumberFormat(): void
     {
         $value = uniqid();
@@ -67,13 +55,5 @@ final class FormatSettingsTest extends TestCase
 
         $sut = new FormatSettings($mssMock);
         $this->assertSame($value, $sut->getInvoiceDateFormat());
-    }
-
-    public static function booleanDataProvider(): array
-    {
-        return [
-            [true],
-            [false]
-        ];
     }
 }

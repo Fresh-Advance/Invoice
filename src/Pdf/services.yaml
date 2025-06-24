@@ -36,3 +36,6 @@ services:
 
   FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface:
     class: FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettings
+
+  FreshAdvance\Invoice\Pdf\Settings\PdfSettingsInterface:
+    class: FreshAdvance\Invoice\Pdf\Settings\PdfSettings

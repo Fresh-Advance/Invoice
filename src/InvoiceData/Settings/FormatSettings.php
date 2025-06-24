@@ -15,7 +15,6 @@ use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServ
 class FormatSettings implements FormatSettingsInterface
 {
     public const SETTING_DOCUMENT_FILENAME_FORMAT = 'fa_invoice_FilenameFormat';
-    public const SETTING_DOCUMENT_IS_FOR_ARCHIVE = 'fa_invoice_IsForArchive';
     public const SETTING_INVOICE_NUMBER_FORMAT = 'fa_invoice_InvoiceNumberFormat';
     public const SETTING_INVOICE_DATE_FORMAT = 'fa_invoice_InvoiceDateFormat';
 
@@ -32,14 +31,6 @@ class FormatSettings implements FormatSettingsInterface
     public function getInvoiceNumberFormat(): string
     {
         return $this->getStringSetting(self::SETTING_INVOICE_NUMBER_FORMAT);
-    }
-
-    public function isForArchive(): bool
-    {
-        return $this->moduleSettingService->getBoolean(
-            self::SETTING_DOCUMENT_IS_FOR_ARCHIVE,
-            Module::MODULE_ID
-        );
     }
 
     public function getInvoiceDateFormat(): string
