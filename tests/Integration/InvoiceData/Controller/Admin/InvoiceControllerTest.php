@@ -15,9 +15,9 @@ use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfig
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\InvoiceData\Transput\RequestInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

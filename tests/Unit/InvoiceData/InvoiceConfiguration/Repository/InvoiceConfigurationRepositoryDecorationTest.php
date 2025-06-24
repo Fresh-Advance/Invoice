@@ -13,7 +13,7 @@ use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfig
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
 use PHPUnit\Framework\TestCase;
 
 class InvoiceConfigurationRepositoryDecorationTest extends TestCase

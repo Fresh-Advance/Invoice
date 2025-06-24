@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Settings;
+namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\Settings;
 
-use FreshAdvance\Invoice\Settings\Context;
+use FreshAdvance\Invoice\InvoiceData\Settings\Context;
 use PHPUnit\Framework\TestCase;
 
 class ContextTest extends TestCase

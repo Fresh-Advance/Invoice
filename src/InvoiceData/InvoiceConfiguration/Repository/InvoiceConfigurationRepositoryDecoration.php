@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
 
 class InvoiceConfigurationRepositoryDecoration implements InvoiceConfigurationRepositoryInterface
 {

@@ -13,12 +13,12 @@ use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfig
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataService;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ConfigInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ContextInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
-use FreshAdvance\Invoice\Settings\ConfigInterface;
-use FreshAdvance\Invoice\Settings\ContextInterface;
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use PHPUnit\Framework\TestCase;
@@ -53,7 +53,7 @@ class InvoiceDataServiceTest extends TestCase
             shopService: $shopServiceMock,
             shopConfig: $shopConfigMock,
             moduleContext: $this->createConfiguredMock(
-                \FreshAdvance\Invoice\Settings\Context::class,
+                \FreshAdvance\Invoice\InvoiceData\Settings\Context::class,
                 ['getInvoicesPath' => 'someRootPath']
             ),
             invoiceConfigRepo: $repositoryMock,

@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Integration\Settings;
+namespace FreshAdvance\Invoice\Tests\Integration\InvoiceData\Settings;
 
-use FreshAdvance\Invoice\Settings\ConfigProxy;
+use FreshAdvance\Invoice\InvoiceData\Settings\ConfigProxy;
 use OxidEsales\Eshop\Core\Config;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -29,7 +29,7 @@ class ConfigProxyTest extends TestCase
             ->with($testKey, $shopId)
             ->willReturn($testValue);
 
-        $sut = new \FreshAdvance\Invoice\Settings\ConfigProxy($shopConfigMock);
+        $sut = new \FreshAdvance\Invoice\InvoiceData\Settings\ConfigProxy($shopConfigMock);
 
         $this->assertSame(5, $sut->getShopDefaultLanguageId($shopId));
     }

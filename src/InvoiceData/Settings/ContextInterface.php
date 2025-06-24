@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Settings;
+namespace FreshAdvance\Invoice\InvoiceData\Settings;
 
-interface ConfigInterface
+interface ContextInterface
 {
-    public function getShopDefaultLanguageId(int $shopId): int;
+    public function getInvoicesPath(): string;
 }

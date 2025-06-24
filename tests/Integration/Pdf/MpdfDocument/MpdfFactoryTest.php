@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Integration\Pdf\MpdfDocument;
 
+use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Pdf\MpdfDocument\MpdfFactory;
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use Mpdf\Mpdf;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;

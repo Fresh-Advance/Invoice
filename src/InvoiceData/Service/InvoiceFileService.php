@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\InvoiceData\Service;
 
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\Transput\ResponseInterface;
 
 class InvoiceFileService implements InvoiceFileServiceInterface

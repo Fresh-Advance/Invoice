@@ -12,12 +12,12 @@ namespace FreshAdvance\Invoice\InvoiceData\Service;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceData;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ConfigInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ContextInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
 use FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
-use FreshAdvance\Invoice\Settings\ConfigInterface;
-use FreshAdvance\Invoice\Settings\ContextInterface;
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use Symfony\Component\Filesystem\Path;
 

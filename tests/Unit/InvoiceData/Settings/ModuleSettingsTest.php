@@ -7,11 +7,10 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Settings;
+namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\Settings;
 
+use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettings;
 use FreshAdvance\Invoice\Module;
-use FreshAdvance\Invoice\Settings\ModuleSettings;
-use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingService;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

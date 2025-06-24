@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Pdf\MpdfDocument;
 
-use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
 use Mpdf\Mpdf;
 
 class MpdfFactory

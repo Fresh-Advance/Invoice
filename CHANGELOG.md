@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - `Transition/Controller/Admin/InvoiceController` to `InvoiceData/Controller/Admin/`
   - `Service/Invoice` to `InvoiceData/Service/`
   - `Transput/Requestinterface` to `InvoiceData/Transput`
+  - `Settings` directory moved to `InvoiceData`
 - Classes/Interfaces renamed
   - `InvoiceServiceInterface` to `InvoiceFileServiceInterface`
   - `Invoice` service to `InvoiceDataService` and interface extracted as `InvoiceDataServiceInterface`
