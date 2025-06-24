@@ -107,7 +107,7 @@ $aModule = [
             'group' => 'fa_invoice_numbering',
             'name' => \FreshAdvance\Invoice\InvoiceData\Settings\FormatSettings::SETTING_INVOICE_NUMBER_FORMAT,
             'type' => 'str',
-            'value' => 'ABC-%1$s',
+            'value' => 'ABC-<order:oxbillnr>',
         ],
 
         // group emails
