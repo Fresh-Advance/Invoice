@@ -11,7 +11,7 @@ namespace FreshAdvance\Invoice\Transput;
 
 use OxidEsales\Eshop\Core\Utils;
 
-class UtilsProxy implements UtilsInterface
+class ResponseProxy implements ResponseInterface
 {
     public function __construct(
         readonly private Utils $utils

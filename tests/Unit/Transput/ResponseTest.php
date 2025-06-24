@@ -9,14 +9,14 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\Transput;
 
-use FreshAdvance\Invoice\Transput\UtilsProxy;
+use FreshAdvance\Invoice\Transput\ResponseProxy;
 use OxidEsales\Eshop\Core\Utils;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \FreshAdvance\Invoice\Transput\UtilsProxy
+ * @covers \FreshAdvance\Invoice\Transput\ResponseProxy
  */
-class UtilsProxyTest extends TestCase
+class ResponseTest extends TestCase
 {
     public function testSetHeaderProxied(): void
     {
@@ -25,7 +25,7 @@ class UtilsProxyTest extends TestCase
         $utilsMock = $this->createPartialMock(Utils::class, ['setHeader']);
         $utilsMock->expects($this->once())->method('setHeader')->with($testValue);
 
-        $sut = new UtilsProxy($utilsMock);
+        $sut = new ResponseProxy($utilsMock);
         $sut->setHeader($testValue);
     }
 
@@ -36,7 +36,7 @@ class UtilsProxyTest extends TestCase
         $utilsMock = $this->createPartialMock(Utils::class, ['showMessageAndExit']);
         $utilsMock->expects($this->once())->method('showMessageAndExit')->with($testValue);
 
-        $sut = new UtilsProxy($utilsMock);
+        $sut = new ResponseProxy($utilsMock);
         $sut->showMessageAndExit($testValue);
     }
 }

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Transput;
 
-interface UtilsInterface
+interface ResponseInterface
 {
     public function setHeader(string $header): void;
 

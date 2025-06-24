@@ -14,7 +14,7 @@ use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileService;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
-use FreshAdvance\Invoice\Transput\UtilsProxy;
+use FreshAdvance\Invoice\Transput\ResponseProxy;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
@@ -27,7 +27,7 @@ class InvoiceFileServiceTest extends TestCase
     {
         $headerFileName = 'exampleFile.pdf';
 
-        $utilsMock = $this->createPartialMock(UtilsProxy::class, ['setHeader']);
+        $utilsMock = $this->createPartialMock(ResponseProxy::class, ['setHeader']);
         $utilsMock->expects($this->any())
             ->method('setHeader')
             ->willReturnCallback(function ($value) use ($headerFileName) {
@@ -54,7 +54,7 @@ class InvoiceFileServiceTest extends TestCase
         $headerFilename = 'exampleFile.pdf';
         $filePath = $tempDirectory->url() . '/filename.pdf';
 
-        $utilsMock = $this->createPartialMock(UtilsProxy::class, ['setHeader', 'showMessageAndExit']);
+        $utilsMock = $this->createPartialMock(ResponseProxy::class, ['setHeader', 'showMessageAndExit']);
         $utilsMock->expects($this->atLeastOnce())->method('showMessageAndExit')->with('someFileContent');
 
         $sut = $this->getSut(
@@ -81,12 +81,12 @@ class InvoiceFileServiceTest extends TestCase
     }
 
     private function getSut(
-        UtilsProxy $utils = null,
+        ResponseProxy $utils = null,
         ModuleSettingsInterface $moduleSettings = null,
         FilenameCalculatorInterface $filenameCalculator = null,
     ): InvoiceFileServiceInterface {
         return new InvoiceFileService(
-            utils: $utils ?? $this->createStub(UtilsProxy::class),
+            utils: $utils ?? $this->createStub(ResponseProxy::class),
             moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class),
             filenameCalculator: $filenameCalculator ?? $this->createStub(FilenameCalculatorInterface::class),
         );

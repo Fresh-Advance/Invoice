@@ -5,6 +5,6 @@ services:
     bind:
       OxidEsales\Eshop\Core\Utils: '@=service("FreshAdvance\\Invoice\\Core\\Registry").getUtils()'
 
-  FreshAdvance\Invoice\Transput\UtilsInterface:
-    class: FreshAdvance\Invoice\Transput\UtilsProxy
+  FreshAdvance\Invoice\Transput\ResponseInterface:
+    class: FreshAdvance\Invoice\Transput\ResponseProxy
     public: true
