@@ -3,10 +3,12 @@ name: Auto trigger on push or pull requests
 
 on:
   pull_request: {}
-  push: {}
+  push:
+    branches:
+      - 'b-7.1.x*'
 
 jobs:
-  shop70:
+  shop71:
     uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yaml@v4
     with:
       testplan: '~/defaults/7.1.x.yaml,~/defaults/php8.2_mysql8.0_only.yaml,~/module-invoice.yaml,~/_custom.yaml'
