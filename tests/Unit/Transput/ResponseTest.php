@@ -13,9 +13,6 @@ use FreshAdvance\Invoice\Transput\ResponseProxy;
 use OxidEsales\Eshop\Core\Utils;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\Transput\ResponseProxy
- */
 class ResponseTest extends TestCase
 {
     public function testSetHeaderProxied(): void

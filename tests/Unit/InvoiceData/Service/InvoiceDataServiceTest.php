@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Invoice\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\Service;
 
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
@@ -23,9 +23,6 @@ use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataService
- */
 class InvoiceDataServiceTest extends TestCase
 {
     public function testGetInvoiceData(): void

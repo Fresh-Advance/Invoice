@@ -14,10 +14,9 @@ use FreshAdvance\Invoice\Order\Repository\OrderRepository;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \FreshAdvance\Invoice\Order\Repository\OrderRepository
- */
+#[CoversClass(OrderRepository::class)]
 class OrderRepositoryTest extends IntegrationTestCase
 {
     protected const TEST_ORDER_ID = 'someTestOrderId';

@@ -85,6 +85,14 @@ class ServiceAvailabilityTest extends IntegrationTestCase
             // Email
             [\FreshAdvance\Invoice\Email\Settings\EmailSettingsInterface::class],
 
+            // InvoiceData
+            [\FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface::class],
+            [\FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface::class],
+            [InvoiceConfigurationRepositoryInterface::class],
+                [InvoiceConfigurationRepositoryDecoration::class],
+            [\FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepositoryInterface::class],
+            [\FreshAdvance\Invoice\InvoiceData\Transput\RequestInterface::class],
+
             // Language
             [\FreshAdvance\Invoice\Language\Service\LanguageInterface::class],
             [\FreshAdvance\Invoice\Language\Service\NumberWordingServiceInterface::class],
@@ -105,22 +113,12 @@ class ServiceAvailabilityTest extends IntegrationTestCase
             [\FreshAdvance\Invoice\Pdf\Service\TemplateParametersServiceInterface::class],
             [\FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettingsInterface::class],
 
-            // todo: move shared repository items to where they belong.
-            [InvoiceConfigurationRepositoryInterface::class],
-                [InvoiceConfigurationRepositoryDecoration::class],
-            [\FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepositoryInterface::class],
-
-            // todo: move shared service items to where they belong.
-            [\FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface::class],
-            [\FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface::class],
-
             // Settings
             [\FreshAdvance\Invoice\Settings\ContextInterface::class],
             [\FreshAdvance\Invoice\Settings\ModuleSettingsInterface::class],
             [\FreshAdvance\Invoice\Settings\ConfigInterface::class],
 
             // Transput
-            [\FreshAdvance\Invoice\InvoiceData\Transput\RequestInterface::class],
             [\FreshAdvance\Invoice\Transput\ResponseInterface::class],
         ];
     }

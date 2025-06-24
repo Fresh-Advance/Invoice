@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Invoice\InvoiceConfiguration\Exception;
+namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\InvoiceConfiguration\Exception;
 
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
 use PHPUnit\Framework\TestCase;

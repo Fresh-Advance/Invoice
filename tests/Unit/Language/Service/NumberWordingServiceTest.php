@@ -15,9 +15,6 @@ use NumberToWords\CurrencyTransformer\CurrencyTransformer;
 use NumberToWords\NumberToWords;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\Language\Service\NumberWordingService
- */
 class NumberWordingServiceTest extends TestCase
 {
     public function testSomething(): void

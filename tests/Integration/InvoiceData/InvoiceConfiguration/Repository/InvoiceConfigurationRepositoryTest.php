@@ -11,13 +11,13 @@ namespace FreshAdvance\Invoice\Tests\Integration\Invoice\InvoiceConfiguration\Re
 
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
+use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepository;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-/**
- * @covers \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepository
- */
+#[CoversClass(InvoiceConfigurationRepository::class)]
 class InvoiceConfigurationRepositoryTest extends IntegrationTestCase
 {
     protected const TEST_ORDER_ID = 'someTestOrderId';

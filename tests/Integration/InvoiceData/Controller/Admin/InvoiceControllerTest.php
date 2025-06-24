@@ -19,11 +19,10 @@ use FreshAdvance\Invoice\InvoiceData\Transput\RequestInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\InvoiceData\Controller\Admin\InvoiceController
- */
+#[CoversClass(InvoiceController::class)]
 class InvoiceControllerTest extends TestCase
 {
     public function testRenderGivesMainVariablesToTemplate(): void

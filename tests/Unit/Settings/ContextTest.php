@@ -12,9 +12,6 @@ namespace FreshAdvance\Invoice\Tests\Unit\Settings;
 use FreshAdvance\Invoice\Settings\Context;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\Settings\Context
- */
 class ContextTest extends TestCase
 {
     public function testGetInvoicesPath(): void

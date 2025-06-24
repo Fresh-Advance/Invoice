@@ -13,9 +13,6 @@ use FreshAdvance\Invoice\InvoiceData\Transput\RequestProxy;
 use OxidEsales\Eshop\Core\Request;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\InvoiceData\Transput\RequestProxy
- */
 class RequestProxyTest extends TestCase
 {
     public function testGetOrderIdFromRequest(): void

@@ -11,11 +11,10 @@ namespace FreshAdvance\Invoice\Tests\Integration\Settings;
 
 use FreshAdvance\Invoice\Settings\ConfigProxy;
 use OxidEsales\Eshop\Core\Config;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\Settings\ConfigProxy
- */
+#[CoversClass(ConfigProxy::class)]
 class ConfigProxyTest extends TestCase
 {
     public function testGetShopConfigValue(): void

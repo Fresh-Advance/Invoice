@@ -12,9 +12,6 @@ namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\InvoiceConfiguration\DataT
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration
- */
 class InvoiceConfigurationTest extends TestCase
 {
     public function testGetters(): void

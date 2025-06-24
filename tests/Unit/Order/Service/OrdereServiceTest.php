@@ -16,7 +16,6 @@ use FreshAdvance\Invoice\Order\Service\OrderServiceInterface;
 use OxidEsales\Eshop\Application\Model\Order;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \FreshAdvance\Invoice\Order\Service\OrderService */
 class OrdereServiceTest extends TestCase
 {
     public function testsomthing(): void

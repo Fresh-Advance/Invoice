@@ -14,11 +14,10 @@ use FreshAdvance\Invoice\Pdf\MpdfDocument\Builder;
 use FreshAdvance\Invoice\Pdf\Service\DocumentRendererInterface;
 use Mpdf\Mpdf;
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\Pdf\MpdfDocument\Builder
- */
+#[CoversClass(Builder::class)]
 class BuilderTest extends TestCase
 {
     public function testGetBinaryPdfFromData(): void

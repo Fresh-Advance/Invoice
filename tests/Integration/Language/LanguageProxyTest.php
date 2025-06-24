@@ -10,12 +10,11 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\Tests\Integration\Language;
 
 use FreshAdvance\Invoice\Language\Extension\Language;
+use FreshAdvance\Invoice\Language\Service\LanguageProxy;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\Language\Extension\Language
- * @covers \FreshAdvance\Invoice\Language\Service\LanguageProxy
- */
+#[CoversClass(LanguageProxy::class)]
 class LanguageProxyTest extends TestCase
 {
     public function testForceLanguageIdSetter(): void

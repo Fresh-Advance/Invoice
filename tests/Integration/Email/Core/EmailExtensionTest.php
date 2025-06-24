@@ -18,8 +18,9 @@ use FreshAdvance\Invoice\Pdf\Service\FilenameCalculator;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
 use OxidEsales\Eshop\Application\Model\Order as OrderModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/** @covers \FreshAdvance\Invoice\Email\Core\EmailExtension */
+#[CoversClass(EmailExtension::class)]
 class EmailExtensionTest extends IntegrationTestCase
 {
     public function testInvoiceGeneratedAndAttachedToUserEmailWithOptionOn(): void

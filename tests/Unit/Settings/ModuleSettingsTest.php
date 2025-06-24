@@ -17,9 +17,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\String\UnicodeString;
 
-/**
- * @covers \FreshAdvance\Invoice\Settings\ModuleSettings
- */
 final class ModuleSettingsTest extends TestCase
 {
     public function testGetFileNameFormat(): void

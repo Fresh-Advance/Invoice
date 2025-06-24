@@ -9,14 +9,13 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Codeception\Acceptance;
 
+use Codeception\Attribute\Group;
 use DateTime;
 use FreshAdvance\Invoice\Tests\Codeception\AcceptanceTester;
 use FreshAdvance\Invoice\Tests\Codeception\Page\InvoicePage;
 use OxidEsales\Codeception\Module\Translation\Translator;
 
-/**
- * @group fa_invoice
- */
+#[Group('fa_invoice')]
 final class OrderInvoiceCest
 {
     private $orderId = 'justSomeOxorderId';

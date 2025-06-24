@@ -15,9 +15,6 @@ use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServ
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\Order\Settings\OrderSettings
- */
 final class OrderSettingsTest extends TestCase
 {
     #[DataProvider('booleanDataProvider')]

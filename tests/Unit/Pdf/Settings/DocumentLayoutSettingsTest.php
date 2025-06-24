@@ -16,9 +16,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\String\UnicodeString;
 
-/**
- * @covers \FreshAdvance\Invoice\Pdf\Settings\DocumentLayoutSettings
- */
 class DocumentLayoutSettingsTest extends TestCase
 {
     #[DataProvider('settingsDataProvider')]

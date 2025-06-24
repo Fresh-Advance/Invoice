@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Email\Settings;
+namespace FreshAdvance\Invoice\Tests\Unit\Email\Settings;
 
 use FreshAdvance\Invoice\Email\Settings\EmailSettings;
 use FreshAdvance\Invoice\Module;

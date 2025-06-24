@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace Email\Traits;
+namespace FreshAdvance\Invoice\Tests\Integration\Email\Traits;
 
+use FreshAdvance\Invoice\Email\Traits\ServiceContainer;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \FreshAdvance\Invoice\Email\Traits\ServiceContainer
- */
+#[CoversClass(ServiceContainer::class)]
 class ServiceContainerTest extends IntegrationTestCase
 {
     public function testGetServiceFromContainer()

@@ -7,17 +7,16 @@
 
 declare(strict_types=1);
 
-namespace Document\MpdfDocument;
+namespace FreshAdvance\Invoice\Tests\Integration\Pdf\MpdfDocument;
 
 use FreshAdvance\Invoice\Pdf\MpdfDocument\MpdfFactory;
 use FreshAdvance\Invoice\Settings\ModuleSettingsInterface;
 use Mpdf\Mpdf;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\Pdf\MpdfDocument\MpdfFactory
- */
+#[CoversClass(MpdfFactory::class)]
 class MpdfFactoryTest extends TestCase
 {
     public function testCreate(): void

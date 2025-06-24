@@ -7,16 +7,13 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Invoice\DataType;
+namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\DataType;
 
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use OxidEsales\Eshop\Application\Model\Order;
 use OxidEsales\Eshop\Application\Model\Shop;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\InvoiceData\DataType\InvoiceData
- */
 class InvoiceDataTest extends TestCase
 {
     public function testMethods(): void

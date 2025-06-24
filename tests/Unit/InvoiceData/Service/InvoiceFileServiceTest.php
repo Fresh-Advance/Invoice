@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\Invoice\Tests\Unit\Invoice\Service;
+namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\Service;
 
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileService;
@@ -18,9 +18,6 @@ use FreshAdvance\Invoice\Transput\ResponseProxy;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileService
- */
 class InvoiceFileServiceTest extends TestCase
 {
     public function testFilenameHeaderSet(): void

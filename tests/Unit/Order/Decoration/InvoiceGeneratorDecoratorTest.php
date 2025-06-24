@@ -17,7 +17,6 @@ use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use OxidEsales\Eshop\Application\Model\Order;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \FreshAdvance\Invoice\Order\Decoration\InvoiceGeneratorDecorator */
 class InvoiceGeneratorDecoratorTest extends TestCase
 {
     public function testOriginalGeneratorCalledWithCorrectParameterAndReturnsParentResult(): void

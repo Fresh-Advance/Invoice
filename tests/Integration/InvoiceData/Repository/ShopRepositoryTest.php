@@ -13,10 +13,9 @@ use FreshAdvance\Invoice\InvoiceData\Shop\Exception\ShopNotFound;
 use FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepository;
 use OxidEsales\Eshop\Application\Model\Shop as ShopModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepository
- */
+#[CoversClass(ShopRepository::class)]
 class ShopRepositoryTest extends IntegrationTestCase
 {
     protected const TEST_SHOP_ID = 5;

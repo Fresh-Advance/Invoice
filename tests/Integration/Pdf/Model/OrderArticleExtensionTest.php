@@ -12,10 +12,9 @@ namespace FreshAdvance\Invoice\Tests\Integration\Pdf\Model;
 use FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension;
 use OxidEsales\Eshop\Core\Model\BaseModel;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension
- */
+#[CoversClass(OrderArticleExtension::class)]
 class OrderArticleExtensionTest extends IntegrationTestCase
 {
     public function testFaGetTranslatedTitleNoParent(): void
