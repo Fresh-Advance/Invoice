@@ -15,7 +15,7 @@ use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfig
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 use FreshAdvance\Invoice\InvoiceData\Transput\RequestInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use org\bovigo\vfs\vfsStream;
@@ -36,7 +36,7 @@ class InvoiceControllerTest extends TestCase
         $sut = $this->createPartialMock(InvoiceController::class, ['getService', 'getEditObjectId']);
         $sut->method('getService')->willReturnMap([
             [InvoiceDataServiceInterface::class, $invoiceServiceMock],
-            [ModuleSettingsInterface::class, $moduleSettingsStub = $this->createStub(ModuleSettingsInterface::class)]
+            [FormatSettingsInterface::class, $moduleSettingsStub = $this->createStub(FormatSettingsInterface::class)]
         ]);
 
         $sut->method('getEditObjectId')->willReturn('someOxid');
@@ -76,7 +76,7 @@ class InvoiceControllerTest extends TestCase
         $sut->method('getService')->willReturnMap([
             [InvoiceDataServiceInterface::class, $invoiceDataServiceMock],
             [InvoiceFileServiceInterface::class, $invoiceFileServiceMock],
-            [ModuleSettingsInterface::class, $this->createStub(ModuleSettingsInterface::class)],
+            [FormatSettingsInterface::class, $this->createStub(FormatSettingsInterface::class)],
         ]);
         $sut->method('getEditObjectId')->willReturn('someOxid');
 

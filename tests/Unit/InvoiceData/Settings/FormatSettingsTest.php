@@ -9,14 +9,14 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\Settings;
 
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettings;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettings;
 use FreshAdvance\Invoice\Module;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\String\UnicodeString;
 
-final class ModuleSettingsTest extends TestCase
+final class FormatSettingsTest extends TestCase
 {
     public function testGetFileNameFormat(): void
     {
@@ -24,10 +24,10 @@ final class ModuleSettingsTest extends TestCase
 
         $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
         $mssMock->method('getString')->willReturnMap([
-            [ModuleSettings::SETTING_DOCUMENT_FILENAME_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
+            [FormatSettings::SETTING_DOCUMENT_FILENAME_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
         ]);
 
-        $sut = new ModuleSettings($mssMock);
+        $sut = new FormatSettings($mssMock);
         $this->assertSame($value, $sut->getFileNameFormat());
     }
 
@@ -36,10 +36,10 @@ final class ModuleSettingsTest extends TestCase
     {
         $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
         $mssMock->method('getBoolean')->willReturnMap([
-            [ModuleSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE, Module::MODULE_ID, $value]
+            [FormatSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE, Module::MODULE_ID, $value]
         ]);
 
-        $sut = new ModuleSettings($mssMock);
+        $sut = new FormatSettings($mssMock);
         $this->assertSame($value, $sut->isForArchive());
     }
 
@@ -49,10 +49,10 @@ final class ModuleSettingsTest extends TestCase
 
         $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
         $mssMock->method('getString')->willReturnMap([
-            [ModuleSettings::SETTING_INVOICE_NUMBER_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
+            [FormatSettings::SETTING_INVOICE_NUMBER_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
         ]);
 
-        $sut = new ModuleSettings($mssMock);
+        $sut = new FormatSettings($mssMock);
         $this->assertSame($value, $sut->getInvoiceNumberFormat());
     }
 
@@ -62,10 +62,10 @@ final class ModuleSettingsTest extends TestCase
 
         $mssMock = $this->createMock(ModuleSettingServiceInterface::class);
         $mssMock->method('getString')->willReturnMap([
-            [ModuleSettings::SETTING_INVOICE_DATE_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
+            [FormatSettings::SETTING_INVOICE_DATE_FORMAT, Module::MODULE_ID, new UnicodeString($value)]
         ]);
 
-        $sut = new ModuleSettings($mssMock);
+        $sut = new FormatSettings($mssMock);
         $this->assertSame($value, $sut->getInvoiceDateFormat());
     }
 

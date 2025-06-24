@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Tests\Integration\Pdf\MpdfDocument;
 
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 use FreshAdvance\Invoice\Pdf\MpdfDocument\MpdfFactory;
 use Mpdf\Mpdf;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -22,7 +22,7 @@ class MpdfFactoryTest extends TestCase
     public function testCreate(): void
     {
         $sut = new MpdfFactory(
-            moduleSettings: $this->createStub(ModuleSettingsInterface::class)
+            moduleSettings: $this->createStub(FormatSettingsInterface::class)
         );
         $this->assertInstanceOf(Mpdf::class, $sut->create());
     }
@@ -30,7 +30,7 @@ class MpdfFactoryTest extends TestCase
     #[DataProvider('archiveFlagDataProvider')]
     public function testArchiveFlagConfigured($value, $expected): void
     {
-        $settingsStub = $this->createMock(ModuleSettingsInterface::class);
+        $settingsStub = $this->createMock(FormatSettingsInterface::class);
         $settingsStub->method('isForArchive')->willReturn($value);
 
         $sut = new MpdfFactory(

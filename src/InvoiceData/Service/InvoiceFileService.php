@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace FreshAdvance\Invoice\InvoiceData\Service;
 
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Transput\ResponseInterface;
 
@@ -18,7 +18,7 @@ class InvoiceFileService implements InvoiceFileServiceInterface
 {
     public function __construct(
         protected readonly ResponseInterface $utils,
-        protected readonly ModuleSettingsInterface $moduleSettings,
+        protected readonly FormatSettingsInterface $moduleSettings,
         protected readonly FilenameCalculatorInterface $filenameCalculator,
     ) {
     }

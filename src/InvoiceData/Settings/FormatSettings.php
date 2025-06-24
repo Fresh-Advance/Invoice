@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\InvoiceData\Settings;
 use FreshAdvance\Invoice\Module;
 use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 
-class ModuleSettings implements ModuleSettingsInterface
+class FormatSettings implements FormatSettingsInterface
 {
     public const SETTING_DOCUMENT_FILENAME_FORMAT = 'fa_invoice_FilenameFormat';
     public const SETTING_DOCUMENT_IS_FOR_ARCHIVE = 'fa_invoice_IsForArchive';

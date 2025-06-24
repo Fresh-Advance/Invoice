@@ -14,7 +14,7 @@ use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Settings\ConfigInterface;
 use FreshAdvance\Invoice\InvoiceData\Settings\ContextInterface;
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 use FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
@@ -29,7 +29,7 @@ class InvoiceDataService implements InvoiceDataServiceInterface
         protected ConfigInterface $shopConfig,
         protected ContextInterface $moduleContext,
         protected InvoiceConfigurationRepositoryInterface $invoiceConfigRepo,
-        protected ModuleSettingsInterface $moduleSettings,
+        protected FormatSettingsInterface $moduleSettings,
         protected FilenameCalculatorInterface $filenameCalculator,
     ) {
     }

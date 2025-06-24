@@ -12,13 +12,13 @@ namespace FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfiguration;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfigurationInterface;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 
 class InvoiceConfigurationRepositoryDecoration implements InvoiceConfigurationRepositoryInterface
 {
     public function __construct(
         readonly private InvoiceConfigurationRepositoryInterface $originalRepository,
-        readonly private ModuleSettingsInterface $moduleSettings,
+        readonly private FormatSettingsInterface $moduleSettings,
     ) {
     }
 

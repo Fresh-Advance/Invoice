@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\Pdf\MpdfDocument;
 
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 use Mpdf\Mpdf;
 
 class MpdfFactory
 {
     public function __construct(
-        readonly private ModuleSettingsInterface $moduleSettings
+        readonly private FormatSettingsInterface $moduleSettings
     ) {
     }
 

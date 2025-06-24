@@ -8,8 +8,8 @@ services:
   FreshAdvance\Invoice\InvoiceData\Settings\ContextInterface:
     class: FreshAdvance\Invoice\InvoiceData\Settings\Context
 
-  FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface:
-    class: FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettings
+  FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface:
+    class: FreshAdvance\Invoice\InvoiceData\Settings\FormatSettings
     public: true
 
   FreshAdvance\Invoice\InvoiceData\Settings\ConfigInterface:

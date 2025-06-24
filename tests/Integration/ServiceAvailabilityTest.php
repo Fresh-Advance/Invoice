@@ -115,7 +115,7 @@ class ServiceAvailabilityTest extends IntegrationTestCase
 
             // Settings
             [\FreshAdvance\Invoice\InvoiceData\Settings\ContextInterface::class],
-            [\FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface::class],
+            [\FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface::class],
             [\FreshAdvance\Invoice\InvoiceData\Settings\ConfigInterface::class],
 
             // Transput

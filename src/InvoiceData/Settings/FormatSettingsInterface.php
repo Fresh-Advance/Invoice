@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\Invoice\InvoiceData\Settings;
 
-interface ModuleSettingsInterface
+interface FormatSettingsInterface
 {
     public function getFileNameFormat(): string;
 

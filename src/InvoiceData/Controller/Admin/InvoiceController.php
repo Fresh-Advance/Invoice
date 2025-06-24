@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\InvoiceData\Controller\Admin;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 use FreshAdvance\Invoice\InvoiceData\Transput\RequestInterface;
 use FreshAdvance\Invoice\Pdf\InvoiceGeneratorInterface;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
@@ -27,7 +27,7 @@ class InvoiceController extends AdminController
         $invoiceData = $invoiceDataService->getInvoiceDataByOrderId($this->getEditObjectId());
         $this->addTplParam('invoiceData', $invoiceData);
 
-        $moduleSettingsService = $this->getService(ModuleSettingsInterface::class);
+        $moduleSettingsService = $this->getService(FormatSettingsInterface::class);
         $this->addTplParam('moduleSettings', $moduleSettingsService);
 
         if (is_file($invoiceData->getInvoicePath())) {

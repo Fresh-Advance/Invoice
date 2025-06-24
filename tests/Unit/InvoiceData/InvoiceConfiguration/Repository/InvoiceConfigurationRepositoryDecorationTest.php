@@ -13,7 +13,7 @@ use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\DataType\InvoiceConfig
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Exception\InvoiceConfigurationNotFound;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryDecoration;
 use FreshAdvance\Invoice\InvoiceData\InvoiceConfiguration\Repository\InvoiceConfigurationRepositoryInterface;
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 use PHPUnit\Framework\TestCase;
 
 class InvoiceConfigurationRepositoryDecorationTest extends TestCase
@@ -42,7 +42,7 @@ class InvoiceConfigurationRepositoryDecorationTest extends TestCase
 
     public function testDecorationReturnsInvoiceConfigurationWithDefaultsIfNoneFound(): void
     {
-        $moduleSettingsStub = $this->createStub(ModuleSettingsInterface::class);
+        $moduleSettingsStub = $this->createStub(FormatSettingsInterface::class);
         $moduleSettingsStub->method('getInvoiceDateFormat')->willReturn($dateFormat = uniqid());
         $moduleSettingsStub->method('getInvoiceNumberFormat')->willReturn($numberFormat = uniqid());
 
@@ -67,13 +67,13 @@ class InvoiceConfigurationRepositoryDecorationTest extends TestCase
 
     private function getSut(
         InvoiceConfigurationRepositoryInterface $invoiceConfigurationRepository = null,
-        ModuleSettingsInterface $moduleSettings = null,
+        FormatSettingsInterface $moduleSettings = null,
     ): InvoiceConfigurationRepositoryInterface {
         $invoiceConfigurationRepository ??= $this->createStub(InvoiceConfigurationRepositoryInterface::class);
 
         return new InvoiceConfigurationRepositoryDecoration(
             originalRepository: $invoiceConfigurationRepository,
-            moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class),
+            moduleSettings: $moduleSettings ?? $this->createStub(FormatSettingsInterface::class),
         );
     }
 }

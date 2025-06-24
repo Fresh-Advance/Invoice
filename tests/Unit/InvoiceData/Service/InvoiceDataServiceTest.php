@@ -15,7 +15,7 @@ use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataService;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceDataServiceInterface;
 use FreshAdvance\Invoice\InvoiceData\Settings\ConfigInterface;
 use FreshAdvance\Invoice\InvoiceData\Settings\ContextInterface;
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 use FreshAdvance\Invoice\InvoiceData\Shop\Repository\ShopRepositoryInterface;
 use FreshAdvance\Invoice\Order\Repository\OrderRepositoryInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
@@ -74,7 +74,7 @@ class InvoiceDataServiceTest extends TestCase
         ConfigInterface $shopConfig = null,
         ContextInterface $moduleContext = null,
         InvoiceConfigurationRepositoryInterface $invoiceConfigRepo = null,
-        ModuleSettingsInterface $moduleSettings = null,
+        FormatSettingsInterface $moduleSettings = null,
         FilenameCalculatorInterface $filenameCalculator = null,
     ): InvoiceDataServiceInterface {
         return new InvoiceDataService(
@@ -83,7 +83,7 @@ class InvoiceDataServiceTest extends TestCase
             shopConfig: $shopConfig ?? $this->createStub(ConfigInterface::class),
             moduleContext: $moduleContext ?? $this->createStub(ContextInterface::class),
             invoiceConfigRepo: $invoiceConfigRepo ?? $this->createStub(InvoiceConfigurationRepositoryInterface::class),
-            moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class),
+            moduleSettings: $moduleSettings ?? $this->createStub(FormatSettingsInterface::class),
             filenameCalculator: $filenameCalculator ?? $this->createStub(FilenameCalculatorInterface::class),
         );
     }

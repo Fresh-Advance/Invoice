@@ -41,19 +41,19 @@ $aModule = [
         /** Main */
         [
             'group' => 'fa_invoice_main',
-            'name' => \FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettings::SETTING_DOCUMENT_FILENAME_FORMAT,
+            'name' => \FreshAdvance\Invoice\InvoiceData\Settings\FormatSettings::SETTING_DOCUMENT_FILENAME_FORMAT,
             'type' => 'str',
             'value' => 'SERIE-ABC-<order:oxbillnr>.pdf'
         ],
         [
             'group' => 'fa_invoice_main',
-            'name' => \FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE,
+            'name' => \FreshAdvance\Invoice\InvoiceData\Settings\FormatSettings::SETTING_DOCUMENT_IS_FOR_ARCHIVE,
             'type' => 'bool',
             'value' => false
         ],
         [
             'group' => 'fa_invoice_main',
-            'name' => \FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettings::SETTING_INVOICE_DATE_FORMAT,
+            'name' => \FreshAdvance\Invoice\InvoiceData\Settings\FormatSettings::SETTING_INVOICE_DATE_FORMAT,
             'type' => 'str',
             'value' => 'Y-m-d'
         ],
@@ -105,7 +105,7 @@ $aModule = [
         ],
         [
             'group' => 'fa_invoice_numbering',
-            'name' => \FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettings::SETTING_INVOICE_NUMBER_FORMAT,
+            'name' => \FreshAdvance\Invoice\InvoiceData\Settings\FormatSettings::SETTING_INVOICE_NUMBER_FORMAT,
             'type' => 'str',
             'value' => 'ABC-%1$s',
         ],

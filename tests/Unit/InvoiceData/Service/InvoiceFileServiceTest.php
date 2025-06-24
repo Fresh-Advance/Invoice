@@ -12,7 +12,7 @@ namespace FreshAdvance\Invoice\Tests\Unit\InvoiceData\Service;
 use FreshAdvance\Invoice\InvoiceData\DataType\InvoiceDataInterface;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileService;
 use FreshAdvance\Invoice\InvoiceData\Service\InvoiceFileServiceInterface;
-use FreshAdvance\Invoice\InvoiceData\Settings\ModuleSettingsInterface;
+use FreshAdvance\Invoice\InvoiceData\Settings\FormatSettingsInterface;
 use FreshAdvance\Invoice\Pdf\Service\FilenameCalculatorInterface;
 use FreshAdvance\Invoice\Transput\ResponseProxy;
 use org\bovigo\vfs\vfsStream;
@@ -63,7 +63,7 @@ class InvoiceFileServiceTest extends TestCase
     public function testGetInvoiceFileName(): void
     {
         $sut = $this->getSut(
-            moduleSettings: $this->createConfiguredMock(ModuleSettingsInterface::class, [
+            moduleSettings: $this->createConfiguredMock(FormatSettingsInterface::class, [
                 'getFileNameFormat' => $fileNameFormat = uniqid(),
             ]),
             filenameCalculator: $filenameCalculatorMock = $this->createMock(FilenameCalculatorInterface::class),
@@ -79,12 +79,12 @@ class InvoiceFileServiceTest extends TestCase
 
     private function getSut(
         ResponseProxy $utils = null,
-        ModuleSettingsInterface $moduleSettings = null,
+        FormatSettingsInterface $moduleSettings = null,
         FilenameCalculatorInterface $filenameCalculator = null,
     ): InvoiceFileServiceInterface {
         return new InvoiceFileService(
             utils: $utils ?? $this->createStub(ResponseProxy::class),
-            moduleSettings: $moduleSettings ?? $this->createStub(ModuleSettingsInterface::class),
+            moduleSettings: $moduleSettings ?? $this->createStub(FormatSettingsInterface::class),
             filenameCalculator: $filenameCalculator ?? $this->createStub(FilenameCalculatorInterface::class),
         );
     }
