@@ -8,50 +8,55 @@
 
 {% set configuration = invoiceData.getInvoiceConfiguration() %}
 {% set order = invoiceData.getOrder() %}
-
-<div style="width: 50%; float: left;">
-    <form action="{{ oViewConf.getSelfLink() }}" method="POST">
-        {{ oViewConf.getHiddenSid()|raw }}
-
-        <input type="hidden" name="oxid" value="{{ oxid }}">
-        <input type="hidden" name="cl" value="fa_invoice_admin">
-        <input type="hidden" name="fnc" value="saveData">
-
-        <input type="hidden" name="invoice[order_id]" value="{{ oxid }}">
-
-        <h2>{{ translate({ ident: "FA_INVOICE_FORM_TITLE_NEW_DOCUMENT" }) }}:</h2>
-
-        <div>{{ translate({ ident: "FA_INVOICE_FORM_DATE" }) }}: <input type="text" name="invoice[date]" value="{{ configuration.getDate() }}"></div>
-        <div>{{ translate({ ident: "FA_INVOICE_FORM_NUMBER" }) }}: <input type="text" name="invoice[number]" value="{{ configuration.getNumber() }}"></div>
-        <div>{{ translate({ ident: "FA_INVOICE_FORM_SIGNER" }) }}: <input type="text" name="invoice[signer]" value="{{ configuration.getSigner() }}"></div>
-
-        <div style="margin-top: 20px;">
-            <input type="submit" name="generateDocument" value="{{ translate({ ident: "FA_INVOICE_FORM_SAVE_DATA" }) }}"
-            {% if invoiceExists %}onclick="return confirm('{{ translate({ ident: "FA_INVOICE_FORM_CONFIRM_REGENERATE" }) }}');"{% endif %}>
-        </div>
-    </form>
-</div>
-
-{% if invoiceExists %}
+{% block fa_invoice_admin_invoice_body %}
     <div style="width: 50%; float: left;">
-        <form action="{{ oViewConf.getSelfLink() }}" method="POST" target="_BLANK">
-            {{ oViewConf.getHiddenSid()|raw }}
+        <form action="{{ oViewConf.getSelfLink() }}" method="POST">
+            {% block fa_invoice_admin_invoice_create %}
+                {{ oViewConf.getHiddenSid()|raw }}
 
-            <input type="hidden" name="oxid" value="{{ oxid }}">
-            <input type="hidden" name="cl" value="fa_invoice_admin">
-            <input type="hidden" name="fnc" value="downloadOrderInvoice">
+                <input type="hidden" name="oxid" value="{{ oxid }}">
+                <input type="hidden" name="cl" value="fa_invoice_admin">
+                <input type="hidden" name="fnc" value="saveData">
 
-            <h2>{{ translate({ ident: "FA_INVOICE_FORM_TITLE_CURRENT_DOCUMENT" }) }}:</h2>
-            <div>
-                {{ invoiceFileName }} - {{ invoiceDate }}
-            </div>
+                <input type="hidden" name="invoice[order_id]" value="{{ oxid }}">
 
-            <div style="margin-top: 20px;">
-                <input type="submit" name="downloadDocument" value="{{ translate({ ident: "FA_INVOICE_FORM_DOWNLOAD" }) }}">
-            </div>
+                <h2>{{ translate({ ident: "FA_INVOICE_FORM_TITLE_NEW_DOCUMENT" }) }}:</h2>
+
+                <div>{{ translate({ ident: "FA_INVOICE_FORM_DATE" }) }}: <input type="text" name="invoice[date]" value="{{ configuration.getDate() }}"></div>
+                <div>{{ translate({ ident: "FA_INVOICE_FORM_NUMBER" }) }}: <input type="text" name="invoice[number]" value="{{ configuration.getNumber() }}"></div>
+                <div>{{ translate({ ident: "FA_INVOICE_FORM_SIGNER" }) }}: <input type="text" name="invoice[signer]" value="{{ configuration.getSigner() }}"></div>
+
+                <div style="margin-top: 20px;">
+                    <input type="submit" name="generateDocument" value="{{ translate({ ident: "FA_INVOICE_FORM_SAVE_DATA" }) }}"
+                    {% if invoiceExists %}onclick="return confirm('{{ translate({ ident: "FA_INVOICE_FORM_CONFIRM_REGENERATE" }) }}');"{% endif %}>
+                </div>
+            {% endblock %}
         </form>
     </div>
-{% endif %}
+
+    {% if invoiceExists %}
+        <div style="width: 50%; float: left;">
+            <form action="{{ oViewConf.getSelfLink() }}" method="POST" target="_BLANK">
+                {% block fa_invoice_admin_invoice_download %}
+                    {{ oViewConf.getHiddenSid()|raw }}
+
+                    <input type="hidden" name="oxid" value="{{ oxid }}">
+                    <input type="hidden" name="cl" value="fa_invoice_admin">
+                    <input type="hidden" name="fnc" value="downloadOrderInvoice">
+
+                    <h2>{{ translate({ ident: "FA_INVOICE_FORM_TITLE_CURRENT_DOCUMENT" }) }}:</h2>
+                    <div>
+                        {{ invoiceFileName }} - {{ invoiceDate }}
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <input type="submit" name="downloadDocument" value="{{ translate({ ident: "FA_INVOICE_FORM_DOWNLOAD" }) }}">
+                    </div>
+                {% endblock %}
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
 
 {% include "bottomnaviitem.html.twig" %}
 {% include "bottomitem.html.twig" %}
