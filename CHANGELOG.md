@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v5.0.0] - Unreleased
+
+### Added
+- New blocks for extending in the `invoice.html.twig` [PR-27](https://github.com/Fresh-Advance/Invoice/pull/27)
+
 ## [v5.0.0-rc.2] - 2025-06-25
 
 ### Added
@@ -187,6 +192,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - PDF file generated from order data with possibility to adjust some of the fields and regenerate the invoice file
 - Invoice generated in Shop's main language (if translation available)
 
+[v5.0.0]: https://github.com/Fresh-Advance/Invoice/compare/v5.0.0-rc.2...v5.0.0
 [v5.0.0-rc.2]: https://github.com/Fresh-Advance/Invoice/compare/v5.0.0-rc.1...v5.0.0-rc.2
 [v5.0.0-rc.1]: https://github.com/Fresh-Advance/Invoice/compare/v4.1.0...v5.0.0-rc.1
 [v4.1.0]: https://github.com/Fresh-Advance/Invoice/compare/v4.0.0...v4.1.0
