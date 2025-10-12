@@ -54,8 +54,8 @@ sonarcloud:
   project_name: 'Invoice'
   project_key: 'Fresh-Advance_Invoice'
   organization: 'fresh-advance'
-  parameters: >
-    -Dsonar.language=php
-    -Dsonar.scm.provider=git
-    -Dsonar.sources=src
+  parameters: |
+    -Dsonar.language=php \
+    -Dsonar.scm.provider=git \
+    -Dsonar.sources=src \
     -Dsonar.tests=tests
