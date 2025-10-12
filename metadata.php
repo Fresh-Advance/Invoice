@@ -25,7 +25,7 @@ $aModule = [
         'en' => 'Invoice module for OXID eShop.',
     ],
     'thumbnail' => 'logo.png',
-    'version' => '5.0.0-rc.2',
+    'version' => '5.0.0',
     'author' => 'Anton Fedurtsya',
     'email' => 'anton@fedurtsya.com',
     'url' => 'https://github.com/Fresh-Advance',
