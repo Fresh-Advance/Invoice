@@ -167,7 +167,7 @@
             {% block fa_invoice_invoice_body_items %}
                 {% for item in order.getOrderArticles() %}
                     <tr class="item">
-                        <td class="itemTitle">{{ item.faGetTranslatedTitle(invoice.getLanguageId()) }}</td>
+                        <td class="itemTitle">{{ item.getFieldData('oxtitle') }}</td>
                         <td class="itemCode">{{ item.getFieldData('oxartnum') }}</td>
                         <td class="itemSize">{{ translate({ ident: "FA_INVOICE_PCS" }) }}</td>
                         <td class="itemCount">{{ item.getFieldData('oxamount') }}</td>

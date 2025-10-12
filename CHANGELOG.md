@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - New blocks for extending in the `invoice.html.twig` [PR-27](https://github.com/Fresh-Advance/Invoice/pull/27)
 
+### Changed
+- The title of the item is taken from the OrderArticle instead of the original item title, to respect the moment of the order.
+
+### Removed
+- `OrderArticle::faGetTranslatedTitle` method and its usages
+
 ## [v5.0.0-rc.2] - 2025-06-25
 
 ### Added

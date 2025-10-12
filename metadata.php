@@ -33,7 +33,6 @@ $aModule = [
         'fa_invoice_admin' => \FreshAdvance\Invoice\InvoiceData\Controller\Admin\InvoiceController::class,
     ],
     'extend' => [
-        \OxidEsales\Eshop\Application\Model\OrderArticle::class => \FreshAdvance\Invoice\Pdf\Model\OrderArticleExtension::class,
         \OxidEsales\Eshop\Core\Language::class => \FreshAdvance\Invoice\Language\Extension\Language::class,
         \OxidEsales\Eshop\Core\Email::class => \FreshAdvance\Invoice\Email\Core\EmailExtension::class,
     ],
