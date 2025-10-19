@@ -1,6 +1,6 @@
 # PDF Invoice module for OXID eShop
 
-[![Development](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml/badge.svg?branch=b-7.0.x)](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml)
+[![Development](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml/badge.svg?branch=b-7.1.x)](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml)
 [![Latest Version](https://img.shields.io/packagist/v/Fresh-Advance/Invoice?logo=composer&label=latest&include_prereleases&color=orange)](https://packagist.org/packages/Fresh-Advance/Invoice)
 [![PHP Version](https://img.shields.io/packagist/php-v/Fresh-Advance/Invoice)](https://github.com/Fresh-Advance/Invoice)
 
@@ -23,6 +23,11 @@
   * Invoice filename format configurable through settings
 * Total sum shown in words in the invoice.
 
+## Example
+
+<img width="573" height="767" alt="image" src="https://github.com/user-attachments/assets/f0da61be-677e-4c08-86d6-491af86969a4" />
+
+
 ## Limitations
 
 * Only Twig shop installations supported
@@ -32,8 +37,8 @@
 
 ## Branch compatibility
 
-* Branch b-7.0.x is compatible with OXID Shop compilation 7.0.0-rc.2 and up
-* Branch b-7.1.x is compatible with OXID Shop compilation 7.1.0 and up
+* Branch **b-7.1.x** is compatible with OXID Shop compilation **7.1.0 and up**
+* Branch **b-7.0.x** is compatible with OXID Shop compilation **7.0.0-rc.2 and up**
 
 Note: Not all latest features are available in the older branches.
 
@@ -64,7 +69,7 @@ In case of different environment usage, please adjust by your own needs.
 # Development installation on Fresh Advance Development Base
 
 The installation instructions below are shown for the current [Fresh Advance Development Base](https://github.com/Fresh-Advance/development)
-for shop 7.0. Make sure your system meets the requirements of the Development Base.
+for shop 7.1. Make sure your system meets the requirements of the Development Base.
 
 0. Ensure all docker containers are down to avoid port conflicts
 
