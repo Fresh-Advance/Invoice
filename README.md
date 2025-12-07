@@ -42,6 +42,13 @@
 
 Note: Not all latest features are available in the older branches.
 
+## Version compatibility
+
+* v5.x is compatible with OXID Shop compilation 7.1.x-7.4.x
+* v3.x is compatible with OXID Shop compilation 7.0.x-7.4.x
+
+Note: Not all latest features and fixes are available in older than the last versions - always prefer the latest possible release.
+
 ## What to expect in next versions
 
 * Show Vat for every product in list
@@ -143,5 +150,5 @@ Some examples you might need for achieving the desired result:
 
 ## License
 
-Please make sure you checked the License before using the module. License
-subscription can be bought on [MB Arbatos Klubas website](https://arbatosklubas.eu/)
+Please ensure that you have reviewed the licensing requirements before using this module.
+License subscriptions are available for purchase through the [Fresh Advance website](https://freshadvance.eu/).
