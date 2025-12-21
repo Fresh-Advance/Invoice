@@ -21,7 +21,7 @@ $aLang = array_merge($aLang, [
     # Module settings
     'SHOP_MODULE_GROUP_fa_invoice_main' => 'Rechnungsdokument',
     'SHOP_MODULE_fa_invoice_FilenameFormat' => 'Dateiname für herunterladbare Rechnung im Admin-Panel',
-    'HELP_SHOP_MODULE_fa_invoice_FilenameFormat' => 'Diese Einstellung wird verwendet, um den Dateinamen für die herunterladbare Rechnung im Admin-Panel zu definieren. <br><br><strong>Mögliche Platzhalter:</strong><br><br><strong>&lt;order:tableField&gt;</strong> Formatplatzhalter, um Informationen aus der oxorder-Tabelle einzuschließen (z. B. &lt;order:oxbillfname&gt;)<br><strong>&lt;invoiceNumber&gt;</strong> Platzhalter, um die Rechnungsnummer einzuschließen',
+    'HELP_SHOP_MODULE_fa_invoice_FilenameFormat' => 'Diese Einstellung wird verwendet, um den Dateinamen für die herunterladbare Rechnung im Admin-Panel zu definieren. <br><br><strong>Mögliche Platzhalter:</strong><br><br><strong>&lt;order:tableField&gt;</strong> Formatplatzhalter, um Informationen aus der oxorder-Tabelle einzuschließen (z. B. &lt;order:oxbillfname&gt;)',
     'SHOP_MODULE_fa_invoice_IsForArchive' => 'Dokument ist für Archiv (PDFA)',
     'SHOP_MODULE_fa_invoice_InvoiceDateFormat' => 'Standard-Rechnungsdatumformat',
 

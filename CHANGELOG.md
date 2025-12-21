@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v5.0.2] - 2025-12-21
+
+### Added
+- Added additional migration instructions that could help during the update process
+
+### Fixed
+- Remove not supported <invoiceNumber> placeholder from the help button text of filename format settings
+
 ## [v5.0.1] - 2025-12-07
 
 ### Fixed

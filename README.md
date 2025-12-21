@@ -44,7 +44,7 @@ Note: Not all latest features are available in the older branches.
 
 ## Version compatibility
 
-* v5.x is compatible with OXID Shop compilation 7.1.x-7.4.x
+* v5.x is compatible with OXID Shop compilation 7.1.x-7.4.x [Additional Migration to v5.0 Notes](./migration/docs/4.x-to-5.x.md)
 * v3.x is compatible with OXID Shop compilation 7.0.x-7.4.x
 
 Note: Not all latest features and fixes are available in older than the last versions - always prefer the latest possible release.
