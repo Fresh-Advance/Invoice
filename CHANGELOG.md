@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added additional migration instructions that could help during the update process
 
 ### Fixed
-- Remove not supported <invoiceNumber> placeholder from the help button text of filename format settings
+- Removed not supported `<invoiceNumber>` placeholder from the help button text of filename format settings
 
 ## [v5.0.1] - 2025-12-07
 
