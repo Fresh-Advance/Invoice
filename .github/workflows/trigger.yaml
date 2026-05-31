@@ -13,7 +13,7 @@ jobs:
     with:
       testplan: '~/defaults/7.1.x.yaml,~/defaults/php8.2_mysql8.0_only.yaml,~/module-invoice.yaml'
       runs_on: '"ubuntu-latest"'
-      defaults: 'v4'
+      defaults: 'v5'
       plan_folder: '.github/fresh-advance'
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
