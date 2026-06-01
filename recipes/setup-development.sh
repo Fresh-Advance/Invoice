@@ -37,7 +37,7 @@ docker compose up --build -d php
 
 $SCRIPT_PATH/parts/shared/require_shop_edition_packages.sh -e"${edition}" -v"dev-b-7.1.x"
 $SCRIPT_PATH/parts/shared/require_twig_components.sh -e"${edition}" -b"b-7.1.x"
-$SCRIPT_PATH/parts/shared/require.sh -n"oxid-esales/twig-theme" -v"dev-b-7.1.x"
+$SCRIPT_PATH/parts/shared/require.sh -n"oxid-esales/apex-theme" -v"dev-b-7.1.x"
 $SCRIPT_PATH/parts/shared/require_demodata_package.sh -e"${edition}" -b"b-7.1.x"
 
 docker compose exec php composer update --no-interaction
@@ -49,6 +49,6 @@ $SCRIPT_PATH/parts/shared/setup_database.sh
 docker compose exec -T php vendor/bin/oe-console oe:module:install ./
 
 docker compose exec -T php vendor/bin/oe-console oe:module:activate fa_invoice
-docker compose exec -T php vendor/bin/oe-console oe:theme:activate twig
+docker compose exec -T php vendor/bin/oe-console oe:theme:activate apex
 
 $SCRIPT_PATH/parts/shared/create_admin.sh

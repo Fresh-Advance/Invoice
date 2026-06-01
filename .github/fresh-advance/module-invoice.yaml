@@ -13,7 +13,7 @@ install:
           "require": {
               "oxid-esales/oxideshop-ce": "{{ .Data.global.composer.dev_ref }}",
               "oxid-esales/twig-admin-theme": "{{ .Data.global.composer.dev_ref }}",
-              "oxid-esales/twig-theme": "{{ .Data.global.composer.dev_ref }}",
+              "oxid-esales/apex-theme": "{{ .Data.global.composer.dev_ref }}",
               "symfony/filesystem": "v6.4.3"
           }
       }
@@ -22,7 +22,7 @@ install:
     vendor/bin/oe-console oe:module:install ./
     vendor/bin/oe-eshop-doctrine_migration migrations:migrate fa_invoice
     vendor/bin/oe-console oe:module:activate fa_invoice
-    vendor/bin/oe-console oe:theme:activate twig
+    vendor/bin/oe-console oe:theme:activate apex
 
 install_shop_with_modules:
   composer:
