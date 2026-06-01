@@ -49,7 +49,7 @@ jobs:
           esac
 
           # shellcheck disable=SC2088
-          TESTPLAN="~/defaults/7.1.x.yaml,${LIMIT}~/module-invoice.yaml,~/_custom.yaml"
+          TESTPLAN="~/defaults/7.1.x.yaml,${LIMIT}~/module-invoice.yaml"
           echo "testplan=${TESTPLAN}" | tee -a "${GITHUB_OUTPUT}"
 
   dispatch_stable:
@@ -58,7 +58,7 @@ jobs:
     with:
       testplan: ${{ needs.build_testplan.outputs.testplan }}
       runs_on: '"ubuntu-latest"'
-      defaults: 'v4'
+      defaults: 'v5'
       plan_folder: '.github/fresh-advance'
     secrets:
       DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}

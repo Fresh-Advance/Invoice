@@ -13,7 +13,8 @@ install:
           "require": {
               "oxid-esales/oxideshop-ce": "{{ .Data.global.composer.dev_ref }}",
               "oxid-esales/twig-admin-theme": "{{ .Data.global.composer.dev_ref }}",
-              "oxid-esales/twig-theme": "{{ .Data.global.composer.dev_ref }}"
+              "oxid-esales/twig-theme": "{{ .Data.global.composer.dev_ref }}",
+              "symfony/filesystem": "v6.4.3"
           }
       }
   custom_script_container: |
