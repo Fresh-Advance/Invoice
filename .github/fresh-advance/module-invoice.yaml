@@ -60,3 +60,4 @@ sonarcloud:
     -Dsonar.scm.provider=git
     -Dsonar.sources=src
     -Dsonar.tests=tests
+    -Dsonar.branch.target=b-7.2.x
