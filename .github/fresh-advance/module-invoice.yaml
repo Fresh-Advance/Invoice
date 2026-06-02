@@ -15,7 +15,7 @@ install:
               "oxid-esales/twig-component": "{{ .Data.install.composer.dev_ref }}",
               "oxid-esales/twig-admin-theme": "{{ .Data.global.composer.dev_ref }}",
               "oxid-esales/apex-theme": "{{ .Data.global.composer.dev_ref }}",
-              "symfony/filesystem": "v6.4.13"
+              "symfony/filesystem": "v6.4.24"
           }
       }
   custom_script_container: |
@@ -61,4 +61,4 @@ sonarcloud:
     -Dsonar.scm.provider=git
     -Dsonar.sources=src
     -Dsonar.tests=tests
-    -Dsonar.branch.target=b-7.3.x
+    -Dsonar.branch.target=b-7.4.x

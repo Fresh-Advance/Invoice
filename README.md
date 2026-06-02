@@ -1,6 +1,6 @@
 # PDF Invoice module for OXID eShop
 
-[![Development](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml/badge.svg?branch=b-7.3.x)](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml)
+[![Development](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml/badge.svg?branch=b-7.4.x)](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml)
 [![Latest Version](https://img.shields.io/packagist/v/Fresh-Advance/Invoice?logo=composer&label=latest&include_prereleases&color=orange)](https://packagist.org/packages/Fresh-Advance/Invoice)
 [![PHP Version](https://img.shields.io/packagist/php-v/Fresh-Advance/Invoice)](https://github.com/Fresh-Advance/Invoice)
 
@@ -34,6 +34,7 @@
 
 ## Branch compatibility
 
+* Branch **b-7.4.x** is compatible with OXID Shop compilation **7.4.0 and up**
 * Branch **b-7.3.x** is compatible with OXID Shop compilation **7.3.0 and up**
 * Branch **b-7.2.x** is compatible with OXID Shop compilation **7.2.0 and up**
 * Branch **b-7.1.x** is compatible with OXID Shop compilation **7.1.0 and up**
@@ -75,7 +76,7 @@ In case of different environment usage, please adjust by your own needs.
 # Development installation on Fresh Advance Development Base
 
 The installation instructions below are shown for the current [Fresh Advance Development Base](https://github.com/Fresh-Advance/development)
-for shop 7.3. Make sure your system meets the requirements of the Development Base.
+for shop 7.4. Make sure your system meets the requirements of the Development Base.
 
 0. Ensure all docker containers are down to avoid port conflicts
 
@@ -86,7 +87,7 @@ echo MyProject && git clone https://github.com/Fresh-Advance/development.git $_ 
 
 2. Clone the repository to the source directory
 ```shell
-git clone --recurse-submodules https://github.com/Fresh-Advance/Invoice.git --branch=b-7.3.x ./source
+git clone --recurse-submodules https://github.com/Fresh-Advance/Invoice.git --branch=b-7.4.x ./source
 ```
 
 3. Run the recipe to setup the development environment
