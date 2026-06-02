@@ -46,7 +46,12 @@ make up
 
 $SCRIPT_PATH/parts/shared/setup_database.sh
 
+perl -pi\
+  -e 's#http://localhost.local/#https://localhost.local/#g;'\
+  source/source/config.inc.php
+
 docker compose exec -T php vendor/bin/oe-console oe:module:install ./
+docker compose exec -T php vendor/bin/oe-eshop-doctrine_migration migrations:migrate fa_invoice
 
 docker compose exec -T php vendor/bin/oe-console oe:module:activate fa_invoice
 docker compose exec -T php vendor/bin/oe-console oe:theme:activate apex
