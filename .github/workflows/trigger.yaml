@@ -5,13 +5,13 @@ on:
   pull_request: {}
   push:
     branches:
-      - 'b-7.2.x*'
+      - 'b-7.3.x*'
 
 jobs:
   push_trigger:
     uses: oxid-eSales/github-actions/.github/workflows/universal_workflow_light.yaml@v5
     with:
-      testplan: '~/defaults/7.2.x.yaml,~/defaults/php8.2_mysql8.0_only.yaml,~/module-invoice.yaml'
+      testplan: '~/defaults/7.3.x.yaml,~/defaults/php8.3_mysql8.0_only.yaml,~/module-invoice.yaml'
       runs_on: '"ubuntu-latest"'
       defaults: 'v5'
       plan_folder: '.github/fresh-advance'

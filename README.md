@@ -1,6 +1,6 @@
 # PDF Invoice module for OXID eShop
 
-[![Development](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml/badge.svg?branch=b-7.2.x)](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml)
+[![Development](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml/badge.svg?branch=b-7.3.x)](https://github.com/Fresh-Advance/Invoice/actions/workflows/trigger.yaml)
 [![Latest Version](https://img.shields.io/packagist/v/Fresh-Advance/Invoice?logo=composer&label=latest&include_prereleases&color=orange)](https://packagist.org/packages/Fresh-Advance/Invoice)
 [![PHP Version](https://img.shields.io/packagist/php-v/Fresh-Advance/Invoice)](https://github.com/Fresh-Advance/Invoice)
 
@@ -31,12 +31,10 @@
 ## Limitations
 
 * Only Twig shop installations supported
-* Tested with:
-  * Shop 7.1 - PHP 8.1, 8.2, MySQL 5.7 and 8.0
-  * Shop 7.2 - PHP 8.2, 8.3, MySQL 5.7 and 8.0
 
 ## Branch compatibility
 
+* Branch **b-7.3.x** is compatible with OXID Shop compilation **7.3.0 and up**
 * Branch **b-7.2.x** is compatible with OXID Shop compilation **7.2.0 and up**
 * Branch **b-7.1.x** is compatible with OXID Shop compilation **7.1.0 and up**
 * Branch **b-7.0.x** is compatible with OXID Shop compilation **7.0.0-rc.2 and up**
@@ -77,7 +75,7 @@ In case of different environment usage, please adjust by your own needs.
 # Development installation on Fresh Advance Development Base
 
 The installation instructions below are shown for the current [Fresh Advance Development Base](https://github.com/Fresh-Advance/development)
-for shop 7.2. Make sure your system meets the requirements of the Development Base.
+for shop 7.3. Make sure your system meets the requirements of the Development Base.
 
 0. Ensure all docker containers are down to avoid port conflicts
 
@@ -88,7 +86,7 @@ echo MyProject && git clone https://github.com/Fresh-Advance/development.git $_ 
 
 2. Clone the repository to the source directory
 ```shell
-git clone --recurse-submodules https://github.com/Fresh-Advance/Invoice.git --branch=b-7.2.x ./source
+git clone --recurse-submodules https://github.com/Fresh-Advance/Invoice.git --branch=b-7.3.x ./source
 ```
 
 3. Run the recipe to setup the development environment
