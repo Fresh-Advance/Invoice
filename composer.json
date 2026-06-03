@@ -19,10 +19,10 @@
     "kwn/number-to-words": "^2.7"
   },
   "conflict": {
-    "oxid-esales/oxideshop-ce": "<7.4.0"
+    "oxid-esales/oxideshop-ce": "<7.5.0"
   },
   "require-dev": {
-    "oxid-esales/oxideshop-ce": "dev-b-7.4.x",
+    "oxid-esales/oxideshop-ce": "dev-b-7.5.x",
     "phpunit/phpunit": "^11",
     "phpstan/phpstan": "^2.1",
     "squizlabs/php_codesniffer": "4.*",
@@ -33,9 +33,9 @@
     "codeception/module-db": "^3.0",
     "codeception/module-filesystem": "^3.0",
     "codeception/module-webdriver": "^4.0",
-    "oxid-esales/codeception-modules": "dev-b-7.4.x",
-    "oxid-esales/codeception-page-objects": "dev-b-7.4.x",
-    "oxid-esales/developer-tools": "dev-b-7.4.x"
+    "oxid-esales/codeception-modules": "dev-b-7.5.x",
+    "oxid-esales/codeception-page-objects": "dev-b-7.5.x",
+    "oxid-esales/developer-tools": "dev-b-7.5.x"
   },
   "autoload": {
     "psr-4": {

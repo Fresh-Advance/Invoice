@@ -35,10 +35,10 @@ perl -pi\
 mkdir source
 docker compose up --build -d php
 
-$SCRIPT_PATH/parts/shared/require_shop_edition_packages.sh -e"${edition}" -v"dev-b-7.4.x"
-$SCRIPT_PATH/parts/shared/require_twig_components.sh -e"${edition}" -b"b-7.4.x"
-$SCRIPT_PATH/parts/shared/require.sh -n"oxid-esales/apex-theme" -v"dev-b-7.4.x"
-$SCRIPT_PATH/parts/shared/require_demodata_package.sh -e"${edition}" -b"b-7.4.x"
+$SCRIPT_PATH/parts/shared/require_shop_edition_packages.sh -e"${edition}" -v"dev-b-7.5.x"
+$SCRIPT_PATH/parts/shared/require_twig_components.sh -e"${edition}" -b"b-7.5.x"
+$SCRIPT_PATH/parts/shared/require.sh -n"oxid-esales/apex-theme" -v"dev-b-7.5.x"
+$SCRIPT_PATH/parts/shared/require_demodata_package.sh -e"${edition}" -b"b-7.5.x"
 
 docker compose exec php composer update --no-interaction
 
